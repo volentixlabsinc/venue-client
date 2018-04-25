@@ -16,3 +16,9 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+The corporate colours are:
+Dark Blue: #222C3B
+Grey: #94A8B6
+
+Venue Accent Colour: #85449A

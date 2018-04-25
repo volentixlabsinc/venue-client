@@ -718,6 +718,23 @@ $stylish-rgba: (
   color: #4f4f4f;
 }
 
+//VENUE COLORS
+$venue-gray-color:             #94A8B6 !default;
+$venue-blue-color:             #222C3B !default;
+$venue-accent-color:           #85449A !default;
+
+$venue-colors: () !default;
+$venue-colors: map-merge((
+  "venue-gray-color":        $venue-gray-color,
+  "venue-blue-color":        $venue-blue-color,
+  "venue-accent-color":      $venue-accent-color
+), $venue-colors);
+
+@each $color_name, $color in $venue-colors {
+  .#{$color_name} {
+    background-color: $color !important;
+  }
+}
 // Material colors
 $primary-color:        #4285f4 !default;
 $primary-color-dark:   #0d47a1 !default;
