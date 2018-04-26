@@ -43,21 +43,23 @@ export default {
 }
 
 .main-section::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
 }
 
 /* Track */
 .main-section::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
     -webkit-border-radius: 0px;
     border-radius: 0px;
+    background-clip: content-box;
 }
  
 /* Handle */
 .main-section::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
 .card {
@@ -68,13 +70,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: rgb(245, 245, 245, 0.1) 1px solid;
+  box-shadow: 0px 0px 0px black;
 }
 .my-news {
   background-color: rgb(245, 245, 245, 0.05);
   border: rgb(245, 245, 245, 0.3) 1px solid;
   color: black;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 @media only screen and (min-width: 800px) {

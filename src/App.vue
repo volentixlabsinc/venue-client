@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import navbar from './common/navbar.vue';
-import tokens from './common/tokens.vue';
+import navbar from './common/navbar/index.vue';
+import tokens from './common/tokens/index.vue';
 
 export default {
   name: 'app',
@@ -50,7 +50,7 @@ export default {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 70%;
+  height: 71%;
 }
 img {
   max-height: 20px;
@@ -58,18 +58,18 @@ img {
   padding-left: 15px;
 }
 .logo {
-  height: 20%;
+  height: 22%;
   width: 50%;
   order: 1;
   background-color: #222C3B;
   box-shadow: -5px 1px 5px black;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 .tokens {
-  height: 20%;
+  height: 22%;
   order:2;
   width: 50%;
   box-shadow: -5px 1px 5px black;
@@ -78,6 +78,7 @@ img {
   text-shadow: 2px 2px 5px black;
   display: flex;
   justify-content: flex-end;
+   z-index: 1;
 }
 p {
   flex-grow: 0;
@@ -123,7 +124,7 @@ p {
     height: 100%;
     width:70%;
     z-index: 2;
-    box-shadow: 1px 1px 5px black, -1px -1px 5px black;
+    box-shadow: 1px 1px 20px black, -1px -1px 5px black;
   }
 
   .logo {
