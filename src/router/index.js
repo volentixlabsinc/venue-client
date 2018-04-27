@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Dashboard from './../components/dashboard';
-import Campaign from './../components/campaigns';
-import Referral from './../components/referrals';
-import Account from './../components/account';
+import Dashboard from './../views/dashboard';
+import Campaign from './../views/campaigns';
+import Referral from './../views/referrals';
+import Account from './../views/account';
 
 
 Vue.use(Router);
