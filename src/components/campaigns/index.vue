@@ -6,7 +6,10 @@
         </div>
         <div class="card leaderboard">
           <ul>
-              <li v-for="elements in leaderboardElements" :key="elements">{{elements.name}}</li>
+              <li v-for="elements in leaderboardElements" :key="elements">
+                  <p>{{elements.name}}</p>
+                  <p class="el-tokens">{{elements.tokens}}</p>
+                  </li>
           </ul>
       </div>
   </div>
@@ -77,10 +80,18 @@ ul {
 }
 li {
     height: 70px;
+    border-top: white 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.el-tokens {
+    justify-self: flex-end
 }
 
 .leaderboard {
-overflow: scroll;
+    overflow: scroll;
     overflow-x: hidden;
     scrollbar-face-color: #367CD2;
     scrollbar-shadow-color: #FFFFFF;
@@ -110,5 +121,6 @@ overflow: scroll;
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
+
 
 </style>

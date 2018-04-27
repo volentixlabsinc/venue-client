@@ -45,7 +45,10 @@ a:hover {
     justify-content: flex-start;
     align-items: flex-end;
 }
-
+a:hover {
+    border-top: #85449A 0px solid;
+    border-right: #85449A 1px solid;
+}
 .button {
     padding-bottom: 20px;
     padding-right: 20px;
