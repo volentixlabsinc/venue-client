@@ -3,8 +3,10 @@
       <div class="card my-campaign">
         <h1>here goes info from campaign</h1>
       </div>
+       <div class="card my-news-div">
       <div v-for= "news in newsList" :key="news" class="card my-news">
-      <h1>{{news}}</h1>
+      <h2>{{news}}</h2>
+      </div>
       </div>
       </div>
 </template>
@@ -31,35 +33,6 @@ export default {
     justify-content: flex-start;
     align-items: center;
     color: white;
-    overflow: scroll;
-    overflow-x: hidden;
-    scrollbar-face-color: #367CD2;
-    scrollbar-shadow-color: #FFFFFF;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-3dlight-color: #FFFFFF;
-    scrollbar-darkshadow-color: #FFFFFF;
-    scrollbar-track-color: #FFFFFF;
-    scrollbar-arrow-color: #FFFFFF;
-}
-
-.main-section::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-.main-section::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
-}
- 
-/* Handle */
-.main-section::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
 .card {
@@ -78,6 +51,44 @@ export default {
   color: black;
   margin-top: 10px;
   border-radius: 10px;
+}
+ .my-news-div {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   padding-top: 10px;
+   padding-bottom: 10px;
+    overflow: scroll;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+}
+
+.my-news-div::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.my-news-div::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+ 
+/* Handle */
+.my-news-div::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
 @media only screen and (min-width: 800px) {

@@ -87,6 +87,11 @@ li {
 }
 
 .leaderboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     overflow: scroll;
     overflow-x: hidden;
     scrollbar-face-color: #367CD2;
@@ -96,6 +101,10 @@ li {
     scrollbar-darkshadow-color: #FFFFFF;
     scrollbar-track-color: #FFFFFF;
     scrollbar-arrow-color: #FFFFFF;
+}
+
+.leaderboard * {
+width: 100%;
 }
 
 .leaderboard::-webkit-scrollbar {
