@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+import Home from './../views/home';
 import Dashboard from './../views/dashboard';
 import Campaign from './../views/campaigns';
 import Referral from './../views/referrals';
@@ -12,6 +13,11 @@ Vue.use(Router);
 const routes = [
     {
         path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/dashboard',
         name: 'Dashboard',
         component: Dashboard
     },

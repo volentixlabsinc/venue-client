@@ -6,7 +6,7 @@
     <img src="/img/logos/solo_White-logo.png"/>
   </div>
   <div class="tokens">
-    <tokens/>
+    <tokens :logIn="logIn"/>
   </div>
   <div class="nav-bar">
       <navbar/>
@@ -24,6 +24,11 @@ import tokens from './common/tokens/index.vue';
 
 export default {
   name: 'app',
+  data () {
+    return  {
+      logIn: false
+    }
+  },
   
   components: {
     navbar,
@@ -102,7 +107,7 @@ p {
   align-self: flex-end;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 600px) {
   #app {
     flex-direction: column;;
     justify-content: flex-start;

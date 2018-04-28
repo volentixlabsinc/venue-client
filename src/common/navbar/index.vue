@@ -1,6 +1,6 @@
 <template>
 <div class="menu">
-    <router-link :to="'/'">
+    <router-link :to="'/dashboard'">
     <a class="button"><i class="fas fa-tachometer-alt"></i></a>
     </router-link>
     <router-link :to="'/campaign'">

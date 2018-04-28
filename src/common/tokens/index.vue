@@ -8,6 +8,12 @@
 <script>
 export default {
   name: 'app',
+  props: {
+    logIn : {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
