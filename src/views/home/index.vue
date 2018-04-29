@@ -11,9 +11,20 @@
 
 <script>
 import logIn from './logIn.vue';
+import { getLeaderBoardData } from '../../service/leaderboard'; 
+
 
 export default {
   name: 'home',
+    mounted(){
+    getLeaderBoardData()
+      .then(response => {
+          console.log('hello', response)
+      })
+      .catch(ex => {
+        console.error(ex);
+      });
+  },
   
   components: {
     logIn

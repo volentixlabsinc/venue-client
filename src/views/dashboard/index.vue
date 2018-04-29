@@ -12,7 +12,10 @@
 </template>
 
 <script>
+
+
 export default {
+
   name: 'dashboard',
   data () {
     return {
@@ -20,7 +23,8 @@ export default {
         'news 1', 'news 2', 'news 3', 'news 4', 'news 5'
       ]
     }
-  }
+  },
+
 }
 </script>
 
@@ -95,3 +99,4 @@ export default {
   
 }
 </style>
+

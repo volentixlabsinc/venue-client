@@ -82,6 +82,15 @@ module.exports = {
     overlay: true,
     contentBase: 'public',
         publicPath: '/dist',
+        proxy: {
+          // proxy all requests starting with /api to jsonplaceholder
+          '/api': {
+            target: 'http://localhost:8000',
+            changeOrigin: true,
+          
+          }
+        }
+    
 
   },
   performance: {
