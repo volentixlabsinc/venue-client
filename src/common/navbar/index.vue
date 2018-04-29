@@ -39,7 +39,7 @@ a:hover {
     color: #85449A;
     border-top: #85449A 1px solid;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
 .menu {
     flex-direction: column;
     justify-content: flex-start;

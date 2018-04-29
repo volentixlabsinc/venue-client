@@ -6,7 +6,7 @@
     <img src="/img/logos/solo_White-logo.png"/>
   </div>
   <div class="tokens">
-    <tokens :logIn="logIn"/>
+    <tokens />
   </div>
   <div class="nav-bar">
       <navbar/>
