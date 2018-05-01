@@ -2,12 +2,14 @@
 <div>
   <div 
   id="app">
-  <div class="logo">
-    <img src="/img/logos/solo_White-logo.png"/>
-  </div>
-  <div class="tokens">
+  <div class="top-left">
+    <div class="top-left-container">
+    <img id="venue-logo" src="/img/logos/solo_White-logo.png"/>
+    <img id="token-icon" src="/img/logos/VTX-Token-icon_B&W2.png"/>
     <tokens />
+    </div>
   </div>
+  
   <div class="nav-bar">
       <navbar/>
   </div>
@@ -44,57 +46,51 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  background-color: #222C3B;
+  justify-content: center;
+  background-color: #2E2E3F;
+  background-image: linear-gradient(to top,  #222C3B, #494B5E);
   flex-wrap: wrap;
 }
 .main {
   order: 3;
-  background-image: linear-gradient(to bottom,  #222C3B, #222C3B, #61396e , #222C3B);
   display:flex;
   flex-direction:column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 71%;
+  height: 75%;
 }
-img {
+#venue-logo {
   max-height: 20px;
-  padding-top: 30px;
-  padding-left: 15px;
+  margin: 20px;
 }
-.logo {
-  height: 22%;
-  width: 50%;
+.top-left {
+  height: 18%;
+  width: 100%;
   order: 1;
-  background-color: #222C3B;
-  box-shadow: -5px 1px 5px black;
+  box-shadow: 0px 2px 10px #1d2430;
   z-index: 2;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
-.tokens {
-  height: 22%;
-  order:2;
-  width: 50%;
-  box-shadow: -5px 1px 5px black;
-  color: white;
-  font-size: 20px;
-  text-shadow: 2px 2px 5px black;
-  display: flex;
-  justify-content: flex-end;
-   z-index: 1;
+
+.top-left-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
 }
-p {
-  flex-grow: 0;
-  margin: 0px;
-  padding-top: 30px;
-  padding-right:15px;
+
+#token-icon{
+  height: 12%;
+  position:absolute; 
+  top:11%;
+  left:40%;
 }
 .fa-adjust{
-  flex-grow: 0;
-  margin: 0px;
-  padding-top: 33px;
   padding-right: 5px;
   color: #ffdc13;
 }
@@ -102,8 +98,7 @@ p {
  width: 100%;
  height: 7%;
   order: 4;
-  background-color: white;
-  opacity: 0.8;
+  background-color: #494B5E;
   align-self: flex-end;
 }
 
@@ -116,46 +111,61 @@ p {
   }
   .nav-bar{
   order:2;
-   height: 70%;
+   height: 77%;
    width: 15%;
    align-self: center;
-  background-color: #222C3B;
+  background-color: transparent;
   opacity: 1;
   }
 
   .main{
+    padding-left: 20px;
     order: 3;
     grid-area: main;
     height: 100%;
-    width:70%;
+    width:82%;
     z-index: 2;
-    box-shadow: 1px 1px 20px black, -1px -1px 5px black;
+    
   }
 
-  .logo {
+  .top-left {
   order:1;
-   height: 30%;
+   height: 23%;
    width: 15%;
   align-self: flex-start;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: flex-end;
   box-shadow: 0px 0px 0px black;
   }
 
-  .tokens {
-    order:4;
-    height: 100%;
-    width: 15%;
-    font-size: 23px;
-  }
+  .top-left-container{
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+  #token-icon{
+    padding-top: 10px;
+  height: 70px;
+  position: inherit;; 
+  order:-1;
+}
+
 }
 
 @media only screen and (min-width: 700px) {
-   img {
-  max-height: 25px;
+   #venue-logo {
+  max-height: 22px;
+  margin: 10px;
   }
 }
 @media only screen and (min-width: 900px) {
-   img {
-  max-height: 30px;
+   #venue-logo {
+  max-height: 27px;
   }
 }
 </style>

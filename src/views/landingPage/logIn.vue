@@ -1,5 +1,6 @@
 <template>
 <div class="log-in-element">
+  <h3>LOGIN</h3>
     <input v-validate="'required|username'" name="username" placeholder="username" v-model="username"/>
     <span class="venue-text">{{ errors.first('username') }}</span>
     <input v-validate="'required|password'" name="password" placeholder="password" v-model="password"/>
@@ -7,9 +8,9 @@
     <button 
     @click="$router.push('/dashboard')"
     class="btn btn-sm">Log In</button>
-    <button 
+    <a 
     @click="$emit('cancel')"
-    class="btn btn-sm cancel">Cancel</button>
+    class="cancel">CANCEL</a>
   </div>
 </template>
 
@@ -36,24 +37,34 @@ export default {
 
 <style scoped>
 .log-in-element{
+  background-color: transparent;
   display: flex ;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
 }
 
 button {
   width: 80%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgb(176, 176, 176);
-  color: rgb(176, 176, 176);
+  height: 10%;
+  background-color: #5B4C6C;
+     border: 1px solid #9B68CD;
+  color: white;
 }
 
 .cancel {
   border: 0px solid rgb(176, 176, 176);
   box-shadow: 0px 0px 0px white;
   background-color: inherit;
+  text-decoration: underline !important;
+  font-size: 0.64rem;
+  color: rgb(176, 176, 176);
+  padding-top: 0.5rem;
+    padding-right: 1.6rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.6rem;
 }
 
 .cancel:hover {

@@ -1,7 +1,13 @@
 <template>
     <div class="main-section">
       <div class="card my-campaign">
-        <h1>here goes info from campaign</h1>
+        <h4>My Campaign</h4>
+      </div>
+      <div class="card my-campaign">
+        <h4>Forum Activity</h4>
+      </div>
+      <div class="card my-campaign">
+        <h4>All Campaigns</h4>
       </div>
        <div class="card my-news-div">
       <div v-for= "news in newsList" :key="news" class="card my-news">
@@ -33,39 +39,50 @@ export default {
   width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     color: white;
+    flex-wrap: wrap;
+}
+
+.my-campaign{
+  min-height:40%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: none;
+  background-color: #303140;
 }
 
 .card {
-  width: 95%;
-}
-.my-campaign{
-  min-height:40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 0px black;
+  box-shadow: none;
 }
 .my-news {
-  background-color: rgb(245, 245, 245, 0.05);
   border: rgb(245, 245, 245, 0.3) 1px solid;
   color: black;
   margin-top: 10px;
-  border-radius: 10px;
+  width: 30%;
+  height: 75%;
+  flex: 0 0 auto;
+  margin: 10px;
+  background-color: #303140;
 }
  .my-news-div {
+   height: 40%;
+   width: 100%;
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    justify-content: flex-start;
-   align-items: center;
+   align-items: flex-start;
+   flex-wrap: nowrap;
+   overflow-x: auto;
+  overflow-y: hidden;
    padding-top: 10px;
    padding-bottom: 10px;
-    overflow: scroll;
-    overflow: scroll;
-    overflow-x: hidden;
+    
     scrollbar-face-color: #367CD2;
     scrollbar-shadow-color: #FFFFFF;
     scrollbar-highlight-color: #FFFFFF;
