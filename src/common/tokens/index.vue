@@ -1,7 +1,6 @@
 <template>
 <div class="tokens-template">
-    <i class="fas fa-adjust"></i>
-    <p>{{myTotalTokens}}</p>
+    <p>{{myTotalTokens}} vtx</p>
 </div>
 </template>
 
@@ -26,30 +25,32 @@ export default {
 
 <style scoped>
 .tokens-template {
-  height: 100%;
-  width: 100%;
+  padding: 20px;
   color: white;
   font-size: 20px;
-  text-shadow: 2px 2px 5px black;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: flex-start;
 }
 p {
   flex-grow: 0;
   margin: 0px;
-  padding-top: 30px;
-  padding-right:15px;
+  padding-left:10px;
 }
-.fa-adjust{
+
+@media only screen and (min-width: 600px) {
+.tokens-template {
+  padding: 0px;
+  font-size: 18px;
+  font-weight:lighter;
+  justify-content: center;
+align-items: center;
+}
+p {
   flex-grow: 0;
   margin: 0px;
-  padding-top: 33px;
-  padding-right: 5px;
-  color: #ffdc13;
-}
-@media only screen and (min-width: 500px) {
-    .tokens-template {
-      font-size: 25px;
+  padding-left:5px;
+  letter-spacing: 1.2px;
 }
 }
 </style>
