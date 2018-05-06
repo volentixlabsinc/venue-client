@@ -24,12 +24,18 @@
 import navbar from './common/navbar/index.vue';
 import tokens from './common/tokens/index.vue';
 
+import { readFromCookie } from './service/utils/browser-storage'; 
+
 export default {
   name: 'app',
   data () {
     return  {
       logIn: false
     }
+  },
+  mounted(){
+    readFromCookie(); 
+    
   },
   
   components: {

@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-
+import {readFromCookie } from '../../service/utils/browser-storage'; 
 const baseUrl = '/api';
 
 const POSTPUT_OPTIONS = {
@@ -78,8 +78,11 @@ class VenueAPI {
      * Performs a 'get' on the specified URL.
      * Returns a promise, based on the ES6 'fetch' function
      */
-    get(url) {
-        console.log('url is', baseUrl + url);
+    get(url, options) {
+        //IMPORTANT need to handle cases where there
+        //IS a cookie token but it's invalid
+        var isAuth = readFromCookie(); 
+        if(!isAuth) {
         return fetch( baseUrl + url, {
             headers : { 
                 'Content-Type': 'application/json',
@@ -93,6 +96,25 @@ class VenueAPI {
         .then(res => {
             return res.json();
         })
+    } else {
+        return fetch( baseUrl + url, {
+            headers : 
+            new Headers({
+                'Authorization': 'Token ' + isAuth, 
+                'Content-Type': 'application/json'
+
+              }), 
+    
+            }
+        )
+        .then(res => {
+            return res; 
+        })
+        .then(res => {
+            return res.json();
+        })
+
+    }
        
     }
 

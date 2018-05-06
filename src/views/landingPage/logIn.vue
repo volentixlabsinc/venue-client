@@ -1,12 +1,12 @@
 <template>
 <div class="log-in-element">
   <h3>LOGIN</h3>
-    <input v-validate="'required|username'" name="username" placeholder="username" v-model="username"/>
+    <input v-validate="'required|email'" name="username" placeholder="username" v-model="username"/>
     <span class="venue-text">{{ errors.first('username') }}</span>
-    <input v-validate="'required|password'" name="password" placeholder="password" v-model="password"/>
+    <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
     <span class="venue-text">{{ errors.first('password') }}</span>
     <button 
-    @click="$router.push('/dashboard')"
+    @click="authenticateLogin"
     class="btn btn-sm">Log In</button>
     <a 
     @click="$emit('cancel')"
@@ -16,6 +16,9 @@
 
 
 <script>
+import {authenticate} from  '../../service/auth';
+import {writeToCookie} from '../../service/utils/browser-storage';
+
 export default {
   props: {
     action: {
@@ -31,6 +34,26 @@ export default {
   },
   mounted(){
     console.log('logIn');
+  },
+  methods: {
+    authenticateLogin: function() {
+      authenticate(this.username, this.password)
+      .then(response => {
+        if(response.status === 200) {
+          return response.json()
+        } else {
+          //Handle Login Error here
+        }
+      })
+      .then(data=> {
+        writeToCookie(data.token); 
+        this.$router.push('/dashboard');
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+    }
   }
 }
 </script>
