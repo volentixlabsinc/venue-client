@@ -1,6 +1,14 @@
 <template>
 <div class="tokens-template">
-    <p>{{myTotalTokens}} vtx</p>
+  <div class="top-left-container">
+    <div class="venue-logo">
+    <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
+    </div>
+    <div class="VTX">
+    <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+    <p>{{myTotalTokens}}</p>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -25,17 +33,45 @@ export default {
 
 <style scoped>
 .tokens-template {
+  width: 100%;
   padding: 20px;
   color: white;
   font-size: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
 }
 p {
   flex-grow: 0;
   margin: 0px;
   padding-left:10px;
+}
+.venue-logo, .VTX {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+#venue-logo {
+  max-height: 30px;
+}
+
+.top-left-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#token-icon{
+  height: 12%;
+  position:absolute; 
+  top:4%;
+  left:40%;
+}
+.fa-adjust{
+  padding-right: 5px;
+  color: #ffdc13;
 }
 
 @media only screen and (min-width: 600px) {
@@ -44,13 +80,51 @@ p {
   font-size: 18px;
   font-weight:lighter;
   justify-content: center;
-align-items: center;
+  align-items: center;
 }
+
+.top-left-container{
+  display: flex;
+  width: auto;
+  height: auto;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+.venue-logo, .VTX {
+  width: 100%;
+  align-items: center;
+}
+
 p {
   flex-grow: 0;
   margin: 0px;
   padding-left:5px;
+  padding-right:5px;
   letter-spacing: 1.2px;
+  padding-top: 10px;
+  /* order: -1; */
 }
+
+#token-icon{
+  padding-top: 10px;
+  height: 30px;
+  position: inherit;; 
+}
+
+}
+
+@media only screen and (min-width: 700px) {
+   #venue-logo {
+  max-height: 22px;
+  margin: 10px;
+  }
+}
+@media only screen and (min-width: 900px) {
+   #venue-logo {
+  max-height: 40px;
+  }
 }
 </style>

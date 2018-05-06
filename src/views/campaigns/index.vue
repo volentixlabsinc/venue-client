@@ -2,7 +2,7 @@
   <div class="main-section">
       <div class="card">
           <h1>Campaign</h1>
-          <campaigns :rankings="data.rankings"/>
+          <campaigns :rankings="data.rankings" :sitewide="data.sitewide"/>
       </div>
   </div>
 </template>
@@ -47,5 +47,10 @@ mounted(){
 
 .card {
   width: 95%;
+  height: 100%;
+}
+
+campaigns {
+    height: 100% !important;
 }
 </style>

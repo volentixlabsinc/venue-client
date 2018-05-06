@@ -14,29 +14,29 @@ function checkForUsername(username) {
 }
 
 function changeEmail(email) {
-    return VenueAPI.postJson('manage/change-email/', {email});
+    return VenueAPI.postJson('/manage/change-email/', {email});
 }
 
 function changeUsername(username) {
-    return VenueAPI.postJson('manage/change-username/', 
+    return VenueAPI.postJson('/manage/change-username/', 
     {username});
 
 }
 
 function changePassword(password) {
-    return VenueAPI.postJson('manage/change-password/', 
+    return VenueAPI.postJson('/manage/change-password/', 
     {password});
 
 }
 
 //? Not enough detail in ap
 function confirmEmail(password) {
-    return VenueAPI.get('manage/confirm-email');
+    return VenueAPI.get('/manage/confirm-email');
 
 }
 
 function confirmEmail(user) {
-    return VenueAPI.get(`retrieve/user?=${user}`);
+    return VenueAPI.get(`/retrieve/user?=${user}`);
 
 }
 

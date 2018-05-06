@@ -1,18 +1,21 @@
 <template>
     <div class="main-section">
       <div class="card my-campaign">
-        <h4>My Campaign</h4>
+         <h4 v-if="data">{{data.rankings[0].rank}}</h4>
+         <h4 v-if="data">{{data.rankings[0].username}}</h4>
+         <h4 v-if="data">{{data.rankings[0].total_posts}}</h4>
+         <h4 v-if="data">{{data.rankings[0].total_tokens}}</h4>
       </div>
-      <div class="card my-campaign">
-        <h4>Forum Activity</h4>
+      <div class=" my-activity">
+        <div class="forum forum1">
+          <h4>Forum 1 Activity</h4>
+        </div>
+        <div class="forum forum2">
+          <h4>Forum 2 Activity</h4>
+        </div>
       </div>
-      <div class="card my-campaign">
+      <div class="card all-campaigns">
         <h4>All Campaigns</h4>
-      </div>
-       <div class="card my-news-div">
-      <div v-for= "news in newsList" :key="news" class="card my-news">
-      <h2>{{news}}</h2>
-      </div>
       </div>
       </div>
 </template>
@@ -21,6 +24,7 @@
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveNotifications } from '../../service/notifications';
 import {retrieveUser } from '../../service/account';
+import { getLeaderBoardData } from '../../service/leaderboard'; 
 
 
 export default {
@@ -30,66 +34,77 @@ export default {
     return {
       newsList: [
         'news 1', 'news 2', 'news 3', 'news 4', 'news 5'
-      ]
+      ],
+      data:null,
     }
   },
   mounted(){
     retrieveStats(); 
     retrieveNotifications();
     retrieveUser(); 
-  }
+  
+    getLeaderBoardData()
+      .then(response => {
+          this.data = response;
+          console.log('this.data: ', this.data);
+      })
+      .catch(ex => {
+        console.error(ex);
+      });
+  },
 
 }
 </script>
 
 <style scoped>
+
 .main-section {
   width: 100%;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: white;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;   
 }
 
+
 .my-campaign{
-  min-height:40%;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  box-shadow: none;
-  background-color: #303140;
+ padding-top: 10%;
 }
 
 .card {
   box-shadow: none;
+  min-height:27%;
+  width: 100%;
+  background-color: #303140;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #303140;
+
 }
-.my-news {
+.forum {
   border: rgb(245, 245, 245, 0.3) 1px solid;
   color: black;
-  margin-top: 10px;
-  width: 30%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   flex: 0 0 auto;
-  margin: 10px;
-  background-color: #303140;
+  margin: 0px;
+  background-color: gray;
 }
- .my-news-div {
-   height: 40%;
+ .my-activity {
+   height: 200px;
    width: 100%;
    display: flex;
    flex-direction: row;
    justify-content: flex-start;
-   align-items: flex-start;
+   align-items: center;
    flex-wrap: nowrap;
    overflow-x: auto;
   overflow-y: hidden;
-   padding-top: 10px;
-   padding-bottom: 10px;
     
     scrollbar-face-color: #367CD2;
     scrollbar-shadow-color: #FFFFFF;
@@ -100,12 +115,12 @@ export default {
     scrollbar-arrow-color: #FFFFFF;
 }
 
-.my-news-div::-webkit-scrollbar {
-    width: 10px;
+.my-activity::-webkit-scrollbar {
+    width: 5px;
 }
 
 /* Track */
-.my-news-div::-webkit-scrollbar-track {
+.my-activity::-webkit-scrollbar-track {
   box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
     -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
     -webkit-border-radius: 0px;
@@ -114,14 +129,48 @@ export default {
 }
  
 /* Handle */
-.my-news-div::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+.my-activity::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
-@media only screen and (min-width: 800px) {
-  
+
+@media only screen and (min-width: 600px) {
+
+.main-section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    flex-wrap: wrap;
 }
+.card {
+  height:49%;
+  width: 49%;
+}
+.my-campaign{
+  order:1;
+  padding-top: 0px;
+}
+.all-campaigns{
+  order:2
+}
+.my-activity{
+  order:3;
+   height: 49%;
+   justify-content: space-between;
+}
+
+.forum {
+  width: 49%;
+  height: 100%;
+  flex: 0 0 auto;
+  margin: 0px;
+  background-color: gray;
+}
+
+}
+
 </style>
 
