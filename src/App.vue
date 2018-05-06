@@ -3,11 +3,9 @@
   <div 
   id="app">
   <div class="top-left">
-    <div class="top-left-container">
-    <img id="venue-logo" src="/img/logos/solo_White-logo.png"/>
-    <img id="token-icon" src="/img/logos/VTX-Token-icon_B&W2.png"/>
+
     <tokens />
-    </div>
+
   </div>
   
   <div class="nav-bar">
@@ -58,14 +56,11 @@ export default {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 75%;
+  height: 83%;
 }
-#venue-logo {
-  max-height: 20px;
-  margin: 20px;
-}
+
 .top-left {
-  height: 18%;
+  height: 10%;
   width: 100%;
   order: 1;
   box-shadow: 0px 2px 10px #1d2430;
@@ -76,13 +71,6 @@ export default {
   flex-wrap: wrap;
 }
 
-.top-left-container{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
 #token-icon{
   height: 12%;
@@ -159,13 +147,13 @@ export default {
 
 @media only screen and (min-width: 700px) {
    #venue-logo {
-  max-height: 22px;
+  max-height: 25px;
   margin: 10px;
   }
 }
 @media only screen and (min-width: 900px) {
    #venue-logo {
-  max-height: 27px;
+  max-height: 40px;
   }
 }
 </style>

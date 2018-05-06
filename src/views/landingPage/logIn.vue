@@ -1,8 +1,8 @@
 <template>
 <div class="log-in-element">
   <h3>LOGIN</h3>
-    <input v-validate="'required|username'" name="username" placeholder="username" v-model="username"/>
-    <span class="venue-text">{{ errors.first('username') }}</span>
+    <input v-validate="'required|email'" name="email" placeholder="email" v-model="username"/>
+    <span class="venue-text">{{ errors.first('email') }}</span>
     <input v-validate="'required|password'" name="password" placeholder="password" v-model="password"/>
     <span class="venue-text">{{ errors.first('password') }}</span>
     <button 
@@ -43,7 +43,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+
 }
 
 button {
