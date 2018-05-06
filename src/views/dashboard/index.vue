@@ -18,6 +18,9 @@
 </template>
 
 <script>
+import {retrieveStats } from '../../service/dashboard';
+import {retrieveNotifications } from '../../service/notifications';
+import {retrieveUser } from '../../service/account';
 
 
 export default {
@@ -30,6 +33,11 @@ export default {
       ]
     }
   },
+  mounted(){
+    retrieveStats(); 
+    retrieveNotifications();
+    retrieveUser(); 
+  }
 
 }
 </script>

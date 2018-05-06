@@ -40,6 +40,10 @@ function confirmEmail(user) {
 
 }
 
+function retrieveUser(){
+    return VenueAPI.get('/retrieve/user/')
+}
+
 
 
 export {
@@ -50,6 +54,7 @@ export {
     changeUsername,
     changePassword,
     confirmEmail,
+    retrieveUser
 
 
 }; 
