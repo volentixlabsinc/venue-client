@@ -39,7 +39,10 @@ export default {
     }
   },
   mounted(){
-    retrieveStats(); 
+    retrieveStats()
+    .then(response => {
+      console.log('retrieveStats', response);
+    })
     retrieveNotifications();
     retrieveUser(); 
   

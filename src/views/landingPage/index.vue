@@ -24,7 +24,7 @@
     </div>
     <div v-if="data" class="card campaigns">
         <h4 class="section-title">Ongoing campaign</h4>
-        <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p>
+        <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
         <campaigns :rankings="data.rankings" :sitewide="data.sitewide"/>
     </div>
 

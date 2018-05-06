@@ -42,7 +42,10 @@ export default {
         if(response.status === 200) {
           return response.json()
         } else {
-          //Handle Login Error here
+          //Handle Login Error here 
+          console.log('wrong credentials');
+          var message = 'something went wrong';
+          return message
         }
       })
       .then(data=> {

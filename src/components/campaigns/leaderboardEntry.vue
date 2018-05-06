@@ -10,7 +10,7 @@
             <p class="empty-element"></p>
         <p class="element top-el el-total-posts">{{elements.total_posts}} posts</p>
     </div>
-    <div v-if="toggleDescription" class="toggled-info">
+    <div v-if="toggleDescription && sitewide.available_tokens" class="toggled-info">
         <p>total available tokens: {{sitewide.available_tokens}}</p>
         <p>total available points: {{sitewide.available_points}}</p>
         <p>user points: {{elements.total_points}}</p>
