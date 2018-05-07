@@ -2,8 +2,8 @@
     <div class=" leaderboard">
         
         <ul>
-            <li v-for="(elements, key) in rankings" :key="key" :style="[elements.username==username? 'backgound-color:white' : 'backgound-color:none' ]">
-                <leaderboard-entry :elements="elements" :sitewide="sitewide"/>
+            <li v-for="(elements, key) in rankings" :key="key" >
+                <leaderboard-entry :elements="elements" :sitewide="sitewide" :username="username"/>
             </li>
         </ul>
     </div>
@@ -92,6 +92,7 @@ width: 100%;
 }
 
 ul {
+    width: 100%;
     list-style-type: none;
     padding: 0;
     list-style-type: none;

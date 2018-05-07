@@ -1,5 +1,5 @@
 <template>
-<div class="element-container">
+<div class="element-container" :style="[elements.username==username? 'backgound-color:white !important' : 'backgound-color:none' ]">
     <div class="top-elements">
         <div class="rank_username">
             <p class="element top-el el-rank">{{elements.rank}}</p>
@@ -34,6 +34,10 @@ export default {
         sitewide: {
             type: Object,
             default: null
+        },
+        username: {
+            type: String,
+            default: ''
         }
   },
    data() {
