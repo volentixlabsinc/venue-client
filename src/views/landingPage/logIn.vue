@@ -39,9 +39,12 @@ export default {
     authenticateLogin: function() {
       authenticate(this.username, this.password)
       .then(response => {
-        if(response.status === 200) {
+        return response.json();
+        console.log('!!!!!!@#!@!@', response)
+        if(response.json().success ) {
           return response.json()
         } else {
+          console.log('Something went wrong')
           //Handle Login Error here
         }
       })

@@ -6,6 +6,8 @@ import Dashboard from './../views/dashboard';
 import Campaign from './../views/campaigns';
 import Referral from './../views/referrals';
 import Account from './../views/account';
+import Signature from './../views/signature';
+
 import { readFromCookie } from '../service/utils/browser-storage';
 
 
@@ -34,6 +36,13 @@ const routes = [
         path: '/referrals',
         name: 'Referral',
         component: Referral
+    },
+    {
+        path: '/signatures',
+        name: 'Signatures',
+        component: Signature,
+        beforeEnter: requireAuth
+
     },
     {
         path: '/account',
