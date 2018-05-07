@@ -6,7 +6,7 @@
     </div>
     <div class="VTX">
     <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-    <p>{{myTotalTokens}}</p>
+    <p>{{myTotalTokens}} VTX</p>
     </div>
   </div>
 </div>
@@ -64,10 +64,10 @@ p {
 }
 
 #token-icon{
-  height: 12%;
+  height: 80px;
   position:absolute; 
-  top:4%;
-  left:40%;
+  bottom:-25px;
+  left:42%;
 }
 .fa-adjust{
   padding-right: 5px;

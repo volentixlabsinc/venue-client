@@ -1,6 +1,6 @@
 <template>
 <div class="log-in-element">
-  <h3>Join VENUE</h3>
+  <h3>SIGNUP</h3>
     <input v-validate="'required|email'" name="email" placeholder="email" v-model="email"/>
     <span class="venue-text">{{ errors.first('email') }}</span>
     <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
@@ -11,7 +11,7 @@
     <span class="venue-text">{{ errors.first('confirmation') }}</span>
     <button 
     @click="$router.push('/dashboard')"
-    class="btn btn-sm ">Sign Up</button>
+    class="btn">Sign Up</button>
     <a 
     @click="$emit('cancel')"
     class="cancel">CANCEL</a>
@@ -49,10 +49,10 @@ export default {
 
 button {
   width: 80%;
-  height: 10%;
+  
   box-shadow: 0px 0px 0px white;
   background-color: #5B4C6C;
-     border: 1px solid #9B68CD;
+  border: 1px solid #9B68CD;
   color: white;
 }
 
@@ -63,7 +63,7 @@ input{
   margin:10px;
   border: none;
   border-bottom: 1px solid rgb(176, 176, 176);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 100;
   color: whitesmoke;
 }
@@ -72,7 +72,7 @@ input{
   box-shadow: 0px 0px 0px white;
   background-color: inherit;
   text-decoration: underline !important;
-  font-size: 0.64rem;
+  font-size: 16px;
   color: rgb(176, 176, 176);
   padding-top: 0.5rem;
     padding-right: 1.6rem;
@@ -97,7 +97,7 @@ textarea:focus, input:focus{
 
 .venue-text{
   color: rgb(210, 1, 1);
-  font-size: 12px;
+  font-size: 16px;
   width: 80%;
   text-align: left;
 }

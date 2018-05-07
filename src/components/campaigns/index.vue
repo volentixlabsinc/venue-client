@@ -67,7 +67,7 @@ width: 100%;
 }
 
 .leaderboard::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
 }
 
 /* Track */
