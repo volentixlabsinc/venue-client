@@ -1,30 +1,35 @@
 <template>
   <div class="main-section">
       <h1>Campaign</h1>
+      <div class="top-left-panel">
       <div class="card summary">
-          <h2>Forum Activity</h2>
-          <p>{{this.myRanking}}</p>
-          <p>{{this.totalUsers}}</p>
-          <p>{{this.totalPosts}}</p>
-          <p>{{this.myActivity}}</p>
+           <h2>Overall stats</h2>
+          <p>my position: {{this.myRanking}}</p>
+          <p>total users: {{this.totalUsers}}</p>
+          <p>total posts: {{this.totalPosts}}</p>
+          <p>my posts: {{this.myActivity}}</p>
          
       </div>
       <div class="card forum">
           <h2>Forum Activity</h2>
-          <forum-activity :chart-data="datacollection"   />
-          <forum-activity :chart-data="datacollection2" :option="myoption"  />
+          <forum-activity-posts :chart-data="datacollectionPosts"   />
+          <forum-activity-users :chart-data="datacollectionUsers"  />
+      </div>
       </div>
       <div class="card leaderboard">
            <h2>Leaderboard</h2>
-          <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide"/>
+          <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" :username="user.username"/>
       </div>
   </div>
 </template>
 
 <script>
-import forumActivity from '../../components/forumActivity/forumStats.js';
+import forumActivityPosts from '../../components/forumActivity/forumStatsPosts.js';
+import forumActivityUsers from '../../components/forumActivity/forumStatsUsers.js';
 import campaigns from '../../components/campaigns/index.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
+import {retrieveStats } from '../../service/dashboard';
+import {retrieveUser } from '../../service/account';
 
 
 
@@ -32,8 +37,11 @@ export default {
   data() {
       return {
           data: {},
-          datacollection:{},
-          datacollection2:{},
+          datacollectionPosts:{},
+          datacollectionUsers:{},
+          user: {},
+          userStats: {},
+          campaignStats: {},
           myRanking:'',
           totalUsers:'',
           totalPosts: '',
@@ -41,6 +49,18 @@ export default {
       }
   },
 mounted(){
+    retrieveUser()
+    .then(response => {
+        this.user = response
+    });
+    retrieveStats()
+    .then(response => {
+        this.userStats = response.stats.user_level;
+        this.campaignStats = response.stats.sitewide;
+    })
+    .then( response => {
+        this.populateUserData()
+        });
     getLeaderBoardData()
       .then(response => {
           this.data = response;
@@ -55,6 +75,13 @@ mounted(){
         })
     },
     methods: {
+    populateUserData() {
+        this.myRanking = this.userStats.overall_rank;
+        this.totalUsers =  this.campaignStats.total_users;
+        this.totalPosts =  this.campaignStats.total_posts;
+        this.myActivity =  this.userStats.total_posts;
+
+        },
       fillData () {
           let labels = [];
           let data = [];
@@ -66,8 +93,8 @@ mounted(){
             backgroundColor.push(this.data.forumstats.posts[i].color);
           }
 
-        this.datacollection = {
-            labels:labels,
+        this.datacollectionPosts = {
+            // labels:labels,
             datasets: [{
                 data:data,
                 backgroundColor:backgroundColor,
@@ -82,19 +109,17 @@ mounted(){
            
         }
 
-          let data2 = [];
-         
-
+          let dataUsers = [];
           for (var i =0; i < this.data.forumstats.users.length; i++){
             labels.push(this.data.forumstats.users[i].forumSite);
-            data2.push(this.data.forumstats.users[i].value);
+            dataUsers.push(this.data.forumstats.users[i].value);
             backgroundColor.push(this.data.forumstats.users[i].color);
           }
 
-        this.datacollection2 = {
-            labels:labels,
+        this.datacollectionUsers = {
+            // labels:labels,
             datasets: [{
-                data:data2,
+                data:dataUsers,
                 backgroundColor:backgroundColor,
                 borderColor:['#3D4152', '#3D4152'],
                 borderWidth: 3,
@@ -111,7 +136,8 @@ mounted(){
     },
   components: {
     campaigns,
-    forumActivity
+    forumActivityPosts,
+    forumActivityUsers
     }
 }
 </script>
@@ -141,27 +167,46 @@ campaigns {
 .main-section {
     flex-direction: row;
     flex-wrap: wrap;
-     justify-content: center;
-      align-items: flex-start;
+     justify-content: space-evenly;
+      align-items: center;
 }
- .card {
-    width: 80% ;
-    height: auto;
-    padding: 20px;
+ .leaderboard {
+    width: 40% ;
+    height: 70%;
+    padding: 10px;
 }
+
+.top-left-panel {
+    width: 40%;
+    height: 73%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
 h1{
     width: 100%;
 }
 .summary {
-    width: 30% ;
+    width: 100% ;
+    height: 30%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 }
-
+.summary h2 {
+    width: 100% !important;
+}
+.summary p {
+    width: 50% !important;
+}
  .forum {
-    width: 50% ;
+    width: 100% ;
+    height: 70%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

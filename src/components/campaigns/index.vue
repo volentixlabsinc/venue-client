@@ -2,7 +2,7 @@
     <div class=" leaderboard">
         
         <ul>
-            <li v-for="(elements, key) in rankings" :key="key">
+            <li v-for="(elements, key) in rankings" :key="key" :style="[elements.username==username? 'backgound-color:white' : 'backgound-color:none' ]">
                 <leaderboard-entry :elements="elements" :sitewide="sitewide"/>
             </li>
         </ul>
@@ -20,6 +20,10 @@ export default {
         sitewide: {
             type: Object,
             default: []
+        },
+        username: {
+            type: String,
+            default: ''
         }
     },
     data() {
