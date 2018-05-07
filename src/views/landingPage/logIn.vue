@@ -39,10 +39,14 @@ export default {
     authenticateLogin: function() {
       authenticate(this.username, this.password)
       .then(response => {
+        console.log('response: ', response);
         if(response.status === 200) {
           return response.json()
         } else {
-          //Handle Login Error here
+          //Handle Login Error here 
+          console.log('wrong credentials');
+          var message = 'something went wrong';
+          return message
         }
       })
       .then(data=> {
@@ -66,7 +70,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+
 }
 
 button {

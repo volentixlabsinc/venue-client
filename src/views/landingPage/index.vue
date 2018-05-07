@@ -10,7 +10,7 @@
      <div v-else class="card log-in-section">
         <div class="presentation-text">
             <p>Autonomous signature campaign tracking</p>
-            <p>VENUE tracks and displays sophisticated user rankings and accurate payout information live.</p>
+            <p>Venue tracks and displays sophisticated user rankings and accurate payout information live.</p>
          </div>
         
         <button 
@@ -24,15 +24,15 @@
     </div>
     <div v-if="data" class="card campaigns">
         <h4 class="section-title">Ongoing campaign</h4>
-        <p class="available-tokens">{{data.sitewide.available_tokens}} vtx</p>
-        <campaigns :rankings="data.rankings"/>
+        <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
+        <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide"/>
     </div>
 
-     <div class="card my-news-div">
+     <!-- <div class="card my-news-div">
       <div v-for= "news in newsList" :key="news" class="card my-news">
       <h2>{{news}}</h2>
       </div>
-      </div>
+      </div> -->
     
   </div>
 </template>
@@ -42,6 +42,8 @@ import logIn from './logIn.vue';
 import signUp from './signUp.vue';
 import campaigns from '../../components/campaigns/index.vue'
 import { getLeaderBoardData } from '../../service/leaderboard'; 
+import { checkForUsername, checkForEmail } from '../../service/account'; 
+
 
 export default {
   name: 'home',
@@ -57,8 +59,8 @@ export default {
   mounted(){
     getLeaderBoardData()
       .then(response => {
-          console.log('response: ', response);
           this.data = response;
+          console.log('this.data: ', this.data);
       })
       .catch(ex => {
         console.error(ex);
@@ -103,16 +105,14 @@ export default {
     background-image: linear-gradient(to top,  rgb(48, 49, 64, 0), #303140);    min-height: 65%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items:center;
     flex-grow: 1;
 }
 
 
 .campaigns{
-    width: 95%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    width: 95%; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -174,7 +174,6 @@ button {
     flex-shrink: 0;
     flex-grow: 0;
 }
-
 
 .my-news {
   border: rgb(245, 245, 245, 0.3) 1px solid;
