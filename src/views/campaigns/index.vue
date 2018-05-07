@@ -12,7 +12,7 @@
       <div class="card forum">
           <h2>Forum Activity</h2>
           <forum-activity :chart-data="datacollection"   />
-          <forum-activity :chart-data="datacollection" :option="myoption"  />
+          <forum-activity :chart-data="datacollection2" :option="myoption"  />
       </div>
       <div class="card leaderboard">
            <h2>Leaderboard</h2>
@@ -33,6 +33,7 @@ export default {
       return {
           data: {},
           datacollection:{},
+          datacollection2:{},
           myRanking:'',
           totalUsers:'',
           totalPosts: '',
@@ -69,6 +70,31 @@ mounted(){
             labels:labels,
             datasets: [{
                 data:data,
+                backgroundColor:backgroundColor,
+                borderColor:['#3D4152', '#3D4152'],
+                borderWidth: 3,
+                title: {
+                    display: true,
+                    position: 'bottom',
+                    text: 'Custom Chart Title'
+                }
+            }],
+           
+        }
+
+          let data2 = [];
+         
+
+          for (var i =0; i < this.data.forumstats.users.length; i++){
+            labels.push(this.data.forumstats.users[i].forumSite);
+            data2.push(this.data.forumstats.users[i].value);
+            backgroundColor.push(this.data.forumstats.users[i].color);
+          }
+
+        this.datacollection2 = {
+            labels:labels,
+            datasets: [{
+                data:data2,
                 backgroundColor:backgroundColor,
                 borderColor:['#3D4152', '#3D4152'],
                 borderWidth: 3,

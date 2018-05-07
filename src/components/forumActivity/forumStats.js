@@ -8,7 +8,7 @@ export default {
   extends: Pie,
   mixins: [reactiveProp],
   options: {
-    legend: {labels: {fontColor: '#ffffff !important'}}
+    legend: {labels: {fontColor: '#ffffff'}}
   },
   mounted () {
     // this.chartData is created in the mixin.
