@@ -1,10 +1,14 @@
 <template>
 <div class="element-container">
     <div class="top-elements">
-        <p class="element top-el el-rank">{{elements.rank}}</p>
-        <p class="element top-el el-username">{{elements.username}}</p>
+        <div class="rank_username">
+            <p class="element top-el el-rank">{{elements.rank}}</p>
+            <p class="element top-el el-username">{{elements.username}}</p>
+        </div>
+        <div class="tokens_info">
         <p class="element top-el el-tokens">{{elements.total_tokens}} VTX</p>
         <div @click="toggleDescription=!toggleDescription"><i class="far fa-question-circle"></i></div>
+        </div>
     </div>
     <div class="bottom-elements">
             <p class="empty-element"></p>
@@ -87,9 +91,13 @@ export default {
     height: 30px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
      font-size: 14px
+}
+.rank_username, .tokens_info{
+    display: flex;
+    align-items: center;
 }
 .el-rank {
     width: auto;
@@ -97,16 +105,14 @@ export default {
 }
 .el-username {
     text-align: left;
-    width: 150px;
     padding-left: 15px;
 }
 .el-tokens {
-    width: 150px;
     text-align: left;
 }
 .fa-question-circle{
     width: auto;
-    padding-left: 2px;
+    padding-left: 10px;
     color: gray;
 }
 .bottom-elements {
@@ -118,7 +124,7 @@ export default {
     font-size: 11px;
 }
 .empty-element{
-     width: 3%;
+     width: 0px;
 }
 .el-total-posts {
    width: 97%;
@@ -171,7 +177,14 @@ export default {
     .bottom-elements{
         font-size: 12px
     }
-    
+ @media only screen and (min-width: 600px) {
+    .top-elements{
+        justify-content: space-between;
+    }
+
+
+ }
+
 }
 </style>
 

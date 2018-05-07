@@ -1,6 +1,6 @@
 <template>
     <div class="main-section">
-      <div class="card my-campaign">
+      <div v-if="data" class="card my-campaign">
          <h4 v-if="data">{{data.rankings[0].rank}}</h4>
          <h4 v-if="data">{{data.rankings[0].username}}</h4>
          <h4 v-if="data">{{data.rankings[0].total_posts}}</h4>

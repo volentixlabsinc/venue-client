@@ -15,11 +15,11 @@ export default {
     props: {
         rankings: {
             type: Array,
-            default: null
+            default: []
         },
         sitewide: {
             type: Object,
-            default: null
+            default: []
         }
     },
     data() {
@@ -104,4 +104,6 @@ li{
     flex-wrap: wrap;
     animation: slideUp 0.5s linear 1 2s;
 }
+
+
 </style>
