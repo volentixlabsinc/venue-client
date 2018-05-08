@@ -3,7 +3,7 @@
     <div class="container">
         <br />
         <br >
-            <div>
+            <div class="stepper">
                 <horizontal-stepper :steps="demoSteps" @completed-step="completeStep"
                                     @active-step="isStepActive" @stepper-finished="alert"
                                     @userIdAndForum="changeActiveForm"
@@ -21,6 +21,7 @@
     import StepOne from './StepOne.vue';
     import StepTwo from './StepTwo.vue';
     import StepThree from './StepThree.vue';
+     import StepFour from './StepFour.vue';
 
 
         export default {
@@ -55,6 +56,14 @@
                         title: 'Step 3',
                         subtitle: 'Choose Signature',
                         component: StepThree,
+                        completed: false
+                    },
+                     {
+                        icon: 'report_problem',
+                        name: 'fourth',
+                        title: 'Step 4',
+                        subtitle: 'Verify Signature',
+                        component: StepFour,
                         completed: false
                     }
                 ]
@@ -95,14 +104,46 @@
 
 <style scoped>
     .section {
-        overflow: scroll; 
+        width:90%;
+        overflow-x: auto;
+    overflow-y: hidden;
+        
+        scrollbar-face-color: #367CD2;
+        scrollbar-shadow-color: #FFFFFF;
+        scrollbar-highlight-color: #FFFFFF;
+        scrollbar-3dlight-color: #FFFFFF;
+        scrollbar-darkshadow-color: #FFFFFF;
+        scrollbar-track-color: #FFFFFF;
+        scrollbar-arrow-color: #FFFFFF;
     }
+
+.section::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.section::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+ 
+/* Handle */
+.section::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
+}
 
     .stepper-box { 
         border-radius: 10px;
     }
 
     .stepper-box {
-       width: 850px; 
+       width: 100%; 
     }
+
+
 </style>

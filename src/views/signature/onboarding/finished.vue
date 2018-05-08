@@ -17,10 +17,10 @@
     </thead>
     <tbody>
         <tr>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td><i class="far fa-times-circle" style="color:red;"></i>
+            <td>bitcointalk.org</td>
+            <td>Sandra</td>
+            <td>332584</td>
+            <td><i class="fa fa-check" style="color:white"></i> Verified
 
 </td>
             <td><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> Add Signature</button></td>
@@ -34,26 +34,6 @@
 </main>
 </template>
 
-<script>
-import {retrievSignatures} from '../../service/signatures'
-
-    export default {
-        mounted() {
-             retrievSignatures()
-             .then(response => {
-                 return response; 
-             }) 
-             .then(data => {
-                 console.log('the signature are...', data)
-             })
-        },
-        methods: {
-            startOnBoarding: function(forum) {
-                this.$router.push(`/onboarding/${forum}`)
-            }
-        }
-    }
-</script>
 
 <style scoped>
 table {

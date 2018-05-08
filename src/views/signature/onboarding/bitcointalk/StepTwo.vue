@@ -2,15 +2,16 @@
   <div>
       <h2> Step 2) Grab your user ID and verify it below </h2>
      <div class="input-group mb-3">
-  <input v-model="userId" type="text" class="form-control" placeholder="Your user id" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <div class="input-group-append">
-    <button @click="validateId" class="btn btn-outline-secondary" type="button">Validate User ID</button>
-    <span v-if="error" style="color:red;">  
-       <i class="fas fa-times-circle"></i> Try Again
-    </span>
-        <span v-if="!error" style="color:green; ">  
-   <i class="fas fa-check"></i> Click next below
-    </span>
+  
+  <div class="input-group-append2">
+    <input v-model="userId" type="text"  placeholder="Your user id" >
+    <button @click="validateId" class="btn btn-primary" type="button">Validate User ID</button>
+        <span v-if="error" style="color:red;">  
+        <i class="fas fa-times-circle"></i> Try Again
+        </span>
+            <span v-if="!error" style="color:transparent; ">  
+    <!-- <i class="fas fa-check"></i> Click next below -->
+        </span>
   </div>
 </div>
 
@@ -73,3 +74,24 @@
     }
 
 </script>
+
+<style scoped>
+.input-group-append2 {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+input {
+    font-size: 16px;
+    border-radius:5px;
+    height: 20px;
+    box-shadow:none;
+    padding: 10px;
+    font-family: Roboto;
+}
+button {
+    border-radius:5px;
+}
+</style>

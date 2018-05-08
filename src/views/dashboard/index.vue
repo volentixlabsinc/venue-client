@@ -4,19 +4,19 @@
          <h2 class="my-campaign-title">My Campaign Overall Stats</h2>
           
          <div class="my-campaign_info">
-           <h1><ICountUp
+           <h1 class="dashboard-numbers"><ICountUp
             :startVal="50"
             :endVal="profile_level_global.overall_rank"
             :decimals="0"
             :duration="2.5"
             :options="options"
           /></h1>
-          <!-- <h1># {{profile_level_global.overall_rank}}</h1> -->
+          <!-- <h1 class="dashboard-numbers"># {{profile_level_global.overall_rank}}</h1> -->
           <h4>Rank</h4>
         </div>
 
         <div class="my-campaign_info">
-          <h1><ICountUp
+          <h1 class="dashboard-numbers"><ICountUp
             :startVal="profile_level_global.total_posts+20"
             :endVal="profile_level_global.total_posts"
             :decimals="0"
@@ -26,7 +26,7 @@
           <h4>Posts</h4>
         </div>
         <div class="my-campaign_info">
-          <h1><ICountUp
+          <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="profile_level_global.total_points"
             :decimals="0"
@@ -48,12 +48,12 @@
         <h2 class="my-campaign-title">Bitcointalk Signature Campaing</h2>
         <div class="logo" @click="$router.push('/campaign')">
          <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-          <h3>Total VTX</h3>
-          <h3>{{sitewide.available_tokens}}</h3>
+          <h1 >{{sitewide.available_tokens}} VTX</h1>
+
          </div>
        
         <div class="campaigns_info">
-          <h1><ICountUp
+          <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="sitewide.total_users"
             :decimals="0"
@@ -63,7 +63,7 @@
           <h4>Participants</h4>
         </div>
         <div class="campaigns_info">
-          <h1><ICountUp
+          <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="sitewide.total_posts"
             :decimals="0"
@@ -151,9 +151,9 @@ export default {
             {
               label: 'New Posts',
               lineTension: 0.01,
-              backgroundColor: 'transparent',
+              backgroundColor: '#85449A',
               borderColor: '#85449A',
-              data: numberOfPosts
+              data: [1,2,3,3,4,5,1]
             }
           ]
         }
@@ -192,7 +192,7 @@ export default {
   padding-bottom:50px;
 }
 
-h1 {
+.dashboard-numbers {
   width: 90%;
   font-weight: bolder;
   font-size: 55px;
@@ -231,7 +231,7 @@ h4 {
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 .card {
-  box-shadow: none;
+  
   height:auto;
   width: 100%;
   display: flex;
@@ -326,15 +326,15 @@ p {
 }
 .logo{
   display:flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  border-bottom: 1px solid gray;
+  
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
   width: 95%;
   border-radius:3px;
   height: auto;
   margin-bottom: 5px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .logo:hover{
   width: 95%;
@@ -343,11 +343,12 @@ p {
   
 }
 #token-icon {
-  height:40px;
+  height:50px;
+  margin:5px;
 }
 .campaigns_info {
   width: 130px;
- min-height: 130px;
+  min-height: 130px;
   background-color: rgba(0, 0, 0, 0.1);
 
   display: flex;
@@ -386,14 +387,17 @@ p {
   padding: 0px;
 }
 .all-campaigns{
+  justify-content:center;
+  align-items:center;
   order:2;
   padding: 0px;
 }
 .my-activity{
   order:3;
-   height: auto;
+   height: 30%;
    width: 100%;
    justify-content: center;
+   align-items:center;
    padding-bottom: 20px;
 }
 .my-campaign_info, .campaigns_info{
@@ -406,7 +410,10 @@ p {
   height: auto;
   flex: 0 0 auto;
   margin: 0px;
+}
 
+.forum * {
+    height: 200 !important;
 }
 
 #token-icon {

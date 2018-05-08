@@ -4,19 +4,26 @@
 
       <ul>
      <form>
-          <li v-for="sig in signatures">
-              Name: {{sig.name}} <input name="signature" type="radio"> 
-
-
+       
+          <li>
+             <img src="/img/onboarding/sig1.png"> <input name="signature" type="radio"> 
           </li>
+          <li>
+             <img src="/img/onboarding/sig2.png"> <input name="signature" type="radio"> 
+          </li>
+          <li>
+             <img src="/img/onboarding/sig3.png"> <input name="signature" type="radio"> 
+          </li>
+          <li>
+             <img src="/img/onboarding/sig4.png"> <input name="signature" type="radio"> 
+          </li>
+          <li>
+             <img src="/img/onboarding/sig5.png"> <input name="signature" type="radio"> 
+          </li>
+       
           </form>
 
-          <p>
-              [center][b][size=8pt][url=http://volentix.com/][u]     V O L E N T I X[/u][/url]   █   [url=http://volentix.com/]Decentralized Change[/url]   █   [url=http://volentix.com/]3rd Party DAPP Platform[/url]
-[url=http://volentix.com/]▬ •  VENUE  • ▬  Social Rewards Platform[/url]   █   [url=]ANN[/url]   [url=https://twitter.com/VolentixDAO/]TWITTER[/url]   [url=]TELEGRAM[/url]   █   [url=http://volentix.com/]▬ • VDEX • ▬  Decentralized Exchange[/url]
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬    ( V ) BETA TESTER  |  Designed by Zpectrum    ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/size][/b][/center]
-
-          </p>
+          
       </ul>
 
 
@@ -59,14 +66,14 @@
             }
         },
         mounted() {
-            var forumId = this.$store.getters.getActiveUserForum.forumId;
-            var forumProfileId = this.$store.getters.getActiveUserForum.forumProfileId; 
-            retrievSignatures(forumId, forumProfileId)
-             .then(response => {
-                 this.signatures = response.signatures; 
-             })
+            // var forumId = this.$store.getters.getActiveUserForum.forumId;
+            // var forumProfileId = this.$store.getters.getActiveUserForum.forumProfileId; 
+            // retrievSignatures(forumId, forumProfileId)
+            //  .then(response => {
+            //      this.signatures = response.signatures; 
+            //  })
         
-          this.$emit('can-continue', {value: true});
+            this.$emit('can-continue', {value: true});
 
             // if(!this.$v.$invalid) {
             //     this.$emit('can-continue', {value: true});
@@ -79,8 +86,35 @@
 </script>
 
 <style scoped>
-ul {
-    list-style:none !important; 
+
+div {
+    width: 100%;
+   
 }
+li{
+     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:5px;
+    border: 1px solid #efefef;
+    border-radius:5px;
+    margin:5px;
+}
+
+input[type=radio]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+form{
+     
+}
+
 </style>
 

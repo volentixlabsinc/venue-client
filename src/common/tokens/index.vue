@@ -53,7 +53,7 @@ p {
   justify-content: center;
 }
 #venue-logo {
-  max-height: 30px;
+  max-height: 40px;
 }
 
 .top-left-container{
