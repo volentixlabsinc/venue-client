@@ -7,7 +7,7 @@
     <span class="venue-text">{{ errors.first('password') }}</span>
     <button 
     @click="authenticateLogin"
-    class="btn btn-sm">Log In</button>
+    class="btn">Log In</button>
     <a 
     @click="$emit('cancel')"
     class="cancel">CANCEL</a>
@@ -87,7 +87,7 @@ button {
   box-shadow: 0px 0px 0px white;
   background-color: inherit;
   text-decoration: underline !important;
-  font-size: 0.64rem;
+  font-size: 16px;
   color: rgb(176, 176, 176);
   padding-top: 0.5rem;
     padding-right: 1.6rem;

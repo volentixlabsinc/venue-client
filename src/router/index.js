@@ -4,7 +4,6 @@ import Router from 'vue-router';
 import landingPage from './../views/landingPage';
 import Dashboard from './../views/dashboard';
 import Campaign from './../views/campaigns';
-import Referral from './../views/referrals';
 import Account from './../views/account';
 import Signature from './../views/signature';
 import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
@@ -34,11 +33,6 @@ const routes = [
 
     },
     {
-        path: '/referrals',
-        name: 'Referral',
-        component: Referral
-    },
-    {
         path: '/signatures',
         name: 'Signatures',
         component: Signature,
@@ -57,6 +51,11 @@ const routes = [
         name: 'Account',
         component: Account,
         beforeEnter: requireAuth
+    },
+    {
+        path: '/signature',
+        name: 'Signature',
+        component: Signature,
     }
 ];
 

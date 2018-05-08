@@ -16,14 +16,14 @@
         <button 
         @click="action='login'"
         :action="action"
-        class="btn btn-sm login">log in</button>
+        class="btn login">log in</button>
         <button 
         @click="action='signup'"
         :action="action"
-        class="btn btn-sm signup">sign up</button>
+        class="btn signup">sign up</button>
     </div>
     <div v-if="data" class="card campaigns">
-        <h4 class="section-title">Ongoing campaign</h4>
+        <h2 class="section-title">Ongoing campaign</h2>
         <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
         <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide"/>
     </div>
@@ -51,9 +51,6 @@ export default {
       return {
           action: null,
           data: null,
-          newsList: [
-        'news 1', 'news 2', 'news 3', 'news 4', 'news 5'
-      ]
       }
   },
   mounted(){
@@ -83,7 +80,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-}
+   }
 
 .card {
     box-shadow: none;
@@ -91,23 +88,25 @@ export default {
 }
 
 .log-in-section{
-    
     background-image: linear-gradient(to top,  rgb(48, 49, 64, 0), #303140);
-    height: 50%;
+   
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
     flex-grow: 0;
+    padding: 30px;
+    min-height: 40%;
 }
 
 .log-in-section-large{
-    background-image: linear-gradient(to top,  rgb(48, 49, 64, 0), #303140);    min-height: 65%;
+    background-image: linear-gradient(to top,  rgb(48, 49, 64, 0), #303140);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items:center;
-    flex-grow: 1;
+    justify-content: flex-start;
+    align-items:flex-start;
+    height: auto; 
+    padding: 30px;
 }
 
 
@@ -117,7 +116,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    flex-shrink: 1;
+    height: auto;
+
 }
 .section-title {
     margin: 0px;
@@ -126,19 +126,20 @@ export default {
 .available-tokens{
     margin: 0px;
     padding: 0px;
-    font-size: 14px;
+    font-size: 16px;
     color:#85449A;
     text-shadow: 1px 1px 1px black;
 }
-.presentation-text {width: 90%;}
+.presentation-text {
+    width: 90%;
+    font-size: 18px;
+    }
 
 button {
   width: 70%;
-  height: 10%;
   background-color: rgba(0, 0, 0, 0.1);
   border: 1px solid #9B68CD;
   color: rgb(176, 176, 176);
-  flex-grow: 0px;
 }
 
 .login {
@@ -160,72 +161,25 @@ button {
     width: 90%;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
-.campaigns .log-in-section .log-in-section-large{
+.campaigns, .log-in-section, .log-in-section-large{
     width: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .card {
     width: 45%;
-    min-height:auto;
+    min-height:50%;
     flex-shrink: 0;
     flex-grow: 0;
-}
-
-.my-news {
-  border: rgb(245, 245, 245, 0.3) 1px solid;
-  color: black;
-  margin-top: 10px;
-  width: 300px;
-  height: 200px;
-  flex: 0 0 auto;
-  margin: 10px;
-  background-color: #303140;
-}
- .my-news-div {
-    display: inline;
-   height: auto;
-   width: 100%;
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
-   align-items: flex-start;
-   flex-wrap: nowrap;
-   overflow-x: auto;
-  overflow-y: hidden;
-   padding-top: 10px;
-   padding-bottom: 10px;
-    
-    scrollbar-face-color: #367CD2;
-    scrollbar-shadow-color: #FFFFFF;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-3dlight-color: #FFFFFF;
-    scrollbar-darkshadow-color: #FFFFFF;
-    scrollbar-track-color: #FFFFFF;
-    scrollbar-arrow-color: #FFFFFF;
-}
-
-.my-news-div::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-.my-news-div::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
-}
- 
-/* Handle */
-.my-news-div::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 }
 </style>

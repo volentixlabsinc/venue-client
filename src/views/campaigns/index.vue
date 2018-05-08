@@ -12,8 +12,14 @@
       </div>
       <div class="card forum">
           <h2>Forum Activity</h2>
+          <p>Posts by forum</p>
+          <p>Users by forum</p>
           <forum-activity-posts :chart-data="datacollectionPosts"   />
           <forum-activity-users :chart-data="datacollectionUsers"  />
+        <div class="label">
+          <p class="b1">{{this.data.forumstats.users[0].forumSite}}</p>
+          <p class="b2">{{this.data.forumstats.users[1].forumSite}}</p>
+        </div>
       </div>
       </div>
       <div class="card leaderboard">
@@ -151,6 +157,37 @@ mounted(){
     justify-content: flex-start;
     align-items: center;
     color: white;
+    overflow-x: scroll;
+    overflow-x: hidden;
+    
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+    padding-bottom:10%;
+}
+
+.main-section::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+.main-section::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+ 
+/* Handle */
+.main-section::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
 .card {
@@ -163,31 +200,17 @@ campaigns {
     height: 100% !important;
 }
 
-@media only screen and (min-width: 600px) {
-.main-section {
-    flex-direction: row;
-    flex-wrap: wrap;
-     justify-content: space-evenly;
-      align-items: center;
+.label {
+    padding-left: 10px;
 }
- .leaderboard {
-    width: 40% ;
-    height: 70%;
-    padding: 10px;
-}
-
-.top-left-panel {
-    width: 40%;
-    height: 73%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
-}
-
-h1{
+.b1 {
     width: 100%;
+    background-color: #3F2069;
+}
+
+.b2 {
+    width: 100%;
+    background-color: #3196B4;
 }
 .summary {
     width: 100% ;
@@ -216,9 +239,38 @@ h1{
 .forum * {
     width: 50% !important;
 }
-
 .forum h2 {
     width: 100% !important;
 }
+@media only screen and (min-width: 800px) {
+.main-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+     justify-content: space-evenly;
+      align-items: center;
+      padding-bottom:0;
+}
+ .leaderboard {
+    width: 40% ;
+    height: 70%;
+    padding: 10px;
+}
+
+.top-left-panel {
+    width: 40%;
+    height: 73%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+h1{
+    width: 100%;
+}
+
+
+
  }
 </style>
