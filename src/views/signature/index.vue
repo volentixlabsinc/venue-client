@@ -1,7 +1,10 @@
 <template>
+<main class="main">
   <div class="container">
-  <h2>Bordered Table</h2>
-  <p>The .table-bordered class adds borders on all sides of the table and the cells:</p>            
+  <h2>My Signatures</h2>
+  <p>Before you can start earning VTX points you will need to copy a custom signature generated 
+      by Venue and paste it in your various forum signatures. Start below:
+      </p>            
 <table class="zui-table">
     <thead>
         <tr>
@@ -14,27 +17,51 @@
     </thead>
     <tbody>
         <tr>
-            <td>DeMarcus Cousins</td>
-            <td>C</td>
-            <td>6'11"</td>
-            <td>08-13-1990</td>
-            <td>$4,917,000</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td><i class="far fa-times-circle" style="color:red;"></i>
+
+</td>
+            <td><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> Add Signature</button></td>
         </tr>
         <tr>
-            <td>Isaiah Thomas</td>
+            <td>forum.bitcoin.com</td>
             <td>PG</td>
-            <td>5'9"</td>
-            <td>02-07-1989</td>
-            <td>$473,604</td>
+            <td>34233</td>
+            <td> <i class="fas fa-check"></i>
+
+  </td>
+            <td><button class="btn btn-outline"> Check Signature </button></td>
         </tr>
 
 
     </tbody>
 </table>
 </div>
-
+</main>
 </template>
 
+<script>
+import {retrievSignatures} from '../../service/signatures'
+
+    export default {
+        mounted() {
+             retrievSignatures()
+             .then(response => {
+                 return response; 
+             }) 
+             .then(data => {
+                 console.log('the signature are...', data)
+             })
+        },
+        methods: {
+            startOnBoarding: function(forum) {
+                this.$router.push(`/onboarding/${forum}`)
+            }
+        }
+    }
+</script>
 
 <style scoped>
 table {
@@ -43,6 +70,7 @@ table {
 }
 
 .zui-table {
+    width: 100%;
     border: solid 1px #DDEEEE;
     border-collapse: collapse;
     border-spacing: 0;
@@ -60,6 +88,23 @@ table {
     border: solid 1px #DDEEEE;
     color: white;
     padding: 10px;
+        text-align: left;
+
     /* text-shadow: 1px 1px 1px #fff; */
+}
+
+h2 {
+    color:white;
+}
+
+p { 
+    color:white; 
+}
+
+.btn-outline {
+    background-color:transparent; 
+    color:white; 
+    border: white 1px solid;
+    border-radius:100px; 
 }
 </style>

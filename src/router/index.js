@@ -7,6 +7,7 @@ import Campaign from './../views/campaigns';
 import Referral from './../views/referrals';
 import Account from './../views/account';
 import Signature from './../views/signature';
+import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
 
 import { readFromCookie } from '../service/utils/browser-storage';
 
@@ -41,6 +42,13 @@ const routes = [
         path: '/signatures',
         name: 'Signatures',
         component: Signature,
+        beforeEnter: requireAuth
+
+    },
+
+    {
+        path: '/onboarding/bitcointalk',
+        component: OnboardingBitcointalk,
         beforeEnter: requireAuth
 
     },
