@@ -10,7 +10,7 @@ export function isAuthenticated() {
 export function authenticate(email, password) {
     return VenueApi.postJson('/authenticate/', {
         username: email,
-        password: password
+        password: password,
     }, { preventForceLogout: true });
 }
 
