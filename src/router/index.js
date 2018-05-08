@@ -5,6 +5,7 @@ import landingPage from './../views/landingPage';
 import Dashboard from './../views/dashboard';
 import Campaign from './../views/campaigns';
 import Account from './../views/account';
+import Signature from './../views/forum';
 import { readFromCookie } from '../service/utils/browser-storage';
 
 
@@ -34,6 +35,11 @@ const routes = [
         name: 'Account',
         component: Account,
         beforeEnter: requireAuth
+    },
+    {
+        path: '/signature',
+        name: 'Signature',
+        component: Signature,
     }
 ];
 

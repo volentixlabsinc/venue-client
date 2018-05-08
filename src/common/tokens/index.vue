@@ -1,11 +1,12 @@
 <template>
 <div class="tokens-template">
   <div class="top-left-container">
+    <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
     </div>
     <div class="VTX">
-    <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
     <p>{{myTotalTokens}} VTX</p>
     </div>
   </div>
@@ -110,7 +111,7 @@ p {
 
 #token-icon{
   padding-top: 10px;
-  height: 30px;
+  height: 80px;
   position: inherit;; 
 }
 
