@@ -2,48 +2,47 @@
     <div class="main-section">
       <div v-if="data" class="card my-campaign">
          <h2 class="my-campaign-title">My Campaign Overall Stats</h2>
+          
          <div class="my-campaign_info">
-          <h3>My ranking</h3>
-          <h2>{{profile_level_global.overall_rank}}</h2>
+          <h1># {{profile_level_global.overall_rank}}</h1>
+          <h4>Rank</h4>
         </div>
 
-         <div class="my-campaign_info">
-          <h3>My total tokens</h3>
-          <h2>{{profile_level_global.total_tokens}}</h2>
-        </div>
-        
         <div class="my-campaign_info">
-          <h3>My total Posts</h3>
-          <h2>{{profile_level_global.total_posts}}</h2>
+          <h1>{{profile_level_global.total_posts}}</h1>
+          <h4>Posts</h4>
         </div>
         <div class="my-campaign_info">
-          <h3>My total Points</h3>
-          <h2>{{profile_level_global.total_points}}</h2>
+          <h1>{{profile_level_global.total_points}}</h1>
+          <h4>Points</h4>
         </div>
+       
       </div>
       <div v-if="data" class=" my-activity" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
         <div class="forum">
-          <h2 >Forum activity</h2>
           <forum :forumInfo = "forumInfo" />
+          <line-chart :chart-data="datacollection" :height="'150px'"></line-chart>
         </div>
       </div>
       <div v-if="data" class="card all-campaigns">
         
-        <h2 class="my-campaign-title">Campaign VTX</h2>
+        <h2 class="my-campaign-title">Bitcointalk signature campaing</h2>
         <div class="logo">
          <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+         <h3>{{sitewide.available_tokens}}</h3>
+          <h3>Total VTX</h3>
          </div>
         <div class="campaigns_info">
-          <h3>Total VTX</h3>
           <h3>{{sitewide.available_tokens}}</h3>
+          <h3>Total VTX</h3>
         </div>
         <div class="campaigns_info">
-          <h3>Participants</h3>
-          <h3>{{sitewide.total_users}}</h3>
+          <h1>{{sitewide.total_users}}</h1>
+          <h4>Participants</h4>
         </div>
         <div class="campaigns_info">
-          <h3>Total Posts</h3>
-          <h3>{{sitewide.total_posts}}</h3>
+          <h1>{{sitewide.total_posts}}</h1>
+          <h4>Total Posts</h4>
         </div>
       </div>
       </div>
@@ -54,6 +53,8 @@ import {retrieveStats } from '../../service/dashboard';
 import {retrieveNotifications } from '../../service/notifications';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import forum from './forum.vue';
+import lineChart from '../../components/forumActivity/linechart.js';
+
 
 export default {
 
@@ -63,13 +64,15 @@ export default {
       data: null,
       sitewide: {},
       profile_level_forum: [],
-      profile_level_global: {}
+      profile_level_global: {},
+      datacollection: null
     }
   },
   mounted(){
     this.fetchStats();
     this.fetchLeaderBoard();
     this.fetchNotifications();
+    this.fillData();
 
   },
   methods: {
@@ -98,10 +101,24 @@ export default {
         console.error(ex);
       });
     },
-    
+    fillData () {
+        this.datacollection = {
+          
+          datasets: [
+            {
+              label: 'posts',
+              backgroundColor: 'transparent',
+              borderColor: '#85449A',
+              data: [1, 5]
+            }
+          ]
+        }
+      },
+      
   },
   components: {
-    forum
+    forum,
+    lineChart
   }
 
 }
@@ -128,6 +145,25 @@ export default {
   scrollbar-track-color: #FFFFFF;
   scrollbar-arrow-color: #FFFFFF;
   padding-bottom:50px;
+}
+
+h1 {
+  width: 90%;
+  font-weight: bolder;
+  font-size: 55px;
+  padding: 0px;
+  margin: 0px;
+  line-height:1;
+  border-bottom: 1px solid white;
+  text-shadow: 2px 2px 2px black;
+}
+
+h4 {
+  margin: 0px;
+  margin-top: 5px;
+   padding: 0px;
+   line-height:1;
+   color: rgba(255, 255, 255, 0.648);
 }
 
 .main-section::-webkit-scrollbar {
@@ -179,14 +215,14 @@ p {
 }
 
 .my-campaign_info{
- width: 40%;
- min-height: 180px;
+ width: 130px;
+ min-height: 130px;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 5px;
+  margin: 1px;
   background-color: rgba(0, 0, 0, 0.1);
 }
 .my-campaign_info>h2{
@@ -205,12 +241,12 @@ p {
   border-bottom: 1px solid #85449A;
   background-color:rgba(133, 68, 154, 0.079);
   flex-shrink: 0;
-  height:30%;
+  height:auto;
    width: 100%;
    display: flex;
    flex-direction: row;
    justify-content: flex-start;
-   align-items: center;
+   align-items: flex-start;
    flex-wrap: nowrap;
    overflow-x: auto;
   overflow-y: hidden;
@@ -243,7 +279,9 @@ p {
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
-.logo{width: 100%; height: auto;}
+.logo{display:flex;
+justify-content: space-evenly;
+width: 100%; height: auto;}
 #token-icon {
   height:60px;
 }
@@ -302,7 +340,7 @@ p {
 }
 
 .forum {
-  width: auto;
+  width: 50%;
   height: auto;
   flex: 0 0 auto;
   margin: 0px;

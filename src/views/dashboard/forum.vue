@@ -1,8 +1,8 @@
 <template>
 <div class="forum">
+<h3 class="forum-title">BITCOIN TALK <i class="far fa-edit" @click="onClickSignautre"></i></h3>
 
-<h2 class="forum-title">{{forumInfo.forumSite}}</h2>
-<div class="forum_info">
+<!-- <div class="forum_info">
     <h3>Total tokens</h3>
     <h3>{{forumInfo.VTX_Tokens}}</h3>
 </div>
@@ -14,7 +14,7 @@
 <div class="forum_info">
     <h3>My total Points</h3>
     <h3>{{forumInfo.totalPosts}}</h3>
-</div>
+</div> -->
 </div>
 </template>
 
@@ -25,6 +25,11 @@ export default {
       type: Object
     }
   },
+  methods: {
+      onClickSignautre() {
+
+      }
+  }
 }
 </script>
 
@@ -40,7 +45,10 @@ export default {
 
 
 .forum-title{
-  width: 100%;
+  width: 80%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
 }
 
 .forum_info{
@@ -53,7 +61,7 @@ export default {
   margin: 5px;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.forum_info>h2{
+.forum_info>h3{
   margin: 0px;
 }
 

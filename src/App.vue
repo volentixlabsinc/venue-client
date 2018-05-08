@@ -113,7 +113,7 @@ export default {
   }
   .nav-bar{
   order:2;
-   height: 77%;
+   height: 70%;
    width: 15%;
    align-self: center;
   background-color: transparent;
@@ -134,7 +134,7 @@ export default {
 
   .top-left {
   order:1;
-   height: 23%;
+   height: 30%;
    width: 15%;
   align-self: flex-start;
   flex-direction:column;
