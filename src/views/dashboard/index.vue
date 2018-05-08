@@ -45,16 +45,13 @@
       </div>
       <div v-if="data" class="card all-campaigns">
         
-        <h2 class="my-campaign-title">Bitcointalk signature campaing</h2>
-        <div class="logo">
+        <h2 class="my-campaign-title">Bitcointalk Signature Campaing</h2>
+        <div class="logo" @click="$router.push('/campaign')">
          <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-         <h3>{{sitewide.available_tokens}}</h3>
           <h3>Total VTX</h3>
-         </div>
-        <div class="campaigns_info">
           <h3>{{sitewide.available_tokens}}</h3>
-          <h3>Total VTX</h3>
-        </div>
+         </div>
+       
         <div class="campaigns_info">
           <h1><ICountUp
             :startVal="0"
@@ -104,7 +101,7 @@ export default {
           decimal: '.',
           prefix: '',
           suffix: ''
-        }
+        },
     }
   },
   mounted(){
@@ -142,18 +139,18 @@ export default {
     },
     fillData () {
         let numberOfPosts = [];
-
+        let dates = [];
           for (var i =0; i < this.profile_level_global.daily_stats.length; i++){
             numberOfPosts.push(this.profile_level_global.daily_stats[i].posts);
-            
-            
+            dates.push(this.profile_level_global.daily_stats[i].date); 
           }
 
         this.datacollection = {
-         
+         labels: dates,
           datasets: [
             {
-              label: 'posts',
+              label: 'New Posts',
+              lineTension: 0.01,
               backgroundColor: 'transparent',
               borderColor: '#85449A',
               data: numberOfPosts
@@ -327,16 +324,32 @@ p {
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
-.logo{display:flex;
-justify-content: space-evenly;
-width: 100%; height: auto;}
+.logo{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  width: 95%;
+  border-radius:3px;
+  height: auto;
+  margin-bottom: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.logo:hover{
+  width: 95%;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+  
+}
 #token-icon {
-  height:60px;
+  height:40px;
 }
 .campaigns_info {
-  width: 30%;
+  width: 130px;
+ min-height: 130px;
   background-color: rgba(0, 0, 0, 0.1);
-  min-height: 180px;
+
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -383,8 +396,9 @@ width: 100%; height: auto;}
    justify-content: center;
    padding-bottom: 20px;
 }
-.my-campaign_info{
+.my-campaign_info, .campaigns_info{
   height: 40%;
+  
 }
 
 .forum {

@@ -94,7 +94,7 @@
 </script>
 
 <style scoped>
-    .main {
+    .section {
         overflow: scroll; 
     }
 
