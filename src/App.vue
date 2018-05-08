@@ -62,7 +62,11 @@ export default {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  height: 83%;
+  min-height: 50%;
+  position: relative;
+  padding-top: 18%;
+  overflow: hidden;
+
 }
 
 .top-left {
@@ -70,11 +74,13 @@ export default {
   width: 100%;
   order: 1;
   box-shadow: 0px 2px 10px #1d2430;
-  z-index: 2;
+  z-index: 600;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: fixed;
+  background-color: #494B5E;
 }
 
 
@@ -94,6 +100,8 @@ export default {
   order: 4;
   background-color: #494B5E;
   align-self: flex-end;
+  position: fixed;
+  z-index: 500;
 }
 
 @media only screen and (min-width: 600px) {
@@ -110,9 +118,11 @@ export default {
    align-self: center;
   background-color: transparent;
   opacity: 1;
+  position: relative;
   }
 
   .main{
+    padding-top: 0;
     padding-left: 20px;
     order: 3;
     grid-area: main;
@@ -131,6 +141,8 @@ export default {
   justify-content: flex-start;
   align-items: flex-end;
   box-shadow: 0px 0px 0px black;
+  position: relative;
+  background-color: transparent;
   }
 
   .top-left-container{
