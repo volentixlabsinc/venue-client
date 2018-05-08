@@ -6,14 +6,9 @@
     <router-link :to="'/campaign'">
     <a class="button"><i class="fas fa-rocket prefix"></i><label class="menu-name">CAMPAIGNS</label></a>
     </router-link>
-    <router-link :to="'/referrals'">
-    <a class="button"><i class="fas fa-link prefix"></i><label class="menu-name">REFERRALS</label></a>
-    </router-link>
-        <router-link :to="'/signatures'">
+    <router-link :to="'/signatures'">
     <a class="button">  <i class="far fa-address-card"></i>
-
-
-<label class="menu-name">SIGNATURES</label></a>
+    <label class="menu-name">SIGNATURES</label></a>
     </router-link>
     <router-link :to="'/account'">
     <a class="button"><i class="far fa-user prefix"></i><label class="menu-name">MY PROFILE</label></a>

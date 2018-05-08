@@ -4,16 +4,35 @@
          <h2 class="my-campaign-title">My Campaign Overall Stats</h2>
           
          <div class="my-campaign_info">
-          <h1># {{profile_level_global.overall_rank}}</h1>
+           <h1><ICountUp
+            :startVal="50"
+            :endVal="profile_level_global.overall_rank"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
+          <!-- <h1># {{profile_level_global.overall_rank}}</h1> -->
           <h4>Rank</h4>
         </div>
 
         <div class="my-campaign_info">
-          <h1>{{profile_level_global.total_posts}}</h1>
+          <h1><ICountUp
+            :startVal="profile_level_global.total_posts+20"
+            :endVal="profile_level_global.total_posts"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
           <h4>Posts</h4>
         </div>
         <div class="my-campaign_info">
-          <h1>{{profile_level_global.total_points}}</h1>
+          <h1><ICountUp
+            :startVal="0"
+            :endVal="profile_level_global.total_points"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
           <h4>Points</h4>
         </div>
        
@@ -21,7 +40,7 @@
       <div v-if="data" class=" my-activity" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
         <div class="forum">
           <forum :forumInfo = "forumInfo" />
-          <line-chart :chart-data="datacollection" :height="'150px'"></line-chart>
+          <line-chart :chart-data="datacollection" :height="130"></line-chart>
         </div>
       </div>
       <div v-if="data" class="card all-campaigns">
@@ -37,11 +56,23 @@
           <h3>Total VTX</h3>
         </div>
         <div class="campaigns_info">
-          <h1>{{sitewide.total_users}}</h1>
+          <h1><ICountUp
+            :startVal="0"
+            :endVal="sitewide.total_users"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
           <h4>Participants</h4>
         </div>
         <div class="campaigns_info">
-          <h1>{{sitewide.total_posts}}</h1>
+          <h1><ICountUp
+            :startVal="0"
+            :endVal="sitewide.total_posts"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
           <h4>Total Posts</h4>
         </div>
       </div>
@@ -54,7 +85,7 @@ import {retrieveNotifications } from '../../service/notifications';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import forum from './forum.vue';
 import lineChart from '../../components/forumActivity/linechart.js';
-
+import ICountUp from 'vue-countup-v2';
 
 export default {
 
@@ -65,14 +96,21 @@ export default {
       sitewide: {},
       profile_level_forum: [],
       profile_level_global: {},
-      datacollection: null
+      datacollection: null,
+      options: {
+          useEasing: true,
+          useGrouping: false,
+          separator: ',',
+          decimal: '.',
+          prefix: '',
+          suffix: ''
+        }
     }
   },
   mounted(){
     this.fetchStats();
     this.fetchLeaderBoard();
     this.fetchNotifications();
-    this.fillData();
 
   },
   methods: {
@@ -84,6 +122,7 @@ export default {
       this.profile_level_global = response.stats.user_level
       console.log('sitewide: ', response);
     })
+      .then(response => { this.fillData();})
     },
     fetchNotifications() {
      retrieveNotifications()
@@ -102,14 +141,22 @@ export default {
       });
     },
     fillData () {
+        let numberOfPosts = [];
+
+          for (var i =0; i < this.profile_level_global.daily_stats.length; i++){
+            numberOfPosts.push(this.profile_level_global.daily_stats[i].posts);
+            
+            
+          }
+
         this.datacollection = {
-          
+         
           datasets: [
             {
               label: 'posts',
               backgroundColor: 'transparent',
               borderColor: '#85449A',
-              data: [1, 5]
+              data: numberOfPosts
             }
           ]
         }
@@ -118,7 +165,8 @@ export default {
   },
   components: {
     forum,
-    lineChart
+    lineChart,
+    ICountUp
   }
 
 }
@@ -154,7 +202,7 @@ h1 {
   padding: 0px;
   margin: 0px;
   line-height:1;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #85449A;
   text-shadow: 2px 2px 2px black;
 }
 

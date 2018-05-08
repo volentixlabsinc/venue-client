@@ -1,6 +1,6 @@
 <template>
 <div class="forum">
-<h3 class="forum-title">BITCOIN TALK <i class="far fa-edit" @click="onClickSignautre"></i></h3>
+<h3 class="forum-title">BITCOIN TALK <a  @click="onClickSignautre()"><i class="far fa-edit"></i></a></h3>
 
 <!-- <div class="forum_info">
     <h3>Total tokens</h3>
@@ -27,7 +27,7 @@ export default {
   },
   methods: {
       onClickSignautre() {
-
+        this.$router.push('/signature')
       }
   }
 }
@@ -64,7 +64,9 @@ export default {
 .forum_info>h3{
   margin: 0px;
 }
-
+.fa-edit {
+    color:white !important;
+}
 @media only screen and (min-width: 600px) {
 .forum {
     align-items: flex-start;

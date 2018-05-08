@@ -5,13 +5,9 @@ import landingPage from './../views/landingPage';
 import Dashboard from './../views/dashboard';
 import Campaign from './../views/campaigns';
 import Account from './../views/account';
-<<<<<<< HEAD
 import Signature from './../views/signature';
 import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
 
-=======
-import Signature from './../views/forum';
->>>>>>> changes after meeting
 import { readFromCookie } from '../service/utils/browser-storage';
 
 
@@ -35,11 +31,6 @@ const routes = [
         component: Campaign,
         beforeEnter: requireAuth
 
-    },
-    {
-        path: '/referrals',
-        name: 'Referral',
-        component: Referral
     },
     {
         path: '/signatures',
