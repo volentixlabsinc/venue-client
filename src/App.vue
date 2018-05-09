@@ -3,9 +3,7 @@
   <div 
   id="app">
   <div class="top-left">
-
     <tokens />
-
   </div>
   
   <div class="nav-bar">
@@ -55,19 +53,7 @@ export default {
   background-image: linear-gradient(to top,  #222C3B, #494B5E);
   flex-wrap: wrap;
 }
-.main {
-  order: 3;
-  display:flex;
-  flex-direction:column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 50%;
-  position: relative;
-  padding-top: 18%;
-  overflow: hidden;
 
-}
 
 .top-left {
   height: 10%;
@@ -83,17 +69,6 @@ export default {
   background-color: #494B5E;
 }
 
-
-#token-icon{
-  height: 12%;
-  position:absolute; 
-  top:11%;
-  left:40%;
-}
-.fa-adjust{
-  padding-right: 5px;
-  color: #ffdc13;
-}
 .nav-bar{
  width: 100%;
  height: 7%;
@@ -102,6 +77,20 @@ export default {
   align-self: flex-end;
   position: fixed;
   z-index: 500;
+}
+
+.main {
+  order: 3;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-height: 50%;
+  position: relative;
+  padding-top: 18%;
+  overflow: hidden;
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -121,17 +110,6 @@ export default {
   position: relative;
   }
 
-  .main{
-    padding-top: 0;
-    padding-left: 20px;
-    order: 3;
-    grid-area: main;
-    height: 100%;
-    width:82%;
-    z-index: 2;
-    
-  }
-
   .top-left {
   order:1;
    height: 30%;
@@ -145,21 +123,17 @@ export default {
   background-color: transparent;
   }
 
-  .top-left-container{
-    display: flex;
-    width: auto;
-    height: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+.main{
+    padding-top: 0;
+    padding-left: 20px;
+    order: 3;
+    grid-area: main;
+    height: 100%;
+    width:82%;
+    z-index: 2;
+    
+  }
 
-  #token-icon{
-    padding-top: 10px;
-  height: 70px;
-  position: inherit;; 
-  order:-1;
-}
 
 }
 

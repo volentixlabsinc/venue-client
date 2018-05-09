@@ -8,22 +8,41 @@ export default {
   data () {
     return {
       options: {
+
         legend: {
           display: false
         },
+        layout: {
+          padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0
+          },
+        },
         scales: {
           yAxes: [{
+            gridLines: {
+              display: true,
+              color: "rgba(255, 255, 255, 0.1)"
+          },
             ticks: {
               min: 0,
               beginAtZero: true,
-              display: true
+              display: true,
+              fontColor: "rgba(255, 255, 255, 0.541)",
             }
           }],
           xAxes: [{
+            gridLines: {
+              display: true,
+              color: "rgba(255, 255, 255, 0.03)"
+          },
             ticks: {
               min: 0,
               beginAtZero: true,
-              stepSize: 1
+              stepSize: 1,
+              fontColor: "rgba(255, 255, 255, 0.541)",
             }
           }]
         }

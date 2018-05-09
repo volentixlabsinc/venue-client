@@ -38,6 +38,7 @@
     width: 100%;
     height: 100%;
     color: #92A5C1;
+     border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 a { color: inherit; }
 
@@ -52,6 +53,7 @@ a:hover {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+     border-top: 0px;
 }
 a {
     width: 80%;
