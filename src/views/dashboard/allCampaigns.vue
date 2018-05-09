@@ -1,10 +1,12 @@
 <template>
-<div class="all-campaigns">
+<div class="all-campaigns" @click="$router.push('/campaign')">
     
-        <div class="logo-token" @click="$router.push('/campaign')">
+        <div class="logo-token" >
         <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+        <div class="tokens-info">
          <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-          <h1 >{{sitewide.available_tokens}} VTX</h1>
+          <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
+          </div>
          </div>
        <div class="campaigns_info-container">
         <div class="campaigns_info">
@@ -87,7 +89,6 @@ export default {
 .all-campaigns:hover{
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.2);
-  
 }
 .leaderboard{
   display:none;
@@ -147,50 +148,67 @@ export default {
    padding-top: 5px;
    color: rgba(255, 255, 255, 0.541);
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 .all-campaigns{
   height: 100%;
-  flex-direction: column;
-  justify-content:center;
+  flex-direction: row;
+  justify-content:space-around;
   align-items:center;
-  order:2;
   padding: 0px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color:transparent;
    background-image: none;
 }
-
+.all-campaigns:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.tokens-info{
+  display: flex;
+}
 .logo-token{
+  display: flex;
+  flex-direction: column;
   box-shadow: none;
   width: auto;
   min-height: 110px;
   border-radius:3px;
   height: auto;
-  margin-bottom: 0px;
+  padding: 0px;
+  margin: 0px;
   
 }
-
-
-#token-icon {
-  height:50px;
-  margin:5px;
+.campaigns_info-container{
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
 }
 
+.nb-tokens{
+  font-size: 30px;
+}
+
+#token-icon {
+  height:60px;
+  padding-right: 5px; 
+}
 .campaigns_info {
   width: 110px;
-  min-height: 110px;
+ min-height: 80px;
+  margin-top: 4px;
 }
 .dashboard-numbers {
   font-size: 50px;
 }
 
 
-#token-icon {
-  height:80px;
-}
+
 .leaderboard{
   width: 90%;
+  
   display: inherit;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 }

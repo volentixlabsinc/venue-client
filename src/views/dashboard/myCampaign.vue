@@ -115,7 +115,7 @@ export default {
   margin: 0px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   .my-campaign{
   order:1;
   padding: 0px;

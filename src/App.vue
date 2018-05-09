@@ -93,7 +93,7 @@ export default {
 
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   #app {
     flex-direction: column;;
     justify-content: flex-start;
@@ -137,13 +137,13 @@ export default {
 
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 900px) {
    #venue-logo {
   max-height: 25px;
   margin: 10px;
   }
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1000px) {
    #venue-logo {
   max-height: 40px;
   }

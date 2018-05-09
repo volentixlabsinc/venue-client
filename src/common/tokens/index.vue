@@ -75,7 +75,7 @@ p {
   color: #ffdc13;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 .tokens-template {
   padding: 0px;
   font-size: 18px;
@@ -98,7 +98,10 @@ p {
   width: 100%;
   align-items: center;
 }
-
+ #venue-logo {
+  max-height: 22px;
+  margin: 10px;
+  }
 p {
   flex-grow: 0;
   margin: 0px;
@@ -110,6 +113,7 @@ p {
 }
 
 #token-icon{
+  display: none;
   padding-top: 10px;
   height: 80px;
   position: inherit;; 
@@ -117,15 +121,15 @@ p {
 
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 900px) {
    #venue-logo {
-  max-height: 22px;
+  max-height: 30px;
   margin: 10px;
   }
 }
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1000px) {
    #venue-logo {
-  max-height: 40px;
+  max-height: 50px;
   }
 }
 </style>

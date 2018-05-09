@@ -1,5 +1,5 @@
 <template>
-    <div class="main-section">
+    <div v-if="data" class="main-section">
       <div v-if="profile_level_global" class="card my-campaign-container">
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
          <forum :forumInfo = "forumInfo" :chart-data="datacollection"/>
@@ -158,11 +158,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 
 .main-section {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: white;
     flex-wrap: wrap;
@@ -171,10 +171,15 @@ export default {
 
 .my-campaign-container, .all-campaigns-container {
   order:2;
-  width: 50%;
+  width: 49%;
   height: 100%;
   margin: 0px;
   box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+
 }
 .my-campaign-container{
   background-color: rgba(0, 0, 0, 0.2);

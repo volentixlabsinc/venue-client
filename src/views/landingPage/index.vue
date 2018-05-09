@@ -152,7 +152,7 @@ button {
     display: none;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
     justify-content: space-between;

@@ -181,7 +181,7 @@ export default {
     .bottom-elements{
         font-size: 12px
     }
- @media only screen and (min-width: 600px) {
+ @media only screen and (min-width: 800px) {
     .top-elements{
         justify-content: space-between;
     }
