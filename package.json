@@ -23,6 +23,8 @@
     "vue-countup-v2": "^1.0.3",
     "vue-router": "^3.0.1",
     "vue-stepper": "^1.0.11",
+    "vue-sweetalert2": "^1.2.4",
+    "vue2-simplert-plugin": "^0.4.1",
     "vuex": "^3.0.1"
   },
   "browserslist": [

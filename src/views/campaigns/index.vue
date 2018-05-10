@@ -1,26 +1,50 @@
 <template>
   <div class="main-section">
-      <h1>Campaign</h1>
-      <div class="top-left-panel">
+      
       <div class="card summary">
-           <h2>Overall stats</h2>
-          <p>my position: {{this.myRanking}}</p>
-          <p>total users: {{this.totalUsers}}</p>
-          <p>total posts: {{this.totalPosts}}</p>
-          <p>my posts: {{this.myActivity}}</p>
-         
-      </div>
-      <div class="card forum">
-          <h2>Forum Activity</h2>
-          <p>Posts by forum</p>
-          <p>Users by forum</p>
-          <forum-activity-posts :chart-data="datacollectionPosts"   />
-          <forum-activity-users :chart-data="datacollectionUsers"  />
-        <div class="label">
-          <p class="b1">{{this.data.forumstats.users[0].forumSite}}</p>
-          <p class="b2">{{this.data.forumstats.users[1].forumSite}}</p>
-        </div>
-      </div>
+           <h2>Bitcointalk Signature Campaing</h2>
+          <div class="this-campaign_info">
+            <h1 class="stats-numbers"><ICountUp
+            :startVal="0"
+            :endVal="this.totalUsers"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
+          <h4>Users</h4>
+          </div>
+          <div class="this-campaign_info">
+            <h1 class="stats-numbers"><ICountUp
+            :startVal="0"
+            :endVal="this.totalPosts"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
+          <h4>Posts</h4>
+          </div>
+           <div class="this-campaign_info">
+            <h1 class="stats-numbers"><ICountUp
+            :startVal="0"
+            :endVal="this.myRanking"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
+          <h4>Rank</h4>
+          </div>
+          <div class="this-campaign_info">
+            <h1 class="stats-numbers"><ICountUp
+            :startVal="0"
+            :endVal="this.myActivity"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"
+          /></h1>
+          <h4>My Posts</h4>
+          </div>
+          
+    
       </div>
       <div class="card leaderboard">
            <h2>Leaderboard</h2>
@@ -36,6 +60,7 @@ import campaigns from '../../components/campaigns/index.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveUser } from '../../service/account';
+import ICountUp from 'vue-countup-v2';
 
 
 
@@ -52,6 +77,14 @@ export default {
           totalUsers:'',
           totalPosts: '',
           myActivity: '',
+           options: {
+            useEasing: true,
+            useGrouping: false,
+            separator: ',',
+            decimal: '.',
+            prefix: '',
+            suffix: ''
+        },
       }
   },
 mounted(){
@@ -76,9 +109,7 @@ mounted(){
       .catch(ex => {
         console.error(ex);
       })
-      .then(response => {
-        this.fillData()
-        })
+      
     },
     methods: {
     populateUserData() {
@@ -87,63 +118,13 @@ mounted(){
         this.totalPosts =  this.campaignStats.total_posts;
         this.myActivity =  this.userStats.total_posts;
 
-        },
-      fillData () {
-          let labels = [];
-          let data = [];
-          let backgroundColor = [];
-
-          for (var i =0; i < this.data.forumstats.posts.length; i++){
-            labels.push(this.data.forumstats.posts[i].forumSite);
-            data.push(this.data.forumstats.posts[i].value);
-            backgroundColor.push(this.data.forumstats.posts[i].color);
-          }
-
-        this.datacollectionPosts = {
-            // labels:labels,
-            datasets: [{
-                data:data,
-                backgroundColor:backgroundColor,
-                borderColor:['#3D4152', '#3D4152'],
-                borderWidth: 3,
-                title: {
-                    display: true,
-                    position: 'bottom',
-                    text: 'Custom Chart Title'
-                }
-            }],
-           
         }
-
-          let dataUsers = [];
-          for (var i =0; i < this.data.forumstats.users.length; i++){
-            labels.push(this.data.forumstats.users[i].forumSite);
-            dataUsers.push(this.data.forumstats.users[i].value);
-            backgroundColor.push(this.data.forumstats.users[i].color);
-          }
-
-        this.datacollectionUsers = {
-            // labels:labels,
-            datasets: [{
-                data:dataUsers,
-                backgroundColor:backgroundColor,
-                borderColor:['#3D4152', '#3D4152'],
-                borderWidth: 3,
-                title: {
-                    display: true,
-                    position: 'bottom',
-                    text: 'Custom Chart Title'
-                }
-            }],
-           
-        }
-      },
-      
     },
   components: {
     campaigns,
     forumActivityPosts,
-    forumActivityUsers
+    forumActivityUsers,
+    ICountUp
     }
 }
 </script>
@@ -192,7 +173,7 @@ mounted(){
 
 .card {
   width: 95%;
-  height: 100%;
+  height: auto;
   margin-bottom: 10px
 }
 
@@ -213,13 +194,15 @@ campaigns {
     background-color: #3196B4;
 }
 .summary {
-    width: 100% ;
-    height: 30%;
+    padding-top: 10%;
+    width: 95% ;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+     padding-bottom: 20px;
+     min-height:150px;
 }
 .summary h2 {
     width: 100% !important;
@@ -242,6 +225,37 @@ campaigns {
 .forum h2 {
     width: 100% !important;
 }
+
+.this-campaign_info{
+ width: 100px;
+ min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.this-campaign_info>h2{
+  margin: 0px;
+}
+.stats-numbers {
+  width: 90%;
+  font-weight: bolder;
+  font-size: 55px;
+  padding: 0px;
+  margin: 0px;
+  line-height:1;
+  border-bottom: 1px solid #85449A;
+  text-shadow: 2px 2px 2px black;
+}
+.leaderboard {
+    width: 90% ;
+    padding: 10px;
+    padding-top: 10px;
+  margin-bottom: 15%;
+}
 @media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
@@ -250,27 +264,29 @@ campaigns {
       align-items: center;
       padding-bottom:0;
 }
- .leaderboard {
+ .leaderboard, .summary {
     width: 40% ;
     height: 70%;
     padding: 10px;
+   margin:0px;
+}
+ .leaderboard * {
+     width:100%;
+    
+     
+ }
+
+.summary { 
+    padding-top: 0px;
+    justify-content:center;
+    align-items:flex-start;
+     padding-bottom: 0px;
 }
 
-.top-left-panel {
-    width: 40%;
-    height: 73%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-   
-}
 
 h1{
     width: 100%;
 }
-
-
 
  }
 </style>
