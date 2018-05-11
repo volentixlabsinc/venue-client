@@ -48,7 +48,7 @@
       </div>
       <div class="card leaderboard">
            <h2>Leaderboard</h2>
-          <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" :username="user.username"/>
+          <leaderboard />
       </div>
   </div>
 </template>
@@ -56,7 +56,7 @@
 <script>
 import forumActivityPosts from '../../components/forumActivity/forumStatsPosts.js';
 import forumActivityUsers from '../../components/forumActivity/forumStatsUsers.js';
-import campaigns from '../../components/campaigns/index.vue';
+import leaderboard from '../../components/leaderboard/index.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveUser } from '../../service/account';
@@ -100,15 +100,6 @@ mounted(){
     .then( response => {
         this.populateUserData()
         });
-    getLeaderBoardData()
-      .then(response => {
-          this.data = response;
-        //   this.forumstatsPosts = response.forumstats.posts
-          console.log('response: ', response);
-      })
-      .catch(ex => {
-        console.error(ex);
-      })
       
     },
     methods: {
@@ -121,7 +112,7 @@ mounted(){
         }
     },
   components: {
-    campaigns,
+    leaderboard,
     forumActivityPosts,
     forumActivityUsers,
     ICountUp

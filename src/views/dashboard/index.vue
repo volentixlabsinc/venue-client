@@ -1,5 +1,5 @@
 <template>
-    <div v-if="data" class="main-section">
+    <div class="main-section">
       <div v-if="profile_level_global" class="card my-campaign-container">
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
          <forum :forumInfo = "forumInfo" :chart-data="datacollection"/>
@@ -49,8 +49,6 @@ export default {
      getLeaderBoardData()
       .then(response => {
           this.data = response;
-        //   this.forumstatsPosts = response.forumstats.posts
-          console.log('response: ', response);
       })
       .catch(ex => {
         console.error(ex);
@@ -63,7 +61,6 @@ export default {
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
-      console.log('sitewide: ', response);
     })
       .then(response => { this.fillData();})
     },
@@ -157,6 +154,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-shrink:0;
+  height: 70%;
+}
+
+.all-campaigns-container {
+flex-shrink: 1;
+height: 30%;
 }
 @media only screen and (min-width: 800px) {
 
@@ -184,6 +188,12 @@ export default {
 .my-campaign-container{
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+.all-campaigns-container:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .forum{
   order:1;
    height: auto;

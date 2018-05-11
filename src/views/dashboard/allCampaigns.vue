@@ -30,16 +30,17 @@
           <h4 class="info-subtitles">TOTAL POSTS</h4>
         </div>
          </div>
-           <div class="leaderboard">
+        
+        <div class="leaderboard-container">
              <h2 class="campaign-title">LEADERBOARD</h2>
-         <leaderboard :rankings="data.rankings" :sitewide="data.sitewide"/>
+        <leaderboard/>
         </div>
 </div>
 </template>
 
 <script>
 import ICountUp from 'vue-countup-v2';
-import leaderboard from '../../components/campaigns/index.vue'
+import leaderboard from '../../components/leaderboard/index.vue'
 export default {
   props: {
     sitewide: {
@@ -49,7 +50,7 @@ export default {
     data: {
       type: Object,
       default: null
-    }
+    },
   },
   data () {
     return {
@@ -83,6 +84,7 @@ export default {
   flex-shrink: 0;
  padding-top: 10px;
  padding-bottom: 30px;
+ margin-bottom: 5%;
  background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.3), #494B5E);
 }
 
@@ -90,7 +92,7 @@ export default {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.leaderboard{
+.leaderboard-container{
   display:none;
 }
 .campaign-title{
@@ -113,11 +115,11 @@ export default {
 }
 
 #token-icon {
-  height:50px;
+  height:45px;
   margin:5px;
 }
 .campaigns_info {
-  width: 110px;
+  width: 50%;
  min-height: 80px;
   display: flex;
   flex-direction: column;
@@ -141,7 +143,11 @@ export default {
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 2px black;
 }
-
+.tokens-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .info-subtitles {
   padding: 0px;
   margin: 0px;
@@ -150,21 +156,20 @@ export default {
 }
 @media only screen and (min-width: 800px) {
 .all-campaigns{
-  height: 100%;
+  height: auto;
   flex-direction: row;
-  justify-content:space-around;
-  align-items:center;
+  justify-content:center;
+  align-items:flex-start;
   padding: 0px;
+  margin-bottom: 0pc;
   background-color:transparent;
    background-image: none;
 }
 .all-campaigns:hover{
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: transparent;
 }
-.tokens-info{
-  display: flex;
-}
+
 .logo-token{
   display: flex;
   flex-direction: column;
@@ -182,7 +187,9 @@ export default {
   padding: 0px;
   margin: 0px;
 }
-
+.info-subtitles {
+  font-size:14px;
+}
 .nb-tokens{
   font-size: 30px;
 }
@@ -192,19 +199,17 @@ export default {
   padding-right: 5px; 
 }
 .campaigns_info {
-  width: 110px;
- min-height: 80px;
+  width: auto;
+  min-height: auto;
   margin-top: 4px;
 }
 .dashboard-numbers {
-  font-size: 50px;
+  font-size: 45px;
 }
 
-
-
-.leaderboard{
+.leaderboard-container{
+  padding-top: 20px;
   width: 90%;
-  
   display: inherit;
   flex-direction: column;
   justify-content: flex-start;

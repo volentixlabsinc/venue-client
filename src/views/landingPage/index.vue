@@ -40,7 +40,7 @@
 <script>
 import logIn from './logIn.vue';
 import signUp from './signUp.vue';
-import campaigns from '../../components/campaigns/index.vue'
+import campaigns from '../../components/leaderboard/index.vue'
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import { checkForUsername, checkForEmail } from '../../service/account'; 
 

@@ -91,7 +91,7 @@ export default {
    color: rgba(255, 255, 255, 0.541);
   width: 100%;
   font-weight: bolder;
-  font-size: 50px;
+  font-size: 45px;
   padding: 0px;
   padding-top: 5px;
   margin: 0px;
@@ -100,7 +100,7 @@ export default {
   text-shadow: 2px 2px 2px black;
 }
 .my-campaign_info{
- width: 110px;
+ width: 30%;
  min-height: 80px;
   display: flex;
   flex-direction: column;
