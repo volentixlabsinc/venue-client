@@ -196,10 +196,10 @@ height: 30%;
 
 .forum{
   order:1;
-   height: auto;
-   width: auto;
-   background-color: transparent;
-   border: 0px;
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  border: 0px;
 }
 
 }

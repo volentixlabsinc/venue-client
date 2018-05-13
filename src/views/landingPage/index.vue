@@ -25,7 +25,7 @@
     <div v-if="data" class="card campaigns">
         <h2 class="section-title">Ongoing campaign</h2>
         <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
-        <campaigns v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide"/>
+        <leaderboard v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" :myRank="myRank"/>
     </div>
 
      <!-- <div class="card my-news-div">
@@ -40,7 +40,7 @@
 <script>
 import logIn from './logIn.vue';
 import signUp from './signUp.vue';
-import campaigns from '../../components/leaderboard/index.vue'
+import leaderboard from '../../components/leaderboard/index.vue'
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import { checkForUsername, checkForEmail } from '../../service/account'; 
 
@@ -51,6 +51,7 @@ export default {
       return {
           action: null,
           data: null,
+          myRank: Number(0)
       }
   },
   mounted(){
@@ -66,7 +67,7 @@ export default {
   components: {
     logIn,
     signUp,
-    campaigns
+    leaderboard
     }
 }
 </script>
