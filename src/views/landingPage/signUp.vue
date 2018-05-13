@@ -5,12 +5,12 @@
     <span class="venue-text">{{ errors.first('email') }}</span>
     <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
     <span class="venue-text">{{ errors.first('username') }}</span>
-    <input v-validate="'required|min:6'" name="password" placeholder="password" v-model="password"/>
+    <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password"/>
     <span class="venue-text">{{ errors.first('password') }}</span>
-    <input v-validate="{is: password}" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
+    <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
     <span class="venue-text">{{ errors.first('confirmation') }}</span>
     <button 
-    @click="$router.push('/dashboard')"
+    @click="registerUser"
     class="btn">Sign Up</button>
     <a 
     @click="$emit('cancel')"
@@ -20,6 +20,10 @@
 
 
 <script>
+import { createUser } from '../../service/account';
+import { clearCookie } from '../../service/utils/browser-storage';
+
+
 export default {
   props: {
     action: {
@@ -32,6 +36,20 @@ export default {
       username: '',
       password: '',
       confirmation: ''
+    }
+  },
+  methods: {
+    registerUser: function (){
+     clearCookie();
+     createUser(this.email, this.username, this.confirmation)
+      .then(res => {
+        if(res.status === 200) {
+              this.$emit('sucessfulRegistration'); 
+        }
+      })
+      .catch(err => {
+        console.log('There was an error: ', err)
+      })
     }
   }
 }

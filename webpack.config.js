@@ -52,11 +52,17 @@ module.exports = {
               'css-loader',
               'sass-loader?indentedSyntax'
             ]
+
           }
           // other vue-loader options go here
         }
       },
+      { 
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' 
+    },
+
       {
+        enforce: "pre",
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
@@ -67,8 +73,7 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
-      },
-      { test: /(\.css$)/, loaders: ['style-loader', 'css-loader', 'postcss-loader'] }, { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
+      }
     ]
   },
   resolve: {
