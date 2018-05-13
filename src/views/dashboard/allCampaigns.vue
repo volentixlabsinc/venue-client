@@ -94,6 +94,7 @@ export default {
 .leaderboard-container{
   display:none;
 }
+
 .campaign-title{
     font-size: 20px;
     width:95%;
@@ -154,6 +155,9 @@ export default {
    color: rgba(255, 255, 255, 0.541);
 }
 
+
+  
+
 @media only screen and (min-width: 600px) {
 .all-campaigns{
   margin-bottom: 5%;
@@ -211,10 +215,41 @@ export default {
 .leaderboard-container{
   padding-top: 20px;
   width: 90%;
+  max-height: 500px;
   display: inherit;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-face-color: #367CD2;
+  scrollbar-shadow-color: #FFFFFF;
+  scrollbar-highlight-color: #FFFFFF;
+  scrollbar-3dlight-color: #FFFFFF;
+  scrollbar-darkshadow-color: #FFFFFF;
+  scrollbar-track-color: #FFFFFF;
+  scrollbar-arrow-color: #FFFFFF;
+  padding-bottom:50px;
+}
+
+.leaderboard-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+.leaderboard-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+ 
+/* Handle */
+.leaderboard-container::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
 }

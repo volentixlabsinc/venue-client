@@ -129,6 +129,7 @@ table  tr {
 table td::before {
     content: attr(data-label);
     float: left;
+    color: #94A8B6;
   }
 .button {
     display: flex;
