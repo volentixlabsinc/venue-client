@@ -84,7 +84,7 @@ export default {
   flex-shrink: 0;
  padding-top: 10px;
  padding-bottom: 30px;
- margin-bottom: 5%;
+ margin-bottom: 10%;
  background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.3), #494B5E);
 }
 
@@ -154,16 +154,23 @@ export default {
    padding-top: 5px;
    color: rgba(255, 255, 255, 0.541);
 }
+
+@media only screen and (min-width: 600px) {
+.all-campaigns{
+  margin-bottom: 5%;
+}
+}
+
 @media only screen and (min-width: 800px) {
 .all-campaigns{
   height: auto;
   flex-direction: row;
-  justify-content:center;
-  align-items:flex-start;
+  justify-content:space-evenly;
+  align-items:center;
   padding: 0px;
-  margin-bottom: 0pc;
+  margin-bottom: 0px;
   background-color:transparent;
-   background-image: none;
+  background-image: none;
 }
 .all-campaigns:hover{
   cursor: pointer;
@@ -180,13 +187,8 @@ export default {
   height: auto;
   padding: 0px;
   margin: 0px;
-  
 }
-.campaigns_info-container{
-  flex-direction: column;
-  padding: 0px;
-  margin: 0px;
-}
+
 .info-subtitles {
   font-size:14px;
 }
@@ -214,6 +216,21 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+}
+
+@media only screen and (min-width: 1200px) {
+.logo-token{
+  margin-bottom: 50px;
+}
+
+
+.campaigns_info-container{
+  flex-direction: column;
+  padding: 0px;
+  margin: 0px;
+   margin-bottom: 50px;
 }
 
 }
