@@ -44,7 +44,7 @@ p {
 }
 
 .leaderboard {
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
