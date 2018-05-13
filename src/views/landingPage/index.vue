@@ -4,7 +4,9 @@
         <log-in @cancel="action=null"/>
     </div>
     <div v-else-if="action==='signup'" class="card log-in-section-large">
-        <sign-up @cancel="action=null"/>
+        <sign-up @cancel="action=null"
+                 @sucessfulRegistration="handleSuccessfulRegistration"
+        />
     </div>
     
      <div v-else class="card log-in-section">
@@ -63,6 +65,17 @@ export default {
         console.error(ex);
       });
   },
+  methods: {
+      handleSuccessfulRegistration: function(){
+          this.action = null; 
+          this.$swal(
+                'Registration was successful',
+                'Please check your email to confirm your account',
+                'success'
+              )
+
+      }
+  }, 
   components: {
     logIn,
     signUp,

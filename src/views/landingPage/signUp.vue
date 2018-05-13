@@ -44,15 +44,8 @@ export default {
      createUser(this.email, this.username, this.confirmation)
       .then(res => {
         if(res.status === 200) {
-               this.$swal(
-  'Registration was successful',
-  'Please check your email to confirm your account',
-  'success'
-)
-
-
+              this.$emit('sucessfulRegistration'); 
         }
-        console.log(res); 
       })
       .catch(err => {
         console.log('There was an error: ', err)
