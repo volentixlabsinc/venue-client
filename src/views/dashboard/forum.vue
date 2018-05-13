@@ -46,7 +46,15 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
+.chart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.chart * {
+  width: 100%;
+  height: 100%;
+}
 .fa-edit {
     color:white !important;
 }
@@ -62,19 +70,14 @@ export default {
   display: flex;
 }
 
-.chart * {
-  width: 100%;
-  height: 100%;
-}
+
 
 }
 </style>
 
 <style>
-@media only screen and (min-width: 800px) {
 #line-chart {
   width: 100% !important;
   height: 100% !important;
-}
 }
 </style>

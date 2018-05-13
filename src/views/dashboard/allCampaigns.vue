@@ -1,6 +1,5 @@
 <template>
 <div class="all-campaigns" @click="$router.push('/campaign')">
-    
         <div class="logo-token" >
         <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <div class="tokens-info">

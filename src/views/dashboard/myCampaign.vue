@@ -11,7 +11,7 @@
             :options="options"
           /></h1>
           <!-- <h1 class="dashboard-numbers"># {{data.overall_rank}}</h1> -->
-          <h4 class="info-subtitles">RANK</h4>
+          <h4 class="info-subtitles">MY RANK</h4>
         </div>
 
         <div class="my-campaign_info">
@@ -22,7 +22,7 @@
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4 class="info-subtitles">POSTS</h4>
+          <h4 class="info-subtitles">MY POSTS</h4>
         </div>
         <div class="my-campaign_info">
           <h1 class="dashboard-numbers"><ICountUp
@@ -32,7 +32,7 @@
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4 class="info-subtitles">POINTS</h4>
+          <h4 class="info-subtitles">MY POINTS</h4>
         </div>
 </div>
 </template>
@@ -116,21 +116,21 @@ export default {
 }
 
 @media only screen and (min-width: 800px) {
+
   .my-campaign{
   order:1;
+  margin-top:0px;
   padding: 0px;
 }
 
-.my-campaign_info{
-  height: 40%;
+.my-campaign_info {
+  width: auto;
+  min-height: auto;
+  margin-top: 4px;
+}
+.dashboard-numbers {
+  font-size: 45px;
 }
 
-.dashboard-numbers {
-  font-size: 50px;
-}
-.my-campaign_info{
- width: 110px;
- min-height: 110px;
-}
 }
 </style>

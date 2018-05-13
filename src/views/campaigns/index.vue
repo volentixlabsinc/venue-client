@@ -1,8 +1,17 @@
 <template>
   <div class="main-section">
       
-      <div class="card summary">
-           <h2>Bitcointalk Signature Campaing</h2>
+      <div class="card user-campaign-info">
+           <h2>BITOINTALK SIGNATURE CAMPAIGN</h2>
+           <div class="my-signature">
+            <div class="signature-title">
+           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
+           <a  @click="onClickSignautre()"><i class="far fa-edit"></i></a>
+           </div>
+           <p v-if="signature">user signature</p>
+           <img v-else src="/img/onboarding/sig5.png">
+           </div>
+           <div class="campaign_info-container">
           <div class="this-campaign_info">
             <h1 class="stats-numbers"><ICountUp
             :startVal="0"
@@ -13,6 +22,7 @@
           /></h1>
           <h4>Users</h4>
           </div>
+          
           <div class="this-campaign_info">
             <h1 class="stats-numbers"><ICountUp
             :startVal="0"
@@ -43,10 +53,11 @@
           /></h1>
           <h4>My Posts</h4>
           </div>
+          </div>
           
     
       </div>
-      <div class="card leaderboard">
+      <div class="card leaderboard-container">
            <h2>Leaderboard</h2>
           <leaderboard />
       </div>
@@ -67,6 +78,7 @@ import ICountUp from 'vue-countup-v2';
 export default {
   data() {
       return {
+          signature: false,
           data: {},
           datacollectionPosts:{},
           datacollectionUsers:{},
@@ -102,7 +114,10 @@ mounted(){
         });
       
     },
-    methods: {
+    methods: { 
+    onClickSignautre() {
+        this.$router.push('/signature')
+      },
     populateUserData() {
         this.myRanking = this.userStats.overall_rank;
         this.totalUsers =  this.campaignStats.total_users;
@@ -122,16 +137,15 @@ mounted(){
 
 <style scoped>
 .main-section {
-  width: 100%;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     color: white;
     overflow-x: scroll;
     overflow-x: hidden;
-    
     scrollbar-face-color: #367CD2;
     scrollbar-shadow-color: #FFFFFF;
     scrollbar-highlight-color: #FFFFFF;
@@ -149,10 +163,10 @@ mounted(){
 /* Track */
 .main-section::-webkit-scrollbar-track {
   box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-clip: content-box;
 }
  
 /* Handle */
@@ -162,64 +176,44 @@ mounted(){
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
-.card {
-  width: 95%;
-  height: auto;
-  margin-bottom: 10px
-}
-
-campaigns {
-    height: 100% !important;
-}
-
-.label {
-    padding-left: 10px;
-}
-.b1 {
-    width: 100%;
-    background-color: #3F2069;
-}
-
-.b2 {
-    width: 100%;
-    background-color: #3196B4;
-}
-.summary {
-    padding-top: 10%;
-    width: 95% ;
+.user-campaign-info {
+    height: auto;
+    width: 100% ;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-     padding-bottom: 20px;
-     min-height:150px;
 }
-.summary h2 {
-    width: 100% !important;
-}
-.summary p {
-    width: 50% !important;
-}
- .forum {
-    width: 100% ;
-    height: 70%;
+.my-signature{
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction:column;
+    padding-bottom: 30px;
+
+}
+
+.signature-title {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
 }
-.forum * {
-    width: 50% !important;
+.signature-title-text {
+    padding: 0px;
+    margin: 10px;
+    text-align: left;
 }
-.forum h2 {
-    width: 100% !important;
+.campaign_info-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 .this-campaign_info{
  width: 100px;
- min-height: 100px;
+
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -228,24 +222,23 @@ campaigns {
   margin: 1px;
   background-color: rgba(0, 0, 0, 0.1);
 }
-.this-campaign_info>h2{
-  margin: 0px;
-}
+
 .stats-numbers {
   width: 90%;
   font-weight: bolder;
-  font-size: 55px;
+  font-size: 50px;
   padding: 0px;
   margin: 0px;
   line-height:1;
   border-bottom: 1px solid #85449A;
   text-shadow: 2px 2px 2px black;
 }
-.leaderboard {
-    width: 90% ;
-    padding: 10px;
-    padding-top: 10px;
-  margin-bottom: 15%;
+.leaderboard-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 @media only screen and (min-width: 800px) {
 .main-section {
@@ -255,19 +248,19 @@ campaigns {
       align-items: center;
       padding-bottom:0;
 }
- .leaderboard, .summary {
+ .leaderboard-container, .user-campaign-info {
     width: 40% ;
     height: 70%;
     padding: 10px;
    margin:0px;
 }
- .leaderboard * {
+ .leaderboard-container * {
      width:100%;
     
      
  }
 
-.summary { 
+.user-campaign-info { 
     padding-top: 0px;
     justify-content:center;
     align-items:flex-start;
