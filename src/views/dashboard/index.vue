@@ -49,8 +49,6 @@ export default {
      getLeaderBoardData()
       .then(response => {
           this.data = response;
-        //   this.forumstatsPosts = response.forumstats.posts
-          console.log('response: ', response);
       })
       .catch(ex => {
         console.error(ex);
@@ -63,7 +61,6 @@ export default {
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
-      console.log('sitewide: ', response);
     })
       .then(response => { this.fillData();})
     },
@@ -157,12 +154,19 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-shrink:0;
+  height: 70%;
 }
-@media only screen and (min-width: 600px) {
+
+.all-campaigns-container {
+flex-shrink: 1;
+height: 30%;
+}
+@media only screen and (min-width: 800px) {
 
 .main-section {
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     color: white;
     flex-wrap: wrap;
@@ -171,14 +175,25 @@ export default {
 
 .my-campaign-container, .all-campaigns-container {
   order:2;
-  width: 50%;
+  width: 49%;
   height: 100%;
   margin: 0px;
   box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+
 }
 .my-campaign-container{
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+.all-campaigns-container:hover{
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .forum{
   order:1;
    height: auto;

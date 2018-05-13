@@ -1,5 +1,5 @@
 <template>
-<div class="element-container" :style="[elements.username==username? 'backgound-color:white !important' : 'backgound-color:none' ]">
+<div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
     <div class="top-elements">
         <div class="rank_username">
             <p class="element top-el el-rank">{{elements.rank}}</p>
@@ -35,8 +35,8 @@ export default {
             type: Object,
             default: null
         },
-        username: {
-            type: String,
+        myRank: {
+            type: Number,
             default: ''
         }
   },
@@ -44,11 +44,14 @@ export default {
         return {
             toggleDescription: false,
             pointsPercent: null,
-            tokensPercent: null
+            tokensPercent: null,
+            userRank: 'my-element-container',
+            otherRank: 'element-container'
         }
     },
     mounted() {
         this.calculatePercentages ()
+        console.log(this.myRank == this.elements.rank);
     },
     methods: {
         calculatePercentages () {
@@ -71,6 +74,10 @@ export default {
 }
 .element-container * {
     flex-shrink: 1;
+}
+
+.my-element-container {
+    background-color: rgba(148, 168, 182, 0.2);
 }
 @keyframes slideUp{
     0%{
@@ -181,7 +188,7 @@ export default {
     .bottom-elements{
         font-size: 12px
     }
- @media only screen and (min-width: 600px) {
+ @media only screen and (min-width: 800px) {
     .top-elements{
         justify-content: space-between;
     }

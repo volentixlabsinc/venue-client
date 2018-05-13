@@ -40,7 +40,7 @@
 <script>
 import logIn from './logIn.vue';
 import signUp from './signUp.vue';
-import campaigns from '../../components/campaigns/index.vue'
+import campaigns from '../../components/leaderboard/index.vue'
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import { checkForUsername, checkForEmail } from '../../service/account'; 
 
@@ -152,7 +152,7 @@ button {
     display: none;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
     justify-content: space-between;

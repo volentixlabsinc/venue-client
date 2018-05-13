@@ -104,7 +104,7 @@ textarea:focus, input:focus{
 
 h3 {justify-self: flex-start;}
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   .log-in-element{
     margin-top: 0px;
   }

@@ -2,34 +2,33 @@
     <div class=" leaderboard">
         
         <ul>
-            <li v-for="(elements, key) in rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="sitewide" :username="username"/>
+            <li v-for="(elements, key) in data.rankings" :key="key" >
+                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+import { getLeaderBoardData } from '../../service/leaderboard'; 
 import leaderboardEntry from "./leaderboardEntry";
 export default {
-    props: {
-        rankings: {
-            type: Array,
-            default: []
-        },
-        sitewide: {
-            type: Object,
-            default: []
-        },
-        username: {
-            type: String,
-            default: ''
-        }
-    },
     data() {
         return {
-            toggleDescription: false
+            toggleDescription: false,
+            data: {}
         }
+    },
+    mounted() {
+        getLeaderBoardData()
+            .then(response => {
+                this.data = response;
+                
+                //   this.forumstatsPosts = response.forumstats.posts
+            })
+            .catch(ex => {
+                console.error(ex);
+            })
     },
     components: {
         leaderboardEntry
@@ -50,7 +49,7 @@ p {
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: flex-start;
     overflow: scroll;
     overflow-x: hidden;
     scrollbar-face-color: #367CD2;

@@ -52,7 +52,7 @@ export default {
 .fa-edit {
     color:white !important;
 }
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
 .forum {
     align-items: flex-start;
 }

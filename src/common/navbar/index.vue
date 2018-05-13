@@ -48,7 +48,7 @@ a:hover {
 }
 
 .menu-name {display: none;}
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
 .menu {
     flex-direction: column;
     justify-content: flex-start;
