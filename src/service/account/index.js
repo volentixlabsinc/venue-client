@@ -44,6 +44,12 @@ function retrieveUser(){
     return VenueAPI.get('/retrieve/user/')
 }
 
+function createUser(email, username, password ){
+    console.log('!!!!!!!!!!!', email, name, password)
+    return VenueAPI.postJson('/create/user/', 
+    {email, username, password});
+}
+
 
 
 export {
@@ -54,7 +60,8 @@ export {
     changeUsername,
     changePassword,
     confirmEmail,
-    retrieveUser
+    retrieveUser,
+    createUser
 
 
 }; 
