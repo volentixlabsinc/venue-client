@@ -32,8 +32,6 @@ export default {
 
 <style scoped>
 .forum {
-    margin-top:10px;
-    padding-top: 10%;
     height: 100%;
     width: 100%;
     display:flex;
@@ -54,7 +52,29 @@ export default {
 }
 @media only screen and (min-width: 800px) {
 .forum {
-    align-items: flex-start;
+  margin-top:0px;
+  padding-top: 0px;
+  align-items: flex-start;
+}
+.chart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.chart * {
+  width: 100%;
+  height: 100%;
+}
+
+}
+</style>
+
+<style>
+@media only screen and (min-width: 800px) {
+#line-chart {
+  width: 100% !important;
+  height: 100% !important;
 }
 }
 </style>
