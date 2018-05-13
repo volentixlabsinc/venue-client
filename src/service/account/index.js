@@ -44,10 +44,12 @@ function retrieveUser(){
     return VenueAPI.get('/retrieve/user/')
 }
 
-function createUser(email, username, password ){
-    console.log('!!!!!!!!!!!', email, name, password)
+function createUser(email, username, password, language ){
+    if(!language) {
+        language = "en";
+    }  
     return VenueAPI.postJson('/create/user/', 
-    {email, username, password});
+    {email, username, password, language});
 }
 
 
