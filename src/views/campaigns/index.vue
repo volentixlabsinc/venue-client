@@ -6,7 +6,7 @@
            <div class="my-signature">
             <div class="signature-title">
            <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
-           <a  @click="onClickSignautre()"><i class="far fa-edit"></i></a>
+           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
            </div>
            <p v-if="signature">user signature</p>
            <img v-else src="/img/onboarding/sig5.png">
