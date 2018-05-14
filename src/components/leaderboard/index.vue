@@ -5,15 +5,6 @@
             <li v-for="(elements, key) in data.rankings" :key="key" >
                 <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
             </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
         </ul>
     </div>
 </template>

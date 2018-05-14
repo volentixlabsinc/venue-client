@@ -25,7 +25,7 @@
         class="btn signup">sign up</button>
     </div>
     <div v-if="data" class="card campaigns">
-        <h2 class="section-title">Ongoing campaign</h2>
+        <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
         <leaderboard v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" :myRank="myRank"/>
     </div>
@@ -131,8 +131,11 @@ export default {
     justify-content: center;
     align-items:center;
     height: auto;
-
+    overflow: auto;
 }
+
+
+
 .section-title {
     margin: 0px;
     padding: 0px;
@@ -188,6 +191,9 @@ button {
     align-items: center;
 }
 
+.campaigns {
+    height: 80%;
+}
 
 .card {
     width: 45%;
