@@ -17,12 +17,13 @@ export default {
   data () {
     return {
   options: {
+   
     legend: {
       display: false,
       position: 'bottom',
     },
     pieceLabel: {
-      mode: 'percentage',
+      mode: 'value',
       fontColor: ['#fff', 'transparent'],
       fontSize: 12,
       precision: 1
