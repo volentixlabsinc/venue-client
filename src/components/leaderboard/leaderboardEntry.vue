@@ -19,12 +19,16 @@
         <p>total available points: {{sitewide.available_points}}</p>
         <p>user points: {{elements.total_points}}</p>
         <p>user points represent {{pointsPercent}}% of total points</p>
+        <div class="chart">
+            <forum-stats-posts  :chart-data="datacollection" :height="100" ></forum-stats-posts>
+        </div>
         <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p>
     </div>
     </div>
 </template>
 
 <script>
+import forumStatsPosts from '../../components/forumActivity/forumStatsPosts'
 export default {
   props: {
       elements: {
@@ -46,17 +50,35 @@ export default {
             pointsPercent: null,
             tokensPercent: null,
             userRank: 'my-element-container',
-            otherRank: 'element-container'
+            otherRank: 'element-container',
+            datacollection: {}
         }
     },
     mounted() {
         this.calculatePercentages ()
-        console.log(this.myRank == this.elements.rank);
     },
     methods: {
         calculatePercentages () {
             this.pointsPercent = (parseFloat(this.elements.total_points.replace(/,/g, ''))*100)/parseFloat(this.sitewide.available_points.replace(/,/g, ''));
+
+             this.datacollection = {
+                labels: [
+                    'User Points percentage',
+                ],
+                datasets: [
+                    {
+                    label: 'Points percentage',
+                    backgroundColor: ['#85449A', 'transparent'],
+                    borderColor: 'white',
+                    borderWidth: '0.5',
+                    data: [this.pointsPercent, 100-this.pointsPercent]
+                    },
+                ]
+            }
         }
+    },
+    components: {
+        forumStatsPosts
     }
 }
 </script>
@@ -192,7 +214,9 @@ export default {
     .top-elements{
         justify-content: space-between;
     }
-
+    .chart{
+        display: flex;
+    }
 
  }
 

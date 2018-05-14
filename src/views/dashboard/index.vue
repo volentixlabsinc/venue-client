@@ -80,12 +80,12 @@ export default {
          labels: dates,
           datasets: [
             {
-              label: 'New Posts',
+              label: 'Number of Posts',
               lineTension: 0.01,
               backgroundColor: 'rgba(133, 68, 154, 0.079)',
               borderColor: '#85449A',
               borderWidth: '1',
-              data: numberOfPosts
+              data: [2,3,5,3,6,7,8]//numberOfPosts
             },
             {
               label: 'My Rank',
@@ -93,7 +93,7 @@ export default {
               backgroundColor: 'rgba(148, 168, 182, 0.05)',
               borderColor: '#94A8B6',
               borderWidth: '2',
-              data: rankPostion
+              data: [2,3,1,5,3,2,1]//rankPostion
             }
           ]
         }
