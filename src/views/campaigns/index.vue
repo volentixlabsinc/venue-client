@@ -1,53 +1,63 @@
 <template>
   <div class="main-section">
       
-      <div class="card summary">
-           <h2>Bitcointalk Signature Campaing</h2>
-          <div class="this-campaign_info">
-            <h1 class="stats-numbers"><ICountUp
+      <div class="card user-campaign-info">
+           <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+           <div class="my-signature">
+            <div class="signature-title">
+           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
+           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
+           </div>
+           <p v-if="signature">user signature</p>
+           <img v-else src="/img/onboarding/sig5.png">
+           </div>
+           <div class="campaign_info-container">
+          <div class="campaigns_info">
+            <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="this.totalUsers"
             :decimals="0"
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4>Users</h4>
+          <h4 class="info-subtitles">PARTICIPANTS</h4>
           </div>
-          <div class="this-campaign_info">
-            <h1 class="stats-numbers"><ICountUp
+          
+          <div class="campaigns_info">
+            <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="this.totalPosts"
             :decimals="0"
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4>Posts</h4>
+          <h4 class="info-subtitles">POSTS</h4>
           </div>
-           <div class="this-campaign_info">
-            <h1 class="stats-numbers"><ICountUp
+           <div class="campaigns_info">
+            <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="this.myRanking"
             :decimals="0"
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4>Rank</h4>
+          <h4 class="info-subtitles">MY RANK</h4>
           </div>
-          <div class="this-campaign_info">
-            <h1 class="stats-numbers"><ICountUp
+          <div class="campaigns_info">
+            <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="this.myActivity"
             :decimals="0"
             :duration="2.5"
             :options="options"
           /></h1>
-          <h4>My Posts</h4>
+          <h4 class="info-subtitles">MY POSTS</h4>
+          </div>
           </div>
           
     
       </div>
-      <div class="card leaderboard">
-           <h2>Leaderboard</h2>
+      <div class="card leaderboard-container">
           <leaderboard />
       </div>
   </div>
@@ -67,6 +77,7 @@ import ICountUp from 'vue-countup-v2';
 export default {
   data() {
       return {
+          signature: false,
           data: {},
           datacollectionPosts:{},
           datacollectionUsers:{},
@@ -102,7 +113,10 @@ mounted(){
         });
       
     },
-    methods: {
+    methods: { 
+    onClickSignautre() {
+        this.$router.push('/signature')
+      },
     populateUserData() {
         this.myRanking = this.userStats.overall_rank;
         this.totalUsers =  this.campaignStats.total_users;
@@ -122,16 +136,15 @@ mounted(){
 
 <style scoped>
 .main-section {
-  width: 100%;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     color: white;
     overflow-x: scroll;
     overflow-x: hidden;
-    
     scrollbar-face-color: #367CD2;
     scrollbar-shadow-color: #FFFFFF;
     scrollbar-highlight-color: #FFFFFF;
@@ -149,10 +162,10 @@ mounted(){
 /* Track */
 .main-section::-webkit-scrollbar-track {
   box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-clip: content-box;
 }
  
 /* Handle */
@@ -162,121 +175,171 @@ mounted(){
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
-.card {
-  width: 95%;
-  height: auto;
-  margin-bottom: 10px
-}
-
-campaigns {
-    height: 100% !important;
-}
-
-.label {
-    padding-left: 10px;
-}
-.b1 {
+.section-title {
+    font-weight: 500;
+    text-shadow: 3px 3px 5px #824363;
     width: 100%;
-    background-color: #3F2069;
+    text-align: center;
 }
 
-.b2 {
-    width: 100%;
-    background-color: #3196B4;
-}
-.summary {
-    padding-top: 10%;
-    width: 95% ;
+.user-campaign-info {
+    height: 50%;
+    width: 100% ;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-     padding-bottom: 20px;
-     min-height:150px;
 }
-.summary h2 {
-    width: 100% !important;
-}
-.summary p {
-    width: 50% !important;
-}
- .forum {
-    width: 100% ;
-    height: 70%;
+.my-signature{
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.forum * {
-    width: 50% !important;
-}
-.forum h2 {
-    width: 100% !important;
+    flex-direction:column;
+    padding-bottom: 30px;
 }
 
-.this-campaign_info{
- width: 100px;
- min-height: 100px;
+.my-signature > img {
+    width: 98%;
+    align-self: center;
+}
+
+
+.signature-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
+.signature-title-text {
+    padding: 0px;
+    margin: 10px;
+    text-align: left;
+}
+.campaign_info-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.info-subtitles {
+  padding: 0px;
+  margin: 0px;
+   padding-top: 5px;
+   color: rgba(255, 255, 255, 0.541);
+}
+.campaigns_info {
+  width: 50%;
+ min-height: 80px;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
   margin: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(252, 248, 248, 0.05);
+  border-radius: 3px;
+  padding: 2px;
 }
-.this-campaign_info>h2{
-  margin: 0px;
-}
-.stats-numbers {
-  width: 90%;
+
+.dashboard-numbers {
+  color: rgba(255, 255, 255, 0.541);
+  width: 100%;
   font-weight: bolder;
-  font-size: 55px;
+  font-size: 50px;
   padding: 0px;
+  padding-top: 5px;
   margin: 0px;
   line-height:1;
-  border-bottom: 1px solid #85449A;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 2px black;
 }
-.leaderboard {
-    width: 90% ;
-    padding: 10px;
-    padding-top: 10px;
-  margin-bottom: 15%;
+.leaderboard-container {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+}
+
+.leaderboard-container::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+.leaderboard-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+ 
+/* Handle */
+.leaderboard-container::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 @media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
     flex-wrap: wrap;
-     justify-content: space-evenly;
+     justify-content: space-around;
       align-items: center;
       padding-bottom:0;
 }
- .leaderboard, .summary {
-    width: 40% ;
-    height: 70%;
-    padding: 10px;
-   margin:0px;
+.card {
+    box-shadow: none;
 }
- .leaderboard * {
+
+.section-title {
+    font-weight: 300;
+    text-shadow: none;
+    width: 100%;
+}
+
+ .leaderboard-container, .user-campaign-info {
+    width: 60% ;
+    height: auto;
+    padding: 10px;
+    margin:0px;
+}
+ .leaderboard-container * {
      width:100%;
-    
-     
  }
 
-.summary { 
-    padding-top: 0px;
-    justify-content:center;
-    align-items:flex-start;
-     padding-bottom: 0px;
+.leaderboard-container {
+    padding-bottom:50px;
+    height: 55%;
 }
 
 
-h1{
-    width: 100%;
+.campaigns_info {
+  width: auto;
+  min-height: auto;
+  margin-top: 4px;
+}
+.dashboard-numbers {
+  font-size: 45px;
+}
+
+.user-campaign-info { 
+    padding-top: 0px;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items:flex-start;
+     padding-bottom: 0px;
 }
 
  }
