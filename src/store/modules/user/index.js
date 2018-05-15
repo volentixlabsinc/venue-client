@@ -11,7 +11,7 @@ const state = {
 // getters
 const getters = {
     getUserData: (state) => {
-        return state.userData;
+        return state.userData.total_tokens;
     }
 };
 

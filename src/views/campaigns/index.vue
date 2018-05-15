@@ -13,7 +13,7 @@
            <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
            </div>
            <p v-if="signature">user signature</p>
-           <img v-else src="/img/onboarding/sig5.png">
+           <img v-else class="signature-img" src="/img/onboarding/sig5.png">
            </div>
            <div class="campaign_info-container">
                 <div class="campaigns_info">
@@ -208,7 +208,9 @@ mounted(){
     width: 98%;
     align-self: center;
 }
-
+.signature-img{
+    padding-top: 10px;
+}
 
 .signature-title {
     display: flex;
@@ -333,7 +335,9 @@ mounted(){
     border-bottom: 1px solid white;
     margin-bottom: 0px;
 }
-
+.signature-img{
+    padding-top: 0px;
+}
  .leaderboard-container, .user-campaign-info {
     width: 60% ;
     height: auto;
