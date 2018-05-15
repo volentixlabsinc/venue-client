@@ -200,7 +200,6 @@ height: 30%;
 }
 
 .my-campaign-container, .all-campaigns-container {
-  order:1;
   width: 49%;
   height: 100%;
   margin: 0px;
@@ -221,12 +220,11 @@ height: 30%;
 }
 
 .forum{
-  order:2;
   height: auto;
   width: auto;
   background-color: transparent;
   border: 0px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 }

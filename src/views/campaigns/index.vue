@@ -345,16 +345,11 @@ mounted(){
  }
 
 .leaderboard-container {
-    padding-bottom:50px;
-    height: 55%;
+    padding:0px;
+    min-height: 50%;
 }
 
 
-.campaigns_info {
-  width: auto;
-  min-height: auto;
-  margin-top: 4px;
-}
 .dashboard-numbers {
   font-size: 45px;
 }

@@ -303,6 +303,10 @@ export default {
    padding-top: 5px;
    color: rgba(255, 255, 255, 0.541);
 }
+
+.fa-question-circle{
+    font-size: 16px;
+}
 @media only screen and (max-width: 400px) and (min-width:200px) {
     .top-elements{
         font-size: 11px

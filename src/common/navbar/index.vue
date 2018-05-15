@@ -33,7 +33,7 @@
     font-weight: 100;
     width: 100%;
     height: 100%;
-    color: #92A5C1;
+    color: white;
      border-top: 1px solid rgba(0, 0, 0, 0.3);
 }
 a { color: inherit; }
@@ -75,11 +75,11 @@ a:hover {
 
 @media screen and (min-width: 900px) {
 .prefix{
-    font-size: 18px;
+    font-size: 22px;
 }
 .menu-name {
     display: inherit;
-    font-size: 10px;
+    font-size: 12px;
     margin-left: 10px;
     flex-shrink: 0;
 }
