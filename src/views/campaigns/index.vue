@@ -7,14 +7,7 @@
                 <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
                 <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
             </div>
-           <div class="my-signature">
-            <div class="signature-title">
-           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
-           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
-           </div>
-           <p v-if="signature">user signature</p>
-           <img v-else class="signature-img" src="/img/onboarding/sig5.png">
-           </div>
+          
            <div class="campaign_info-container">
                 <div class="campaigns_info">
                     <h1 class="dashboard-numbers">
@@ -67,6 +60,17 @@
       </div>
       <div class="card leaderboard-container">
           <leaderboard />
+      </div>
+
+      <div class="user-campaign-info">
+          <div class="my-signature">
+            <div class="signature-title">
+           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
+           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
+           </div>
+           <p v-if="signature">user signature</p>
+           <img v-else class="signature-img" src="/img/onboarding/sig5.png">
+           </div>
       </div>
   </div>
 </template>
@@ -338,7 +342,7 @@ mounted(){
 .signature-img{
     padding-top: 0px;
 }
- .leaderboard-container, .user-campaign-info {
+  .user-campaign-info {
     width: 60% ;
     height: auto;
     padding: 10px;
@@ -349,8 +353,10 @@ mounted(){
  }
 
 .leaderboard-container {
+    width: 60% ;
     padding:0px;
-    min-height: 50%;
+    max-height: 50%;
+    margin:0px;
 }
 
 
