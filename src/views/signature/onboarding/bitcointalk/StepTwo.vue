@@ -41,6 +41,8 @@
         props: ['clickedNext', 'currentStep'],
         methods: {
             validateId: function(){
+                this.$emit('can-continue', {value: true});
+
                 //forum profile create?
                 const scope = this; 
                 checkProfile(this.userId, 1)
@@ -52,6 +54,9 @@
                         if(!forumProfile) {
                             //create profile
                             scope.createForumProfile(this.userId,1)
+                            .then(res => {
+                                console.log('Creating Forum Proile', res)
+                            })
                         } else {
                             //retrieveForumProflie
                           retrieveForumProfiles("1", this.userId)
@@ -76,7 +81,12 @@
             createForumProfile: function(profile_url, forum_id){
                 createForumProfile(profile_url, forum_id, true)
                   .then(res => {
+                      this.$swal({
+                          text: "User account found"
+                      })
                       console.log('CREATIG FORUM PROFILE ANDD.....',res)
+                      this.$emit('can-continue', {value: true});
+
 
                   })
                   .catch(err => {
@@ -90,9 +100,8 @@
           if(userIdState) {
               this.userId = userIdState
           } else {
-              userId = ''
+              this.userId = ''
           }
-          this.$emit('can-continue', {value: true});
         }
     }
 
