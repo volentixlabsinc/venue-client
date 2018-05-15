@@ -4,6 +4,9 @@ import router from './router';
 import VeeValidate from 'vee-validate';
 import App from './App.vue';
 import '../public/scss/mdb.scss';
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
 import { store } from './store';
 // import VueSweetalert2 from 'vue-sweetalert2';
  

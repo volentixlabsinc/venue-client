@@ -44,6 +44,10 @@ function retrieveUser(){
     return VenueAPI.get('/retrieve/user/')
 }
 
+function getSiteConfigs() {
+    return VenueAPI.get('/retrieve/site-configs/'); 
+}
+
 function createUser(email, username, password, language ){
     if(!language) {
         language = "en";
@@ -55,6 +59,7 @@ function createUser(email, username, password, language ){
 
 
 export {
+    getSiteConfigs,
     checkForEmail,
     checkForumProfile,
     checkForUsername,

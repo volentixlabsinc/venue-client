@@ -28,8 +28,8 @@
 
 
 <script>
-    import { checkProfile  } from "../../../../service/signatures";
-        import { retrieveForumProfiles  } from "../../../../service/forum";
+    import { checkProfile,createForumProfile  } from "../../../../service/signatures";
+    import { retrieveForumProfiles  } from "../../../../service/forum";
 
     export default {
         data() {
@@ -41,35 +41,58 @@
         props: ['clickedNext', 'currentStep'],
         methods: {
             validateId: function(){
+                //forum profile create?
                 const scope = this; 
                 checkProfile(this.userId, 1)
                 .then(response => {
                     if(!response.found  ) {
                         scope.error = true; 
                     } else {
-                        retrieveForumProfiles(1, this.userId)
-                         .then( response => {
-                            scope.$store.dispatch('changeActiveUserForumAction', {
-                            userId: this.userId,
-                            forumId: 1,
-                            forumProfileId: response.forum_profiles[0].id
-                           });
+                        const forumProfile = response.exists; 
+                        if(!forumProfile) {
+                            //create profile
+                            scope.createForumProfile(this.userId,1)
+                        } else {
+                            //retrieveForumProflie
+                          retrieveForumProfiles("1", this.userId)
+                           .then( response => {
+                             var activeUserForum = this.$store.state.activeUserForum; 
+                             var activeUserForumUpdate = Object.assign({activeUserForum},
+                            {
+                             userId: this.userId,
+                             forumId: 1,
+                             forumProfileId: response.forum_profiles[0].id
+                              })   
+                             scope.$store.dispatch('changeActiveUserForumAction', activeUserForumUpdate);
                          })
+                        }
+
+                       
                         scope.error = false; 
                      
                     }
                 })
+            },
+            createForumProfile: function(profile_url, forum_id){
+                createForumProfile(profile_url, forum_id, true)
+                  .then(res => {
+                      console.log('CREATIG FORUM PROFILE ANDD.....',res)
+
+                  })
+                  .catch(err => {
+                      console.log("Something went wrong", err)
+                  })
+
             }
         },
         mounted() {
-        
+          var userIdState = this.$store.state.signatures.activeUserForum.userId; 
+          if(userIdState) {
+              this.userId = userIdState
+          } else {
+              userId = ''
+          }
           this.$emit('can-continue', {value: true});
-
-            // if(!this.$v.$invalid) {
-            //     this.$emit('can-continue', {value: true});
-            // } else {
-            //     this.$emit('can-continue', {value: false});
-            // }
         }
     }
 

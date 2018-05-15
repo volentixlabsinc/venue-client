@@ -147,15 +147,37 @@ class VenueAPI {
      * Send JSON data as a POST on the specified URL.
      * Returns a promise, based on the ES6 'fetch' function
      */
-    postJson(url, json) {
-        return fetch(baseUrl + url, merge({
-            method: 'POST'
-        }, POSTPUT_OPTIONS, {
-            body: JSON.stringify(json),
-            credentials: 'same-origin'
-        })).then((resp) => {
-            return resp;
-        });
+    postJson(url, json, authorization) {
+        var isAuth = readFromCookie(); 
+        if(!authorization) {
+            console.log('THIS NO AUTH ONE IS TRIGGERING')
+            return fetch(baseUrl + url, merge({
+                method: 'POST'
+            }, POSTPUT_OPTIONS, {
+                body: JSON.stringify(json),
+                credentials: 'same-origin'
+            })).then((resp) => {
+                return resp;
+            });
+        } else {
+            console.log("AUTHORIZATION SENDING")
+            var authHeader = 'Token ' + isAuth; 
+            return fetch(baseUrl + url, merge({
+                method: 'POST',
+                headers: new Headers({
+                    'Authorization': authHeader,
+                    'Content-Type':'application/json'
+                })
+            }, POSTPUT_OPTIONS, {
+                body: JSON.stringify(json),
+                credentials: 'same-origin'
+            })).then((resp) => {
+                return resp;
+            });
+
+
+        }
+      
     }
 
    

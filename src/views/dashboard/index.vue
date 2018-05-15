@@ -19,6 +19,7 @@
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveNotifications } from '../../service/notifications';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
+
 import forum from './forum.vue';
 import myCampaign from './myCampaign.vue';
 import allCampaigns from './allCampaigns.vue';
@@ -45,6 +46,14 @@ export default {
     }
   },
   mounted(){
+retrieveStats() 
+  .then(res => {
+    if(res.stats.fresh) {
+        this.$router.push('/onboarding/bitcointalk/')
+       
+    }
+  }) 
+
     this.fetchStats();
      getLeaderBoardData()
       .then(response => {
