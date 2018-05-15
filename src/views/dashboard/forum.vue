@@ -1,6 +1,6 @@
 <template>
 <div class="forum">
-<h2 class="forum-title">BITCOIN TALK ACTIVITY</h2>
+<h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
 <div class="chart"> 
 <line-chart  :chart-data="chartData" :width="350" :height="200" ></line-chart>
 </div>

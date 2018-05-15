@@ -5,15 +5,6 @@
             <li v-for="(elements, key) in data.rankings" :key="key" >
                 <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
             </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank"/>
-            </li>
         </ul>
     </div>
 </template>
@@ -31,9 +22,7 @@ export default {
     mounted() {
         getLeaderBoardData()
             .then(response => {
-                this.data = response;
-                
-                //   this.forumstatsPosts = response.forumstats.posts
+                this.data = response;                
             })
             .catch(ex => {
                 console.error(ex);

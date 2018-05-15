@@ -123,14 +123,5 @@ export default {
   padding: 0px;
 }
 
-.my-campaign_info {
-  width: auto;
-  min-height: auto;
-  margin-top: 4px;
-}
-.dashboard-numbers {
-  font-size: 45px;
-}
-
 }
 </style>

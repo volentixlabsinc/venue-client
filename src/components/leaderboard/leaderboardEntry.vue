@@ -15,16 +15,37 @@
         <p class="element top-el el-total-posts">{{elements.total_posts}} posts</p>
     </div>
     <div v-if="toggleDescription && sitewide.available_tokens" class="toggled-info">
-        <p>total available tokens: {{sitewide.available_tokens}}</p>
-        <p>total available points: {{sitewide.available_points}}</p>
-        <p>user points: {{elements.total_points}}</p>
-        <p>user points represent {{pointsPercent}}% of total points</p>
-        <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p>
+        <div class="data">
+        <div class="campaigns_info">
+            <h1 class="dashboard-numbers-points">
+                {{elements.total_points}} PTS
+            </h1>
+            <p class="info-subtitles">users total points</p>
+        </div>
+        <div class="campaigns_info">
+            <h1 class="dashboard-numbers-points">
+                {{elements.total_tokens}} VTX
+            </h1>
+            <p class="info-subtitles">users total points</p>
+        </div>
+        </div>
+        <div class="data">
+        <div class="campaigns_info">
+                <p class="info-subtitles">% of overall campaign activity</p>
+             <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
+        </div> 
+        </div>      
+        <!-- <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p> -->
     </div>
     </div>
 </template>
 
 <script>
+import forumStatsPosts from '../../components/forumActivity/forumStatsPosts';
+import forumStatsTokens from '../../components/forumActivity/forumStatsTokens';
+import ICountUp from 'vue-countup-v2';
+
+
 export default {
   props: {
       elements: {
@@ -45,18 +66,64 @@ export default {
             toggleDescription: false,
             pointsPercent: null,
             tokensPercent: null,
+            userTokens: null,
             userRank: 'my-element-container',
-            otherRank: 'element-container'
+            otherRank: 'element-container',
+            datacollectionPoints: {},
+            datacollectionTokens: {},
+            options: {
+                useEasing: true,
+                useGrouping: false,
+                decimals: 3,
+                separator: ',',
+                decimal: '.',
+                prefix: '',
+                suffix: ''
+            },
         }
     },
     mounted() {
         this.calculatePercentages ()
-        console.log(this.myRank == this.elements.rank);
     },
     methods: {
         calculatePercentages () {
             this.pointsPercent = (parseFloat(this.elements.total_points.replace(/,/g, ''))*100)/parseFloat(this.sitewide.available_points.replace(/,/g, ''));
+            this.userTokens = parseFloat(this.elements.total_tokens.replace(/,/g, ''));
+             this.datacollectionPoints = {
+                labels: [
+                    'User Points percentage',
+                ],
+                datasets: [
+                    {
+                    label: 'Points percentage',
+                    backgroundColor: ['rgba(133, 68, 154, 0.5)', 'transparent'],
+                    borderColor: 'white',
+                    borderWidth: '0.5',
+                    data: [this.pointsPercent, 100-this.pointsPercent]
+                    },
+                ]
+            }
+
+            this.datacollectionTokens = {
+                labels: [
+                    'User Tokens',
+                ],
+                datasets: [
+                    {
+                    label: 'Tokens',
+                    backgroundColor: ['rgba(133, 68, 154, 0.278)', 'transparent'],
+                    borderColor: 'white',
+                    borderWidth: '0.5',
+                    data: [this.userTokens, parseFloat(this.sitewide.available_tokens.replace(/,/g, ''))-this.userTokens]
+                    },
+                ]
+            }
         }
+    },
+    components: {
+        forumStatsPosts,
+        forumStatsTokens,
+        ICountUp
     }
 }
 </script>
@@ -75,7 +142,9 @@ export default {
 .element-container * {
     flex-shrink: 1;
 }
-
+.element {
+    font-size: 18px;
+}
 .my-element-container {
     background-color: rgba(148, 168, 182, 0.2);
 }
@@ -149,9 +218,10 @@ export default {
 .toggled-info{
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    flex-wrap: wrap;
     font-size: 14px;
     text-align: left;
     transition: expand 5s;
@@ -171,7 +241,72 @@ export default {
     margin: 0px;
 }
 
+.data{
+    width: 43%;
+    height: 220px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
 
+.campaigns_info {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(252, 248, 248, 0.05);
+  border-radius: 3px;
+  padding: 2px;
+  margin: 5px 1px 10px 1px;
+}
+
+.dashboard-numbers {
+  color: rgba(255, 255, 255, 0.541);
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  font-size: 50px;
+  padding: 5px;
+  margin: 0px;
+  line-height:1;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 2px black;
+}
+.dashboard-numbers-points {
+    color: rgba(255, 255, 255, 0.541);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    font-size: 25px;
+    padding: 5px;
+    margin: 0px;
+    line-height:1;
+    text-shadow: 2px 2px 2px black;   
+}
+.info-subtitles {
+    font-size: 16px;
+  padding: 0px;
+  margin: 0px;
+   padding-top: 5px;
+   color: rgba(255, 255, 255, 0.541);
+}
+
+.fa-question-circle{
+    font-size: 16px;
+}
 @media only screen and (max-width: 400px) and (min-width:200px) {
     .top-elements{
         font-size: 11px
@@ -192,10 +327,23 @@ export default {
     .top-elements{
         justify-content: space-between;
     }
-
-
+    
  }
+}
+</style>
 
+<style>
+#pie-chart{
+    margin:0px !important;
+    padding:0px !important;
+    width: 150px !important;
+    height:150px !important;
+    align-self: center;
+}
+canvas {
+    margin: 0px !important;
+    padding: 0px !important;
+    display: flex !important;
 }
 </style>
 

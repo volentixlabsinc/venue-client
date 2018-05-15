@@ -58,6 +58,7 @@ retrieveStats()
      getLeaderBoardData()
       .then(response => {
           this.data = response;
+  
       })
       .catch(ex => {
         console.error(ex);
@@ -67,13 +68,18 @@ retrieveStats()
     fetchStats() {
       retrieveStats()
     .then(response => {
+      console.log('response: ', response)
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
+      
     })
       .then(response => { this.fillData();})
     },
     fillData () {
+      console.log(' this.sitewide: ',  this.sitewide);
+      // console.log('this.profile_level_forum: ', this.profile_level_forum);
+      // console.log('this.profile_level_global: ', this.profile_level_global);
         let numberOfPosts = [];
         let dates = [];
         let splitDate = '';
@@ -89,12 +95,12 @@ retrieveStats()
          labels: dates,
           datasets: [
             {
-              label: 'New Posts',
+              label: 'Number of Posts',
               lineTension: 0.01,
               backgroundColor: 'rgba(133, 68, 154, 0.079)',
               borderColor: '#85449A',
               borderWidth: '1',
-              data: numberOfPosts
+              data: [2,3,5,3,6,7,8]//numberOfPosts
             },
             {
               label: 'My Rank',
@@ -102,7 +108,7 @@ retrieveStats()
               backgroundColor: 'rgba(148, 168, 182, 0.05)',
               borderColor: '#94A8B6',
               borderWidth: '2',
-              data: rankPostion
+              data: [2,3,1,5,3,2,1]//rankPostion
             }
           ]
         }
@@ -194,7 +200,6 @@ height: 30%;
 }
 
 .my-campaign-container, .all-campaigns-container {
-  order:1;
   width: 49%;
   height: 100%;
   margin: 0px;
@@ -215,12 +220,11 @@ height: 30%;
 }
 
 .forum{
-  order:2;
   height: auto;
   width: auto;
   background-color: transparent;
   border: 0px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 }

@@ -6,7 +6,7 @@
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
     </div>
-    <div class="VTX">
+    <div class="VTX" v-if="myTotalTokens==!null">
     <p>{{myTotalTokens}} VTX</p>
     </div>
   </div>
@@ -25,9 +25,10 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      myTotalTokens: 1240
+      myTotalTokens: null
     }
   },
+
 }
 </script>
 
