@@ -27,14 +27,8 @@
     <div v-if="data" class="card campaigns">
         <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
-        <leaderboard v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" :myRank="myRank"/>
+        <leaderboard v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" />
     </div>
-
-     <!-- <div class="card my-news-div">
-      <div v-for= "news in newsList" :key="news" class="card my-news">
-      <h2>{{news}}</h2>
-      </div>
-      </div> -->
     
   </div>
 </template>
@@ -53,14 +47,12 @@ export default {
       return {
           action: null,
           data: null,
-          myRank: Number(0)
       }
   },
   mounted(){
     getLeaderBoardData()
       .then(response => {
           this.data = response;
-          console.log('this.data: ', this.data);
       })
       .catch(ex => {
         console.error(ex);

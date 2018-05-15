@@ -68,7 +68,6 @@ retrieveStats()
     fetchStats() {
       retrieveStats()
     .then(response => {
-      console.log('response: ', response)
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
