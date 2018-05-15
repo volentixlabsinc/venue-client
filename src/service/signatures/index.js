@@ -9,12 +9,19 @@ function retrievSignatureCode() {
 
 }
 
-function createForumProfile() {
-    return VenueAPI.postJson(`/create/forum-profile/`);
+function createForumProfile(profile_url, forum_id, authorization) {
+    return VenueAPI.postJson(`/create/forum-profile/`, {
+        profile_url, 
+        forum_id,
+    }, authorization);
 }
 
-function createSignature() {
-    return VenueAPI.postJson(`/create/signature/`);
+function createSignature(forum_profile_id, signature_id, authorization) {
+    console.log('Creating Signature')
+    return VenueAPI.postJson(`/create/signature/`, {
+        forum_profile_id, 
+        signature_id
+    }, authorization);
 }
 
 function createUser() {

@@ -2,7 +2,12 @@
 
 // state
 const state = {
-    activeUserForum: null,
+    activeUserForum: {
+        forumId: null, 
+        forumProfileId: null,
+        userId: null,
+        activeSignature: null
+    },
 };
 
 
@@ -18,6 +23,9 @@ const getters = {
 const mutations = {
     changeActiveUserForumMutation: (state, payload ) => {
         state.activeUserForum = payload;
+    },
+    changeActiveUserForumSignatureMutation: (state, payload ) => {
+        state.activeUserForum.activeSignature = payload;
     }
 
 };
@@ -26,10 +34,11 @@ const mutations = {
 // actions
 const actions = {
     changeActiveUserForumAction: ({ commit }, data) => {
-        commit('changeActiveUserForumMutation', data );
-       
+        commit('changeActiveUserForumMutation', data );   
     },
-
+    changeActiveUserForumSignatureAction: ({ commit }, sig) => {
+        commit('changeActiveUserForumSignatureMutation', sig );   
+    }
 };
 
 
