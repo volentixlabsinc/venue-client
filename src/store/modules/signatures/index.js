@@ -25,6 +25,9 @@ const mutations = {
         state.activeUserForum = payload;
     },
     changeActiveUserForumSignatureMutation: (state, payload ) => {
+        console.log('Payload is', payload); 
+        console.log('state is', state)
+
         state.activeUserForum.activeSignature = payload;
     }
 

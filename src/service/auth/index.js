@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import VenueApi from '../../service/utils/venue-api';
-import { readFromCookie } from '../../service/utils/browser-storage';
+import { readFromCookie , clearCookie, clearLocalStorage, clearSessionStorage } from '../../service/utils/browser-storage';
 
 export function isAuthenticated() {
     var exp = readFromCookie(); 
@@ -15,5 +15,8 @@ export function authenticate(email, password) {
 }
 
 export function logout(email, password) {
-    return postJson('/auth/logout', { preventForceLogout: true });
+    clearCookie();
+    clearLocalStorage();
+    clearSessionStorage();
+    this.$router.push('/')
 }

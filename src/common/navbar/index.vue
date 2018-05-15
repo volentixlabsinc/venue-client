@@ -9,14 +9,25 @@
     <router-link :to="'/account'">
     <a class="button"><i class="far fa-user prefix"></i><label class="menu-name">MY PROFILE</label></a>
     </router-link>
+    <router-link :to="'/'" >
+
+        <a @click="logout" class="button"><i class="fas fa-power-off prefix"></i> <label class="menu-name">LOGOUT</label></a>
+    </router-link>
+
 
 
 </div>
 </template>
 
 <script>
+import {logout } from '../../service/auth'
     export default {
         name: 'navbar',
+        methods: {
+            logout: function(){
+                logout(); 
+            }
+        }
     }
 </script>
 
