@@ -11,7 +11,7 @@ export function authenticate(email, password) {
     return VenueApi.postJson('/authenticate/', {
         username: email,
         password: password,
-    }, { preventForceLogout: true });
+    }, false );
 }
 
 export function logout(email, password) {
