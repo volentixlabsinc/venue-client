@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import {readFromCookie, clearCookie } from '../../service/utils/browser-storage'; 
+import {readFromCookie, clearCookie, clearLocalStorage } from '../../service/utils/browser-storage'; 
 const baseUrl = '/api';
 
 const POSTPUT_OPTIONS = {
@@ -97,6 +97,7 @@ class VenueAPI {
             } 
             else if (res.status === 401)
             clearCookie(); 
+            clearLocalStorage();
         })
         .then(res => {
             return res.json();
@@ -121,6 +122,8 @@ class VenueAPI {
             } 
             else if (res.status === 401)
             clearCookie(); 
+            clearLocalStorage();
+
         })
         .then(res => {
             return res.json();
