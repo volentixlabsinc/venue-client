@@ -6,9 +6,10 @@
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
     </div>
-    <div class="VTX" v-if="myTotalTokens==!null">
-    <p>{{myTotalTokens}} VTX</p>
+    <div class="VTX" >
+    <p>{{$store.state.user.userData}} VTX</p>
     </div>
+    
   </div>
 </div>
 </template>
@@ -28,7 +29,6 @@ export default {
       myTotalTokens: null
     }
   },
-
 }
 </script>
 
@@ -70,6 +70,7 @@ p {
   position:absolute; 
   bottom:-25px;
   left:42%;
+  display: none;
 }
 .fa-adjust{
   padding-right: 5px;

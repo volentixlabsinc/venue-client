@@ -77,9 +77,7 @@ retrieveStats()
       .then(response => { this.fillData();})
     },
     fillData () {
-      console.log(' this.sitewide: ',  this.sitewide);
-      // console.log('this.profile_level_forum: ', this.profile_level_forum);
-      // console.log('this.profile_level_global: ', this.profile_level_global);
+      this.$store.dispatch('changeUserDataAction', this.profile_level_global.total_tokens)
         let numberOfPosts = [];
         let dates = [];
         let splitDate = '';
@@ -100,7 +98,7 @@ retrieveStats()
               backgroundColor: 'rgba(133, 68, 154, 0.079)',
               borderColor: '#85449A',
               borderWidth: '1',
-              data: [2,3,5,3,6,7,8]//numberOfPosts
+              data: numberOfPosts //[2,3,5,3,6,7,8]
             },
             {
               label: 'My Rank',
@@ -108,7 +106,7 @@ retrieveStats()
               backgroundColor: 'rgba(148, 168, 182, 0.05)',
               borderColor: '#94A8B6',
               borderWidth: '2',
-              data: [2,3,1,5,3,2,1]//rankPostion
+              data: rankPostion //[2,3,1,5,3,2,1]
             }
           ]
         }
@@ -131,7 +129,7 @@ retrieveStats()
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   color: white;
   flex-wrap: no-wrap;
@@ -180,7 +178,7 @@ retrieveStats()
   justify-content: center;
   align-items: center;
   flex-shrink:0;
-  height: 70%;
+  height: 65%;
   width: 100%;
 }
 

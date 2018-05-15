@@ -1,13 +1,13 @@
 <template>
-<div class="all-campaigns" @click="$router.push('/campaign')">
-        <div class="logo-token" >
+<div class="all-campaigns" >
+        <div class="logo-token" @click="$router.push('/campaign')" >
         <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <div class="tokens-info">
          <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
           <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
           </div>
          </div>
-       <div class="campaigns_info-container">
+       <div class="campaigns_info-container" @click="$router.push('/campaign')">
         <div class="campaigns_info">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
