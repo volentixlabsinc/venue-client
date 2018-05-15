@@ -19,6 +19,7 @@
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveNotifications } from '../../service/notifications';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
+
 import forum from './forum.vue';
 import myCampaign from './myCampaign.vue';
 import allCampaigns from './allCampaigns.vue';
@@ -45,6 +46,14 @@ export default {
     }
   },
   mounted(){
+retrieveStats() 
+  .then(res => {
+    if(res.stats.fresh) {
+        this.$router.push('/onboarding/bitcointalk/')
+       
+    }
+  }) 
+
     this.fetchStats();
      getLeaderBoardData()
       .then(response => {
@@ -68,12 +77,14 @@ export default {
         let numberOfPosts = [];
         let dates = [];
         let splitDate = '';
+        let rankPostion = [];
           for (var i =0; i < this.profile_level_global.daily_stats.length; i++){
             numberOfPosts.push(this.profile_level_global.daily_stats[i].posts);
+            rankPostion.push(this.profile_level_global.daily_stats[i].rank);
             splitDate = this.profile_level_global.daily_stats[i].date.split('-');
             dates.push(`${splitDate[1]}-${splitDate[2]}`); 
           }
-
+          
         this.datacollection = {
          labels: dates,
           datasets: [
@@ -83,7 +94,15 @@ export default {
               backgroundColor: 'rgba(133, 68, 154, 0.079)',
               borderColor: '#85449A',
               borderWidth: '1',
-              data: [1,2,3,3,4,5,1]
+              data: numberOfPosts
+            },
+            {
+              label: 'My Rank',
+              lineTension: 0.01,
+              backgroundColor: 'rgba(148, 168, 182, 0.05)',
+              borderColor: '#94A8B6',
+              borderWidth: '2',
+              data: rankPostion
             }
           ]
         }
@@ -147,7 +166,7 @@ export default {
    justify-content: center;
    align-items: center;
    flex-shrink:0;
-   width: 100%;
+   width: 95%;
 }
 .my-campaign-container {
   display: flex;
@@ -156,6 +175,7 @@ export default {
   align-items: center;
   flex-shrink:0;
   height: 70%;
+  width: 100%;
 }
 
 .all-campaigns-container {
@@ -166,7 +186,7 @@ height: 30%;
 
 .main-section {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: white;
     flex-wrap: wrap;
@@ -174,7 +194,7 @@ height: 30%;
 }
 
 .my-campaign-container, .all-campaigns-container {
-  order:2;
+  order:1;
   width: 49%;
   height: 100%;
   margin: 0px;
@@ -195,11 +215,12 @@ height: 30%;
 }
 
 .forum{
-  order:1;
-   height: auto;
-   width: auto;
-   background-color: transparent;
-   border: 0px;
+  order:2;
+  height: auto;
+  width: auto;
+  background-color: transparent;
+  border: 0px;
+  margin-bottom: 40px;
 }
 
 }

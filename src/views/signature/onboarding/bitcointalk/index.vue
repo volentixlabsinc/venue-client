@@ -1,13 +1,11 @@
 <template>
   <section class="section">
     <div class="container">
-        <br />
-        <br >
+
             <div class="stepper">
                 <horizontal-stepper :steps="demoSteps" @completed-step="completeStep"
                                     @active-step="isStepActive" @stepper-finished="alert"
-                                    @userIdAndForum="changeActiveForm"
-                >                     
+                                    @userIdAndForum="changeActiveForm">                     
                 </horizontal-stepper>
             </div>
     </div>
@@ -104,10 +102,10 @@
 
 <style scoped>
     .section {
+        height: 100%;
         width:90%;
         overflow-x: auto;
-    overflow-y: hidden;
-        
+        overflow-y: auto;
         scrollbar-face-color: #367CD2;
         scrollbar-shadow-color: #FFFFFF;
         scrollbar-highlight-color: #FFFFFF;
@@ -137,13 +135,16 @@
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
-    .stepper-box { 
-        border-radius: 10px;
-    }
+.stepper {
+    padding-top: 10%;
+     padding-bottom: 10%;
+}
 
-    .stepper-box {
-       width: 100%; 
-    }
-
+.stepper-box { 
+    border-radius: 10px;
+    width: 100%;
+    height: 80%; 
+    overflow: scroll;
+}
 
 </style>

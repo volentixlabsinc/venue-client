@@ -1,6 +1,6 @@
 <template>
 <div class="forum">
-<h3 class="forum-title">BITCOIN TALK <a  @click="onClickSignautre()"><i class="far fa-edit"></i></a></h3>
+<h2 class="forum-title">BITCOIN TALK ACTIVITY</h2>
 <div class="chart"> 
 <line-chart  :chart-data="chartData" :width="350" :height="200" ></line-chart>
 </div>
@@ -32,8 +32,6 @@ export default {
 
 <style scoped>
 .forum {
-    margin-top:10px;
-    padding-top: 10%;
     height: 100%;
     width: 100%;
     display:flex;
@@ -43,18 +41,50 @@ export default {
 }
 
 .forum-title{
+  font-weight: 500;
+  text-shadow: 3px 3px 5px #824363;
   width: 80%;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
 }
 
+.chart {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.chart * {
+  width: 100%;
+  height: 100%;
+}
 .fa-edit {
     color:white !important;
 }
 @media only screen and (min-width: 800px) {
 .forum {
-    align-items: flex-start;
+  margin-top:0px;
+  padding-top: 0px;
+  align-items: flex-start;
 }
+.forum-title{
+  font-weight: 200;
+  text-shadow: none;
+  width: 80%;
+  text-align: center;
+}
+.chart {
+  width: 95%;
+  height: 100%;
+  display: flex;
+}
+
+
+
+}
+</style>
+
+<style>
+#line-chart {
+  width: 100% !important;
+  height: 100% !important;
 }
 </style>
