@@ -22,9 +22,7 @@ export default {
     mounted() {
         getLeaderBoardData()
             .then(response => {
-                this.data = response;
-                
-                //   this.forumstatsPosts = response.forumstats.posts
+                this.data = response;                
             })
             .catch(ex => {
                 console.error(ex);

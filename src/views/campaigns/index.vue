@@ -3,6 +3,10 @@
       
       <div class="card user-campaign-info">
            <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+           <div class="tokens-info">
+                <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+                <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
+            </div>
            <div class="my-signature">
             <div class="signature-title">
            <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
@@ -12,48 +16,52 @@
            <img v-else src="/img/onboarding/sig5.png">
            </div>
            <div class="campaign_info-container">
-          <div class="campaigns_info">
-            <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="this.totalUsers"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">PARTICIPANTS</h4>
-          </div>
+                <div class="campaigns_info">
+                    <h1 class="dashboard-numbers">
+                        <ICountUp
+                        :startVal="0"
+                        :endVal="Number(this.totalUsers)"
+                        :decimals="0"
+                        :duration="2.5"
+                        :options="options"/>
+                    </h1>
+                    <h4 class="info-subtitles">PARTICIPANTS</h4>
+                </div>
           
           <div class="campaigns_info">
-            <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="this.totalPosts"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">POSTS</h4>
+                <h1 class="dashboard-numbers">
+                    <ICountUp
+                    :startVal="0"
+                    :endVal="Number(this.totalPosts)"
+                    :decimals="0"
+                    :duration="2.5"
+                    :options="options"/>
+                </h1>
+            <h4 class="info-subtitles">POSTS</h4>
           </div>
            <div class="campaigns_info">
-            <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="this.myRanking"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">MY RANK</h4>
+                <h1 class="dashboard-numbers">
+                    <ICountUp
+                    :startVal="0"
+                    :endVal="Number(this.myRanking)"
+                    :decimals="0"
+                    :duration="2.5"
+                    :options="options"/>
+                </h1>
+            <h4 class="info-subtitles">MY RANK</h4>
           </div>
           <div class="campaigns_info">
-            <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="this.myActivity"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">MY POSTS</h4>
+            <h1 class="dashboard-numbers">
+                <ICountUp
+                :startVal="0"
+                :endVal="Number(this.myActivity)"
+                :decimals="0"
+                :duration="2.5"
+                :options="options"/>
+            </h1>
+            <h4 class="info-subtitles">MY POSTS</h4>
           </div>
-          </div>
+        </div>
           
     
       </div>
@@ -64,8 +72,6 @@
 </template>
 
 <script>
-import forumActivityPosts from '../../components/forumActivity/forumStatsPosts.js';
-import forumActivityUsers from '../../components/forumActivity/forumStatsUsers.js';
 import leaderboard from '../../components/leaderboard/index.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
@@ -127,8 +133,6 @@ mounted(){
     },
   components: {
     leaderboard,
-    forumActivityPosts,
-    forumActivityUsers,
     ICountUp
     }
 }
@@ -291,6 +295,22 @@ mounted(){
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
+
+.tokens-info{
+    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#token-icon {
+  height:60px;
+  margin:5px;
+}
+
+.nb-tokens{
+  font-size: 40px;
+}
 @media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
@@ -304,9 +324,11 @@ mounted(){
 }
 
 .section-title {
-    font-weight: 300;
-    text-shadow: none;
+     font-size: 35px;
+    font-weight: 500;
     width: 100%;
+    border-bottom: 1px solid white;
+    margin-bottom: 0px;
 }
 
  .leaderboard-container, .user-campaign-info {

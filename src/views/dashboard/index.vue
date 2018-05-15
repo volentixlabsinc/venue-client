@@ -58,6 +58,7 @@ retrieveStats()
      getLeaderBoardData()
       .then(response => {
           this.data = response;
+  
       })
       .catch(ex => {
         console.error(ex);
@@ -67,13 +68,18 @@ retrieveStats()
     fetchStats() {
       retrieveStats()
     .then(response => {
+      console.log('response: ', response)
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
+      
     })
       .then(response => { this.fillData();})
     },
     fillData () {
+      console.log(' this.sitewide: ',  this.sitewide);
+      // console.log('this.profile_level_forum: ', this.profile_level_forum);
+      // console.log('this.profile_level_global: ', this.profile_level_global);
         let numberOfPosts = [];
         let dates = [];
         let splitDate = '';
