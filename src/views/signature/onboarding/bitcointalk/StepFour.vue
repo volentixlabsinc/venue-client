@@ -67,8 +67,14 @@ import  {createSignature} from '../../../../service/signatures';
         var signature_id = this.$store.state.signatures.activeUserForum.activeSignature.id; 
 
         createSignature(forum_profile_id ,signature_id, true)
-        .then(res=>{
-                   if (res.success === true) {
+        .then(res=>{ 
+            return res.json(); 
+
+        })
+        .then(data =>{
+            
+                   if (data.success) {
+                       console.log('Succdss Triggered')
             this.$swal({
               title: 'Signature Placement Verified',
               text: 'You can now start posting and earning VTX',
@@ -83,6 +89,7 @@ import  {createSignature} from '../../../../service/signatures';
               this.$router.push('/onboarding/finished')
             })
           } else {
+              console.log('Un success was triggered', res)
             this.$swal({
               title: 'The signature was not found',
               text: 'Unfortunately the signature was not found',
@@ -94,7 +101,6 @@ import  {createSignature} from '../../../../service/signatures';
               }
             })
           }
-
         })
 
     }, 
