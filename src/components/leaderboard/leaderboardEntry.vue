@@ -15,25 +15,27 @@
         <p class="element top-el el-total-posts">{{elements.total_posts}} posts</p>
     </div>
     <div v-if="toggleDescription && sitewide.available_tokens" class="toggled-info">
-        
+        <div class="data">
         <div class="campaigns_info">
-            <div class="dashboard-numbers">
-                 <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
-  
-            </div>
-            <h4 class="info-subtitles">{{elements.total_points}} POINTS</h4>
+            <h1 class="dashboard-numbers-points">
+                {{elements.total_points}} PTS
+            </h1>
+            <p class="info-subtitles">users total points</p>
         </div>
         <div class="campaigns_info">
-            <div class="dashboard-numbers">
-                <forum-stats-tokens  :chart-data="datacollectionTokens" ></forum-stats-tokens>
-                
-            </div>
-            <h4 class="info-subtitles">{{elements.total_tokens}} Tokens</h4>
-        </div>       
-    
-
-
-        <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p>
+            <h1 class="dashboard-numbers-points">
+                {{elements.total_tokens}} VTX
+            </h1>
+            <p class="info-subtitles">users total points</p>
+        </div>
+        </div>
+        <div class="data">
+        <div class="campaigns_info">
+                <p class="info-subtitles">% of overall campaign activity</p>
+             <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
+        </div> 
+        </div>      
+        <!-- <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p> -->
     </div>
     </div>
 </template>
@@ -94,7 +96,7 @@ export default {
                 datasets: [
                     {
                     label: 'Points percentage',
-                    backgroundColor: ['#85449A', 'transparent'],
+                    backgroundColor: ['rgba(133, 68, 154, 0.5)', 'transparent'],
                     borderColor: 'white',
                     borderWidth: '0.5',
                     data: [this.pointsPercent, 100-this.pointsPercent]
@@ -109,7 +111,7 @@ export default {
                 datasets: [
                     {
                     label: 'Tokens',
-                    backgroundColor: ['#85449A', 'transparent'],
+                    backgroundColor: ['rgba(133, 68, 154, 0.278)', 'transparent'],
                     borderColor: 'white',
                     borderWidth: '0.5',
                     data: [this.userTokens, parseFloat(this.sitewide.available_tokens.replace(/,/g, ''))-this.userTokens]
@@ -239,32 +241,63 @@ export default {
     margin: 0px;
 }
 
-.campaigns_info {
-  width: 45%;
-  height: 200px;
+.data{
+    width: 43%;
+    height: 220px;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 1px;
+  padding: 5px;
+}
+
+.campaigns_info {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(252, 248, 248, 0.05);
   border-radius: 3px;
   padding: 2px;
+  margin: 5px 1px 10px 1px;
 }
 
 .dashboard-numbers {
   color: rgba(255, 255, 255, 0.541);
   width: 100%;
   height: 75%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  font-size: 50px;
   padding: 5px;
+  margin: 0px;
+  line-height:1;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 2px black;
 }
-
+.dashboard-numbers-points {
+    color: rgba(255, 255, 255, 0.541);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    font-size: 25px;
+    padding: 5px;
+    margin: 0px;
+    line-height:1;
+    text-shadow: 2px 2px 2px black;   
+}
 .info-subtitles {
+    font-size: 16px;
   padding: 0px;
   margin: 0px;
    padding-top: 5px;
