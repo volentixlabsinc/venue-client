@@ -81,6 +81,7 @@ class VenueAPI {
     get(url, options) {
         //IMPORTANT need to handle cases where there
         //IS a cookie token but it's invalid
+        
         var isAuth = readFromCookie(); 
         if(!isAuth) {
         return fetch( baseUrl + url, {
