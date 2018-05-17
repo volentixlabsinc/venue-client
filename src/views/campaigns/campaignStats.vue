@@ -303,6 +303,10 @@ export default {
     height: 250px;
     padding: 10px;
 }
+
+.number-desktop{
+    display: inherit;
+}
  }
 </style>
 
