@@ -67,7 +67,9 @@
                     }
                 })
             },
-            updateActiveSig: function(sigNumber) {                
+            updateActiveSig: function(sigNumber) {  
+               this.$emit('can-continue', {value: true});
+              
                 this.$store.dispatch('changeActiveUserForumSignatureAction', SignaturesFull[sigNumber]);
 
             }
