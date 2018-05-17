@@ -78,12 +78,14 @@ class VenueAPI {
      * Performs a 'get' on the specified URL.
      * Returns a promise, based on the ES6 'fetch' function
      */
-    get(url, options) {
+    get(url, authentication, options) {
         //IMPORTANT need to handle cases where there
         //IS a cookie token but it's invalid
         
         var isAuth = readFromCookie(); 
-        if(!isAuth) {
+        console.log('Authentication is', authentication)
+        if(!isAuth || authentication === false) {
+        console.log('No authentication request', isAuth)
         return fetch( baseUrl + url, {
             headers : { 
                 'Content-Type': 'application/json',
@@ -93,11 +95,12 @@ class VenueAPI {
         )
         .then(res => {
             if(res.status === 200) {
+                
                 return res; 
             } 
-            else if (res.status === 401)
-            clearCookie(); 
-            clearLocalStorage();
+            // else if (res.status === 401)
+            // clearCookie(); 
+            // clearLocalStorage();
         })
         .then(res => {
             return res.json();
@@ -105,7 +108,8 @@ class VenueAPI {
         .catch(err => {
             console.log('!', err)
         })
-    } else {
+    } else if( isAuth ) {
+        console.log('authenticated requests happening')
         return fetch( baseUrl + url, {
             headers : 
             new Headers({
@@ -120,9 +124,13 @@ class VenueAPI {
             if(res.status === 200) {
                 return res; 
             } 
-            else if (res.status === 401)
-            clearCookie(); 
-            clearLocalStorage();
+            else if (res.status === 401) {
+                clearCookie(); 
+                clearLocalStorage();
+                this.$router.push('/')
+
+            }
+ 
 
         })
         .then(res => {

@@ -70,6 +70,11 @@
                               })   
                              scope.$store.dispatch('changeActiveUserForumAction', activeUserForumUpdate);
                          })
+                         .then(()=> {
+                          this.$swal({
+                          text: "User account found"
+                      })
+                         })
                         }
 
                        
@@ -81,13 +86,24 @@
             createForumProfile: function(profile_url, forum_id){
                 createForumProfile(profile_url, forum_id, true)
                   .then(res => {
-                      this.$swal({
-                          text: "User account found"
-                      })
+                        var activeUserForum = this.$store.state.activeUserForum; 
+                             var activeUserForumUpdate = Object.assign({activeUserForum},
+                            {
+                             userId: this.userId,
+                             forumId: 1,
+                             forumProfileId: res.forum_profiles[0].id
+                              })   
+                             scope.$store.dispatch('changeActiveUserForumAction', activeUserForumUpdate);
+                 
                       console.log('CREATIG FORUM PROFILE ANDD.....',res)
                       this.$emit('can-continue', {value: true});
 
 
+                  })
+                  .then(()=> {
+                           this.$swal({
+                          text: "User account found"
+                      })
                   })
                   .catch(err => {
                       console.log("Something went wrong", err)

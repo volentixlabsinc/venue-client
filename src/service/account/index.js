@@ -5,7 +5,7 @@ function checkForEmail(email) {
 }
 
 function checkForumProfile(profile) {
-    return VenueAPI.get(`/check/profile/?=${profile}`);
+    return VenueAPI.get(`/check/profile/?=${profile}`, false);
 
 }
 
