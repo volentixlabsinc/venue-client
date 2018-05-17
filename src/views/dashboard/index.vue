@@ -68,10 +68,10 @@ retrieveStats()
     fetchStats() {
       retrieveStats()
     .then(response => {
-      console.log('response: ', response);
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level
+      console.log('this.profile_level_global: ', this.profile_level_global);
       
     })
       .then(response => { this.fillData();})

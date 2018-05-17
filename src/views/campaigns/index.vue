@@ -1,82 +1,19 @@
 <template>
   <div class="main-section">
-      
-      <div class="card user-campaign-info">
-           <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
-           <div class="tokens-info">
-                <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-                <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
-            </div>
-          
-           <div class="campaign_info-container">
-                <div class="campaigns_info">
-                    <h1 class="dashboard-numbers">
-                        <ICountUp
-                        :startVal="0"
-                        :endVal="Number(this.totalUsers)"
-                        :decimals="0"
-                        :duration="2.5"
-                        :options="options"/>
-                    </h1>
-                    <h4 class="info-subtitles">PARTICIPANTS</h4>
-                </div>
-          
-          <div class="campaigns_info">
-                <h1 class="dashboard-numbers">
-                    <ICountUp
-                    :startVal="0"
-                    :endVal="Number(this.totalPosts)"
-                    :decimals="0"
-                    :duration="2.5"
-                    :options="options"/>
-                </h1>
-            <h4 class="info-subtitles">POSTS</h4>
-          </div>
-           <div class="campaigns_info">
-                <h1 class="dashboard-numbers">
-                    <ICountUp
-                    :startVal="0"
-                    :endVal="Number(this.myRanking)"
-                    :decimals="0"
-                    :duration="2.5"
-                    :options="options"/>
-                </h1>
-            <h4 class="info-subtitles">MY RANK</h4>
-          </div>
-          <div class="campaigns_info">
-            <h1 class="dashboard-numbers">
-                <ICountUp
-                :startVal="0"
-                :endVal="Number(this.myActivity)"
-                :decimals="0"
-                :duration="2.5"
-                :options="options"/>
-            </h1>
-            <h4 class="info-subtitles">MY POSTS</h4>
-          </div>
+      <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+        <div class="stats-container">
+            <campaign-stats :campaignStats="campaignStats" :localStats="localStats" :elements="data.rankings"/>
         </div>
-          
-    
-      </div>
       <div class="card leaderboard-container">
           <leaderboard />
       </div>
 
-      <div class="user-campaign-info">
-          <div class="my-signature">
-            <div class="signature-title">
-           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
-           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
-           </div>
-           <p v-if="signature">user signature</p>
-           <img v-else class="signature-img" src="/img/onboarding/sig5.png">
-           </div>
-      </div>
   </div>
 </template>
 
 <script>
 import leaderboard from '../../components/leaderboard/index.vue';
+import campaignStats from './campaignStats.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveUser } from '../../service/account';
@@ -87,28 +24,34 @@ import ICountUp from 'vue-countup-v2';
 export default {
   data() {
       return {
-          signature: false,
+          
           data: {},
           datacollectionPosts:{},
           datacollectionUsers:{},
           user: {},
           userStats: {},
           campaignStats: {},
-          myRanking:'',
-          totalUsers:'',
-          totalPosts: '',
-          myActivity: '',
-           options: {
-            useEasing: true,
-            useGrouping: false,
-            separator: ',',
-            decimal: '.',
-            prefix: '',
-            suffix: ''
-        },
+        
+          localStats: {
+              myActivity: '',
+              myRanking: '',
+              totalUsers: '',
+              totalPosts: ''
+          },
+        
+           
       }
   },
 mounted(){
+    getLeaderBoardData()
+            .then(response => {
+                this.data = response;        
+                console.log('this.data', this.data)        
+                
+            })
+            .catch(ex => {
+                console.error(ex);
+            })
     retrieveUser()
     .then(response => {
         this.user = response
@@ -128,16 +71,18 @@ mounted(){
         this.$router.push('/signature')
       },
     populateUserData() {
-        this.myRanking = this.userStats.overall_rank;
-        this.totalUsers =  this.campaignStats.total_users;
-        this.totalPosts =  this.campaignStats.total_posts;
-        this.myActivity =  this.userStats.total_posts;
-
+        this.localStats = {
+            myRanking: this.userStats.overall_rank,
+            totalUsers:  this.campaignStats.total_users,
+            totalPosts: this.campaignStats.total_posts,
+            myActivity:  this.userStats.total_posts,
+        }
         }
     },
   components: {
     leaderboard,
-    ICountUp
+    ICountUp,
+    campaignStats
     }
 }
 </script>
@@ -190,83 +135,7 @@ mounted(){
     text-align: center;
 }
 
-.user-campaign-info {
-    height: 50%;
-    width: 100% ;
-    height: auto;
-    padding-top: 5%;
-    padding-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.my-signature{
-    width: 100%;
-    display: flex;
-    flex-direction:column;
-    padding-bottom: 30px;
-}
 
-.my-signature > img {
-    width: 98%;
-    align-self: center;
-}
-.signature-img{
-    padding-top: 10px;
-}
-
-.signature-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 10px;
-}
-.signature-title-text {
-    padding: 0px;
-    margin: 10px;
-    text-align: left;
-}
-.campaign_info-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.info-subtitles {
-  padding: 0px;
-  margin: 0px;
-   padding-top: 5px;
-   color: rgba(255, 255, 255, 0.541);
-}
-.campaigns_info {
-  width: 50%;
- min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  margin: 1px;
-  background-color: rgba(252, 248, 248, 0.05);
-  border-radius: 3px;
-  padding: 2px;
-}
-
-.dashboard-numbers {
-  color: rgba(255, 255, 255, 0.541);
-  width: 100%;
-  font-weight: bolder;
-  font-size: 50px;
-  padding: 0px;
-  padding-top: 5px;
-  margin: 0px;
-  line-height:1;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  text-shadow: 2px 2px 2px black;
-}
 .leaderboard-container {
     width: 100%;
     height: 60%;
@@ -305,72 +174,46 @@ mounted(){
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
-.tokens-info{
+.stats-container {
     width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#token-icon {
-  height:60px;
-  margin:5px;
-}
-
-.nb-tokens{
-  font-size: 40px;
+    height: 40%;
 }
 @media only screen and (min-width: 800px) {
 .main-section {
     flex-direction: row;
     flex-wrap: wrap;
      justify-content: space-around;
-      align-items: center;
+      align-items: flex-start;
       padding-bottom:0;
 }
 .card {
     box-shadow: none;
 }
-
 .section-title {
-     font-size: 35px;
+    font-size: 35px;
     font-weight: 500;
     width: 100%;
     border-bottom: 1px solid white;
     margin-bottom: 0px;
 }
-.signature-img{
-    padding-top: 0px;
+.stats-container {
+    width: 40%;
+    order:2;
 }
-  .user-campaign-info {
-    width: 60% ;
-    height: auto;
-    padding: 10px;
-    margin:0px;
-}
- .leaderboard-container * {
+.leaderboard-container * {
      width:100%;
  }
 
 .leaderboard-container {
-    width: 60% ;
+    order: 1;
+    width: 50% ;
     padding:0px;
-    max-height: 50%;
+    height: 80%;
     margin:0px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
 }
 
-
-.dashboard-numbers {
-  font-size: 45px;
 }
-
-.user-campaign-info { 
-    padding-top: 0px;
-    flex-direction: column;
-    justify-content:space-around;
-    align-items:flex-start;
-     padding-bottom: 0px;
-}
-
- }
 </style>

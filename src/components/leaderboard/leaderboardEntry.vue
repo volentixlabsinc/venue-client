@@ -1,5 +1,11 @@
 <template>
-<div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
+<tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
+    <td># {{elements.rank}}</td>
+    <td class="USERNAME">{{elements.username}}</td>
+    <td class="posts">{{elements.total_posts}}</td>
+    <td class="tokens">{{elements.total_tokens}}</td>
+</tr>
+<!-- <div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
     <div class="top-elements">
         <div class="rank_username">
             <p class="element top-el el-rank">{{elements.rank}}</p>
@@ -35,9 +41,8 @@
              <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
         </div> 
         </div>      
-        <!-- <p>{{pointsPercent}} % of {{sitewide.available_tokens}} = {{elements.total_tokens}}</p> -->
     </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -71,6 +76,7 @@ export default {
             otherRank: 'element-container',
             datacollectionPoints: {},
             datacollectionTokens: {},
+            userLine: false,
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -84,6 +90,8 @@ export default {
     },
     mounted() {
         this.calculatePercentages ()
+        this.userLine = this.myRank === this.elements.rank;
+
     },
     methods: {
         calculatePercentages () {
@@ -129,207 +137,19 @@ export default {
 </script>
 
 <style scoped>
-.element-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    animation: slideUp 0.5s linear 1;
+.USERNAME {
+    width: 50%;
 }
-.element-container * {
-    flex-shrink: 1;
-}
-.element {
+
+table td {
     font-size: 18px;
-}
-.my-element-container {
-    background-color: rgba(148, 168, 182, 0.2);
-}
-@keyframes slideUp{
-    0%{
-        transform: translateY(100px);
-    }
-
-    80%{
-         transform: none
-    }
-
-    90%{
-         transform: translateY(5px)
-    }
-
-    100%{
-         transform: none
-    }
-
-}
-
-.top-elements {
-    height: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-     font-size: 14px
-}
-.rank_username, .tokens_info{
-    display: flex;
-    align-items: center;
-}
-.el-rank {
-    width: auto;
-    text-align: left;
-}
-.el-username {
-    text-align: left;
-    padding-left: 15px;
-}
-.el-tokens {
-    text-align: left;
-}
-.fa-question-circle{
-    width: auto;
-    padding-left: 10px;
-    color: gray;
-}
-.bottom-elements {
-    height: 20px;;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-}
-.empty-element{
-     width: 0px;
-}
-.el-total-posts {
-   width: 97%;
-    padding-left: 3%;
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
-    color: gray;
-}
-
-.toggled-info{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    font-size: 14px;
-    text-align: left;
-    transition: expand 5s;
-}
-
-@keyframes expand{
-    0%{
-        height: 0px;
-    }
-    100%{
-         height: auto;
-    }
-
-}
-.toggled-info > p {
-    padding: 0px;
-    margin: 0px;
-}
-
-.data{
-    width: 43%;
-    height: 220px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-}
-
-.campaigns_info {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(252, 248, 248, 0.05);
-  border-radius: 3px;
-  padding: 2px;
-  margin: 5px 1px 10px 1px;
-}
-
-.dashboard-numbers {
-  color: rgba(255, 255, 255, 0.541);
-  width: 100%;
-  height: 75%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  font-size: 50px;
-  padding: 5px;
-  margin: 0px;
-  line-height:1;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-  text-shadow: 2px 2px 2px black;
-}
-.dashboard-numbers-points {
-    color: rgba(255, 255, 255, 0.541);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
-    font-size: 25px;
     padding: 5px;
-    margin: 0px;
-    line-height:1;
-    text-shadow: 2px 2px 2px black;   
-}
-.info-subtitles {
-    font-size: 16px;
-  padding: 0px;
-  margin: 0px;
-   padding-top: 5px;
-   color: rgba(255, 255, 255, 0.541);
 }
 
-.fa-question-circle{
-    font-size: 16px;
-}
-@media only screen and (max-width: 400px) and (min-width:200px) {
-    .top-elements{
-        font-size: 11px
-    }
-    .bottom-elements{
-        font-size: 10px
-    }
+th, td {
+    border-bottom: 1px solid #94A8B6;
 }
 
-@media only screen and (min-width: 900px) {
-    .top-elements{
-        font-size: 16px
-    }
-    .bottom-elements{
-        font-size: 12px
-    }
- @media only screen and (min-width: 800px) {
-    .top-elements{
-        justify-content: space-between;
-    }
-    
- }
-}
 </style>
 
 <style>
