@@ -87,8 +87,8 @@ export default {
     },
     methods: {
         calculatePercentages () {
-            this.pointsPercent = (parseFloat(this.elements.total_points.replace(/,/g, ''))*100)/parseFloat(this.sitewide.available_points.replace(/,/g, ''));
-            this.userTokens = parseFloat(this.elements.total_tokens.replace(/,/g, ''));
+            this.pointsPercent = (parseFloat(this.elements.total_points)*100)/parseFloat(this.sitewide.available_points);
+            this.userTokens = parseFloat(this.elements.total_tokens);
              this.datacollectionPoints = {
                 labels: [
                     'User Points percentage',
