@@ -176,7 +176,7 @@ mounted(){
 
 .stats-container {
     width: 100%;
-    height: 40%;
+    height: 30%;
 }
 @media only screen and (min-width: 800px) {
 .main-section {

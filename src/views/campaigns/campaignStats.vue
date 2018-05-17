@@ -146,15 +146,12 @@ export default {
 <style scoped>
 
 .user-campaign-info {
-    height: 50%;
+    height: 100%;
     width: 100% ;
-    height: auto;
-    padding-top: 5%;
-    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 .my-signature{
