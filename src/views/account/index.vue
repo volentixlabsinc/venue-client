@@ -1,15 +1,15 @@
 <template>
   <div class="main-section">
       <div class="card">
-          <h1>Account</h1>
-          <div class="md-form form-lg">
-          <p>email</p>
-          <input class="form-control"/>
-          <p>username</p>
-          <input class="form-control"/>
-          <p>language</p>
-          <input class="form-control"/>
-          </div>
+          <h1>MY PROFILE</h1>
+      </div>
+      <div class="my-id">
+        <h3>EMAIL</h3>
+        <h3>USER NAME</h3>
+        <h3>LANGUAGE</h3>
+      </div>
+      <div class="my-id">
+
       </div>
   </div>
 </template>
@@ -30,10 +30,13 @@ export default {
   },
   methods: {
     fetchUser() {
-      retrieveUser()
+    retrieveUser()
     .then(response => {
       this.user = response;
       console.log('retrieveUser', response);
+    })
+    .catch(error => {
+      console.log('error fetching user data', error);
     })
     },
   }
@@ -53,23 +56,23 @@ export default {
 }
 
 .card {
-  width: 95%;
-  height: 80%;
+  width: 100%;
+  height: 15%;
+   display: flex;
+   flex-direction: column;
+  flex-direction: flex-start;
+  justify-content: center;
+  align-items: center;  
+}
+.my-id {
+  height: 30%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 30px 0px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
 
-.md-form {
-  display: flex;
-  flex-wrap: wrap;
-}
-p {
-  width: 18%;
-  margin-top: 20px
-}
-input{
-  flex-grow: 0;
-  width: 70%;
-  margin-top: 20px;
-  border: 0px solid white;
-  border-bottom: 1px solid white;
-}
 </style>
