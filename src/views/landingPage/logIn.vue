@@ -1,16 +1,19 @@
 <template>
 <div class="log-in-element">
   <h3>LOGIN</h3>
-    <input v-validate="'required|email'" name="username" placeholder="username" v-model="username"/>
-    <span class="venue-text">{{ errors.first('username') }}</span>
-    <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
-    <span class="venue-text">{{ errors.first('password') }}</span>
-    <button 
-    @click="authenticateLogin"
-    class="btn">Log In</button>
-    <a 
-    @click="$emit('cancel')"
-    class="cancel">CANCEL</a>
+    <form method="POST" @submit="authenticateLogin($event)">
+        <input v-validate="'required'" name="username" placeholder="username or email" v-model="username"/>
+        <span class="venue-text">{{ errors.first('username') }}</span>
+        <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
+        <span class="venue-text">{{ errors.first('password') }}</span>
+        <span v-if="loginError" class="venue-text">Authentication Error: Wrong credentials</span>
+        <button 
+        type="submit" 
+        class="btn">Log In</button>
+        <a 
+        @click="$emit('cancel')"
+        class="cancel">CANCEL</a>
+    </form>
   </div>
 </template>
 
@@ -28,6 +31,7 @@ export default {
   data(){
     return{
       logged: false,
+      loginError: false,
       username: '',
       password: ''
     }
@@ -36,28 +40,26 @@ export default {
     console.log('logIn');
   },
   methods: {
-    authenticateLogin: function() {
+    authenticateLogin: function(event) {
+      event.preventDefault()
+      this.loginError = false
       authenticate(this.username, this.password)
       .then(response => {
-
-        console.log('response: ', response);
         if(response.status === 200) {
           return response.json()
         } else {
           //Handle Login Error here 
-          console.log('wrong credentials');
-          var message = 'something went wrong';
+          console.log('wrong credentials')
+          var message = 'something went wrong'
+          this.loginError = true
           return message
         }
+      }).then(data=> {
+          if (data.success) {
+              writeToCookie(data.token)
+              this.$router.push('/dashboard')
+          }
       })
-      .then(data=> {
-        writeToCookie(data.token); 
-        this.$router.push('/dashboard');
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
     }
   }
 }
@@ -108,7 +110,7 @@ input{
   margin:10px;
   border: none;
   border-bottom: 1px solid rgb(176, 176, 176);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 100;
   color: whitesmoke;
 }
@@ -124,8 +126,9 @@ textarea:focus, input:focus{
 
 .venue-text{
   color: rgb(210, 1, 1);
-  font-size: 12px;
+  font-size: 16px;
   width: 80%;
   text-align: left;
+  display: inline-block;
 }
 </style>

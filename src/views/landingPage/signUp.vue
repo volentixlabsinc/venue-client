@@ -1,26 +1,28 @@
 <template>
 <div class="log-in-element">
   <h3>SIGNUP</h3>
-    <input v-validate="'required|email'" name="email" placeholder="email" v-model="email"/>
-    <span class="venue-text">{{ errors.first('email') }}</span>
-    <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
-    <span class="venue-text">{{ errors.first('username') }}</span>
-    <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password"/>
-    <span class="venue-text">{{ errors.first('password') }}</span>
-    <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
-    <span class="venue-text">{{ errors.first('confirmation') }}</span>
-    <button 
-    @click="registerUser"
-    class="btn">Sign Up</button>
-    <a 
-    @click="$emit('cancel')"
-    class="cancel">CANCEL</a>
+    <form method="POST" @submit="registerUser($event)">
+        <input v-validate="'required|email'" name="email" placeholder="email" v-model="email"/>
+        <span class="venue-text">{{ errors.first('email') }}</span>
+        <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
+        <span class="venue-text">{{ errors.first('username') }}</span>
+        <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password"/>
+        <span class="venue-text">{{ errors.first('password') }}</span>
+        <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
+        <span class="venue-text">{{ errors.first('confirmation') }}</span>
+        <span class="venue-text" v-if="signUpError">Sign Up Error</span>
+        <button
+        class="btn">Sign Up</button>
+        <a 
+        @click="$emit('cancel')"
+        class="cancel">CANCEL</a>
+    </form>
   </div>
 </template>
 
 
 <script>
-import { createUser } from '../../service/account';
+import { checkForEmail, checkForUsername, createUser } from '../../service/account';
 import { clearCookie } from '../../service/utils/browser-storage';
 
 
@@ -35,20 +37,38 @@ export default {
       email: '',
       username: '',
       password: '',
-      confirmation: ''
+      confirmation: '',
+      signUpError: false
     }
   },
+
   methods: {
-    registerUser: function (){
+    checkEmail: function(email) {
+        checkForEmail(this.email).then(res => {
+          if (res.status === 200) {
+
+          }
+        })
+    },
+    registerUser: function(event) {
+     event.preventDefault()
+     this.signUpError = false
      clearCookie();
      createUser(this.email, this.username, this.confirmation)
       .then(res => {
-        if(res.status === 200) {
+          if(res.status === 200) {
               this.$emit('sucessfulRegistration'); 
-        }
+          } else {
+            return {
+              status: res.status
+            }
+          }
       })
-      .catch(err => {
-        console.log('There was an error: ', err)
+      .then(data => {
+          if (data.status === 400) {
+              console.log('There was an error: ', data)
+              this.signUpError = true
+          }
       })
     }
   }
@@ -118,6 +138,7 @@ textarea:focus, input:focus{
   font-size: 16px;
   width: 80%;
   text-align: left;
+  display: inline-block;
 }
 
 h3 {justify-self: flex-start;}
