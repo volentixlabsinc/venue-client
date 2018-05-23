@@ -131,7 +131,6 @@ export default {
     height: 100%;
     width:82%;
     z-index: 2;
-    
   }
 
 

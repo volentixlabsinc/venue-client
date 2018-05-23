@@ -1,32 +1,63 @@
 <template>
     <div class=" leaderboard">
-        
-        <ul>
+        <table v-if="userStats">
+             <thead>
+                <tr>
+                    <th class="RANK"></th>
+                    <th class="USERNAME">USERNAME</th>
+                    <th class="POSTS">POSTS</th>
+                    <th class="VTX">VTX</th>
+                </tr>
+            </thead>
+            <tbody  v-for="(elements, key) in data.rankings" :key="key">
+                
+                    <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
+                    <!-- <td>{{elements.rank}}</td>
+                    <td class="USERNAME">{{elements.username}}</td>
+                    <td>{{elements.total_posts}}</td>
+                    <td>{{elements.total_tokens}}</td> -->
+            </tbody>
+        </table>
+        <!-- <ul>
             <li v-for="(elements, key) in data.rankings" :key="key" >
                 <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank == Number? data.userstats.overall_rank : 0"/>
             </li>
-        </ul>
+        </ul> -->
     </div>
 </template>
 
 <script>
 import { getLeaderBoardData } from '../../service/leaderboard'; 
+import {retrieveStats } from '../../service/dashboard';
 import leaderboardEntry from "./leaderboardEntry";
 export default {
     data() {
         return {
             toggleDescription: false,
-            data: {}
+            data: {},
+            userStats: null,
+            myRank:null
         }
     },
     mounted() {
         getLeaderBoardData()
             .then(response => {
-                this.data = response;                
+                this.data = response;        
+                console.log('this.data', this.data)        
                 
             })
             .catch(ex => {
                 console.error(ex);
+            })
+        retrieveStats()
+            .then(response => {
+               
+                this.userStats = response.stats.user_level;
+                 if (this.userStats.overall_rank==null) {
+                    this.myRank = 0;
+                } else {
+                    this.myRank = Number(this.userStats.overall_rank);
+                }
             })
     },
     components: {
@@ -43,12 +74,12 @@ p {
 }
 
 .leaderboard {
-    width: 95%;
-    display: flex;
+    width: 100%;
+    /* display: flex;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    align-items: flex-start;
+    align-items: flex-start; */
     overflow: scroll;
     overflow-x: hidden;
     scrollbar-face-color: #367CD2;
@@ -60,9 +91,9 @@ p {
     scrollbar-arrow-color: #FFFFFF;
 }
 
-.leaderboard * {
+/* .leaderboard * {
 width: 100%;
-}
+} */
 
 .leaderboard::-webkit-scrollbar {
     width: 0px;
@@ -108,5 +139,35 @@ li{
     animation: slideUp 0.5s linear 1 2s;
 }
 
+table {
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-color: gray;
+    text-align: left;
+}
 
+table th {
+    font-size: 20px;
+    color: #94A8B6
+}
+
+table tr {
+    height: 40px;
+}
+th, td {
+    border-bottom: 1px solid #94A8B6;
+}
+.USERNAME {
+    width: 50%;
+}
+
+.POSTS {
+    width: auto;
+    text-align: center;
+}
+.VTX{
+    width:80px;
+}
 </style>
