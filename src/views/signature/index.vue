@@ -17,11 +17,18 @@
     </thead>
     <tbody>
         <tr>
-            <td data-label="FORUM">-</td>
-            <td data-label="USERNAME">-</td>
-            <td data-label="USER ID">-</td>
-            <td data-label="STATUS"><i class="far fa-times-circle" style="color:red;"></i></td>
-            <td data-label="" class="button"><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> Add Signature</button></td>
+            <td data-label="FORUM">{{ currentSignature.forum_site_name }}</td>
+            <td data-label="USERNAME">{{ currentSignature.forum_user_name }}</td>
+            <td data-label="USER ID">{{ currentSignature.forum_userid }}</td>
+            <td data-label="STATUS">
+              <template v-if="hasSignature">
+                  <i class="fa fa-times-circle red-icon"></i>
+              </template>
+              <template v-if="!hasSignature">
+                  <i class="fa fa-check white-icon"></i>
+              </template>
+            </td>
+            <td data-label="" class="button"><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> {{ buttonAction }} Signature</button></td>
         </tr>
     </tbody>
 </table>
@@ -33,11 +40,26 @@
 import {retrievSignatures} from '../../service/signatures'
 
     export default {
+        data() {
+            return {
+                hasSignature: false,
+                currentSignature: {
+                  forum_site_name: '-',
+                  forum_user_name: '-',
+                  forum_userid: '-'
+                },
+                buttonAction: 'Add'
+            }
+        },
         mounted() {
-             retrievSignatures()
+             retrievSignatures(true)
              .then(response => {
-                 return response; 
-             }) 
+                 if (response.success) {
+                    this.hasSignature = true
+                    this.currentSignature = response.signatures[0]
+                    this.buttonAction = 'Change'
+                 }
+             })
              .then(data => {
                  console.log('the signature are...', data)
              })
@@ -138,5 +160,11 @@ table td::before {
 .btn-outline {
     align-self: center;
 }
+}
+.red-icon {
+  color: red;
+}
+.white-icon {
+  color: white;
 }
 </style>

@@ -1,7 +1,13 @@
 import VenueAPI from '../utils/venue-api';
 
-function retrievSignatures(forumId, forumProfileId) {
-    return VenueAPI.get(`/retrieve/signatures/?forum_site_id=${forumId}&forum_user_rank=Brand+new&forum_profile_id=${forumProfileId}`);
+function retrievSignatures(ownSigs, forumId, forumProfileId) {
+    var url
+    if (ownSigs) {
+      url = '/retrieve/signatures/?own_sigs=1'
+    } else {
+      url = url = `/retrieve/signatures/?forum_site_id=${forumId}&forum_user_rank=Brand+new&forum_profile_id=${forumProfileId}`
+    }
+    return VenueAPI.get(url);
 }
 
 function retrievSignatureCode() {

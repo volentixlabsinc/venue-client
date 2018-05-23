@@ -77,7 +77,7 @@
         mounted() {
             // var forumId = this.$store.getters.getActiveUserForum.forumId;
             // var forumProfileId = this.$store.getters.getActiveUserForum.forumProfileId; 
-            // retrievSignatures(forumId, forumProfileId)
+            // retrievSignatures(false, forumId, forumProfileId)
             //  .then(response => {
             //      this.signatures = response.signatures; 
             //  })

@@ -50,7 +50,11 @@
                     if(!response.found  ) {
                         scope.error = true; 
                     } else {
-                        const forumProfile = response.exists; 
+                        // Inform that the user account was found
+                        this.$swal({
+                            text: "User account found"
+                        })
+                        const forumProfile = response.exists;
                         if(!forumProfile) {
                             //create profile
                             scope.createForumProfile(this.userId,1)
@@ -69,11 +73,6 @@
                              forumProfileId: response.forum_profiles[0].id
                               })   
                              scope.$store.dispatch('changeActiveUserForumAction', activeUserForumUpdate);
-                         })
-                         .then(()=> {
-                          this.$swal({
-                          text: "User account found"
-                      })
                          })
                         }
 
