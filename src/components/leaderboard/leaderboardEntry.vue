@@ -1,9 +1,10 @@
 <template>
 <tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
-    <td># {{elements.rank}}</td>
-    <td class="USERNAME">{{elements.username}}</td>
-    <td class="posts">{{elements.total_posts}}</td>
+    <td class="rank"># {{elements.rank}}</td>
+    <td class="username">{{elements.username}}</td>
     <td class="tokens">{{elements.total_tokens}}</td>
+     <td class="tokens-unity">VTX</td>
+    <td class="expand" @click="expandInfo">></td>
 </tr>
 <!-- <div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
     <div class="top-elements">
@@ -46,11 +47,6 @@
 </template>
 
 <script>
-import forumStatsPosts from '../../components/forumActivity/forumStatsPosts';
-import forumStatsTokens from '../../components/forumActivity/forumStatsTokens';
-import ICountUp from 'vue-countup-v2';
-
-
 export default {
   props: {
       elements: {
@@ -74,8 +70,6 @@ export default {
             userTokens: null,
             userRank: 'my-element-container',
             otherRank: 'element-container',
-            datacollectionPoints: {},
-            datacollectionTokens: {},
             userLine: false,
             options: {
                 useEasing: true,
@@ -97,50 +91,15 @@ export default {
         calculatePercentages () {
             this.pointsPercent = (parseFloat(this.elements.total_points)*100)/parseFloat(this.sitewide.available_points);
             this.userTokens = parseFloat(this.elements.total_tokens);
-             this.datacollectionPoints = {
-                labels: [
-                    'User Points percentage',
-                ],
-                datasets: [
-                    {
-                    label: 'Points percentage',
-                    backgroundColor: ['rgba(133, 68, 154, 0.5)', 'transparent'],
-                    borderColor: 'white',
-                    borderWidth: '0.5',
-                    data: [this.pointsPercent, 100-this.pointsPercent]
-                    },
-                ]
-            }
-
-            this.datacollectionTokens = {
-                labels: [
-                    'User Tokens',
-                ],
-                datasets: [
-                    {
-                    label: 'Tokens',
-                    backgroundColor: ['rgba(133, 68, 154, 0.278)', 'transparent'],
-                    borderColor: 'white',
-                    borderWidth: '0.5',
-                    data: [this.userTokens, parseFloat(this.sitewide.available_tokens.replace(/,/g, ''))-this.userTokens]
-                    },
-                ]
-            }
+        },
+        expandInfo() {
+            console.log('expand info');
         }
     },
-    components: {
-        forumStatsPosts,
-        forumStatsTokens,
-        ICountUp
-    }
 }
 </script>
 
 <style scoped>
-.USERNAME {
-    width: 50%;
-}
-
 table td {
     font-size: 18px;
     padding: 5px;
@@ -150,20 +109,20 @@ th, td {
     border-bottom: 1px solid #94A8B6;
 }
 
-</style>
-
-<style>
-#pie-chart{
-    margin:0px !important;
-    padding:0px !important;
-    width: 150px !important;
-    height:150px !important;
-    align-self: center;
+.rank{
+    width: 25px;
 }
-canvas {
-    margin: 0px !important;
-    padding: 0px !important;
-    display: flex !important;
+
+.username {
+    width: 50%;
+    text-align: left;
+    padding-left: 0px;
+}
+
+.tokens-unity{
+    width: 20px;
+}
+.expand{
+    width: 5px;
 }
 </style>
-

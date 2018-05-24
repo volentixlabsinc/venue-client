@@ -1,19 +1,28 @@
 <template>
   <div class="main-section">
       <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
-        <div class="stats-container">
-            <campaign-stats :campaignStats="campaignStats" :localStats="localStats" :elements="data.rankings"/>
-        </div>
-      <div class="card leaderboard-container">
+      <div class="top-left">
+          <top-stats :campaignStats="campaignStats" :localStats="localStats"/>  
           <leaderboard />
       </div>
+        <div class="stats-container">
+            <user-stats
+            :campaignStats="campaignStats"
+            :localStats="localStats"
+            :elements="data.rankings"
+            :dataCollection="dataCollection"/>
+            <edit-signature-button />
+        </div>
+      
 
   </div>
 </template>
 
 <script>
 import leaderboard from '../../components/leaderboard/index.vue';
-import campaignStats from './campaignStats.vue';
+import userStats from './userStats.vue';
+import topStats from './topStats.vue';
+import editSignatureButton from './editSignatureButton.vue';
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import {retrieveUser } from '../../service/account';
@@ -26,8 +35,7 @@ export default {
       return {
           
           data: {},
-          datacollectionPosts:{},
-          datacollectionUsers:{},
+          dataCollection:{},
           user: {},
           userStats: {},
           campaignStats: {},
@@ -58,11 +66,13 @@ mounted(){
     });
     retrieveStats()
     .then(response => {
-        this.userStats = response.stats.user_level;
-        this.campaignStats = response.stats.sitewide;
+        this.userStats = response.stats.user_level; //profile_level_global
+        this.campaignStats = response.stats.sitewide; //sitewide
+        this.profile_level_forum = response.stats.profile_level
     })
     .then( response => {
-        this.populateUserData()
+        this.populateUserData();
+        this.fillChartData();
         });
       
     },
@@ -77,12 +87,48 @@ mounted(){
             totalPosts: this.campaignStats.total_posts,
             myActivity:  this.userStats.total_posts,
         }
+        },
+    fillChartData() {
+        let numberOfPosts = [];
+        let dates = [];
+        let splitDate = '';
+        let rankPostion = [];
+          for (var i =0; i < this.userStats.daily_stats.length; i++){
+            numberOfPosts.push(this.userStats.daily_stats[i].posts);
+            rankPostion.push(this.userStats.daily_stats[i].rank);
+            splitDate = this.userStats.daily_stats[i].date.split('-');
+            dates.push(`${splitDate[1]}-${splitDate[2]}`); 
+          }
+          
+        this.dataCollection = {
+         labels: dates,
+          datasets: [
+            {
+              label: 'Number of Posts',
+              lineTension: 0.01,
+              backgroundColor: 'rgba(133, 68, 154, 0.079)',
+              borderColor: '#85449A',
+              borderWidth: '1',
+              data: numberOfPosts //[2,3,5,3,6,7,8]
+            },
+            {
+              label: 'My Rank',
+              lineTension: 0.01,
+              backgroundColor: 'rgba(148, 168, 182, 0.05)',
+              borderColor: '#94A8B6',
+              borderWidth: '2',
+              data: rankPostion //[2,3,1,5,3,2,1]
+            }
+          ]
         }
+    }
     },
   components: {
     leaderboard,
     ICountUp,
-    campaignStats
+    userStats,
+    topStats,
+    editSignatureButton
     }
 }
 </script>
@@ -174,7 +220,7 @@ mounted(){
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
-.stats-container {
+.stats-container, .top-left {
     width: 100%;
     height: 30%;
 }
@@ -189,6 +235,7 @@ mounted(){
 .card {
     box-shadow: none;
 }
+
 .section-title {
     font-size: 35px;
     font-weight: 500;
@@ -196,23 +243,33 @@ mounted(){
     border-bottom: 1px solid white;
     margin-bottom: 0px;
 }
+
+.top-left{
+    order: 1;
+    width: 50%;
+    padding:0px;
+    height: 80%;
+    margin:0px;
+    justify-content: flex-start;
+    align-items: center;
+}
+.top-left * {
+     width:100%;
+ }
 .stats-container {
     width: 40%;
     order:2;
 }
-.leaderboard-container * {
-     width:100%;
- }
+
 
 .leaderboard-container {
-    order: 1;
+    order: 3;
     width: 50% ;
     padding:0px;
     height: 80%;
     margin:0px;
     justify-content: flex-start;
     align-items: flex-start;
-
 }
 
 }
