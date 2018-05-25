@@ -100,7 +100,9 @@ p {
     margin: 0px;
     padding: 0px;
 }
-
+.tbody *{
+width: 100%;
+}
 .leaderboard {
     width: 100%;
     /* display: flex;

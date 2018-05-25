@@ -2,19 +2,18 @@
   <div class="main-section">
       <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
-          <top-stats :campaignStats="campaignStats" :localStats="localStats"/>  
+          <top-stats v-if="campaignStats.total_users>0" :campaignStats="campaignStats" :localStats="localStats"/>  
           <leaderboard />
       </div>
         <div class="stats-container">
             <user-stats
+            v-if="userStats.total_posts>=0"
             :campaignStats="campaignStats"
             :localStats="localStats"
             :elements="data.rankings"
             :dataCollection="dataCollection"/>
             <edit-signature-button />
         </div>
-      
-
   </div>
 </template>
 
@@ -51,6 +50,7 @@ export default {
       }
   },
 mounted(){
+    console.log('>>>>>>>>>>>>>>>> campaignStats', this.campaignStats);
     getLeaderBoardData()
             .then(response => {
                 this.data = response;        

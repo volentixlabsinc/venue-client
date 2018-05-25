@@ -11,7 +11,7 @@
             <h1 class="dashboard-numbers">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.myPosts)"
+                :endVal="Number(localStats.totalPosts)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -22,7 +22,7 @@
             <h1 class="dashboard-numbers">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.myPosts)"
+                :endVal="Number(localStats.totalPosts)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -32,7 +32,7 @@
         <div class="tokens-info">
             <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
             <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
-            <h1 class="title"># MY CURRENT REWARDS</h1>
+            <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05)"><i class="fas fa-star" style="color:#fbc02d"></i> MY CURRENT REWARDS</h1>
         </div>
         
     </div>
@@ -72,7 +72,7 @@ export default {
         }
     },
     mounted() {
-        console.log('this.localStats', this.localStats);
+    // for testing
     },
     methods: { 
     onClickSignautre() {
@@ -177,11 +177,17 @@ export default {
     height: 100%
 }
 
-.title{
-    width:100%;
+.subtitle{
+     width: 80%;
+    font-size: 25px;
+    padding: 0px 10px 0px 15px;
+    margin: 0px;
+    display: flex;
+    justify-content: flex-start;
+    text-align:center;
 }
 
-.nb-tokens, .title{
+.nb-tokens{
     font-size: 30px;
     padding: 0px;
     margin: 0px;
@@ -193,7 +199,6 @@ export default {
     display: none;
 }
 .card{
-    background-color: #222C3B;
     width: 100%;
     display: none;
     justify-content:center;
@@ -219,7 +224,7 @@ export default {
     order:2;
 }
 .card{
-    background-color: #222C3B;
+    /* background-color: #222C3B; */
     width: 100%;
     display: flex;
     justify-content:center;
@@ -245,7 +250,7 @@ export default {
     width: 100%;
 }
 .top-section {
-    background-color: #222C3B;
+    /* background-color: #222C3B; */
     height: 50%;
     width: 100%;
     height: 250px;

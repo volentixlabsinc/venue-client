@@ -1,12 +1,21 @@
 <template>
+<tbody style="width:100%">
 <tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
     <td style="white-space:nowrap"># {{elements.rank}}</td>
     <td class="USERNAME">{{elements.username}}</td>
     <td class="posts">{{elements.total_posts}}</td>
     <td class="tokens">{{elements.total_tokens}}</td>
-     <td class="tokens-unity">VTX</td>
-    <td class="expand" @click="expandInfo">></td>
+    <td class="tokens-unity">VTX</td>
+    <td class="expand" @click="expandInfo"><i class="fas fa-chevron-down"></i></td>
 </tr>
+<tr v-if="toggleDescription">
+    <td class="tokens"></td>
+    <td class="tokens"></td>
+    <td class="tokens"></td>
+    <td class="tokens">{{elements.username}}</td>
+    <td class="tokens">{{elements.total_tokens}}</td>
+</tr>
+</tbody>
 <!-- <div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
     <div class="top-elements">
         <div class="rank_username">
@@ -94,6 +103,7 @@ export default {
             this.userTokens = parseFloat(this.elements.total_tokens);
         },
         expandInfo() {
+            this.toggleDescription=!this.toggleDescription
             console.log('expand info');
         }
     },

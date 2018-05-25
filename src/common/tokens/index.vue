@@ -1,7 +1,7 @@
 <template>
 <div class="tokens-template">
   <div class="top-left-container">
-    <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+    <img id="token-icon" src="/img/logos/VTX-Token-icon.eps"/>
 
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
