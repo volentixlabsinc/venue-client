@@ -18,6 +18,24 @@
                     <td>{{elements.total_tokens}}</td> -->
             </tbody>
         </table>
+       <table v-else>
+                    <thead>
+                <tr>
+                    <th class="RANK"></th>
+                    <th class="USERNAME">USERNAME</th>
+                    <th class="POSTS">POSTS</th>
+                    <th class="VTX">VTX</th>
+                </tr>
+            </thead>
+            <tbody  v-for="(elements, key) in data.rankings" :key="key">
+                
+                    <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
+                    <!-- <td>{{elements.rank}}</td>
+                    <td class="USERNAME">{{elements.username}}</td>
+                    <td>{{elements.total_posts}}</td>
+                    <td>{{elements.total_tokens}}</td> -->
+            </tbody>
+       </table>
         <!-- <ul>
             <li v-for="(elements, key) in data.rankings" :key="key" >
                 <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank == Number? data.userstats.overall_rank : 0"/>
@@ -30,6 +48,7 @@
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import leaderboardEntry from "./leaderboardEntry";
+import { readFromCookie } from '../../service/utils/browser-storage.js'
 export default {
     data() {
         return {
@@ -40,8 +59,11 @@ export default {
         }
     },
     mounted() {
+        var isAuth = readFromCookie(); 
+
         getLeaderBoardData()
             .then(response => {
+                //should be conditional here
                 this.data = response;        
                 console.log('this.data', this.data)        
                 
@@ -49,7 +71,9 @@ export default {
             .catch(ex => {
                 console.error(ex);
             })
-        retrieveStats()
+
+        if(isAuth) {
+            retrieveStats()
             .then(response => {
                
                 this.userStats = response.stats.user_level;
@@ -57,8 +81,11 @@ export default {
                     this.myRank = 0;
                 } else {
                     this.myRank = Number(this.userStats.overall_rank);
-                }
+                }   
             })
+
+        }
+  
     },
     components: {
         leaderboardEntry

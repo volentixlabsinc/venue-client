@@ -14,9 +14,8 @@ export function authenticate(email, password) {
     }, false );
 }
 
-export function logout(email, password) {
+export function logout() {
     clearCookie();
     clearLocalStorage();
     clearSessionStorage();
-    this.$router.push('/')
 }

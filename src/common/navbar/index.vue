@@ -27,6 +27,7 @@
                         </div>
                     </a>
                 </li>
+
             </ul>
         </nav>
 
@@ -58,7 +59,7 @@ import {logout } from '../../service/auth'
                     },
                     {
                         name: 'LOG OUT',
-                        link: '/',
+                        link: '/logout',
                         icon: 'fas fa-power-off prefix',
                     }
                 ]

@@ -8,6 +8,7 @@ import Account from './../views/account';
 import Signature from './../views/signature';
 import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
 import OnboardingBitcoinFinished from './../views/signature/onboarding/finished';
+import logout from './../common/logout';
 
 import { readFromCookie } from '../service/utils/browser-storage';
 
@@ -19,6 +20,11 @@ const routes = [
         path: '/',
         name: 'landingPage',
         component: landingPage
+    },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: logout
     },
     {
         path: '/dashboard',
