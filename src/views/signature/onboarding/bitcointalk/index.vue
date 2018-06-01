@@ -58,10 +58,6 @@
             }
         },
         methods: {
-            topButtonsOff() {
-                return false;
-            },
-
             // Executed when @completed-step event is triggered
             completeStep(payload) {
                 this.demoSteps.forEach((step) => {
