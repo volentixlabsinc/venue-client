@@ -3,7 +3,7 @@
     <div class="container">
 
             <div class="stepper">
-                <horizontal-stepper :steps="demoSteps" :topButtons="topButtonsOff()" @completed-step="completeStep"
+                <horizontal-stepper :steps="demoSteps" @completed-step="completeStep"
                                     @active-step="isStepActive" @stepper-finished="alert"
                                     @userIdAndForum="changeActiveForm">                     
                 </horizontal-stepper>
