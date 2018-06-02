@@ -1,6 +1,6 @@
 <template>
 <tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
-    <td># {{elements.rank}}</td>
+    <td style="white-space:nowrap"># {{elements.rank}}</td>
     <td class="USERNAME">{{elements.username}}</td>
     <td class="posts">{{elements.total_posts}}</td>
     <td class="tokens">{{elements.total_tokens}}</td>

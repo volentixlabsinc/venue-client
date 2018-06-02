@@ -8,6 +8,10 @@
                                     @userIdAndForum="changeActiveForm">                     
                 </horizontal-stepper>
             </div>
+            <div class="lbox">
+                <h2>Leaderboard</h2>
+                <leaderboard/>
+            </div>
     </div>
 </section>
 </template>
@@ -15,7 +19,9 @@
 
 <script>
     import HorizontalStepper from 'vue-stepper';
-       // This components will have the content for each stepper step.
+    import leaderboard from '../../../../components/leaderboard';
+
+    // This components will have the content for each stepper step.
     import StepOne from './StepOne.vue';
     import StepTwo from './StepTwo.vue';
     import StepThree from './StepThree.vue';
@@ -24,7 +30,8 @@
 
         export default {
         components: {
-            HorizontalStepper
+            HorizontalStepper,
+            leaderboard
         },
         data(){
             return {
@@ -32,35 +39,18 @@
                 activeForum:'', 
                 demoSteps: [
                     {
-                        icon: 'mail',
-                        name: 'first',
-                        title: 'Step 1',
-                        subtitle: 'Find your user ID',
                         component: StepOne,
-                        completed: false
-
+                        completed: false,
                     },
                     {
-                        icon: 'report_problem',
-                        name: 'second',
-                        title: 'Step 2',
-                        subtitle: 'Show Stats',
                         component: StepTwo,
                         completed: false
                     },
                         {
-                        icon: 'report_problem',
-                        name: 'third',
-                        title: 'Step 3',
-                        subtitle: 'Choose Signature',
                         component: StepThree,
                         completed: false
                     },
                      {
-                        icon: 'report_problem',
-                        name: 'fourth',
-                        title: 'Step 4',
-                        subtitle: 'Verify Signature',
                         component: StepFour,
                         completed: false
                     }
@@ -133,6 +123,7 @@
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
 .stepper {
@@ -146,5 +137,102 @@
     height: 80%; 
     overflow: scroll;
 }
+/* >>> #68 - add leaderboard on rhs */
+.lbox h2 {
+    color: #97a5b3;
+}
+.container {
+    display: flex;
+    align-items: baseline;
+}
 
+.lbox{ /* based off of css in dashboard/allCampaigns.vue */
+/*padding-top: 20px;*/
+padding: 2rem;
+width: inherit; /*90%;*/
+max-height: 500px;
+display: inherit;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+overflow-y: scroll;
+overflow-x: hidden;
+scrollbar-face-color: #367CD2;
+scrollbar-shadow-color: #FFFFFF;
+scrollbar-highlight-color: #FFFFFF;
+scrollbar-3dlight-color: #FFFFFF;
+scrollbar-darkshadow-color: #FFFFFF;
+scrollbar-track-color: #FFFFFF;
+scrollbar-arrow-color: #FFFFFF;
+padding-bottom:50px;
+}
+
+.lbox::-webkit-scrollbar {
+    width: 0px;
+}
+
+.lbox::-webkit-scrollbar-track {
+box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-clip: content-box;
+}
+
+.lbox::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
+    box-shadow: inset 0 0 25px rgba(0,0,0,0); 
+}
+/* <<< */
+</style>
+
+<style>
+/*
+#app .main {
+    padding-top: 2rem !important;
+}
+*/
+/* #68 - kill the top box in the stepper component, remove white bg, tweak to fit rest of UI */
+#app .stepper-box { 
+    background: transparent;
+    box-shadow: none;
+}
+#app .stepper-box .top {
+    display: none !important;
+}
+#app .stepper-box .content h2 {
+    color: #97a5b3;
+}
+#app .stepper-box .bottom {
+    border: none;
+}
+#app .stepper-box img.step-image {
+    max-width: 525px;
+    border-radius: 5px;
+}
+
+#app .lbox table tbody td {
+    color: white;
+}
+@media only screen and (max-width: 1300px) {
+    #app .lbox th.RANK, 
+    #app .lbox th.USERNAME, 
+    #app .lbox th.POSTS,
+    #app .lbox th.VTX,
+    #app .lbox table tbody td {
+        font-size: 0.9rem;
+    }
+}
+@media only screen and (max-width: 1100px) {
+    #app .lbox {
+        display: none;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #app .step-image {
+        width: 95%;
+    }
+}
 </style>

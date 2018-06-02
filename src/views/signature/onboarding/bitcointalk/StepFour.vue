@@ -1,7 +1,7 @@
 <template>
   <div>
       <div >
-      <h2> Step 4) Copy the code below and paste it into your forum signature. Click verify. </h2>
+      <h2> Step 4. Copy the code below and paste it into your forum signature. Click verify. </h2>
       <input type="textarea" rows="4" cols="50" 
       v-model="message"
        disabled

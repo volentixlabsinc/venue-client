@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h2> Step 2) Grab your user ID and verify it below </h2>
+      <h2> Step 2. Grab your user ID and verify it below </h2>
      <div class="input-group mb-3">
   
   <div class="input-group-append2">
@@ -18,7 +18,7 @@
 
 
        <p>
-         <img src='/img/onboarding/bitcointalk/step1b.png' />
+         <img src='/img/onboarding/bitcointalk/step1b_alt.png' class="step-image"/>
 
        </p>
 

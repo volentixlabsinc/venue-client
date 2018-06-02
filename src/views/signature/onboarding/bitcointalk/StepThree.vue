@@ -1,37 +1,37 @@
 <template>
   <div>
-      <h2> Step 3) Choose a signature from below </h2>
+      <h2> Step 3. Choose a signature from below </h2>
       <ul>
      <form>
           <li>
-             <img src="/img/onboarding/sig1.png"> 
              <input name="signature" type="radio"
              @click="updateActiveSig(0)"
              > 
+             <img src="/img/onboarding/sig1.png"> 
           </li>
           <li>
-             <img src="/img/onboarding/sig2.png"> 
              <input name="signature" type="radio"
              @click="updateActiveSig(1)"
              > 
+             <img src="/img/onboarding/sig2.png"> 
           </li>
           <li>
-             <img src="/img/onboarding/sig3.png"> 
              <input name="signature" type="radio"
              @click="updateActiveSig(2)"
              > 
+             <img src="/img/onboarding/sig3.png"> 
           </li>
           <li>
-             <img src="/img/onboarding/sig4.png"> 
              <input name="signature" type="radio"
              @click="updateActiveSig(3)"
              > 
+             <img src="/img/onboarding/sig4.png"> 
           </li>
           <li>
-             <img src="/img/onboarding/sig5.png"> 
              <input name="signature" type="radio"
              @click="updateActiveSig(4)"
              > 
+             <img src="/img/onboarding/sig5.png"> 
           </li>
           </form>   
       </ul>
@@ -99,28 +99,22 @@ div {
    
 }
 li{
-     width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding:5px;
-    border: 1px solid #efefef;
     border-radius:5px;
-    margin:5px;
+    margin:10px;
 }
 
-input[type=radio]
-{
-  /* Double-sized Checkboxes */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  padding: 10px;
+li>img {
+    width: 90%;
+    flex: 0 2 auto;
+    border-radius: 5px;
 }
 
-form{
-     
+
+form {
+     max-width: 525px;
 }
 
 </style>

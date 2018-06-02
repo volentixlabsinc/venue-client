@@ -1,8 +1,8 @@
 <template>
   <div>
-      <h2> Step 1) Navigate to your profile  </h2>
+      <h2> Step 1. Navigate to your profile  </h2>
 
-      <img src='/img/onboarding/bitcointalk/step1a.png' />
+      <img src='/img/onboarding/bitcointalk/step1a_alt.png' class="step-image"/>
 
 
        <p>
