@@ -7,6 +7,8 @@
 
 
 <script>
+    // import {retrieveSignatures  } from "../service/signatures";
+
     import AvailableSignatures from "../../../../components/AvailableSignatures.vue"
     export default {
         data() {
@@ -33,7 +35,7 @@
                     }
                 })
             },
-            updateActiveSig: function(sigNumber) {  
+            copySignatureCode: function(sigNumber) {  
                this.$emit('can-continue', {value: true});
               
                 this.$store.dispatch('changeActiveUserForumSignatureAction', SignaturesFull[sigNumber]);
