@@ -101,7 +101,7 @@ p {
     padding: 0px;
 }
 .tbody *{
-width: 100%;
+width: 100% !important;
 }
 .leaderboard {
     width: 100%;
