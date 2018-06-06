@@ -205,16 +205,13 @@ height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
-    background-color: rgba(0, 0, 0, 0.2);
+  
 
 }
-.my-campaign-container{
-  background-color: rgba(0, 0, 0, 0.2);
-}
+
 
 .all-campaigns-container:hover{
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .forum{

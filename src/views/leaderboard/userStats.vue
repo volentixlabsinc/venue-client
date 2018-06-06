@@ -30,9 +30,9 @@
             <h4 class="info-subtitles">MY POINTS</h4>
         </div>
         <div class="tokens-info">
-            <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+            <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
+            <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/>
             <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
-            <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05)"><i class="fas fa-star" style="color:#fbc02d"></i> MY CURRENT REWARDS</h1>
         </div>
         
     </div>
@@ -178,7 +178,7 @@ export default {
 }
 
 .subtitle{
-     width: 80%;
+     width: 90%;
     font-size: 25px;
     padding: 0px 10px 0px 15px;
     margin: 0px;
@@ -193,17 +193,20 @@ export default {
     margin: 0px;
     text-align:center;
 }
+.title {
+    display: none;
+}
 
-
-.number-desktop{
+.number-desktop, .chart{
     display: none;
 }
 .card{
+    box-shadow:none;
     width: 100%;
-    display: none;
     justify-content:center;
     align-items: center;
     flex-wrap:wrap;
+    padding-bottom: 30px;
 }
 @media only screen and (min-width: 800px) {
 
@@ -232,6 +235,7 @@ export default {
     flex-wrap:wrap;
     margin-top: 0;
     box-shadow: none;
+     padding-bottom: 0px;
 }
 
 .chart {
@@ -257,7 +261,7 @@ export default {
     padding: 10px;
 }
 
-.number-desktop{
+.number-desktop, .chart{
     display: inherit;
 }
  }

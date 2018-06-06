@@ -1,59 +1,24 @@
 <template>
-<tbody style="width:100%">
+<tbody>
 <tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
-    <td style="white-space:nowrap"># {{elements.rank}}</td>
-    <td class="USERNAME">{{elements.username}}</td>
+    <td style="white-space:nowrap"  class="rank"># {{elements.rank}}</td>
+    <td class="username">{{elements.username}}</td>
     <td class="posts">{{elements.total_posts}}</td>
     <td class="tokens">{{elements.total_tokens}}</td>
     <td class="tokens-unity">VTX</td>
     <td class="expand" @click="expandInfo"><i class="fas fa-chevron-down"></i></td>
 </tr>
-<tr v-if="toggleDescription">
-    <td class="tokens"></td>
-    <td class="tokens"></td>
-    <td class="tokens"></td>
-    <td class="tokens">{{elements.username}}</td>
-    <td class="tokens">{{elements.total_tokens}}</td>
+
+<tr v-if="toggleDescription" class="toggleDescription">
+    <td class=""></td>
+    <td class=""></td>
+    <td class=""></td>
+    <td class=""></td>
+    <td style="white-space:nowrap">{{elements.total_posts}} post</td>
+    <td style="white-space:nowrap">{{elements.total_posts*100}} pts</td>
 </tr>
 </tbody>
-<!-- <div :class="[myRank==elements.rank ? userRank : '', otherRank]" >
-    <div class="top-elements">
-        <div class="rank_username">
-            <p class="element top-el el-rank">{{elements.rank}}</p>
-            <p class="element top-el el-username">{{elements.username}}</p>
-        </div>
-        <div class="tokens_info">
-        <p class="element top-el el-tokens">{{elements.total_tokens}} VTX</p>
-        <div @click="toggleDescription=!toggleDescription"><i class="far fa-question-circle"></i></div>
-        </div>
-    </div>
-    <div class="bottom-elements">
-            <p class="empty-element"></p>
-        <p class="element top-el el-total-posts">{{elements.total_posts}} posts</p>
-    </div>
-    <div v-if="toggleDescription && sitewide.available_tokens" class="toggled-info">
-        <div class="data">
-        <div class="campaigns_info">
-            <h1 class="dashboard-numbers-points">
-                {{elements.total_points}} PTS
-            </h1>
-            <p class="info-subtitles">users total points</p>
-        </div>
-        <div class="campaigns_info">
-            <h1 class="dashboard-numbers-points">
-                {{elements.total_tokens}} VTX
-            </h1>
-            <p class="info-subtitles">users total points</p>
-        </div>
-        </div>
-        <div class="data">
-        <div class="campaigns_info">
-                <p class="info-subtitles">% of overall campaign activity</p>
-             <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
-        </div> 
-        </div>      
-    </div>
-    </div> -->
+
 </template>
 
 <script>
@@ -111,13 +76,11 @@ export default {
 </script>
 
 <style scoped>
-table td {
+td {
     font-size: 18px;
     padding: 5px;
-}
-
-th, td {
     border-bottom: 1px solid #94A8B6;
+     text-align: left;
 }
 
 .rank{
@@ -132,8 +95,14 @@ th, td {
 
 .tokens-unity{
     width: 20px;
+    text-align: right;
 }
 .expand{
     width: 5px;
+    text-align: right;
+}
+
+.toggleDescription{
+    height:50px;
 }
 </style>

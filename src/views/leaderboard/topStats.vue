@@ -89,6 +89,7 @@ export default {
 <style scoped>
 
 .card {
+    box-shadow: none;
     height: 100%;
     width: 100% ;
     display: flex;
@@ -203,7 +204,7 @@ export default {
 }
 
 .card { 
-    box-shadow: none;
+    
     padding-top: 0px;
     flex-direction: column;
     justify-content:space-around;

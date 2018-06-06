@@ -2,8 +2,8 @@
   <div class="main-section">
       <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
-          <top-stats v-if="campaignStats.total_users>0" :campaignStats="campaignStats" :localStats="localStats"/>  
-          <leaderboard />
+          <top-stats class="top-stats" v-if="campaignStats.total_users>0" :campaignStats="campaignStats" :localStats="localStats"/>  
+          <leaderboard class="leaderboard"/>
       </div>
         <div class="stats-container">
             <user-stats
@@ -220,9 +220,27 @@ mounted(){
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
 }
 
-.stats-container, .top-left {
+.top-left {
     width: 100%;
-    height: 30%;
+    height: 60%;
+    display:flex;
+    flex-direction:column;
+}
+
+.stats-container {
+    width: 100%;
+    height: 40%;
+    display:flex;
+    flex-direction:column;
+}
+
+.top-stats {
+   order:1;
+}
+
+.leaderboard{
+    order:2;
+    height: 80%;
 }
 @media only screen and (min-width: 800px) {
 .main-section {
