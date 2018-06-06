@@ -3,7 +3,7 @@
         <div class="logo-token" @click="$router.push('/campaign')" >
         <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <div class="tokens-info">
-         <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+         <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/>
           <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
           </div>
          </div>
