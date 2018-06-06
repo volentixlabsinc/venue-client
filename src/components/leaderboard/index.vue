@@ -1,46 +1,16 @@
 <template>
     <div class=" leaderboard">
-        <table v-if="userStats">
-             <thead>
-                <tr>
-                    <th class="RANK"></th>
-                    <th class="USERNAME">USERNAME</th>
-                    <th class="POSTS">POSTS</th>
-                    <th class="VTX">VTX</th>
-                </tr>
-            </thead>
-            <tbody  v-for="(elements, key) in data.rankings" :key="key">
+        <table v-if="userStats" v-for="(elements, key) in data.rankings" :key="key">
+           
+            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
                 
-                    <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
-                    <!-- <td>{{elements.rank}}</td>
-                    <td class="USERNAME">{{elements.username}}</td>
-                    <td>{{elements.total_posts}}</td>
-                    <td>{{elements.total_tokens}}</td> -->
-            </tbody>
         </table>
-       <table v-else>
-                    <thead>
-                <tr>
-                    <th class="RANK"></th>
-                    <th class="USERNAME">USERNAME</th>
-                    <th class="POSTS">POSTS</th>
-                    <th class="VTX">VTX</th>
-                </tr>
-            </thead>
-            <tbody  v-for="(elements, key) in data.rankings" :key="key">
-                
-                    <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
-                    <!-- <td>{{elements.rank}}</td>
-                    <td class="USERNAME">{{elements.username}}</td>
-                    <td>{{elements.total_posts}}</td>
-                    <td>{{elements.total_tokens}}</td> -->
-            </tbody>
+       <table v-else  v-for="(elements, key) in data.rankings" :key="key">
+
+            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
+                  
        </table>
-        <!-- <ul>
-            <li v-for="(elements, key) in data.rankings" :key="key" >
-                <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="data.userstats.overall_rank == Number? data.userstats.overall_rank : 0"/>
-            </li>
-        </ul> -->
+     
     </div>
 </template>
 
@@ -65,7 +35,6 @@ export default {
             .then(response => {
                 //should be conditional here
                 this.data = response;        
-                console.log('this.data', this.data)        
                 
             })
             .catch(ex => {
@@ -99,7 +68,9 @@ p {
     margin: 0px;
     padding: 0px;
 }
-
+tbody *{
+width: 100% !important;
+}
 .leaderboard {
     width: 100%;
     /* display: flex;
@@ -142,30 +113,6 @@ width: 100%;
     -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
 }
 
-
-.card {
-  width: 95%;
-}
-
-ul {
-    width: 100%;
-    list-style-type: none;
-    padding: 0;
-    list-style-type: none;
-}
-
-li{
-    width: 100%;
-    max-height: 10%;
-    border-top: white 1px solid;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    animation: slideUp 0.5s linear 1 2s;
-}
-
 table {
     width: 100%;
     display: table;
@@ -173,28 +120,5 @@ table {
     border-spacing: 0px;
     border-color: gray;
     text-align: left;
-}
-
-table th {
-    font-size: 20px;
-    color: #94A8B6
-}
-
-table tr {
-    height: 40px;
-}
-th, td {
-    border-bottom: 1px solid #94A8B6;
-}
-.USERNAME {
-    width: 50%;
-}
-
-.POSTS {
-    width: auto;
-    text-align: center;
-}
-.VTX{
-    width:80px;
 }
 </style>

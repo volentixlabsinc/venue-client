@@ -1,13 +1,10 @@
 <template>
 <div class="tokens-template">
   <div class="top-left-container">
-    <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
+    <img id="token-icon" src="/img/logos/VTX-Token-icon.eps"/>
 
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
-    </div>
-    <div class="VTX" v-if="$store.state.user.userData >= 0">
-    <p>{{$store.state.user.userData}} VTX</p>
     </div>
     
   </div>
