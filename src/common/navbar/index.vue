@@ -40,15 +40,15 @@ import {logout } from '../../service/auth'
         name: 'navbar',
         data(){
             return {
-                isActive: 'DASHBOARD',
+                isActive: 'CAMPAIGNS',
                 sideLinks: [
                     {
-                        name: 'DASHBOARD',
+                        name: 'CAMPAIGNS',
                         routerLink: '/dashboard',
                         icon: 'far fa-chart-bar prefix',
                     },
                     {
-                        name: 'CAMPAIGN',
+                        name: 'LEADERBOARD',
                         routerLink: '/campaign',
                         icon: 'fas fa-rocket prefix',
                     },

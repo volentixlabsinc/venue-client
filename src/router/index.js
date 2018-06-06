@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 import landingPage from './../views/landingPage';
 import Dashboard from './../views/dashboard';
-import Campaign from './../views/campaigns';
+import Campaign from './../views/leaderboard';
 import Account from './../views/account';
 import Signature from './../views/signature';
 import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
