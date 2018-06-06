@@ -77,27 +77,7 @@ export default {
         console.log('this.campaignStats.total_users', this.campaignStats.total_users);
     },
     methods: { 
-    onClickSignautre() {
-        this.$router.push('/edit-signature')
-      },
-      calculatePercentages () {
-            this.pointsPercent = (0*100)/10000;
-            this.userTokens = 0;
-             this.datacollectionPoints = {
-                labels: [
-                    'User Points percentage',
-                ],
-                datasets: [
-                    {
-                    label: 'Points percentage',
-                    backgroundColor: ['rgba(133, 68, 154, 0.5)', 'transparent'],
-                    borderColor: 'white',
-                    borderWidth: '0.5',
-                    data: [this.pointsPercent, 100-this.pointsPercent]
-                    },
-                ]
-            }
-      }
+
     },
     components: {
         ICountUp,
