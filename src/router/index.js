@@ -8,6 +8,7 @@ import Account from './../views/account';
 import Signature from './../views/signature';
 import OnboardingBitcointalk from './../views/signature/onboarding/bitcointalk/';
 import OnboardingBitcoinFinished from './../views/signature/onboarding/finished';
+import EditSignature from '../views/editSignature';
 import logout from './../common/logout';
 
 import { readFromCookie } from '../service/utils/browser-storage';
@@ -69,6 +70,13 @@ const routes = [
         path: '/signature',
         name: 'Signature',
         component: Signature,
+    },
+    {
+        // TODO Should contain the campaign ID in the URL. Something like
+        // /campaigns/$id/signature
+        path: '/edit-signature',
+        name: 'EditSignature',
+        component: EditSignature
     }
 ];
 
