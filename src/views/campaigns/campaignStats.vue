@@ -115,7 +115,7 @@ export default {
     },
     methods: { 
     onClickSignautre() {
-        this.$router.push('/signature')
+        this.$router.push('/edit-signature')
       },
       calculatePercentages () {
             this.pointsPercent = (0*100)/10000;
