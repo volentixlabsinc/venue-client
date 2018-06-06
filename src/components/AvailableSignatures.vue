@@ -64,6 +64,9 @@
                         scope.error = false;                    
                     }
                 })
+                .catch((response) => {
+                    console.log(" *** something went wrong ***! response:", response);
+                });
             },
             updateActiveSig: function(sigNumber) {  
                this.$emit('can-continue', {value: true});
