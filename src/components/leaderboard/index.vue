@@ -4,9 +4,10 @@
              <thead>
                 <tr>
                     <th class="RANK"></th>
-                    <th class="USERNAME">USERNAME</th>
-                    <th class="POSTS">POSTS</th>
-                    <th class="VTX">VTX</th>
+                    <th class="USERNAME"></th>
+                    <th class="VTX"></th>
+                    <th class="VTX"></th>
+                    <th class="RANK"></th>
                 </tr>
             </thead>
             <tbody  v-for="(elements, key) in data.rankings" :key="key">

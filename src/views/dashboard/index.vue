@@ -2,7 +2,7 @@
     <div class="main-section">
       <div v-if="profile_level_global" class="card my-campaign-container">
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
-         <forum :forumInfo = "forumInfo" :chart-data="datacollection"/>
+         <forum :forumInfo="forumInfo" :chart-data="datacollection"/>
           </div>
          <my-campaign :data="profile_level_global" />
       </div>

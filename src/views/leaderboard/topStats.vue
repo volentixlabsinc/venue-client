@@ -1,10 +1,5 @@
 <template>
-     <div class="card user-campaign-info">
-          <div class="top-section">
-           <div class="tokens-info-title">
-                <h1 class="nb-tokens">MY STATS</h1>
-            </div>
-
+     <div class="card">
               <div class="campaign_info-container">
                 <div class="campaigns_info">
                         <h1 class="dashboard-numbers">
@@ -17,63 +12,34 @@
                         </h1>
                     <h4 class="info-subtitles">MY RANK</h4>
                 </div>
-         
+
                 <div class="campaigns_info">
                     <h1 class="dashboard-numbers">
                         <ICountUp
                         :startVal="0"
-                        :endVal="Number(this.localStats.myActivity)"
+                        :endVal="Number(this.campaignStats.total_users)"
+                        :decimals="0"
+                        :duration="2.5"
+                        :options="options"/>
+                    </h1>
+                    <h4 class="info-subtitles">PARITICIPANTS</h4>
+                </div>
+
+                <div class="campaigns_info">
+                    <h1 class="dashboard-numbers">
+                        <ICountUp
+                        :startVal="0"
+                        :endVal="Number(this.campaignStats.total_posts)"
                         :decimals="0"
                         :duration="2.5"
                         :options="options"/>
                     </h1>
                     <h4 class="info-subtitles">TOTAL POSTS</h4>
                 </div>
-
-
-                <div class="campaigns_info number-desktop">
-                    <h1 class="dashboard-numbers">
-                        <ICountUp
-                        :startVal="0"
-                        :endVal="Number(this.localStats.myActivity)"
-                        :decimals="0"
-                        :duration="2.5"
-                        :options="options"/>
-                    </h1>
-                    <h4 class="info-subtitles">SIGNED</h4>
-                </div>
-
-                <div class="campaigns_info number-desktop">
-                    <h1 class="dashboard-numbers">
-                        <ICountUp
-                        :startVal="0"
-                        :endVal="Number(this.localStats.myActivity)"
-                        :decimals="0"
-                        :duration="2.5"
-                        :options="options"/>
-                    </h1>
-                    <h4 class="info-subtitles">NOT SIGNED</h4>
-                </div>
-            
-            </div>
      
         </div> 
 
-        <div class="bottom-section">
-            <div class="tokens-info">
-                <img id="token-icon" src="/img/logos/VTX-Token-icon.png"/>
-                <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
-            </div>
-          <forum-stats-posts  :chart-data="datacollectionPoints"  ></forum-stats-posts>
-          
-          <div class="my-signature">
-            <div class="signature-title">
-           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
-           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
-           </div>
-           
-           </div>
-        </div>
+        
       </div>
 </template>
 
@@ -91,10 +57,6 @@ export default {
             type: Object,
             default: {}
         },
-        elements: {
-            type: Array,
-            default: []
-        }
     },
     data() {
         return{
@@ -111,7 +73,8 @@ export default {
         }
     },
     mounted() {
-        this.calculatePercentages ()
+        this.calculatePercentages ();
+        console.log('this.campaignStats', this.campaignStats);
     },
     methods: { 
     onClickSignautre() {
@@ -145,7 +108,7 @@ export default {
 
 <style scoped>
 
-.user-campaign-info {
+.card {
     height: 100%;
     width: 100% ;
     display: flex;
@@ -259,15 +222,14 @@ export default {
   font-size: 45px;
 }
 
-.user-campaign-info { 
+.card { 
     box-shadow: none;
     padding-top: 0px;
     flex-direction: column;
     justify-content:space-around;
     align-items:flex-start;
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     height: auto;
-    padding: 10px;
     margin:0px;
     order:2;
 }
@@ -324,4 +286,3 @@ canvas {
     display: flex !important;
 }
 </style>
-

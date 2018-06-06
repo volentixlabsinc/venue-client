@@ -6,9 +6,6 @@
     <div class="venue-logo">
     <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
     </div>
-    <div class="VTX" v-if="$store.state.user.userData >= 0">
-    <p>{{$store.state.user.userData}} VTX</p>
-    </div>
     
   </div>
 </div>
