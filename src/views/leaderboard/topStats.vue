@@ -77,7 +77,7 @@ export default {
         console.log('this.campaignStats.total_users', this.campaignStats.total_users);
     },
     methods: { 
-     
+
     },
     components: {
         ICountUp,
