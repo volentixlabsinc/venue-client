@@ -2,7 +2,7 @@
     <tbody>
         <tr 
         @click="expandInfo"
-        :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
+        :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
             <td 
             class="rank"
             :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
@@ -13,7 +13,7 @@
             :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
             {{elements.username}}</td>
              <td 
-            class="username"
+            class="empty-cell"
             :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"></td>
             <td 
             class="tokens"
@@ -103,6 +103,16 @@ td {
     width: 50%;
     text-align: left;
     padding-left: 0px;
+}
+.empty-cell {
+    width: 50%;
+    text-align: left;
+    padding-left: 0px;
+}
+
+.tokens{
+    width: 30px;
+    text-align: right;
 }
 
 .tokens-unity{
