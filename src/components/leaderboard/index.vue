@@ -1,14 +1,12 @@
 <template>
     <div class=" leaderboard">
         <table v-if="data" v-for="(elements, key) in data.rankings" :key="key">
-           
-            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
-                
+            <short-leaderboard-entry v-if="shortenedLeaderboard" :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
+            <leaderboard-entry v-else :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/> 
         </table>
+        
        <table v-else  v-for="(elements, key) in data.rankings" :key="key">
-
-            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
-                  
+            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/> 
        </table>
      
     </div>
@@ -18,8 +16,15 @@
 import { getLeaderBoardData } from '../../service/leaderboard'; 
 import {retrieveStats } from '../../service/dashboard';
 import leaderboardEntry from "./leaderboardEntry";
+import shortLeaderboardEntry from "./shortLeaderboardEntry";
 import { readFromCookie } from '../../service/utils/browser-storage.js'
 export default {
+    props:{
+        shortenedLeaderboard: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             toggleDescription: false,
@@ -30,7 +35,7 @@ export default {
     },
     mounted() {
         var isAuth = readFromCookie(); 
-
+        console.log('shortenedLeaderboard', this.shortenedLeaderboard);
         getLeaderBoardData()
             .then(response => {
                 this.data = response;                        
@@ -56,7 +61,8 @@ export default {
   
     },
     components: {
-        leaderboardEntry
+        leaderboardEntry,
+        shortLeaderboardEntry
     }
 }
 </script>

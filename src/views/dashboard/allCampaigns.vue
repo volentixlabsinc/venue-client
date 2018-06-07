@@ -1,14 +1,10 @@
 <template>
 <div class="all-campaigns" >
-        <div class="logo-token" @click="$router.push('/campaign')" >
-        <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
-        <div class="tokens-info">
-         <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/>
-          <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
-          </div>
+        <div class="campaign-info-container" >
+          <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
          </div>
-       <div class="campaigns_info-container" @click="$router.push('/campaign')">
-        <div class="campaigns_info">
+       <div class="campaigns-numbers-container" @click="onClickLeaderboard">
+        <div class="campaigns-number-card">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="sitewide.total_users"
@@ -18,7 +14,7 @@
           /></h1>
           <h4 class="info-subtitles">PARTICIPANTS</h4>
         </div>
-        <div class="campaigns_info">
+        <div class="campaigns-number-card">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
             :endVal="sitewide.total_posts"
@@ -29,10 +25,14 @@
           <h4 class="info-subtitles">TOTAL POSTS</h4>
         </div>
          </div>
-        
+        <div class="tokens-info">
+            <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
+            <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
+            <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"></i>AVAILABLE REWARDS</h1>
+          </div>
         <div class="leaderboard-container">
-             <h2 class="campaign-title">LEADERBOARD</h2>
-        <leaderboard/>
+             <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"></i></h2>
+        <leaderboard :shortenedLeaderboard="true"/>
         </div>
 </div>
 </template>
@@ -63,6 +63,11 @@ export default {
         },
     }
   },
+  methods: {
+    onClickLeaderboard() {
+      this.$router.push('/campaign')
+    }
+  },
   components: {
     ICountUp,
     leaderboard
@@ -77,7 +82,7 @@ export default {
   width: 100%;
   display: flex;
   flex-wrap:wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
@@ -89,7 +94,6 @@ export default {
 
 .all-campaigns:hover{
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 .leaderboard-container{
   display:none;
@@ -97,14 +101,16 @@ export default {
 
 .campaign-title{
     font-size: 20px;
-    width:95%;
+    width:100%;
+    padding-bottom: 10px;
     border-bottom: 0.5px solid #92A5C1;
 }
 
-.campaigns_info-container{
+.campaigns-numbers-container{
   display: flex;
+  flex-direction: row;
 }
-.logo-token{
+.campaign-info-container{
   display:flex;
   justify-content: center;
   align-items: center;
@@ -118,9 +124,9 @@ export default {
   height:45px;
   margin:5px;
 }
-.campaigns_info {
+.campaigns-number-card {
   width: 50%;
- min-height: 80px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -145,6 +151,7 @@ export default {
 }
 .tokens-info{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
@@ -155,9 +162,26 @@ export default {
    color: rgba(255, 255, 255, 0.541);
 }
 
-
+.available-rewards{
+  width: 100%;
+  font-size: 25px;
+  padding: 0px 10px 0px 15px;
+  margin: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align:center;
+  background-color:rgba(252, 248, 248, 0.05);
   
+}
 
+.fa-star {
+    margin:-10px 0 0 -15px;
+    font-size: 1.5em;
+    transform: rotate(-10deg)
+}
+.fa-chevron-right{
+  padding-left: 20px;
+}
 @media only screen and (min-width: 600px) {
 .all-campaigns{
   margin-bottom: 5%;
@@ -167,7 +191,7 @@ export default {
 @media only screen and (min-width: 800px) {
 .all-campaigns{
   height: auto;
-  flex-direction: row;
+  flex-direction: column;
   justify-content:space-evenly;
   align-items:center;
   padding: 0px;
@@ -177,15 +201,13 @@ export default {
 }
 .all-campaigns:hover{
   cursor: pointer;
-  background-color: transparent;
 }
 
-.logo-token{
+.campaign-info-container{
   display: flex;
   flex-direction: column;
   box-shadow: none;
-  width: auto;
-  min-height: 110px;
+  width: 90%;
   border-radius:3px;
   height: auto;
   padding: 0px;
@@ -197,21 +219,23 @@ export default {
 }
 .nb-tokens{
   font-size: 30px;
+  margin-bottom: 5px;
 }
 
 #token-icon {
   height:60px;
   padding-right: 5px; 
 }
-.campaigns_info {
-  width: auto;
-  min-height: auto;
+.campaigns-number-card {
+  width: 50%;
   margin-top: 4px;
 }
 .dashboard-numbers {
   font-size: 45px;
 }
-
+.available-rewards{
+  width: 90%;
+}
 .leaderboard-container{
   padding-top: 20px;
   width: 90%;
@@ -255,16 +279,14 @@ export default {
 }
 
 @media only screen and (min-width: 1200px) {
-.logo-token{
-  margin-bottom: 50px;
+.campaign-info-container{
+  margin-bottom: 0px;
 }
 
-
-.campaigns_info-container{
-  flex-direction: column;
+.campaigns-numbers-container{
+  width: 90%;
   padding: 0px;
   margin: 0px;
-   margin-bottom: 50px;
 }
 
 }

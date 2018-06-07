@@ -1,14 +1,16 @@
 <template>
     <div class="main-section">
       <div v-if="profile_level_global" class="card my-campaign-container">
+        <div class="current-signature">
+          <h3>Current Signature</h3>
+          <img id="signature" src="/img/onboarding/sig1.png"/>
+          <button class="btn venue-accent-color">CHANGE</button>
+        </div>
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
          <forum :forumInfo="forumInfo" :chart-data="datacollection"/>
           </div>
          <my-campaign :data="profile_level_global" />
       </div>
-      
-         
-     
       <div v-if="profile_level_global" class="card all-campaigns-container">
         <all-campaigns :sitewide="sitewide" :data="data"/>
       </div>
@@ -186,6 +188,23 @@ retrieveStats()
 flex-shrink: 1;
 height: 30%;
 }
+
+.current-signature{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-signature > h3{
+ width: 95%;
+ text-align: left;
+ margin-bottom: 0px;
+}
+
+#signature {
+  height: 45px;
+}
 @media only screen and (min-width: 800px) {
 
 .main-section {
@@ -205,8 +224,6 @@ height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-
 }
 
 
