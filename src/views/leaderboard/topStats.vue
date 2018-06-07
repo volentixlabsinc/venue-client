@@ -3,6 +3,7 @@
               <div class="campaign_info-container">
                 <div class="campaigns_info">
                         <h1 class="dashboard-numbers">
+                            <img id="trophy" src="/img/svg/trophy2.svg"/>
                             <ICountUp
                             :startVal="0"
                             :endVal="Number(this.localStats.myRanking)"
@@ -185,6 +186,12 @@ export default {
 .number-desktop{
     display: none;
 }
+
+#trophy{
+    height:50px; 
+    transform: rotate(-20deg);
+    margin:-50px 0 0 -25px;
+}
 .bottom-section{
     background-color: #222C3B;
     margin-top: 5%;
@@ -246,7 +253,10 @@ export default {
     height: 250px;
     padding: 10px;
 }
-
+#trophy{
+    height:55px; 
+    margin:-50px 10px 0 -55px;
+}
 .number-desktop{
     display: inherit;
 }
