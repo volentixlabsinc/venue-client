@@ -1,23 +1,46 @@
 <template>
-<tbody>
-<tr :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
-    <td style="white-space:nowrap"  class="rank"># {{elements.rank}}</td>
-    <td class="username">{{elements.username}}</td>
-    <td class="posts">{{elements.total_posts}}</td>
-    <td class="tokens">{{elements.total_tokens}}</td>
-    <td class="tokens-unity">VTX</td>
-    <td class="expand" @click="expandInfo"><i class="fas fa-chevron-down"></i></td>
-</tr>
+    <tbody>
+        <tr 
+        @click="expandInfo"
+        :style = "[userLine ? {'background-color': 'rgba(148, 168, 182, 0.2)'} : { 'background-color': 'transparent'}]" >
+            <td 
+            class="rank"
+            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+            {{elements.rank}}</td>
+            <td 
+            class="username"
+            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+            {{elements.username}}</td>
+            <td 
+            class="tokens"
+            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+            {{elements.total_tokens}}</td>
+            <td 
+            class="tokens-unity"
+            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">VTX</td>
+            <td 
+            class="expand"
+            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"><i class="fas fa-chevron-down"></i></td>
+        </tr>
 
-<tr v-if="toggleDescription" class="toggleDescription">
-    <td class=""></td>
-    <td class=""></td>
-    <td class=""></td>
-    <td class=""></td>
-    <td style="white-space:nowrap">{{elements.total_posts}} post</td>
-    <td style="white-space:nowrap">{{elements.total_posts*100}} pts</td>
-</tr>
-</tbody>
+        <tr v-if="toggleDescription" class="toggleDescription">
+            <td class="no-border"></td>
+            <td class="no-border"></td>
+            <td 
+            class="expanded-data no-border">
+            {{elements.total_posts}} post</td>
+            <td 
+            class="expanded-data no-border"
+            colspan="2">
+            {{elements.total_posts*100}} pts</td>
+        </tr>
+        <tr v-if="toggleDescription" class="toggleDescription-border">
+            <td 
+            class="expanded-data-border"
+            colspan="5"></td>
+            
+        </tr>
+    </tbody>
 
 </template>
 
@@ -80,11 +103,12 @@ td {
     font-size: 18px;
     padding: 5px;
     border-bottom: 1px solid #94A8B6;
-     text-align: left;
+    text-align: left;
 }
 
 .rank{
     width: 25px;
+    white-space: nowrap;
 }
 
 .username {
@@ -102,7 +126,12 @@ td {
     text-align: right;
 }
 
-.toggleDescription{
-    height:50px;
+.expanded-data{
+    white-space: nowrap;
+    background-color: rgb(148, 168, 182, 0.2);
+
+}
+.no-border {
+    border-bottom: none;
 }
 </style>
