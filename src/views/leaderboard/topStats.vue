@@ -189,7 +189,7 @@ export default {
 
 #trophy{
     height:50px; 
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
     margin:-50px 0 0 -25px;
 }
 .bottom-section{

@@ -8,7 +8,7 @@
             <line-chart  :chart-data="dataCollection" :width="350" :height="200" ></line-chart>
         </div>
          <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers">
+            <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
                 :endVal="Number(localStats.total_posts)"
@@ -19,7 +19,7 @@
             <h4 class="info-subtitles">MY POSTS</h4>
         </div>
             <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers">
+            <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
                 :endVal="Number(localStats.total_points)"
@@ -32,14 +32,15 @@
         <div class="tokens-info">
             <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
             <h1 class="nb-tokens">{{localStats.total_tokens}} VTX</h1>
+            <h3 v-if="bonus!=null" style="width:100%; margin:5px">{{profileLevel[0].forumUserRank}} Bonus: {{bonus}} (included)</h3>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
-        <di class="view-details">
+        <div class="view-details">
             <button class="btn view-details-button" @click="onClickDetails">
             <h3 class="signature-title-text">View details</h3>
            <a><i class="fas fa-search"></i></a>
            </button>
-        </di>
+        </div>
     </div>
 </div>
 </template>
@@ -62,10 +63,15 @@ export default {
             type: Object,
             default: {}
         },
+        profileLevel: {
+            type: Array,
+            default: []
+        },
     },
     data() {
         return{
             signature: false,
+            bonus: null,
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -77,12 +83,22 @@ export default {
         }
     },
     mounted() {
-      console.log('localStats', this.localStats);
+    this.checkForumLevel();
+    console.log('this.profileLevel: ', this.profileLevel);
     },
     methods: { 
     onClickDetails() {
         this.$router.push('/points-details')
       },
+    checkForumLevel() {
+        if (this.profileLevel[0].forumUserRank=="Legendary Members") {
+            this.bonus = "5 %"
+        } 
+        else if (this.profileLevel[0].forumUserRank=="Sr Members") {     
+            this.bonus = "2 %"
+        }
+       
+    }
     },
     components: {
         ICountUp,
@@ -214,7 +230,11 @@ export default {
     flex-wrap:wrap;
     padding-bottom: 0px;
 }
-
+.fa-star {
+    margin:-10px 0 0 -15px;
+    font-size: 1.5em;
+    transform: rotate(-10deg)
+}
 .view-details {
     display: flex;
     justify-content: flex-end;
@@ -237,6 +257,8 @@ export default {
 .view-details-button:hover{
     background-color: rgba(240, 248, 255, 0.2);
 }
+
+
 @media only screen and (min-width: 800px) {
 
 .dashboard-numbers {

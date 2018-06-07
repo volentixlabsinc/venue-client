@@ -14,6 +14,7 @@
             v-if="userStats.total_posts>=0"
             :campaignStats="campaignStats"
             :localStats="userStats"
+            :profileLevel="profile_level_forum"
             :elements="data.rankings"
             :dataCollection="dataCollection"/>
             <edit-signature-button />
@@ -54,12 +55,9 @@ export default {
       }
   },
 mounted(){
-    console.log('>>>>>>>>>>>>>>>> campaignStats', this.campaignStats);
     getLeaderBoardData()
             .then(response => {
                 this.data = response;        
-                console.log('this.data', this.data)        
-                
             })
             .catch(ex => {
                 console.error(ex);
@@ -70,7 +68,7 @@ mounted(){
     });
     retrieveStats()
     .then(response => {
-        console.log('response: ', response);
+        console.log('retrieveStats: ', response);
         this.userStats = response.stats.user_level; //profile_level_global
         this.campaignStats = response.stats.sitewide; //sitewide
         this.profile_level_forum = response.stats.profile_level
