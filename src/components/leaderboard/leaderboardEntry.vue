@@ -95,7 +95,7 @@ td {
 }
 
 .rank{
-    width: 25px;
+    width: 5px;
     white-space: nowrap;
 }
 
@@ -111,7 +111,7 @@ td {
 }
 
 .tokens{
-    width: 30px;
+    width: 50px;
     text-align: right;
 }
 
