@@ -1,6 +1,6 @@
 <template>
     <div class=" leaderboard">
-        <table v-if="userStats" v-for="(elements, key) in data.rankings" :key="key">
+        <table v-if="data" v-for="(elements, key) in data.rankings" :key="key">
            
             <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
                 
@@ -25,7 +25,7 @@ export default {
             toggleDescription: false,
             data: {},
             userStats: null,
-            myRank:null
+            myRank:0
         }
     },
     mounted() {
@@ -33,9 +33,7 @@ export default {
 
         getLeaderBoardData()
             .then(response => {
-                //should be conditional here
-                this.data = response;        
-                
+                this.data = response;                        
             })
             .catch(ex => {
                 console.error(ex);
@@ -44,6 +42,7 @@ export default {
         if(isAuth) {
             retrieveStats()
             .then(response => {
+                console.log('response: ', response);
                
                 this.userStats = response.stats.user_level;
                  if (this.userStats.overall_rank==null) {
@@ -64,20 +63,9 @@ export default {
 
 
 <style scoped>
-p {
-    margin: 0px;
-    padding: 0px;
-}
-tbody *{
-width: 100% !important;
-}
+
 .leaderboard {
     width: 100%;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    align-items: flex-start; */
     overflow: scroll;
     overflow-x: hidden;
     scrollbar-face-color: #367CD2;
@@ -88,10 +76,6 @@ width: 100% !important;
     scrollbar-track-color: #FFFFFF;
     scrollbar-arrow-color: #FFFFFF;
 }
-
-/* .leaderboard * {
-width: 100%;
-} */
 
 .leaderboard::-webkit-scrollbar {
     width: 0px;
@@ -116,9 +100,7 @@ width: 100%;
 table {
     width: 100%;
     display: table;
-    border-collapse: separate;
     border-spacing: 0px;
-    border-color: gray;
     text-align: left;
 }
 </style>

@@ -8,10 +8,10 @@
             <line-chart  :chart-data="dataCollection" :width="350" :height="200" ></line-chart>
         </div>
          <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers">
+            <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.totalPosts)"
+                :endVal="Number(localStats.total_posts)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -19,10 +19,10 @@
             <h4 class="info-subtitles">MY POSTS</h4>
         </div>
             <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers">
+            <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.totalPosts)"
+                :endVal="Number(localStats.total_points)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -30,11 +30,17 @@
             <h4 class="info-subtitles">MY POINTS</h4>
         </div>
         <div class="tokens-info">
+            <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
+            <h1 class="nb-tokens">{{localStats.total_tokens}} VTX</h1>
+            <h3 v-if="bonus!=null" style="width:100%; margin:5px">{{profileLevel[0].forumUserRank}} Bonus: {{bonus}} (included)</h3>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
-            <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/>
-            <h1 class="nb-tokens">{{campaignStats.available_tokens}} VTX</h1>
         </div>
-        
+        <div class="view-details">
+            <button class="btn view-details-button" @click="onClickDetails">
+            <h3 class="signature-title-text">View details</h3>
+           <a><i class="fas fa-search"></i></a>
+           </button>
+        </div>
     </div>
 </div>
 </template>
@@ -57,10 +63,15 @@ export default {
             type: Object,
             default: {}
         },
+        profileLevel: {
+            type: Array,
+            default: []
+        },
     },
     data() {
         return{
             signature: false,
+            bonus: null,
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -72,12 +83,22 @@ export default {
         }
     },
     mounted() {
-    // for testing
+    this.checkForumLevel();
+    console.log('this.profileLevel: ', this.profileLevel);
     },
     methods: { 
-    onClickSignautre() {
-        this.$router.push('/edit-signature')
+    onClickDetails() {
+        this.$router.push('/points-details')
       },
+    checkForumLevel() {
+        if (this.profileLevel[0].forumUserRank=="Legendary Members") {
+            this.bonus = "5 %"
+        } 
+        else if (this.profileLevel[0].forumUserRank=="Sr Members") {     
+            this.bonus = "2 %"
+        }
+       
+    }
     },
     components: {
         ICountUp,
@@ -139,7 +160,7 @@ export default {
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin: 20px 1px 20px 1px;
+  margin: 20px 1px 5px 1px;
   background-color: rgba(252, 248, 248, 0.05);
   border-radius: 3px;
   padding: 2px;
@@ -160,7 +181,7 @@ export default {
 
 
 .tokens-info{
-    margin: 20px 0px 20px 0px;
+    margin: 5px 0px 5px 0px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -169,8 +190,9 @@ export default {
 }
 
 #token-icon {
-  height:60px;
+  height:50px;
   margin:5px;
+  padding-right: 10px;
 }
 .top-section{
     width: 100%;
@@ -178,7 +200,7 @@ export default {
 }
 
 .subtitle{
-     width: 90%;
+    width: 100%;
     font-size: 25px;
     padding: 0px 10px 0px 15px;
     margin: 0px;
@@ -206,8 +228,37 @@ export default {
     justify-content:center;
     align-items: center;
     flex-wrap:wrap;
-    padding-bottom: 30px;
+    padding-bottom: 0px;
 }
+.fa-star {
+    margin:-10px 0 0 -15px;
+    font-size: 1.5em;
+    transform: rotate(-10deg)
+}
+.view-details {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: flex-end;
+    width: 100%;
+}
+
+.view-details-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.1);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 0px;
+    border-radius: 5px;
+}
+
+.view-details-button:hover{
+    background-color: rgba(240, 248, 255, 0.2);
+}
+
+
 @media only screen and (min-width: 800px) {
 
 .dashboard-numbers {
@@ -242,7 +293,12 @@ export default {
     margin: 20px 0px 20px 0px;
 }
 
+.tokens-info{
+    width: 90%;
+}
+
 .tokens-info-title{
+  margin: 20px 0px 20px 0px;
   width: 100%;
 }
 .nb-tokens{
@@ -264,7 +320,11 @@ export default {
 .number-desktop, .chart{
     display: inherit;
 }
- }
+
+ .view-details {
+    width: 90%;
+}
+}
 </style>
 
 <style>

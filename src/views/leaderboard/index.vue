@@ -2,14 +2,19 @@
   <div class="main-section">
       <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
-          <top-stats class="top-stats" v-if="campaignStats.total_users>0" :campaignStats="campaignStats" :localStats="localStats"/>  
+          <top-stats 
+          class="top-stats" 
+          v-if="campaignStats.total_users>0" 
+          :campaignStats="campaignStats" 
+          :localStats="localStats"/>  
           <leaderboard class="leaderboard"/>
       </div>
         <div class="stats-container">
             <user-stats
             v-if="userStats.total_posts>=0"
             :campaignStats="campaignStats"
-            :localStats="localStats"
+            :localStats="userStats"
+            :profileLevel="profile_level_forum"
             :elements="data.rankings"
             :dataCollection="dataCollection"/>
             <edit-signature-button />
@@ -50,12 +55,9 @@ export default {
       }
   },
 mounted(){
-    console.log('>>>>>>>>>>>>>>>> campaignStats', this.campaignStats);
     getLeaderBoardData()
             .then(response => {
                 this.data = response;        
-                console.log('this.data', this.data)        
-                
             })
             .catch(ex => {
                 console.error(ex);
@@ -66,6 +68,7 @@ mounted(){
     });
     retrieveStats()
     .then(response => {
+        console.log('retrieveStats: ', response);
         this.userStats = response.stats.user_level; //profile_level_global
         this.campaignStats = response.stats.sitewide; //sitewide
         this.profile_level_forum = response.stats.profile_level
@@ -232,6 +235,8 @@ mounted(){
     height: 40%;
     display:flex;
     flex-direction:column;
+    justify-content: flex-start;
+    margin-bottom: 0px;
 }
 
 .top-stats {
@@ -277,6 +282,7 @@ mounted(){
 .stats-container {
     width: 40%;
     order:2;
+    margin-bottom: 0px;
 }
 
 

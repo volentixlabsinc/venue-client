@@ -1,8 +1,8 @@
 <template>
-     <div class="my-signature">
+     <div class="my-signature" @click="onClickSignature">
         <div class="signature-title">
-           <h3 class="signature-title-text">CURRENT SIGNATURE</h3>
-           <a  @click="onClickSignautre"><i class="far fa-edit"></i></a>
+           <h3 class="signature-title-text">EDIT SIGNATURE</h3>
+           <a><i class="far fa-edit"></i></a>
         </div>
     </div>
 </template>
@@ -13,8 +13,8 @@
 
 export default {
     methods: { 
-    onClickSignautre() {
-        this.$router.push('/edit-signature')
+    onClickSignature() {
+        this.$router.push('/signature')
       },
     },
 }
@@ -24,11 +24,15 @@ export default {
 
 .my-signature{
     width: 100%;
-    display: flex;
-    flex-direction:column;
-    padding-bottom: 30px;
+    background-color: rgba(240, 248, 255, 0.3);
+    box-shadow: 1px 1px 5px rgb(31, 31, 61);
+    border-radius: 5px; 
 }
 
+.my-signature:hover{
+    cursor: pointer;
+    background-color: rgba(240, 248, 255, 0.35);
+}
 
 .signature-title {
     display: flex;
@@ -45,6 +49,8 @@ export default {
 @media only screen and (min-width: 800px) {
 .my-signature{
     width: 100%;
+    padding-bottom: 0px;
+    margin-top: 30px;
 }
 }
 </style>
