@@ -310,9 +310,9 @@ export default {
 .lbox {
   /* based off of css in dashboard/allCampaigns.vue */
   /*padding-top: 20px;*/
-  padding: 2rem;
-  width: inherit; /*90%;*/
-  max-height: 500px;
+  padding-top: 2rem;
+  width: 70%; /*90%;*/
+  height: 100%;
   display: inherit;
   flex-direction: column;
   justify-content: flex-start;
