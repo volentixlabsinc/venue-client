@@ -33,7 +33,6 @@ export default {
   data () {
     return {
       data: null,
-      sitewide: null,
       profile_level_forum: null,
       profile_level_global: null,
       datacollection: null,
@@ -70,7 +69,6 @@ export default {
       retrieveStats()
     .then(response => {
       this.$store.dispatch('changeOverallStatsAction', response.stats)
-      this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level      
     })
