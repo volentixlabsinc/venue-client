@@ -15,9 +15,9 @@ function retrievSignatureCode() {
 
 }
 
-function createForumProfile(profile_url, forum_id, authorization) {
+function createForumProfile(forum_user_id, forum_id, authorization) {
     return VenueAPI.postJson(`/create/forum-profile/`, {
-        profile_url, 
+        forum_user_id, 
         forum_id,
     }, authorization);
 }
@@ -35,7 +35,7 @@ function createUser() {
 }
 
 function checkProfile(userId, forumId) {
-    return VenueAPI.get(`/check/profile/?forum=${forumId}&profile_url=${userId}`);
+    return VenueAPI.get(`/check/profile/?forum_id=${forumId}&forum_user_id=${userId}`);
 
 }
 
