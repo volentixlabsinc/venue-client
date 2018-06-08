@@ -12,7 +12,7 @@
          <my-campaign :data="profile_level_global" />
       </div>
       <div v-if="profile_level_global" class="card all-campaigns-container">
-        <all-campaigns :sitewide="sitewide" :data="data"/>
+        <campaign-right-panel />
       </div>
       </div>
 </template>
@@ -24,7 +24,7 @@ import { getLeaderBoardData } from '../../service/leaderboard';
 
 import forum from './forum.vue';
 import myCampaign from './myCampaign.vue';
-import allCampaigns from './allCampaigns.vue';
+import campaignRightPanel from '../../components/campaignRightPanel.vue';
 import ICountUp from 'vue-countup-v2';
 
 export default {
@@ -48,38 +48,36 @@ export default {
     }
   },
   mounted(){
-retrieveStats() 
-  .then(res => {
-    if(res.stats.fresh) {
-        this.$router.push('/onboarding/bitcointalk/')
-       
-    }
-  }) 
+  retrieveStats() 
+    .then(res => {
+      if(res.stats.fresh) {
+          this.$router.push('/onboarding/bitcointalk/')
+      }
+    }) 
 
     this.fetchStats();
      getLeaderBoardData()
       .then(response => {
           this.data = response;
-  
       })
       .catch(ex => {
         console.error(ex);
       })
   },
+
   methods: {
     fetchStats() {
       retrieveStats()
     .then(response => {
+      this.$store.dispatch('changeOverallStatsAction', response.stats)
       this.sitewide = response.stats.sitewide
       this.profile_level_forum = response.stats.profile_level
-      this.profile_level_global = response.stats.user_level
-      console.log('this.profile_level_global: ', this.profile_level_global);
-      
+      this.profile_level_global = response.stats.user_level      
     })
-      .then(response => { this.fillData();})
+      .then(response => { this.fillCahrtData()})
     },
-    fillData () {
-      this.$store.dispatch('changeUserDataAction', this.profile_level_global.total_tokens)
+   
+    fillCahrtData () {
         let numberOfPosts = [];
         let dates = [];
         let splitDate = '';
@@ -118,7 +116,7 @@ retrieveStats()
   components: {
     forum,
     myCampaign,
-    allCampaigns
+    campaignRightPanel
   }
 
 }

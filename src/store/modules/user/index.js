@@ -2,32 +2,30 @@
 
 // state
 const state = {
-    userData: {
-        total_tokens: null,
-    },
+    overallStats: {},
 };
 
 
 // getters
 const getters = {
-    getUserData: (state) => {
-        return state.userData.total_tokens;
+    getOverallStats: (state) => {
+        return state.overallStats;
     }
 };
 
 
 // mutations
 const mutations = {
-    changeUserDataMutation: (state, payload ) => {
-        state.userData = payload;
+    changeOverallStatsMutation: (state, payload ) => {
+        state.overallStats = payload;
     }
 };
 
 
 // actions
 const actions = {
-    changeUserDataAction: ({ commit }, data) => {
-        commit('changeUserDataMutation', data );   
+    changeOverallStatsAction: ({ commit }, data) => {
+        commit('changeOverallStatsMutation', data );  
     }
 };
 
