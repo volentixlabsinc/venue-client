@@ -1,8 +1,14 @@
 <template>
-    <div>
+    <div class="main-modal">
+        <div class="steps-section">
+            <button class="steps-buttons" @click="imageNumber=1">1</button>
+            <button class="steps-buttons" @click="imageNumber=2">2</button>
+            <button class="steps-buttons" @click="imageNumber=2">3</button>
+        </div>
         <transition name="fader">
-            <img v-if="showstep" src='/img/onboarding/bitcointalk/step1a_alt.png' />
-            <img v-if="!showstep" src='/img/onboarding/bitcointalk/step1b_alt.png' />
+            <img v-if="imageNumber==1" src='/img/onboarding/bitcointalk/step1a_alt.png' />
+            
+            <img v-if="imageNumber==2" src='/img/onboarding/bitcointalk/step1b_alt.png' />
         </transition>
     </div>
 </template>
@@ -11,6 +17,7 @@
 export default {
     data() {
         return({
+            imageNumber: 1,
             showstep: true
         })
     },
@@ -20,34 +27,38 @@ export default {
         }
     },
     mounted() {
-        setInterval(this.swap, 4000);
+        // setInterval(this.swap, 4000);
     }
 }
 </script>
 
 <style scoped>
-.fader-enter {
-    opacity: 0;
-    animation: f 1s;
+.steps-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
-.fader-leave-active {
-    opacity: 0;
-    animation: f 1s reverse;
+.steps-buttons {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: gold;
+    border: 1px solid gold;
+    color: white;
 }
-.fader-enter,
-.fader-leave-active {
-    opacity: 100;
-}
-@keyframes f {
-    75% {
-        opacity: 100%;
-    }
+
+.main-modal{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 img {
-    max-width: 525px;
+    height: 80%;
     border-radius: 5px;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .img {
         width: 95%;
     }
