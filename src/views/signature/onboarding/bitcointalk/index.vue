@@ -216,7 +216,7 @@ export default {
                 closeModal: true
               }
             }).then(() => {
-              this.$router.push("/onboarding/finished");
+              this.$router.push("/campaign");
             });
           } else {
             console.log("Un success was triggered", res);
@@ -232,9 +232,6 @@ export default {
             });
           }
         });
-    },
-    showAlert() {
-      this.$router.push("/onboarding/finished");
     }
   },
   mounted() {
