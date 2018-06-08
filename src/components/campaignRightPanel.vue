@@ -1,5 +1,5 @@
 <template>
-<div class="all-campaigns" >
+<div class="all-campaigns">
         <div class="campaign-info-container" >
           <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
          </div>
@@ -39,18 +39,9 @@
 
 <script>
 import ICountUp from 'vue-countup-v2';
-import leaderboard from '../../components/leaderboard/index.vue'
+import leaderboard from './leaderboard/index.vue'
 export default {
-  props: {
-    sitewide: {
-      type: Object,
-      default: {}
-    },
-    data: {
-      type: Object,
-      default: null
-    },
-  },
+  
   data () {
     return {
       options: {
@@ -63,6 +54,11 @@ export default {
         },
     }
   },
+  computed: {
+        sitewide() {
+            return this.$store.getters.getOverallStats.sitewide;
+        },
+    },
   methods: {
     onClickLeaderboard() {
       this.$router.push('/campaign')

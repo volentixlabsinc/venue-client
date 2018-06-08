@@ -65,13 +65,16 @@
 div {
     width: 100%;
 }
-
+ul {
+    padding: 0;
+    list-style-type: none;
+}
 li {
     display: flex;
     align-items: center;
     justify-content: space-around;
     border-radius:5px;
-    margin:10px;
+    margin-bottom:10px;
 }
 
 li img {
@@ -85,7 +88,7 @@ li button {
 }
 
 form {
-     max-width: 525px;
+     max-width: 100%;
 }
 
 </style>
