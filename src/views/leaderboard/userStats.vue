@@ -5,8 +5,9 @@
     </div>
     <div class="card">
         <div class="chart"> 
-            <line-chart  :chart-data="dataCollection" :width="350" :height="200" ></line-chart>
+            <line-chart  :chart-data="dataCollection" :width="450" :height="300" ></line-chart>
         </div>
+        <div class="campaigns-info-container">
          <div class="campaigns_info number-desktop">
             <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
@@ -29,6 +30,7 @@
             </h1>
             <h4 class="info-subtitles">MY POINTS</h4>
         </div>
+        </div>
         <div class="tokens-info">
             <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
             <h1 class="nb-tokens">{{localStats.total_tokens}} VTX</h1>
@@ -37,7 +39,7 @@
         </div>
         <div class="view-details">
             <button class="btn view-details-button" @click="onClickDetails">
-            <h3 class="signature-title-text">View details</h3>
+            <h3 class="view-details-text">View details</h3>
            <a><i class="fas fa-search"></i></a>
            </button>
         </div>
@@ -132,7 +134,7 @@ export default {
     align-items: center;
     margin-right: 10px;
 }
-.signature-title-text {
+.view-details-text {
     padding: 0px;
     margin: 10px;
     text-align: left;
@@ -151,7 +153,11 @@ export default {
    padding-top: 5px;
    color: rgba(255, 255, 255, 0.541);
 }
-
+.campaigns-info-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .campaigns_info {
   width: 45%;
   min-height: 80px;
@@ -219,7 +225,7 @@ export default {
     display: none;
 }
 
-.number-desktop, .chart{
+.number-desktop{
     display: none;
 }
 .card{
@@ -290,7 +296,8 @@ export default {
 }
 
 .chart {
-    margin: 20px 0px 20px 0px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .tokens-info{
@@ -317,28 +324,13 @@ export default {
     padding: 10px;
 }
 
-.number-desktop, .chart{
+.number-desktop{
     display: inherit;
 }
 
  .view-details {
     width: 90%;
 }
-}
-</style>
-
-<style>
-#pie-chart{
-    margin:0px !important;
-    padding:0px !important;
-    width: 150px !important;
-    height:150px !important;
-    align-self: center;
-}
-canvas {
-    margin: 0px !important;
-    padding: 0px !important;
-    display: flex !important;
 }
 </style>
 
