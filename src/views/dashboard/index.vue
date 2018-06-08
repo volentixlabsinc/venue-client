@@ -57,6 +57,7 @@ export default {
     this.fetchStats();
      getLeaderBoardData()
       .then(response => {
+          this.$store.dispatch('changeOverallStatsAction', response)
           this.data = response;
       })
       .catch(ex => {
@@ -68,7 +69,7 @@ export default {
     fetchStats() {
       retrieveStats()
     .then(response => {
-      this.$store.dispatch('changeOverallStatsAction', response.stats)
+      
       this.profile_level_forum = response.stats.profile_level
       this.profile_level_global = response.stats.user_level      
     })

@@ -58,6 +58,7 @@ mounted(){
     getLeaderBoardData()
             .then(response => {
                 this.data = response;        
+                console.log('this.data: ', this.data);
             })
             .catch(ex => {
                 console.error(ex);
