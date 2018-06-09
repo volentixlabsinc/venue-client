@@ -43,6 +43,8 @@
 </template>
 
 <script>
+    const BITCOINTALK_FORUM_ID = 1
+    
     module.exports = {
         data: function() {
             return {
@@ -51,7 +53,7 @@
         },
         methods: {
             onCopy: function (sig) {
-                alert('You just copied: ' + sig.code)
+                this.$store.commit('signatureCopied', sig.id)
             }
         }
     }

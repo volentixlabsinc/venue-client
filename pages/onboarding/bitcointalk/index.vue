@@ -16,21 +16,6 @@
                 <div class="form-group" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
                     <AvailableSignatures />
-                    <button class="btn btn-primary" @click="doNext">NEXT</button>
-                </div>
-                <div class="form-group" v-if="step === 3">
-                    <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
-                    <input type="textarea" rows="4" cols="50" 
-                        v-model="message"
-                        disabled
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError" />
-                    <button  
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError"
-                        class="btn btn-primary">Copy</button>
                     <button class="btn btn-danger" @click="verify">Verify</button>
                 </div>
         
@@ -114,9 +99,10 @@ export default {
           scope.error = true;
         } else if (response.exists) {
           // TODO if the signature is already set, should not need to continue
-          scope.$store.commit('forums/setUserId', {
+          scope.$store.commit('forums/register', {
             forumId: BITCOINTALK_FORUM_ID,
-            userId: scope.forumUserId
+            forumUserId: response.forum_user_id,
+            venueForumUserId: response.forum_profile_id
           })
           scope.doNext();
         } else {
@@ -155,9 +141,10 @@ export default {
     createForumProfile: function(forum_user_id) {
       createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
         .then(res => {
-          scope.$store.commit('forum/setUserId', {
+          scope.$store.commit('forums/register', {
             forumId: BITCOINTALK_FORUM_ID,
-            userId: forum_user_id
+            forumUserId: res.forum_user_id,
+            venueForumUserId: res.forum_profile_id
           })
           // var activeUserForum = this.$store.state.activeUserForum;
           // var activeUserForumUpdate = Object.assign(
@@ -177,9 +164,9 @@ export default {
           //this.$emit("can-continue", { value: true });
         })
         .then(() => {
-          this.$swal({
-            text: "User account found"
-          });
+          // this.$swal({
+          //   text: "User account found"
+          // });
         })
         .catch(err => {
           console.log("Something went wrong", err);
@@ -201,8 +188,8 @@ export default {
     },
     verify: function() {
       console.log("Verifying");
-      var forum_profile_id = this.$store.state.signatures.activeUserForum.forumProfileId;
-      var signature_id = this.$store.state.signatures.activeUserForum.activeSignature.id;
+      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).venueForumUserId
+      var signature_id = this.$store.state.copiedSignatureId
 
       createSignature(forum_profile_id, signature_id, true)
         .then(res => {
@@ -210,31 +197,29 @@ export default {
         })
         .then(data => {
           if (data.success) {
-            console.log("Success Triggered");
-            this.$swal({
-              title: "Signature Placement Verified",
-              text: "You can now start posting and earning VTX",
-              icon: "success",
-              button: {
-                text: "ok",
-                className: "btn-primary",
-                closeModal: true
-              }
-            }).then(() => {
+            // this.$swal({
+            //   title: "Signature Placement Verified",
+            //   text: "You can now start posting and earning VTX",
+            //   icon: "success",
+            //   button: {
+            //     text: "ok",
+            //     className: "btn-primary",
+            //     closeModal: true
+            //   }
+            // }).then(() => {
               this.$router.push("/leaderboard");
-            });
+            // });
           } else {
-            console.log("Un success was triggered", res);
-            this.$swal({
-              title: "The signature was not found",
-              text: "Unfortunately the signature was not found",
-              icon: "error",
-              button: {
-                text: "OK",
-                className: "btn-primary",
-                closeModal: true
-              }
-            });
+            // this.$swal({
+            //   title: "The signature was not found",
+            //   text: "Unfortunately the signature was not found",
+            //   icon: "error",
+            //   button: {
+            //     text: "OK",
+            //     className: "btn-primary",
+            //     closeModal: true
+            //   }
+            // });
           }
         });
     }
