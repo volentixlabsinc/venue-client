@@ -80,9 +80,6 @@ mounted(){
       
     },
     methods: { 
-    onClickSignautre() {
-        this.$router.push('/edit-signature')
-      },
     populateUserData() {
         this.localStats = {
             myRanking: this.userStats.overall_rank,
