@@ -57,6 +57,10 @@ export default {
       }).then(data=> {
           if (data.success) {
               writeToCookie(data.token)
+              this.$store.commit('user/authenticated', {
+                userId: data.user_profile_id,
+                language: data.language 
+              })
               this.$router.push('/dashboard')
           }
       })
