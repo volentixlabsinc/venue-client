@@ -1,17 +1,12 @@
 
-import Vuex from 'vuex';
-import signatures from './modules/signatures';
-import user from './modules/user';
+// import Vuex from 'vuex';
 // import createPersistedState from 'vuex-persistedstate'
 
-const createStore = () =>   {
-    return new Vuex.Store({
-        // plugins: [createPersistedState()], 
-        modules: {
-            signatures,
-            user
-        }
-    });
-}
+// const createStore = () =>   {
+//     return new Vuex.Store({
+//         // plugins: [createPersistedState()], 
+//     });
+// }
 
-export default createStore
+export const state = () => ({
+})

@@ -1,38 +1,21 @@
-
-
-// state
-const state = {
+export const state = () => ({
     overallStats: {},
-};
+});
 
-
-// getters
-const getters = {
+export const getters = {
     getOverallStats: (state) => {
         return state.overallStats;
     }
 };
 
-
-// mutations
-const mutations = {
+export const mutations = {
     changeOverallStatsMutation: (state, payload ) => {
         state.overallStats = payload;
     }
 };
 
-
-// actions
-const actions = {
+export const actions = {
     changeOverallStatsAction: ({ commit }, data) => {
         commit('changeOverallStatsMutation', data );  
     }
-};
-
-
-export default {
-    state,
-    getters,
-    mutations,
-    actions
 };
