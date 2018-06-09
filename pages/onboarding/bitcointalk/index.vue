@@ -207,7 +207,7 @@ export default {
                 closeModal: true
               }
             }).then(() => {
-              this.$router.push("/campaign");
+              this.$router.push("/leaderboard");
             });
           } else {
             console.log("Un success was triggered", res);

@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     onClickLeaderboard() {
-      this.$router.push('/campaign')
+      this.$router.push('/leaderboard')
     },
     onClickDetails() {
         this.$router.push('/points-details')
