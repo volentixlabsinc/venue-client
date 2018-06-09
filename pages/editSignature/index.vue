@@ -2,7 +2,7 @@
   <main class="main">
     <div class="container">
       <h3>CURRENT SIGNATURE</h3>
-      <img :src="currentSignatureImg" />
+      <!-- <img :src="currentSignatureImg" /> -->
       <h2>AVAILABLE BITCOIN SIGNATURES</h2>
       <AvailableSignatures />
     </div>
@@ -19,13 +19,30 @@
   export default {
     data() {
       return {
-        currentSignatureImg: this.$store.state.signatures.activeUserForum.activeSignature.image
+        // currentSignatureImg: this.$store.state.signatures.activeUserForum.activeSignature.image
       }
     },
     components: {
       AvailableSignatures,
       campaignRightPanel
-    }
+    },
+  mounted(){
+  retrieveStats() 
+    .then(res => {
+      if(res.stats.fresh) {
+          this.$router.push('/onboarding/bitcointalk/')
+      }
+    }) 
+
+    this.fetchStats();
+     getLeaderBoardData()
+      .then(response => {
+          this.data = response;
+      })
+      .catch(ex => {
+        console.error(ex);
+      })
+  }
   }
 </script>
 

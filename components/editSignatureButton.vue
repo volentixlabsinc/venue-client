@@ -14,7 +14,7 @@
 export default {
     methods: { 
     onClickSignature() {
-        this.$router.push('/edit-signature')
+        this.$router.push('/editSignature')
       },
     },
 }
