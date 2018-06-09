@@ -2,7 +2,6 @@ import createPersistedState from 'vuex-persistedstate'
 
 export default ({store}) => {
   createPersistedState({
-      // key: 'yourkey',
-      // paths: [...]
+      key: 'venue.volentix.io'
   })(store)
 }
