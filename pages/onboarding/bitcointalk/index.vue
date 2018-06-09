@@ -6,7 +6,7 @@
             <form v-on:submit.prevent class="stepform">
                 <div class="form-group" v-if="step === 1">
                     <label class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</label>
-                    <input type="text" v-model="userId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
+                    <input type="text" v-model="forumUserId" id="forumUserId" placeholder="Your user id" class="form-control form-control-lg"/>
                     <button class="btn btn-primary" @click="validateId">NEXT</button>
                     <span v-if="error" style="color:red; display:block;">
                         <i class="fas fa-times-circle"></i> User not found - please try Again
@@ -63,6 +63,8 @@ import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { createSignature } from "~/services/signatures";
 // <<<
 
+const BITCOINTALK_FORUM_ID = 1
+
 export default {
   components: {
     ModalWidget,
@@ -77,11 +79,15 @@ export default {
       showHelp: false,
       disableProceed: true,
       step: 1,
-      userId: "",
+      forumUserId: undefined,
       error: undefined,
       message: "",
       check: false
     };
+  },
+  fetch ({ store }) {
+    // The `fetch` method is used to fill the store before rendering the page
+    // TODO get the forumUserId of this user
   },
   methods: {
     // >>> #68
@@ -103,61 +109,71 @@ export default {
 
       //forum profile create?
       const scope = this;
-      checkProfile(this.userId, 1).then(response => {
+      checkProfile(scope.forumUserId, BITCOINTALK_FORUM_ID).then(response => {
         if (!response.found) {
           scope.error = true;
+        } else if (response.exists) {
+          // TODO if the signature is already set, should not need to continue
+          scope.$store.commit('forums/setUserId', {
+            forumId: BITCOINTALK_FORUM_ID,
+            userId: scope.forumUserId
+          })
+          scope.doNext();
         } else {
           // Inform that the user account was found
           // this.$swal({
           //     text: "User account found"
           // })
-          const forumProfile = response.exists;
-          if (!forumProfile) {
+          // if (!response.exists) {
             //create profile
-            scope.createForumProfile(this.userId, 1).then(res => {
+            scope.createForumProfile(this.forumUserId).then(res => {
               console.log("Creating Forum Proile", res);
             });
-          } else {
-            //retrieveForumProflie
-            retrieveForumProfiles("1", this.userId).then(response => {
-              var activeUserForum = this.$store.state.activeUserForum;
-              var activeUserForumUpdate = Object.assign(
-                { activeUserForum },
-                {
-                  userId: this.userId,
-                  forumId: 1,
-                  forumProfileId: response.forum_profiles[0].id
-                }
-              );
-              scope.$store.dispatch(
-                "changeActiveUserForumAction",
-                activeUserForumUpdate
-              );
-            });
-          }
-          scope.error = false;
-          scope.doNext();
+          // } else {
+          //   //retrieveForumProflie
+          //   retrieveForumProfiles("1", this.userId).then(response => {
+          //     var activeUserForum = this.$store.state.activeUserForum;
+          //     var activeUserForumUpdate = Object.assign(
+          //       { activeUserForum },
+          //       {
+          //         userId: this.userId,
+          //         forumId: 1,
+          //         forumProfileId: response.forum_profiles[0].id
+          //       }
+          //     );
+          //     scope.$store.dispatch(
+          //       "changeActiveUserForumAction",
+          //       activeUserForumUpdate
+          //     );
+          //   });
+          // }
+          // scope.error = false;
+          // scope.doNext();
         }
       });
     },
-    createForumProfile: function(profile_url, forum_id) {
-      createForumProfile(profile_url, forum_id, true)
+    createForumProfile: function(forum_user_id) {
+      createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
         .then(res => {
-          var activeUserForum = this.$store.state.activeUserForum;
-          var activeUserForumUpdate = Object.assign(
-            { activeUserForum },
-            {
-              userId: this.userId,
-              forumId: 1,
-              forumProfileId: res.forum_profiles[0].id
-            }
-          );
-          scope.$store.dispatch(
-            "changeActiveUserForumAction",
-            activeUserForumUpdate
-          );
+          scope.$store.commit('forum/setUserId', {
+            forumId: BITCOINTALK_FORUM_ID,
+            userId: forum_user_id
+          })
+          // var activeUserForum = this.$store.state.activeUserForum;
+          // var activeUserForumUpdate = Object.assign(
+          //   { activeUserForum },
+          //   {
+          //     userId: this.userId,
+          //     forumId: 1,
+          //     forumProfileId: res.forum_profiles[0].id
+          //   }
+          // );
+          // scope.$store.dispatch(
+          //   "changeActiveUserForumAction",
+          //   activeUserForumUpdate
+          // );
 
-          console.log("CREATIG FORUM PROFILE ANDD.....", res);
+          // console.log("CREATIG FORUM PROFILE ANDD.....", res);
           //this.$emit("can-continue", { value: true });
         })
         .then(() => {
@@ -223,22 +239,23 @@ export default {
         });
     }
   },
-  mounted() {
-    var userIdState = this.$store.state.signatures.activeUserForum.userId;
-    if (userIdState) {
-      this.userId = userIdState;
-    } else {
-      this.userId = "";
-    }
+  // TODO Get the user ID for the bitcointalk forum from the server
+  // mounted() {
+  //   var userIdState = this.$store.state.signatures.activeUserForum.userId;
+  //   if (userIdState) {
+  //     this.userId = userIdState;
+  //   } else {
+  //     this.userId = "";
+  //   }
 
-    this.$emit("can-continue", { value: true });
-    var fetchedMessage = this.$store.state.signatures.activeUserForum.activeSignature; //.code;
-    if (fetchedMessage) {
-      this.message = fetchedMessage.code || "";
-    } else {
-      userId = "";
-    }
-  }
+  //   this.$emit("can-continue", { value: true });
+  //   var fetchedMessage = this.$store.state.signatures.activeUserForum.activeSignature; //.code;
+  //   if (fetchedMessage) {
+  //     this.message = fetchedMessage.code || "";
+  //   } else {
+  //     userId = "";
+  //   }
+  // }
 };
 </script>
 

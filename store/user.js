@@ -1,6 +1,6 @@
 export const state = () => ({
     overallStats: {},
-    userId: -1,
+    userId: undefined,
     language: 'en'
 });
 
@@ -20,8 +20,3 @@ export const mutations = {
     }
 };
 
-export const actions = {
-    changeOverallStatsAction: ({ commit }, data) => {
-        commit('changeOverallStatsMutation', data );  
-    }
-};

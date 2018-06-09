@@ -52,9 +52,6 @@
         methods: {
             onCopy: function (sig) {
                 alert('You just copied: ' + sig.code)
-
-                // TODO Only dispatching here so step 4 in the onboarding flow still works.
-                this.$store.dispatch('changeActiveUserForumSignatureAction', sig);
             }
         }
     }
