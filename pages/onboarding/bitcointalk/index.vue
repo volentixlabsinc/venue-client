@@ -49,7 +49,6 @@
 
 
 <script>
-import HorizontalStepper from "vue-stepper";
 import leaderboard from "~/components/leaderboard";
 
 // >>> #68
@@ -66,7 +65,6 @@ import { createSignature } from "~/services/signatures";
 
 export default {
   components: {
-    HorizontalStepper,
     ModalWidget,
     HelpImages,
     AvailableSignatures,
