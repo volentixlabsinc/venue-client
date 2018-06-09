@@ -19,11 +19,6 @@ export default {
       type: Object
     }
   },
-  methods: {
-      onClickSignautre() {
-        this.$router.push('/edit-signature')
-      },
-  },
   components: {
      lineChart,
   }
