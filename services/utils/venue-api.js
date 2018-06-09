@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 import {readFromCookie, clearCookie, clearLocalStorage } from '~/services/utils/browser-storage'; 
-const baseUrl = '/api';
+const baseUrl = process.env.baseUrl;
 
 const POSTPUT_OPTIONS = {
     credentials: 'same-origin',

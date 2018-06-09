@@ -38,6 +38,9 @@ module.exports = {
   css: [
     '@/assets/scss/mdb.scss'
   ],
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:8000/api'
+  },
   plugins: [
     '~/plugins/vue-clipboard',
     // '~/plugins/vue-sweetalert2',
