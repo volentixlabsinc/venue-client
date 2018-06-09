@@ -38,54 +38,6 @@ export default {
 
 <style lang="scss" scoped>
 
-/* Start default styling */
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-
-/* End default styling */
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;  
   text-align: center;
@@ -97,7 +49,6 @@ html {
   background-image: linear-gradient(to top,  #222C3B, #494B5E);
   flex-wrap: wrap;
 }
-
 
 .top-left {
   height: 10%;
@@ -180,13 +131,13 @@ html {
 
 @media only screen and (min-width: 900px) {
    #venue-logo {
-  max-height: 25px;
-  margin: 10px;
+    max-height: 25px;
+    margin: 10px;
   }
 }
 @media only screen and (min-width: 1000px) {
    #venue-logo {
-  max-height: 40px;
+    max-height: 40px;
   }
 }
 
