@@ -32,7 +32,8 @@
           </div>
         <div class="leaderboard-container">
              <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"></i></h2>
-        <leaderboard :shortenedLeaderboard="true"/>
+        <leaderboard :shortenedLeaderboard="true" :rankings="$store.state.leaderboard.rankings" 
+            :sitewide="$store.state.leaderboard.sitewide"/>
         </div>
 </div>
 </template>
