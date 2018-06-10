@@ -6,7 +6,7 @@
                             <img id="trophy" src="/img/svg/trophy2.svg"/>
                             <ICountUp
                             :startVal="0"
-                            :endVal="Number(this.localStats.myRanking)"
+                            :endVal="Number(this.localStats.overall_rank)"
                             :decimals="0"
                             :duration="2.5"
                             :options="options"/>
