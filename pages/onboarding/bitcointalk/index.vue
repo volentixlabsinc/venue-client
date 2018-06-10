@@ -36,7 +36,6 @@
 <script>
 import leaderboard from "~/components/leaderboard";
 
-// >>> #68
 import ModalWidget from "~/components/ModalWidget.vue";
 import HelpImages from "~/components/HelpImages.vue";
 import {
@@ -46,7 +45,6 @@ import {
 import { retrieveForumProfiles } from "~/services/forum";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { createSignature } from "~/services/signatures";
-// <<<
 
 const BITCOINTALK_FORUM_ID = 1
 
@@ -70,12 +68,7 @@ export default {
       check: false
     };
   },
-  fetch ({ store }) {
-    // The `fetch` method is used to fill the store before rendering the page
-    // TODO get the forumUserId of this user
-  },
   methods: {
-    // >>> #68
     doNext(evt) {
       if (evt) {
         evt.preventDefault();
@@ -88,91 +81,33 @@ export default {
       }
       this.step = this.step - 1;
     },
-    validateId: function(evt) {
-      //this.$emit('can-continue', {value: true});
+    validateId: async function(evt) {
       evt.preventDefault();
 
-      //forum profile create?
       const scope = this;
-      checkProfile(scope.forumUserId, BITCOINTALK_FORUM_ID).then(response => {
-        if (!response.found) {
+      const { data } = await checkProfile(scope.forumUserId, BITCOINTALK_FORUM_ID)
+        if (!data.found) {
           scope.error = true;
-        } else if (response.exists) {
+        } else if (data.exists) {
           // TODO if the signature is already set, should not need to continue
           scope.$store.commit('forums/register', {
             forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: response.forum_user_id,
-            venueForumUserId: response.forum_profile_id
+            forumUserId: data.forum_user_id,
+            venueForumUserId: data.forum_profile_id
           })
           scope.doNext();
         } else {
-          // Inform that the user account was found
-          // this.$swal({
-          //     text: "User account found"
-          // })
-          // if (!response.exists) {
-            //create profile
-            scope.createForumProfile(this.forumUserId).then(res => {
-              console.log("Creating Forum Proile", res);
-            });
-          // } else {
-          //   //retrieveForumProflie
-          //   retrieveForumProfiles("1", this.userId).then(response => {
-          //     var activeUserForum = this.$store.state.activeUserForum;
-          //     var activeUserForumUpdate = Object.assign(
-          //       { activeUserForum },
-          //       {
-          //         userId: this.userId,
-          //         forumId: 1,
-          //         forumProfileId: response.forum_profiles[0].id
-          //       }
-          //     );
-          //     scope.$store.dispatch(
-          //       "changeActiveUserForumAction",
-          //       activeUserForumUpdate
-          //     );
-          //   });
-          // }
-          // scope.error = false;
-          // scope.doNext();
+            await scope.createForumProfile(scope.forumUserId)
         }
-      });
     },
-    createForumProfile: function(forum_user_id) {
-      createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
-        .then(res => {
+    async createForumProfile (forum_user_id) {
+      const { data } = createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
           scope.$store.commit('forums/register', {
             forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: res.forum_user_id,
-            venueForumUserId: res.forum_profile_id
+            forumUserId: data.forum_user_id,
+            venueForumUserId: data.forum_profile_id
           })
-          // var activeUserForum = this.$store.state.activeUserForum;
-          // var activeUserForumUpdate = Object.assign(
-          //   { activeUserForum },
-          //   {
-          //     userId: this.userId,
-          //     forumId: 1,
-          //     forumProfileId: res.forum_profiles[0].id
-          //   }
-          // );
-          // scope.$store.dispatch(
-          //   "changeActiveUserForumAction",
-          //   activeUserForumUpdate
-          // );
-
-          // console.log("CREATIG FORUM PROFILE ANDD.....", res);
-          //this.$emit("can-continue", { value: true });
-        })
-        .then(() => {
-          // this.$swal({
-          //   text: "User account found"
-          // });
-        })
-        .catch(err => {
-          console.log("Something went wrong", err);
-        });
-    },
-    // <<<
+      },
 
     changeActiveForm(payload) {
       console.log("changeactive forum triggering");
@@ -186,16 +121,11 @@ export default {
     onError: function(e) {
       alert("Failed to copy texts");
     },
-    verify: function() {
-      console.log("Verifying");
+    async verify () {
       var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).venueForumUserId
       var signature_id = this.$store.state.copiedSignatureId
 
-      createSignature(forum_profile_id, signature_id, true)
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
+      const { data } = await createSignature(forum_profile_id, signature_id, true)
           if (data.success) {
             // this.$swal({
             //   title: "Signature Placement Verified",
@@ -221,26 +151,8 @@ export default {
             //   }
             // });
           }
-        });
-    }
-  },
-  // TODO Get the user ID for the bitcointalk forum from the server
-  // mounted() {
-  //   var userIdState = this.$store.state.signatures.activeUserForum.userId;
-  //   if (userIdState) {
-  //     this.userId = userIdState;
-  //   } else {
-  //     this.userId = "";
-  //   }
-
-  //   this.$emit("can-continue", { value: true });
-  //   var fetchedMessage = this.$store.state.signatures.activeUserForum.activeSignature; //.code;
-  //   if (fetchedMessage) {
-  //     this.message = fetchedMessage.code || "";
-  //   } else {
-  //     userId = "";
-  //   }
-  // }
+        }
+  }
 };
 </script>
 
