@@ -23,8 +23,6 @@
 
 <script>
 import { checkForEmail, checkForUsername, createUser } from '~/services/account';
-import { clearCookie } from '~/services/utils/browser-storage';
-
 
 export default {
   props: {
@@ -43,33 +41,25 @@ export default {
   },
 
   methods: {
-    checkEmail: function(email) {
-        checkForEmail(this.email).then(res => {
-          if (res.status === 200) {
-
-          }
-        })
+    // TODO Call this to verify a unique email address, before pressing the register button
+    checkEmail: async function(email) {
+      const { data } = await checkForEmail(this.email)
+      if (data.email_exists) {
+        // TODO Display error
+      }
     },
-    registerUser: function(event) {
+    registerUser: async function(event) {
      event.preventDefault()
      this.signUpError = false
-     clearCookie();
-     createUser(this.email, this.username, this.confirmation)
-      .then(res => {
-          if(res.status === 200) {
-              this.$emit('sucessfulRegistration'); 
-          } else {
-            return {
-              status: res.status
-            }
-          }
-      })
-      .then(data => {
-          if (data.status === 400) {
-              console.log('There was an error: ', data)
-              this.signUpError = true
-          }
-      })
+
+     const result = await createUser(this.email, this.username, this.password)
+
+     if (result.status !== 200) {
+        console.error('There was an error: ', data)
+        this.signUpError = true
+     } else {
+       this.$emit('sucessfulRegistration'); 
+     }
     }
   }
 }

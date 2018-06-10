@@ -16,19 +16,8 @@
 <script>
   import navbar from '~/components/navbar/index.vue';
   import tokens from '~/components/tokens/index.vue';
-  import { readFromCookie } from '~/services/utils/browser-storage'; 
 
-export default {
-  name: 'app',
-  data () {
-    return  {
-      logIn: false
-    }
-  },
-  mounted() {
-    readFromCookie(); 
-  },
-  
+export default {  
   components: {
     navbar,
     tokens

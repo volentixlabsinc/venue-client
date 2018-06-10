@@ -24,10 +24,10 @@
         :action="action"
         class="btn signup">signup</button>
     </div>
-    <div v-if="data" class="card campaigns">
+    <div class="card campaigns">
         <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
-        <leaderboard v-if="data.rankings" :rankings="data.rankings" :sitewide="data.sitewide" />
+        <leaderboard v-if="rankings" :rankings="rankings" :sitewide="sitewide" />
     </div>
     
   </div>
@@ -37,8 +37,6 @@
 import login from '~/components/Login.vue';
 import signup from '~/components/Signup.vue';
 import leaderboard from '~/components/leaderboard/index.vue'
-import { getLeaderBoardData } from '~/services/leaderboard'; 
-import { checkForUsername, checkForEmail } from '~/services/account'; 
 
 
 export default {
@@ -46,17 +44,9 @@ export default {
   data() {
       return {
           action: null,
-          data: null,
+          rankings: this.$store.state.leaderboard.rankings,
+          sitewide: this.$store.state.leaderboard.sitewide
       }
-  },
-  mounted(){
-    getLeaderBoardData()
-      .then(response => {
-          this.data = response;
-      })
-      .catch(ex => {
-        console.error(ex);
-      });
   },
   methods: {
       handleSuccessfulRegistration: function(){
