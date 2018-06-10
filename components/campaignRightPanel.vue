@@ -39,7 +39,7 @@
 
 <script>
 import ICountUp from 'vue-countup-v2';
-import leaderboard from './leaderboard/index.vue'
+import leaderboard from '~/components/leaderboard/index.vue'
 export default {
   
   data () {
@@ -56,7 +56,7 @@ export default {
   },
   computed: {
         sitewide() {
-            return this.$store.getters.getOverallStats.sitewide;
+            return this.$store.state.userStats.sitewide;
         },
     },
   methods: {

@@ -7,14 +7,14 @@
           <button class="btn venue-accent-color">CHANGE</button>
         </div>
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
-         <forum :forumInfo="forumInfo"/>
-          </div>
-         <my-campaign :data="profile_level_global" />
+           <forum :forumInfo="forumInfo"/>
+        </div>
+        <my-campaign :data="profile_level_global" />
       </div>
       <div v-if="profile_level_global" class="card all-campaigns-container">
         <campaign-right-panel />
       </div>
-      </div>
+    </div>
 </template>
 
 <script>
@@ -34,8 +34,8 @@ export default {
   data () {
     return {
       data: null,
-      profile_level_forum: null,
-      profile_level_global: null,
+      profile_level_forum: this.$store.state.userStats.profile_level,
+      profile_level_global: this.$store.state.userStats.user_level,
       options: {
           useEasing: true,
           useGrouping: false,
