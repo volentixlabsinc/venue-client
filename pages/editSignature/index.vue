@@ -21,21 +21,7 @@
     components: {
       AvailableSignatures,
       campaignRightPanel
-    },
-  async fetch ({ store }) {
-    // TODO Merge copied code between dashboard & leaderboard
-      const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
-      }
-
-      const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
-      const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
-
-      store.commit('setLeaderboardData', leaderboardData)
-      store.commit('setUserStats', userStats.stats)
-  },
+    }
   }
 </script>
 

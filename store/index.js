@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const state = () => ({
   copiedSignatureId: undefined,
   leaderboard: {
@@ -131,6 +133,23 @@ export const state = () => ({
   //   }
   }
 })
+
+export const actions = {
+  async nuxtServerInit ( { commit }, context) {
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      // FIXME Use user's token
+      'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
+    }
+
+    const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
+    const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
+
+    await commit('setLeaderboardData', leaderboardData)
+    await commit('setUserStats', userStats.stats)
+  }
+}
 
 export const mutations = {
   signatureCopied (state, signatureId) {
