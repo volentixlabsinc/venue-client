@@ -15,34 +15,27 @@
 <script>
   import AvailableSignatures from "~/components/AvailableSignatures.vue"
   import campaignRightPanel from "~/components/campaignRightPanel.vue";
+  import axios from 'axios'
 
   export default {
-    data() {
-      return {
-        // currentSignatureImg: this.$store.state.signatures.activeUserForum.activeSignature.image
-      }
-    },
     components: {
       AvailableSignatures,
       campaignRightPanel
     },
-  mounted(){
-  retrieveStats() 
-    .then(res => {
-      if(res.stats.fresh) {
-          this.$router.push('/onboarding/bitcointalk/')
+  async fetch ({ store }) {
+    // TODO Merge copied code between dashboard & leaderboard
+      const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
       }
-    }) 
 
-    this.fetchStats();
-     getLeaderBoardData()
-      .then(response => {
-          this.data = response;
-      })
-      .catch(ex => {
-        console.error(ex);
-      })
-  }
+      const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
+      const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
+
+      store.commit('setLeaderboardData', leaderboardData)
+      store.commit('setUserStats', userStats.stats)
+  },
   }
 </script>
 

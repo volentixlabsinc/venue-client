@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import {retrieveStats } from '~/services/dashboard';
-import {retrieveNotifications } from '~/services/notifications';
-import { getLeaderBoardData } from '~/services/leaderboard'; 
+// import {retrieveStats } from '~/services/dashboard';
+// import {retrieveNotifications } from '~/services/notifications';
+// import { getLeaderBoardData } from '~/services/leaderboard'; 
 
 import forum from '~/components/forum.vue';
 import myCampaign from '~/components/myCampaign.vue';
