@@ -14,36 +14,6 @@
   </div>
 </template>
 
-
-
-<script>
-import {retrieveUser } from '~/services/account';
-
-export default {
-  Data () {
-    return {
-      user: {}
-    }
-  },
-  mounted(){
-    this.fetchUser();   
-  },
-  methods: {
-    fetchUser() {
-    retrieveUser()
-    .then(response => {
-      this.user = response;
-      console.log('retrieveUser', response);
-    })
-    .catch(error => {
-      console.log('error fetching user data', error);
-    })
-    },
-  }
-}
-</script>
-
-
 <style scoped>
 .main-section {
   width: 100%;
