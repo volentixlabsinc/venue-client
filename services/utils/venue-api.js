@@ -43,6 +43,7 @@ class VenueAPI {
         const result = await this.http.post('/authenticate/', json)
         if (result.status === 200) {
             writeToCookie(result.data.token)
+            this.setToken(result.data.token)
         }
         return result
   }
