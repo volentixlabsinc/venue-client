@@ -1,14 +1,7 @@
 export const state = () => ({
-    overallStats: {},
     userId: undefined,
     language: 'en'
 });
-
-export const getters = {
-    getOverallStats: (state) => {
-        return state.overallStats;
-    }
-};
 
 export const mutations = {
     authenticated (state, { userId, language }) {
@@ -16,4 +9,3 @@ export const mutations = {
         state.language = language
     }
 };
-
