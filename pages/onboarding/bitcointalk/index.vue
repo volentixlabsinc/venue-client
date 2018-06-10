@@ -81,21 +81,13 @@ export default {
       }
       this.step = this.step - 1;
     },
-    validateId: async function(evt) {
+    async validateId (evt) {
       evt.preventDefault();
 
       const scope = this;
       const { data } = await checkProfile(scope.forumUserId, BITCOINTALK_FORUM_ID)
         if (!data.found) {
           scope.error = true;
-        } else if (data.exists) {
-          // TODO if the signature is already set, should not need to continue
-          scope.$store.commit('forums/register', {
-            forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: data.forum_user_id,
-            venueForumUserId: data.forum_profile_id
-          })
-          scope.doNext();
         } else {
             await scope.createForumProfile(scope.forumUserId)
         }
@@ -108,12 +100,6 @@ export default {
             venueForumUserId: data.forum_profile_id
           })
       },
-
-    changeActiveForm(payload) {
-      console.log("changeactive forum triggering");
-      this.activeProfile = payload.userId;
-      this.changeActiveForum = payload.forumId;
-    },
     onCopy: function(e) {
         // FIXME 
         // this.$swal("You just copied: ", e.text);
