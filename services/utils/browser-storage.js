@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 
-
 const sessionTimeoutMinutes = 30; // minutes
 
 export function clearSessionStorage() {
@@ -41,7 +40,6 @@ export function writeToLocalStorage(key, data) {
         localStorage.setItem(key, JSON.stringify(data));
     }
 }
-
 
 export function readFromCookie(){
     return Cookies.get('csrftoken')

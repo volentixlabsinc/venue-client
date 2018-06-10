@@ -7,7 +7,7 @@
         <div class="campaigns-number-card">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
-            :endVal="userSitewide.total_users"
+            :endVal="sitewide.total_users"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -17,7 +17,7 @@
         <div class="campaigns-number-card">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
-            :endVal="userSitewide.total_posts"
+            :endVal="sitewide.total_posts"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -27,13 +27,13 @@
          </div>
         <div class="tokens-info">
             <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
-            <h1 class="nb-tokens">{{userSitewide.available_tokens}} VTX</h1>
+            <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
             <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"></i>AVAILABLE REWARDS</h1>
           </div>
         <div class="leaderboard-container">
              <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"></i></h2>
         <leaderboard :shortenedLeaderboard="true" :rankings="$store.state.leaderboard.rankings" 
-            :sitewide="$store.state.leaderboard.sitewide"/>
+            :sitewide="sitewide"/>
         </div>
 </div>
 </template>
@@ -45,7 +45,7 @@ export default {
   
   data () {
     return {
-      userSitewide: this.$store.state.userStats.sitewide,
+      sitewide: this.$store.state.leaderboard.sitewide,
       options: {
           useEasing: true,
           useGrouping: false,

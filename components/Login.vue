@@ -19,8 +19,8 @@
 
 
 <script>
-import {authenticate} from  '~/services/auth';
-import {writeToCookie} from '~/services/utils/browser-storage';
+import { authenticate } from  '~/services/auth';
+import { retrieveStats } from '~/services/dashboard'
 
 export default {
   props: {
@@ -36,34 +36,29 @@ export default {
       password: ''
     }
   },
-  mounted(){
-    console.log('logIn');
-  },
   methods: {
-    authenticateLogin: function(event) {
+    async authenticateLogin (event) {
       event.preventDefault()
       this.loginError = false
-      authenticate(this.username, this.password)
-      .then(response => {
-        if(response.status === 200) {
-          return response.data
-        } else {
-          //Handle Login Error here 
-          console.log('wrong credentials')
-          var message = 'something went wrong'
-          this.loginError = true
-          return message
-        }
-      }).then(data=> {
-          if (data.success) {
-              writeToCookie(data.token)
-              this.$store.commit('user/authenticated', {
-                userId: data.user_profile_id,
-                language: data.language 
-              })
-              this.$router.push('/dashboard')
-          }
+      
+      const authResponse = await authenticate(this.username, this.password)
+      if (authResponse.status !== 200) {
+        //Handle Login Error here 
+        console.log('wrong credentials')
+        var message = 'something went wrong'
+        this.loginError = true
+        return message
+      }
+
+      this.$store.commit('user/authenticated', {
+        userId: authResponse.data.user_profile_id,
+        language: authResponse.language 
       })
+
+      const { data: userStats } = await retrieveStats()
+      await this.$store.commit('setUserStats', userStats.stats)
+
+      this.$router.push('/dashboard')
     }
   }
 }

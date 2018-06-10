@@ -6,13 +6,13 @@
           class="top-stats" 
           v-if="$store.state.leaderboard.sitewide.total_users>0" 
           :campaignStats="$store.state.leaderboard.sitewide" 
-          :localStats="$store.state.leaderboard.userstats"/>  
+          :localStats="$store.state.userStats.user_level"/>  
           <leaderboard class="leaderboard" :rankings="$store.state.leaderboard.rankings" 
             :sitewide="$store.state.leaderboard.sitewide"/>
       </div>
         <div class="stats-container">
             <user-stats
-            v-if="$store.state.userStats.sitewide.total_posts>=0"
+            v-if="$store.state.leaderboard.sitewide.total_posts>=0"
             :campaignStats="$store.state.userStats.sitewide" 
             :localStats="$store.state.userStats.user_level"
             :profileLevel="$store.state.userStats.profile_level"
@@ -23,16 +23,13 @@
 </template>
 
 <script>
+import ICountUp from 'vue-countup-v2';
+
 import leaderboard from '~/components/leaderboard/index.vue';
 import userStats from '~/components/userStats.vue';
 import topStats from '~/components/topStats.vue';
 import editSignatureButton from '~/components/editSignatureButton.vue';
-// import { getLeaderBoardData } from '~/services/leaderboard'; 
-// import {retrieveStats } from '~/services/dashboard';
-// import {retrieveUser } from '~/services/account';
-import ICountUp from 'vue-countup-v2';
-import axios from 'axios'
-
+import { retrieveStats } from '~/services/dashboard'
 
 export default {
   components: {

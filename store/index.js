@@ -1,5 +1,8 @@
 import axios from 'axios'
 import { getLeaderBoardData } from '~/services/leaderboard'
+import cookie from 'cookie'
+
+import VenueAPI from '~/services/utils/venue-api'
 import { retrieveStats } from '~/services/dashboard'
 
 export const state = () => ({
@@ -124,24 +127,26 @@ export const state = () => ({
   //     "total_tokens": 0,
   //     "overall_rank": 2
   //   },
-  //   "sitewide": {
-  //     "total_users": 3,
-  //     "total_posts": 2,
-  //     "available_tokens": "120,000"
-  //   }
   }
 })
 
 export const actions = {
-  async nuxtServerInit ( { commit }, context) {
+    // This is executed on the server
+    async nuxtServerInit ( { commit }, { req }) {
 
     const { data: leaderboardData } = await getLeaderBoardData()
     await commit('setLeaderboardData', leaderboardData)
 
-    // const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
-    // const { data: userStats } = await retrieveStats()
+    // If we receive a request with our cookie, we can load the userStats for that
+    // user here on the server and fill in the store, saving a call to the server
+    // to get that data.
+    const cookies = cookie.parse(req.headers.cookie)
+    if (cookies.csrftoken) {
+      VenueAPI.setToken(cookies.csrftoken)
 
-    // await commit('setUserStats', userStats.stats)
+      const { data: userStats } = await retrieveStats()
+      await commit('setUserStats', userStats.stats)
+    }
   }
 }
 
@@ -152,7 +157,7 @@ export const mutations = {
   setLeaderboardData (state, { rankings, sitewide, forumstats }) {
     state.leaderboard = { ...state.leaderboard, rankings, sitewide, forumstats }
   },
-  setUserStats (state, { profile_level, user_level, sitewide }) {
-    state.userStats = { ...state.userStats, profile_level, user_level, sitewide }
+  setUserStats (state, { profile_level, user_level }) {
+    state.userStats = { ...state.userStats, profile_level, user_level }
   }
 };

@@ -6,7 +6,7 @@
                             <img id="trophy" src="/img/svg/trophy2.svg"/>
                             <ICountUp
                             :startVal="0"
-                            :endVal="Number(this.localStats.overall_rank)"
+                            :endVal="Number(rank)"
                             :decimals="0"
                             :duration="2.5"
                             :options="options"/>
@@ -18,7 +18,7 @@
                     <h1 class="dashboard-numbers">
                         <ICountUp
                         :startVal="0"
-                        :endVal="Number(this.campaignStats.total_users)"
+                        :endVal="Number(campaignStats.total_users)"
                         :decimals="0"
                         :duration="2.5"
                         :options="options"/>
@@ -30,7 +30,7 @@
                     <h1 class="dashboard-numbers">
                         <ICountUp
                         :startVal="0"
-                        :endVal="Number(this.campaignStats.total_posts)"
+                        :endVal="Number(campaignStats.total_posts)"
                         :decimals="0"
                         :duration="2.5"
                         :options="options"/>
@@ -49,20 +49,21 @@ import ICountUp from 'vue-countup-v2';
 import forumStatsPosts from '~/components/forumActivity/forumStatsPosts';
 
 export default {
-    props: {
-        campaignStats: {
-            type: Object,
-            default: () => {}
-        },
-        localStats: {
-            type: Object,
-            default: () => {}
-        },
-    },
-    data() {
-        return{
-    //         signature: false,
-    //         datacollectionPoints: {},
+    // props: {
+    //     campaignStats: {
+    //         type: Object,
+    //         required: true
+    //     },       
+    //     localStats: {
+    //         type: Object,
+    //         required: true
+    //     },
+    // },
+    data () {
+        return {
+            rank: this.$store.state.userStats.user_level.overall_rank,
+            campaignStats: this.$store.state.leaderboard.sitewide,
+            localStats: this.$store.state.userStats.user_level,
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -70,16 +71,9 @@ export default {
                 decimal: '.',
                 prefix: '',
                 suffix: ''
-        },
+            },
         }
     },
-    // mounted() {
-    //     console.log('this.campaignStats', this.campaignStats);
-    //     console.log('this.campaignStats.total_users', this.campaignStats.total_users);
-    // },
-    // methods: { 
-
-    // },
     components: {
         ICountUp,
         forumStatsPosts
