@@ -44,6 +44,7 @@ export const state = () => ({
     // }
   },
   userStats: {
+  //   "fresh": false,
   //   "profile_level": [
   //     {
   //       "User_ID": "1929041",
@@ -160,7 +161,7 @@ export const mutations = {
   setLeaderboardData (state, { rankings, sitewide, forumstats }) {
     state.leaderboard = { ...state.leaderboard, rankings, sitewide, forumstats }
   },
-  setUserStats (state, { profile_level, user_level }) {
-    state.userStats = { ...state.userStats, profile_level, user_level }
+  setUserStats (state, { fresh, profile_level, user_level }) {
+    state.userStats = { ...state.userStats, fresh, profile_level, user_level }
   }
 };

@@ -18,10 +18,6 @@
 </template>
 
 <script>
-// import {retrieveStats } from '~/services/dashboard';
-// import {retrieveNotifications } from '~/services/notifications';
-// import { getLeaderBoardData } from '~/services/leaderboard'; 
-
 import forum from '~/components/forum.vue';
 import myCampaign from '~/components/myCampaign.vue';
 import campaignRightPanel from '~/components/campaignRightPanel.vue';
@@ -29,11 +25,8 @@ import ICountUp from 'vue-countup-v2';
 import axios from 'axios'
 
 export default {
-
-  name: 'dashboard',
   data () {
     return {
-      data: null,
       profile_level_forum: this.$store.state.userStats.profile_level,
       profile_level_global: this.$store.state.userStats.user_level,
       options: {
@@ -44,6 +37,11 @@ export default {
           prefix: '',
           suffix: ''
         },
+    }
+  },
+  mounted () {
+    if (this.$store.state.userStats.fresh) {
+      this.$router.push('/onboarding/bitcointalk/')
     }
   },
   components: {
