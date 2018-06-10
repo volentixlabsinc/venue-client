@@ -21,10 +21,6 @@ export const state = () => ({
     //   "total_users": 3,
     //   "total_posts": 2
     // },
-    // "userstats": {
-    //   "overall_rank": 2,
-    //   "total_tokens": 0
-    // },
     // "forumstats": {
     //   "posts": [
     //     {
@@ -153,8 +149,8 @@ export const mutations = {
   signatureCopied (state, signatureId) {
     state.copiedSignatureId = signatureId
   },
-  setLeaderboardData (state, { rankings, sitewide, userstats, forumstats }) {
-    state.leaderboard = { ...state.leaderboard, rankings, sitewide, userstats, forumstats }
+  setLeaderboardData (state, { rankings, sitewide, forumstats }) {
+    state.leaderboard = { ...state.leaderboard, rankings, sitewide, forumstats }
   },
   setUserStats (state, { profile_level, user_level, sitewide }) {
     state.userStats = { ...state.userStats, profile_level, user_level, sitewide }
