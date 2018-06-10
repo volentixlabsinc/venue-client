@@ -1,27 +1,25 @@
 <template>
     <div class=" leaderboard">
-        <table v-if="data" v-for="(elements, key) in data.rankings" :key="key">
-            <short-leaderboard-entry v-if="shortenedLeaderboard" :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/>
-            <leaderboard-entry v-else :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/> 
+        <table v-if="data" v-for="(elements, key) in rankings" :key="key">
+            <short-leaderboard-entry v-if="shortenedLeaderboard" :elements="elements" :sitewide="sitewide" :myRank="myRank"/>
+            <leaderboard-entry v-else :elements="elements" :sitewide="sitewide" :myRank="myRank"/> 
         </table>
         
-       <table v-else  v-for="(elements, key) in data.rankings" :key="key">
-            <leaderboard-entry :elements="elements" :sitewide="data.sitewide" :myRank="myRank"/> 
+       <table v-else  v-for="(elements, key) in rankings" :key="key">
+            <leaderboard-entry :elements="elements" :sitewide="sitewide" :myRank="myRank"/> 
        </table>
      
     </div>
 </template>
 
 <script>
-// import { getLeaderBoardData } from '~/services/leaderboard'; 
-// import {retrieveStats } from '~/services/dashboard';
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
 import { readFromCookie } from '~/services/utils/browser-storage.js'
 export default {
     props:{
-        campaignStats: Object,
-        localStats: Object,
+        rankings: Object,
+        sitewide: Object,
         shortenedLeaderboard: {
             type: Boolean,
             default: false
@@ -35,33 +33,6 @@ export default {
             myRank:0
         }
     },
-    // mounted() {
-    //     var isAuth = readFromCookie(); 
-    //     console.log('shortenedLeaderboard', this.shortenedLeaderboard);
-    //     getLeaderBoardData()
-    //         .then(response => {
-    //             this.data = response;                        
-    //         })
-    //         .catch(ex => {
-    //             console.error(ex);
-    //         })
-
-    //     if(isAuth) {
-    //         retrieveStats()
-    //         .then(response => {
-    //             console.log('response: ', response);
-               
-    //             this.userStats = response.stats.user_level;
-    //              if (this.userStats.overall_rank==null) {
-    //                 this.myRank = 0;
-    //             } else {
-    //                 this.myRank = Number(this.userStats.overall_rank);
-    //             }   
-    //         })
-
-    //     }
-  
-    // },
     components: {
         leaderboardEntry,
         shortLeaderboardEntry

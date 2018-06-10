@@ -7,7 +7,8 @@
           v-if="$store.state.leaderboard.sitewide.total_users>0" 
           :campaignStats="$store.state.leaderboard.sitewide" 
           :localStats="$store.state.leaderboard.userstats"/>  
-          <leaderboard class="leaderboard"/>
+          <leaderboard class="leaderboard" :rankings="$store.state.leaderboard.rankings" 
+            :sitewide="$store.state.leaderboard.sitewide"/>
       </div>
         <div class="stats-container">
             <user-stats
