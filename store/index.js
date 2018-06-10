@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { getLeaderBoardData } from '~/services/leaderboard'
+import { retrieveStats } from '~/services/dashboard'
 
 export const state = () => ({
   copiedSignatureId: undefined,
@@ -136,18 +138,14 @@ export const state = () => ({
 
 export const actions = {
   async nuxtServerInit ( { commit }, context) {
-    const headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      // FIXME Use user's token
-      'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
-    }
 
-    const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
-    const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
-
+    const { data: leaderboardData } = await getLeaderBoardData()
     await commit('setLeaderboardData', leaderboardData)
-    await commit('setUserStats', userStats.stats)
+
+    // const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
+    // const { data: userStats } = await retrieveStats()
+
+    // await commit('setUserStats', userStats.stats)
   }
 }
 

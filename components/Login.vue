@@ -46,7 +46,7 @@ export default {
       authenticate(this.username, this.password)
       .then(response => {
         if(response.status === 200) {
-          return response.json()
+          return response.data
         } else {
           //Handle Login Error here 
           console.log('wrong credentials')
