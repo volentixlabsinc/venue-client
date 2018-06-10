@@ -18,7 +18,7 @@ import shortLeaderboardEntry from "./shortLeaderboardEntry";
 import { readFromCookie } from '~/services/utils/browser-storage.js'
 export default {
     props:{
-        rankings: Object,
+        rankings: Array,
         sitewide: Object,
         shortenedLeaderboard: {
             type: Boolean,
