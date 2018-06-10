@@ -2,13 +2,13 @@
 <div class="forum">
 <h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
 <div class="chart"> 
-<line-chart :width="350" :height="200" ></line-chart>
+<forum-chart :width="350" :height="200" ></forum-chart>
 </div>
 </div>
 </template>
 
 <script>
-import lineChart from '~/components/forumActivity/linechart.js';
+import ForumChart from '~/components/forumActivity/ForumChart.vue';
 
 export default {
   props: {
@@ -17,7 +17,7 @@ export default {
     },
   },
   components: {
-     lineChart,
+     ForumChart,
   }
 }
 </script>

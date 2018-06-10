@@ -5,7 +5,7 @@
     </div>
     <div class="card">
         <div class="chart"> 
-            <line-chart :width="450" :height="300" ></line-chart>
+            <forum-chart :width="450" :height="300" ></forum-chart>
         </div>
         <div class="campaigns-info-container">
          <div class="campaigns_info number-desktop">
@@ -49,7 +49,7 @@
 
 <script>
 import ICountUp from 'vue-countup-v2';
-import lineChart from '~/components/forumActivity/linechart.js'
+import ForumChart from '~/components/forumActivity/ForumChart.vue'
 
 export default {
     props: {
@@ -93,7 +93,7 @@ export default {
     },
     components: {
         ICountUp,
-        lineChart
+        ForumChart
     }
 }
 
