@@ -140,12 +140,15 @@ export const actions = {
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
-    const cookies = cookie.parse(req.headers.cookie)
-    if (cookies.csrftoken) {
-      VenueAPI.setToken(cookies.csrftoken)
+    const cookieHeader = req.headers.cookie
+    if (cookieHeader) {
+      const cookies = cookie.parse(cookieHeader)
+      if (cookies.csrftoken) {
+        VenueAPI.setToken(cookies.csrftoken)
 
-      const { data: userStats } = await retrieveStats()
-      await commit('setUserStats', userStats.stats)
+        const { data: userStats } = await retrieveStats()
+        await commit('setUserStats', userStats.stats)
+      }
     }
   }
 }
