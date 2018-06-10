@@ -32,8 +32,5 @@ export const mutations = {
         if (signatureId) {
             Vue.set(state[forumId], 'signatureId', signatureId)
         }
-    },
-    changeOverallStatsMutation: (state, payload ) => {
-        state.overallStats = payload;
-    },
+    }
 };

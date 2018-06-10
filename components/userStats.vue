@@ -5,7 +5,7 @@
     </div>
     <div class="card">
         <div class="chart"> 
-            <line-chart  :chart-data="dataCollection" :width="450" :height="300" ></line-chart>
+            <line-chart :width="450" :height="300" ></line-chart>
         </div>
         <div class="campaigns-info-container">
          <div class="campaigns_info number-desktop">
@@ -53,10 +53,6 @@ import lineChart from '~/components/forumActivity/linechart.js'
 
 export default {
     props: {
-        dataCollection: {
-            type: Object,
-            default: () => {}
-        },
         campaignStats: {
             type: Object,
             default: () => {}
@@ -72,8 +68,8 @@ export default {
     },
     data() {
         return{
-            signature: false,
-            bonus: null,
+    //         signature: false,
+            bonus: checkForumLevel(this.profileLevel),
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -84,29 +80,32 @@ export default {
         },
         }
     },
-    mounted() {
-    this.checkForumLevel();
-    console.log('this.profileLevel: ', this.profileLevel);
-    },
+    // mounted() {
+    // this.checkForumLevel();
+    // console.log('this.profileLevel: ', this.profileLevel);
+    // },
     methods: { 
     onClickDetails() {
         this.$router.push('/points-details')
       },
-    checkForumLevel() {
-        if (this.profileLevel[0].forumUserRank=="Legendary Members") {
-            this.bonus = "5 %"
-        } 
-        else if (this.profileLevel[0].forumUserRank=="Sr Members") {     
-            this.bonus = "2 %"
-        }
        
-    }
+    // }
     },
     components: {
         ICountUp,
         lineChart
     }
 }
+
+    function checkForumLevel(profileLevel) {
+        if (profileLevel[0].forumUserRank=="Legendary Members") {
+            return "5 %"
+        } 
+        else if (profileLevel[0].forumUserRank=="Sr Members") {     
+            return "2 %"
+        }
+    }
+
 </script>
 
 <style scoped>

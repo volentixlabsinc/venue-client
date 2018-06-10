@@ -1,6 +1,6 @@
 import VenueAPI from '../utils/venue-api';
 
-function getLeaderBoardData() {
+async function getLeaderBoardData() {
     return VenueAPI.get('/retrieve/leaderboard-data/', false);
 }
 

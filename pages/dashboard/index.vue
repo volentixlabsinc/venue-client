@@ -7,7 +7,7 @@
           <button class="btn venue-accent-color">CHANGE</button>
         </div>
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
-         <forum :forumInfo="forumInfo" :chart-data="datacollection"/>
+         <forum :forumInfo="forumInfo"/>
           </div>
          <my-campaign :data="profile_level_global" />
       </div>
@@ -26,6 +26,7 @@ import forum from '~/components/forum.vue';
 import myCampaign from '~/components/myCampaign.vue';
 import campaignRightPanel from '~/components/campaignRightPanel.vue';
 import ICountUp from 'vue-countup-v2';
+import axios from 'axios'
 
 export default {
 
@@ -35,7 +36,6 @@ export default {
       data: null,
       profile_level_forum: null,
       profile_level_global: null,
-      datacollection: null,
       options: {
           useEasing: true,
           useGrouping: false,
@@ -46,70 +46,19 @@ export default {
         },
     }
   },
-  mounted(){
-  retrieveStats() 
-    .then(res => {
-      if(res.stats.fresh) {
-          this.$router.push('/onboarding/bitcointalk/')
+  async fetch ({ store }) {
+    // TODO Merge copied code between dashboard & leaderboard
+      const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
       }
-    }) 
 
-    this.fetchStats();
-     getLeaderBoardData()
-      .then(response => {
-          this.data = response;
-      })
-      .catch(ex => {
-        console.error(ex);
-      })
-  },
+      const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
+      const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
 
-  methods: {
-    fetchStats() {
-      retrieveStats()
-    .then(response => {
-      this.$store.dispatch('changeOverallStatsAction', response.stats)
-      this.profile_level_forum = response.stats.profile_level
-      this.profile_level_global = response.stats.user_level      
-    })
-      .then(response => { this.fillCahrtData()})
-    },
-   
-    fillCahrtData () {
-        let numberOfPosts = [];
-        let dates = [];
-        let splitDate = '';
-        let rankPostion = [];
-          for (var i =0; i < this.profile_level_global.daily_stats.length; i++){
-            numberOfPosts.push(this.profile_level_global.daily_stats[i].posts);
-            rankPostion.push(this.profile_level_global.daily_stats[i].rank);
-            splitDate = this.profile_level_global.daily_stats[i].date.split('-');
-            dates.push(`${splitDate[1]}-${splitDate[2]}`); 
-          }
-          
-        this.datacollection = {
-         labels: dates,
-          datasets: [
-            {
-              label: 'Number of Posts',
-              lineTension: 0.01,
-              backgroundColor: 'rgba(133, 68, 154, 0.079)',
-              borderColor: '#85449A',
-              borderWidth: '1',
-              data: numberOfPosts //[2,3,5,3,6,7,8]
-            },
-            {
-              label: 'My Rank',
-              lineTension: 0.01,
-              backgroundColor: 'rgba(148, 168, 182, 0.05)',
-              borderColor: '#94A8B6',
-              borderWidth: '2',
-              data: rankPostion //[2,3,1,5,3,2,1]
-            }
-          ]
-        }
-      },
-      
+      store.commit('setLeaderboardData', leaderboardData)
+      store.commit('setUserStats', userStats.stats)
   },
   components: {
     forum,

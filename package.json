@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "chart.piecelabel.js": "^0.10.0",
     "countup.js": "^1.9.3",

@@ -61,8 +61,8 @@ export default {
     },
     data() {
         return{
-            signature: false,
-            datacollectionPoints: {},
+    //         signature: false,
+    //         datacollectionPoints: {},
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -73,13 +73,13 @@ export default {
         },
         }
     },
-    mounted() {
-        console.log('this.campaignStats', this.campaignStats);
-        console.log('this.campaignStats.total_users', this.campaignStats.total_users);
-    },
-    methods: { 
+    // mounted() {
+    //     console.log('this.campaignStats', this.campaignStats);
+    //     console.log('this.campaignStats.total_users', this.campaignStats.total_users);
+    // },
+    // methods: { 
 
-    },
+    // },
     components: {
         ICountUp,
         forumStatsPosts

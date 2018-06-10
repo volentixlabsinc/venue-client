@@ -13,13 +13,15 @@
 </template>
 
 <script>
-import { getLeaderBoardData } from '~/services/leaderboard'; 
-import {retrieveStats } from '~/services/dashboard';
+// import { getLeaderBoardData } from '~/services/leaderboard'; 
+// import {retrieveStats } from '~/services/dashboard';
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
 import { readFromCookie } from '~/services/utils/browser-storage.js'
 export default {
     props:{
+        campaignStats: Object,
+        localStats: Object,
         shortenedLeaderboard: {
             type: Boolean,
             default: false
@@ -33,33 +35,33 @@ export default {
             myRank:0
         }
     },
-    mounted() {
-        var isAuth = readFromCookie(); 
-        console.log('shortenedLeaderboard', this.shortenedLeaderboard);
-        getLeaderBoardData()
-            .then(response => {
-                this.data = response;                        
-            })
-            .catch(ex => {
-                console.error(ex);
-            })
+    // mounted() {
+    //     var isAuth = readFromCookie(); 
+    //     console.log('shortenedLeaderboard', this.shortenedLeaderboard);
+    //     getLeaderBoardData()
+    //         .then(response => {
+    //             this.data = response;                        
+    //         })
+    //         .catch(ex => {
+    //             console.error(ex);
+    //         })
 
-        if(isAuth) {
-            retrieveStats()
-            .then(response => {
-                console.log('response: ', response);
+    //     if(isAuth) {
+    //         retrieveStats()
+    //         .then(response => {
+    //             console.log('response: ', response);
                
-                this.userStats = response.stats.user_level;
-                 if (this.userStats.overall_rank==null) {
-                    this.myRank = 0;
-                } else {
-                    this.myRank = Number(this.userStats.overall_rank);
-                }   
-            })
+    //             this.userStats = response.stats.user_level;
+    //              if (this.userStats.overall_rank==null) {
+    //                 this.myRank = 0;
+    //             } else {
+    //                 this.myRank = Number(this.userStats.overall_rank);
+    //             }   
+    //         })
 
-        }
+    //     }
   
-    },
+    // },
     components: {
         leaderboardEntry,
         shortLeaderboardEntry

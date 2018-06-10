@@ -1,5 +1,6 @@
 import { merge } from 'lodash';
 import {readFromCookie, clearCookie, clearLocalStorage } from '~/services/utils/browser-storage'; 
+import axios from 'axios'
 const baseUrl = process.env.baseUrl;
 
 const POSTPUT_OPTIONS = {
@@ -86,13 +87,14 @@ class VenueAPI {
         console.log('Authentication is', authentication)
         if(!isAuth || authentication === false) {
         console.log('No authentication request', isAuth)
-        return fetch( baseUrl + url, {
+        return axios.get(baseUrl + url, {
+        // return fetch( baseUrl + url, {
             headers : { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
                }
-            }
-        )
+            // }
+        })
         .then(res => {
             if(res.status === 200) {
                 

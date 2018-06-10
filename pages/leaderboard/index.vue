@@ -1,22 +1,21 @@
 <template>
   <div class="main-section">
-      <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+      <h2 class="section-title">BITCOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
           <top-stats 
           class="top-stats" 
-          v-if="campaignStats.total_users>0" 
-          :campaignStats="campaignStats" 
-          :localStats="localStats"/>  
+          v-if="$store.state.leaderboard.sitewide.total_users>0" 
+          :campaignStats="$store.state.leaderboard.sitewide" 
+          :localStats="$store.state.leaderboard.userstats"/>  
           <leaderboard class="leaderboard"/>
       </div>
         <div class="stats-container">
             <user-stats
-            v-if="userStats.total_posts>=0"
-            :campaignStats="campaignStats"
-            :localStats="userStats"
-            :profileLevel="profile_level_forum"
-            :elements="data.rankings"
-            :dataCollection="dataCollection"/>
+            v-if="$store.state.userStats.sitewide.total_posts>=0"
+            :campaignStats="$store.state.userStats.sitewide" 
+            :localStats="$store.state.userStats.user_level"
+            :profileLevel="$store.state.userStats.profile_level"
+            :elements="$store.state.leaderboard.rankings"/>
             <edit-signature-button />
         </div>
   </div>
@@ -27,102 +26,28 @@ import leaderboard from '~/components/leaderboard/index.vue';
 import userStats from '~/components/userStats.vue';
 import topStats from '~/components/topStats.vue';
 import editSignatureButton from '~/components/editSignatureButton.vue';
-import { getLeaderBoardData } from '~/services/leaderboard'; 
-import {retrieveStats } from '~/services/dashboard';
-import {retrieveUser } from '~/services/account';
+// import { getLeaderBoardData } from '~/services/leaderboard'; 
+// import {retrieveStats } from '~/services/dashboard';
+// import {retrieveUser } from '~/services/account';
 import ICountUp from 'vue-countup-v2';
-
+import axios from 'axios'
 
 
 export default {
-  data() {
-      return {
-          
-          data: {},
-          dataCollection:{},
-          user: {},
-          userStats: {},
-          campaignStats: {},
-        
-          localStats: {
-              myActivity: '',
-              myRanking: '',
-              totalUsers: '',
-              totalPosts: ''
-          },
-        
-           
+  async fetch ({ store }) {
+    // TODO Merge copied code between dashboard & leaderboard
+      const headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Token aa931858af5571bd2daf1836a3a9cc9177668c90'
       }
+
+      const { data: leaderboardData } = await axios.get('http://localhost:8000/api/retrieve/leaderboard-data/', { headers })
+      const { data: userStats } = await axios.get('http://localhost:8000/api/retrieve/stats/', { headers })
+
+      store.commit('setLeaderboardData', leaderboardData)
+      store.commit('setUserStats', userStats.stats)
   },
-mounted(){
-    getLeaderBoardData()
-            .then(response => {
-                this.data = response;        
-            })
-            .catch(ex => {
-                console.error(ex);
-            })
-    retrieveUser()
-    .then(response => {
-        this.user = response
-    });
-    retrieveStats()
-    .then(response => {
-        console.log('retrieveStats: ', response);
-        this.userStats = response.stats.user_level; //profile_level_global
-        this.campaignStats = response.stats.sitewide; //sitewide
-        this.profile_level_forum = response.stats.profile_level
-    })
-    .then( response => {
-        this.populateUserData();
-        this.fillChartData();
-        });
-      
-    },
-    methods: { 
-    populateUserData() {
-        this.localStats = {
-            myRanking: this.userStats.overall_rank,
-            totalUsers:  this.campaignStats.total_users,
-            totalPosts: this.campaignStats.total_posts,
-            myActivity:  this.userStats.total_posts,
-        }
-        },
-    fillChartData() {
-        let numberOfPosts = [];
-        let dates = [];
-        let splitDate = '';
-        let rankPostion = [];
-          for (var i =0; i < this.userStats.daily_stats.length; i++){
-            numberOfPosts.push(this.userStats.daily_stats[i].posts);
-            rankPostion.push(this.userStats.daily_stats[i].rank);
-            splitDate = this.userStats.daily_stats[i].date.split('-');
-            dates.push(`${splitDate[1]}-${splitDate[2]}`); 
-          }
-          
-        this.dataCollection = {
-         labels: dates,
-          datasets: [
-            {
-              label: 'Number of Posts',
-              lineTension: 0.01,
-              backgroundColor: 'rgba(133, 68, 154, 0.079)',
-              borderColor: '#85449A',
-              borderWidth: '1',
-              data: numberOfPosts //[2,3,5,3,6,7,8]
-            },
-            {
-              label: 'My Rank',
-              lineTension: 0.01,
-              backgroundColor: 'rgba(148, 168, 182, 0.05)',
-              borderColor: '#94A8B6',
-              borderWidth: '2',
-              data: rankPostion //[2,3,1,5,3,2,1]
-            }
-          ]
-        }
-    }
-    },
   components: {
     leaderboard,
     ICountUp,
@@ -131,6 +56,7 @@ mounted(){
     editSignatureButton
     }
 }
+
 </script>
 
 <style scoped>
