@@ -4,12 +4,13 @@
                 <div class="campaigns_info">
                         <h1 class="dashboard-numbers">
                             <img id="trophy" src="/img/svg/trophy2.svg"/>
-                            <ICountUp
+                            <ICountUp v-if="rank"
                             :startVal="0"
                             :endVal="Number(rank)"
                             :decimals="0"
                             :duration="2.5"
                             :options="options"/>
+                            <span v-else>N/A</span>
                         </h1>
                     <h4 class="info-subtitles">MY RANK</h4>
                 </div>
@@ -18,7 +19,7 @@
                     <h1 class="dashboard-numbers">
                         <ICountUp
                         :startVal="0"
-                        :endVal="Number(campaignStats.total_users)"
+                        :endVal="Number(totalUsers)"
                         :decimals="0"
                         :duration="2.5"
                         :options="options"/>
@@ -30,7 +31,7 @@
                     <h1 class="dashboard-numbers">
                         <ICountUp
                         :startVal="0"
-                        :endVal="Number(campaignStats.total_posts)"
+                        :endVal="Number(totalPosts)"
                         :decimals="0"
                         :duration="2.5"
                         :options="options"/>
@@ -49,21 +50,11 @@ import ICountUp from 'vue-countup-v2';
 import forumStatsPosts from '~/components/forumActivity/forumStatsPosts';
 
 export default {
-    // props: {
-    //     campaignStats: {
-    //         type: Object,
-    //         required: true
-    //     },       
-    //     localStats: {
-    //         type: Object,
-    //         required: true
-    //     },
-    // },
     data () {
         return {
-            rank: this.$store.state.userStats.user_level.overall_rank,
-            campaignStats: this.$store.state.leaderboard.sitewide,
-            localStats: this.$store.state.userStats.user_level,
+            rank: this.$store.state.userStats.user_level ? this.$store.state.userStats.user_level.overall_rank : undefined,
+            totalUsers: this.$store.state.leaderboard.sitewide.total_users,
+            totalPosts: this.$store.state.leaderboard.sitewide.total_posts,
             options: {
                 useEasing: true,
                 useGrouping: false,

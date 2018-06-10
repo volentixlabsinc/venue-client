@@ -4,19 +4,12 @@
       <div class="top-left">
           <top-stats 
           class="top-stats" 
-          v-if="$store.state.leaderboard.sitewide.total_users>0" 
-          :campaignStats="$store.state.leaderboard.sitewide" 
-          :localStats="$store.state.userStats.user_level"/>  
-          <leaderboard class="leaderboard" :rankings="$store.state.leaderboard.rankings" 
-            :sitewide="$store.state.leaderboard.sitewide"/>
+          v-if="$store.state.leaderboard.sitewide.total_users>0" />
+          <leaderboard class="leaderboard" />
       </div>
         <div class="stats-container">
             <user-stats
-            v-if="$store.state.leaderboard.sitewide.total_posts>=0"
-            :campaignStats="$store.state.userStats.sitewide" 
-            :localStats="$store.state.userStats.user_level"
-            :profileLevel="$store.state.userStats.profile_level"
-            :elements="$store.state.leaderboard.rankings"/>
+            v-if="$store.state.userStats.profile_level" />
             <edit-signature-button />
         </div>
   </div>

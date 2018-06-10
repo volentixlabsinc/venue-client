@@ -1,14 +1,9 @@
 <template>
     <div class=" leaderboard">
-        <table v-if="data" v-for="(elements, key) in rankings" :key="key">
+        <table v-for="(elements, key) in rankings" :key="key">
             <short-leaderboard-entry v-if="shortenedLeaderboard" :elements="elements" :sitewide="sitewide" :myRank="myRank"/>
             <leaderboard-entry v-else :elements="elements" :sitewide="sitewide" :myRank="myRank"/> 
         </table>
-        
-       <table v-else  v-for="(elements, key) in rankings" :key="key">
-            <leaderboard-entry :elements="elements" :sitewide="sitewide" :myRank="myRank"/> 
-       </table>
-     
     </div>
 </template>
 
@@ -18,8 +13,6 @@ import shortLeaderboardEntry from "./shortLeaderboardEntry";
 import { readFromCookie } from '~/services/utils/browser-storage.js'
 export default {
     props:{
-        rankings: Array,
-        sitewide: Object,
         shortenedLeaderboard: {
             type: Boolean,
             default: false
@@ -27,10 +20,9 @@ export default {
     },
     data() {
         return {
-            toggleDescription: false,
-            data: {},
-            userStats: null,
-            myRank:0
+            rankings: this.$store.state.leaderboard.rankings,
+            sitewide: this.$store.state.leaderboard.sitewide,
+            myRank: this.$store.state.userStats.user_level ? this.$store.state.userStats.user_level.overall_rank : 0
         }
     },
     components: {

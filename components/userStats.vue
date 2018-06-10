@@ -12,7 +12,7 @@
             <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.total_posts)"
+                :endVal="Number(myPosts)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -23,7 +23,7 @@
             <h1 class="dashboard-numbers" @click="onClickDetails">
                 <ICountUp
                 :startVal="0"
-                :endVal="Number(localStats.total_points)"
+                :endVal="Number(myPoints)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
@@ -33,7 +33,7 @@
         </div>
         <div class="tokens-info">
             <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
-            <h1 class="nb-tokens">{{localStats.total_tokens}} VTX</h1>
+            <h1 class="nb-tokens">{{myTokens}} VTX</h1>
             <h3 v-if="bonus!=null" style="width:100%; margin:5px">{{profileLevel[0].forumUserRank}} Bonus: {{bonus}} (included)</h3>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
@@ -52,24 +52,12 @@ import ICountUp from 'vue-countup-v2';
 import ForumChart from '~/components/forumActivity/ForumChart.vue'
 
 export default {
-    props: {
-        campaignStats: {
-            type: Object,
-            default: () => {}
-        },
-        localStats: {
-            type: Object,
-            default: () => {}
-        },
-        profileLevel: {
-            type: Array,
-            default: () => []
-        },
-    },
     data() {
-        return{
-    //         signature: false,
-            bonus: checkForumLevel(this.profileLevel),
+        return {
+            myPosts: this.$store.state.userStats.profile_level.numPosts,
+            myPoints: this.$store.state.userStats.profile_level.totalPoints,
+            myTokens: this.$store.state.userStats.profile_level.VTX_Tokens,
+            bonus: 0,
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -80,32 +68,17 @@ export default {
         },
         }
     },
-    // mounted() {
-    // this.checkForumLevel();
-    // console.log('this.profileLevel: ', this.profileLevel);
-    // },
+
     methods: { 
     onClickDetails() {
         this.$router.push('/points-details')
       },
-       
-    // }
     },
     components: {
         ICountUp,
         ForumChart
     }
 }
-
-    function checkForumLevel(profileLevel) {
-        if (profileLevel[0].forumUserRank=="Legendary Members") {
-            return "5 %"
-        } 
-        else if (profileLevel[0].forumUserRank=="Sr Members") {     
-            return "2 %"
-        }
-    }
-
 </script>
 
 <style scoped>
