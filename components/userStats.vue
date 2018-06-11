@@ -4,39 +4,41 @@
         <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
     </div>
     <div class="card">
-        <div class="chart"> 
+        <div class="chart" v-if="dailyStats"> 
             <forum-chart :width="450" :height="300" ></forum-chart>
         </div>
         <div class="campaigns-info-container">
          <div class="campaigns_info number-desktop">
             <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp
+                <ICountUp v-if="myPosts"
                 :startVal="0"
                 :endVal="Number(myPosts)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
+                <span v-else>N/A</span>
             </h1>
             <h4 class="info-subtitles">MY POSTS</h4>
         </div>
             <div class="campaigns_info number-desktop">
             <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp
+                <ICountUp v-if="myPoints"
                 :startVal="0"
                 :endVal="Number(myPoints)"
                 :decimals="0"
                 :duration="2.5"
                 :options="options"/>
+                <span v-else>N/A</span>
             </h1>
             <h4 class="info-subtitles">MY POINTS</h4>
         </div>
         </div>
         <div class="tokens-info">
-            <h1 class="nb-tokens">{{myTokens}} VTX</h1>
+            <h1 class="nb-tokens"><span v-if="myTokens">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
             <span v-if="bonus > 0" style="width:100%; margin:5px">{{forumUserRank}} Bonus: {{bonus}} (included)</span>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
-        <div class="view-details">
+        <div class="view-details" v-if="dailyStats">
             <button class="btn view-details-button" @click="onClickDetails">
             <h3 class="view-details-text">View details</h3>
            <a><i class="fas fa-search"></i></a>
@@ -52,11 +54,8 @@ import ForumChart from '~/components/forumActivity/ForumChart.vue'
 
 export default {
     data() {
-        return {
-            myPosts: this.$store.state.userStats.profile_level[0].numPosts,
-            myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
-            myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
-            forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
+        const data = {
+
             bonus: 0,
             options: {
                 useEasing: true,
@@ -65,8 +64,18 @@ export default {
                 decimal: '.',
                 prefix: '',
                 suffix: ''
-        },
+            }
         }
+        if (this.$store.state.userStats.profile_level) {
+            Object.assign(data, {
+                dailyStats: this.$store.state.userStats.user_level.daily_stats,
+                myPosts: this.$store.state.userStats.profile_level[0].numPosts,
+                myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+                myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
+                forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
+            })
+        }
+        return data
     },
 
     methods: { 

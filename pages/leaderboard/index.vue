@@ -6,8 +6,8 @@
           <leaderboard class="leaderboard" />
       </div>
         <div class="stats-container">
-            <user-stats v-if="$store.state.userStats.profile_level" />
-            <edit-signature-button />
+            <user-stats />
+            <edit-signature-button v-if="$store.state.userStats.profile_level"/>
         </div>
   </div>
 </template>

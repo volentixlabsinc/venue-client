@@ -38,15 +38,10 @@
 import {logout } from '~/services/auth'
     export default {
         name: 'navbar',
-        data(){
-            return {
+        data () {
+            const data = {
                 isActive: 'DASHBOARD',
                 sideLinks: [
-                    {
-                        name: 'DASHBOARD',
-                        routerLink: '/dashboard',
-                        icon: 'far fa-chart-bar prefix',
-                    },
                     {
                         name: 'LEADERBOARD',
                         routerLink: '/leaderboard',
@@ -64,6 +59,16 @@ import {logout } from '~/services/auth'
                     }
                 ]
             };
+
+            if (this.$store.state.userStats.profile_level) {
+                data.sideLinks.unshift({
+                        name: 'DASHBOARD',
+                        routerLink: '/dashboard',
+                        icon: 'far fa-chart-bar prefix',
+
+                })
+            }
+            return data
         },
         methods: {
             logout: function(){
