@@ -50,7 +50,9 @@ export default {
         return message
       }
 
-      this.$store.commit('user/authenticated', {
+      // TODO Do these awaits in parallel
+      
+      await this.$store.commit('user/authenticated', {
         userId: authResponse.data.user_profile_id,
         language: authResponse.language 
       })

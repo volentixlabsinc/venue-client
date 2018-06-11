@@ -6,20 +6,16 @@
 <script>
     import {logout } from '~/services/auth';
 
-
-
     export default{
         mounted(){
-            this.logout();
-            
+            this.logout();            
         },
          methods: { 
-             logout: function(){
+             logout: async function(){
                 logout(); 
+                await this.$store.commit('user/unauthenticated')
                 this.$router.push('/')
-
             }
          }
     }
-
 </script>

@@ -3,83 +3,40 @@
     
      <nav class="sidebar-navigation">
             <ul class="menu">
-                <li v-for="link in sideLinks"
-                    :key="link.name"
-                    class="button menu-item"
-                    @click="isActive = link.name"
-                    :class="{ active: link.name === isActive }"
-                    :title="link.tooltip">
-
-                    <router-link v-if="link.routerLink"
-                                 :to="link.routerLink"
-                                 class="menu-item menu-link">
-                        <div class="icons-align">
-                            <span :class="link.icon"></span>
-                            <span class="title menu-name">{{link.name}}</span>
-                        </div>
-                    </router-link>
-                    <a v-else-if="link.link"
-                       class="button menu-item menu-link"
-                       :href="link.link">
-                        <div class="icons-align">
-                            <span :class="link.icon"></span>
-                            <span class="title menu-name">{{link.name}}</span>
-                        </div>
-                    </a>
+                <li v-if="isAuthenticated()">
+                    <nav-link name="DASHBOARD" route="/dashboard" icon="far fa-chart-bar prefix" />
                 </li>
-
+                <li>
+                    <nav-link name="LEADERBOARD" route="/leaderboard" icon="fas fa-rocket prefix" />
+                </li>
+                <li v-if="isAuthenticated()">
+                    <nav-link name="PROFILE" route="/account" icon="far fa-user prefix" />
+                </li>
+                <li v-if="!isAuthenticated()">
+                    <nav-link name="LOG IN" route="/" icon="fas fa-power-off prefix" />
+                </li>
+                <li v-if="isAuthenticated()">
+                    <nav-link name="LOG OUT" route="/logout" icon="fas fa-power-off prefix" />
+                </li>
             </ul>
         </nav>
-
 </div>
 </template>
 
 <script>
+import NavLink from './NavLink.vue'
+
 import {logout } from '~/services/auth'
     export default {
         name: 'navbar',
-        data () {
-            const data = {
-                isActive: 'DASHBOARD',
-                sideLinks: [
-                    {
-                        name: 'LEADERBOARD',
-                        routerLink: '/leaderboard',
-                        icon: 'fas fa-rocket prefix',
-                    },
-                    {
-                        name: 'MY PROFILE',
-                        routerLink: '/account',
-                        icon: 'far fa-user prefix',
-                    },
-                    {
-                        name: 'LOG OUT',
-                        link: '/logout',
-                        icon: 'fas fa-power-off prefix',
-                    }
-                ]
-            };
-
-            if (this.$store.state.userStats.profile_level) {
-                data.sideLinks.unshift({
-                        name: 'DASHBOARD',
-                        routerLink: '/dashboard',
-                        icon: 'far fa-chart-bar prefix',
-
-                })
-            }
-            return data
-        },
         methods: {
-            logout: function(){
-                logout(); 
-            },
-
-            highlightSelectedButton() {
-
-            }
+            // TODO I think this should work as a data member, but I can't get it to work :(
+            isAuthenticated () { return this.$store.state.user.isAuthenticated },
+        },
+        components: {
+            NavLink
         }
-    }
+    }   
 </script>
 
 <style scoped>
@@ -108,85 +65,52 @@ ul {
     color: white;
     /* border-top: 1px solid rgba(0, 0, 0, 0.3); */
 }
-a { color: inherit; }
 
-a:hover {
-    color: #85449A;
-    border-top: #85449A 1px solid;
-}
-
-.menu-name {display: none;}
-
-li.menu-item.active {
-    color: #85449A;
-}
 @media screen and (min-width: 800px) {
-nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: right;
-}
-ul {
+    nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        text-align: right;
+    }
+    ul {
 
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-end;
-     border-top: 0px;
-    padding: 0px;
-    border: none;
-    text-align: right;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        border-top: 0px;
+        padding: 0px;
+        border: none;
+        text-align: right;
+    }
+    .menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        border-top: 0px;
+    }
+    li {
+        width: auto;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding: 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: right;
+    }
 }
-.menu {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-     border-top: 0px;
-}
-li {
-    width: auto;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: right;
-}
-a {
-    width: 100%;
-}
-
-.prefix{
-    text-align: right;
-}
-
-.icons-align {
-    display: flex;
-    text-align: right;
-    align-items: center;
-}
-a:hover {
-    border-top: #85449A 0px solid;
-    border-right: #85449A 1px solid;
-}
-
-
-}
-
 
 @media screen and (min-width: 900px) {
-.prefix{
-    width: 50%;
-    font-size: 24px;
-}
-.menu-name {
-    display: inherit;
-    font-size: 14px;
-    margin-left: 10px;
-    flex-shrink: 0;
-}
-
-
+    .prefix{
+        width: 50%;
+        font-size: 24px;
+    }
+    .menu-name {
+        display: inherit;
+        font-size: 14px;
+        margin-left: 10px;
+        flex-shrink: 0;
+    }
 }
 </style>
