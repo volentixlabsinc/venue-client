@@ -52,9 +52,9 @@ export default {
     methods: {
         submitUserId: function(){
             const scope = this;
-            checkProfile(2129367,0)
+            checkProfile(scope,userId,scope.BITCOINTALK_FORUM_ID)
             .then(response => {
-                console.log('>>>>>>>>>>>>>> fdsfsdfdgdrtrevgceryvhrtybrvgcretvgre');
+                scope.fetchCreateForumProfile
             })
         },
             

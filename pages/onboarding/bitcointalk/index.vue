@@ -7,7 +7,7 @@
                 <div class="form-group" v-if="step === 1">
                     <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
                     <div class="input-form">
-                      <input type="text" v-model="userId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
+                      <input type="text" v-model="forumUserId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
                       <button class="btn venue-accent-color" @click="validateId">NEXT</button>
                     </div>
                     <span v-if="error" style="color:red; display:block;">
@@ -83,12 +83,12 @@ export default {
       check: false
     };
   },
-  mounted() {
-    retrieveForumSites()
-    .then(res => {
-      console.log('Res', res);
-    })
-  },
+  // mounted() {
+  //   retrieveForumSites()
+  //   .then(res => {
+  //     console.log('Res', res);
+  //   })
+  // },
   methods: {
     doNext(evt) {
       if (evt) {
