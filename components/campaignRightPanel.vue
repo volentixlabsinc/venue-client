@@ -7,7 +7,7 @@
         <div class="campaigns-number-card">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
-            :endVal="sitewide.total_users"
+            :endVal="totalUsers"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -15,9 +15,10 @@
           <h4 class="info-subtitles">PARTICIPANTS</h4>
         </div>
         <div class="campaigns-number-card">
-          <h1 class="dashboard-numbers"><ICountUp
+          <h1 class="dashboard-numbers">
+            <ICountUp
             :startVal="0"
-            :endVal="sitewide.total_posts"
+            :endVal="totalPosts"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -26,14 +27,12 @@
         </div>
          </div>
         <div class="tokens-info">
-            <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
-            <h1 class="nb-tokens">{{sitewide.available_tokens}} VTX</h1>
+            <h1 class="nb-tokens">{{availableTokens}} VTX</h1>
             <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"></i>AVAILABLE REWARDS</h1>
           </div>
         <div class="leaderboard-container">
              <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"></i></h2>
-        <leaderboard :shortenedLeaderboard="true" :rankings="$store.state.leaderboard.rankings" 
-            :sitewide="sitewide"/>
+        <leaderboard :shortenedLeaderboard="true" />
         </div>
 </div>
 </template>
@@ -45,7 +44,9 @@ export default {
   
   data () {
     return {
-      sitewide: this.$store.state.leaderboard.sitewide,
+      totalUsers: this.$store.state.leaderboard.sitewide.total_users,
+      totalPosts: this.$store.state.leaderboard.sitewide.total_posts,
+      availableTokens: this.$store.state.leaderboard.sitewide.available_tokens,
       options: {
           useEasing: true,
           useGrouping: false,

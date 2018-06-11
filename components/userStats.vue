@@ -32,9 +32,8 @@
         </div>
         </div>
         <div class="tokens-info">
-            <!-- <img id="token-icon" src="/img/logos/VTX-Token-icon-new.png"/> -->
             <h1 class="nb-tokens">{{myTokens}} VTX</h1>
-            <span v-if="bonus!=0" style="width:100%; margin:5px">{{forumRank}} Bonus: {{bonus}} (included)</span>
+            <span v-if="bonus > 0" style="width:100%; margin:5px">{{forumUserRank}} Bonus: {{bonus}} (included)</span>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
         <div class="view-details">
@@ -54,10 +53,10 @@ import ForumChart from '~/components/forumActivity/ForumChart.vue'
 export default {
     data() {
         return {
-            myPosts: this.$store.state.userStats.profile_level.numPosts,
-            myPoints: this.$store.state.userStats.profile_level.totalPoints,
-            myTokens: this.$store.state.userStats.profile_level.VTX_Tokens,
-            forumRank: this.$store.state.userStats.profile_level.forumUserRank,
+            myPosts: this.$store.state.userStats.profile_level[0].numPosts,
+            myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+            myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
+            forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
             bonus: 0,
             options: {
                 useEasing: true,

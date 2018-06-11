@@ -2,14 +2,11 @@
   <div class="main-section">
       <h2 class="section-title">BITCOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
-          <top-stats 
-          class="top-stats" 
-          v-if="$store.state.leaderboard.sitewide.total_users>0" />
+          <top-stats v-if="$store.state.leaderboard.sitewide.total_users>0" />
           <leaderboard class="leaderboard" />
       </div>
         <div class="stats-container">
-            <user-stats
-            v-if="$store.state.userStats.profile_level" />
+            <user-stats v-if="$store.state.userStats.profile_level" />
             <edit-signature-button />
         </div>
   </div>

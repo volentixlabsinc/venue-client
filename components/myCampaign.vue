@@ -4,7 +4,7 @@
          <div class="my-campaign_info clickable-section" @click="onClickLeaderboard">
            <h1 class="dashboard-numbers"><ICountUp
             :startVal="50"
-            :endVal="data.overall_rank"
+            :endVal="myRank"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -14,8 +14,8 @@
 
         <div class="my-campaign_info clickable-section" @click="onClickDetails">
           <h1 class="dashboard-numbers"><ICountUp
-            :startVal="data.total_posts+20"
-            :endVal="data.total_posts"
+            :startVal="myPosts+20"
+            :endVal="myPosts"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -25,7 +25,7 @@
         <div class="my-campaign_info clickable-section" @click="onClickDetails">
           <h1 class="dashboard-numbers"><ICountUp
             :startVal="0"
-            :endVal="data.total_points"
+            :endVal="myPoints"
             :decimals="0"
             :duration="2.5"
             :options="options"
@@ -35,7 +35,7 @@
     </div>
     <div class="tokens-info clickable-section" @click="onClickDetails">
       <h2 class="subtitle" style="">MY CURRENT REWARDS</h2>
-      <h2 class="nb-tokens">{{data.total_tokens}} VTX</h2>
+      <h2 class="nb-tokens">{{myTokens}} VTX</h2>
     </div>
     <div class="view-details">
         <button class="btn view-details-button clickable-section" @click="onClickDetails">
@@ -48,15 +48,15 @@
 
 <script>
 import ICountUp from 'vue-countup-v2';
+
 export default {
-  props: {
-    data: {
-      type: Object,
-      default: () => {}
-    }
-  },
   data () {
     return {
+      // TODO this should be at profile level, but API doesn't return it
+      myRank: this.$store.state.userStats.user_level.overall_rank,
+      myPosts: this.$store.state.userStats.profile_level[0].numPosts,
+      myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+      myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
       options: {
           useEasing: true,
           useGrouping: false,
