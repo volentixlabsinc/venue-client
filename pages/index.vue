@@ -26,7 +26,6 @@
     </div>
     <div class="card campaigns">
         <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
-        <!-- <p class="available-tokens">{{data.sitewide.available_tokens}} VTX</p> -->
         <leaderboard v-if="rankings" :rankings="rankings" :sitewide="sitewide" />
     </div>
     
