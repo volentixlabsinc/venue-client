@@ -4,13 +4,13 @@
         <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
     </div>
     <div class="card">
-        <div class="chart" v-if="dailyStats"> 
+        <div class="chart" v-if="isAuthenticated"> 
             <forum-chart :width="450" :height="300" ></forum-chart>
         </div>
         <div class="campaigns-info-container">
          <div class="campaigns_info number-desktop">
             <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp v-if="myPosts"
+                <ICountUp v-if="isAuthenticated"
                 :startVal="0"
                 :endVal="Number(myPosts)"
                 :decimals="0"
@@ -22,7 +22,7 @@
         </div>
             <div class="campaigns_info number-desktop">
             <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp v-if="myPoints"
+                <ICountUp v-if="isAuthenticated && myPoints >= 0"
                 :startVal="0"
                 :endVal="Number(myPoints)"
                 :decimals="0"
@@ -55,7 +55,13 @@ import ForumChart from '~/components/forumActivity/ForumChart.vue'
 export default {
     data() {
         const data = {
+            isAuthenticated: this.$store.state.user.isAuthenticated,
             bonus: 0,
+            dailyStats: [],
+            myPosts: 0,
+            myPoints: 0,
+            myTokens: 0,
+            forumUserRank: '',
             options: {
                 useEasing: true,
                 useGrouping: false,
@@ -63,9 +69,9 @@ export default {
                 decimal: '.',
                 prefix: '',
                 suffix: ''
-            }
+            },
         }
-        if (this.$store.state.userStats.profile_level) {
+        if (this.$store.state.user.isAuthenticated) {
             Object.assign(data, {
                 dailyStats: this.$store.state.userStats.user_level.daily_stats,
                 myPosts: this.$store.state.userStats.profile_level[0].numPosts,
