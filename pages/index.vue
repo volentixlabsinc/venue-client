@@ -1,6 +1,6 @@
 <template>
 <div class="main-section">
-    <div v-if="action==='login'" class="card login-section">
+    <!-- <div v-if="action==='login'" class="card login-section">
         <login @cancel="action=null"/>
     </div>
     <div v-else-if="action==='signup'" class="card login-section-large">
@@ -28,7 +28,7 @@
         <h2 class="section-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
         <leaderboard v-if="rankings" :rankings="rankings" :sitewide="sitewide" />
     </div>
-    
+    -->
   </div>
 </template>
 
