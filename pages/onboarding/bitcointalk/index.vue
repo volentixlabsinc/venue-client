@@ -59,6 +59,8 @@ import {
 import { retrieveForumProfiles } from "~/services/forum";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { createSignature } from "~/services/signatures";
+import { retrieveForumSites } from "~/services/forum";
+
 
 const BITCOINTALK_FORUM_ID = 1
 
@@ -80,6 +82,12 @@ export default {
       message: "",
       check: false
     };
+  },
+  mounted() {
+    retrieveForumSites()
+    .then(res => {
+      console.log('Res', res);
+    })
   },
   methods: {
     doNext(evt) {
