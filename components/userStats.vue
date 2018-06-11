@@ -55,7 +55,6 @@ import ForumChart from '~/components/forumActivity/ForumChart.vue'
 export default {
     data() {
         const data = {
-
             bonus: 0,
             options: {
                 useEasing: true,
