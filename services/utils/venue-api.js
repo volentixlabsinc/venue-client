@@ -18,6 +18,7 @@ class VenueAPI {
     this.http.defaults.headers.post["Content-Type"] = "application/json";
 
     const token = readFromCookie();
+    console.log('cookie', token)
     if (token) {
         this.setToken(token)
     }
@@ -36,7 +37,7 @@ class VenueAPI {
    * Send JSON data as a POST on the specified URL.
    */
   async postJson (url, json) {
-        return await this.http.post(url, json)
+    return await this.http.post(url, json)
   }
 
   async login (json) {
@@ -50,6 +51,12 @@ class VenueAPI {
 
   setToken (token) {
     this.http.defaults.headers.common["Authorization"] = "Token " + token;
+  }
+
+  clearToken () {
+    console.log('clearing headers')
+    console.log(this.http.defaults.headers)
+    delete this.http.defaults.headers.common["Authorization"]
   }
 
   logout () {

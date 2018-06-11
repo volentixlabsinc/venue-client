@@ -135,8 +135,9 @@ export const actions = {
     // This is executed on the server
     async nuxtServerInit ( { commit }, { req }) {
 
-    const { data: leaderboardData } = await getLeaderBoardData()
-    await commit('setLeaderboardData', leaderboardData)
+      // TODO We should be able to do these calls in parallel, but be aware that
+      // a bad token might be passed to the leaderboard which will cause it to
+      // fail
 
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
@@ -147,10 +148,24 @@ export const actions = {
       if (cookies.csrftoken) {
         VenueAPI.setToken(cookies.csrftoken)
 
-        const { data: userStats } = await retrieveStats()
-        await commit('setUserStats', userStats.stats)
+        try {
+          const { data: userStats } = await retrieveStats()
+          await commit('setUserStats', userStats.stats)
+        } catch (exc) {
+          console.log('catch ***** ' + exc)
+          console.log(exc)
+          // FIXME Only clear token when the token is bad
+          // if (exc.status === 401) {
+            // HTTP 401 Unauthorized means the token is bad
+            VenueAPI.clearToken()
+            await commit('user/unauthenticated')
+          // }
+        }
       }
     }
+
+    const { data: leaderboardData } = await getLeaderBoardData()
+    await commit('setLeaderboardData', leaderboardData)
   }
 }
 
