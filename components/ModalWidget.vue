@@ -4,24 +4,15 @@
             <div class="modal-wrapper">
             <div class="modal-container">
 
-                <div class="modal-header" v-if="hdr">
-                <slot name="header"></slot>
+                <div class="modal-header" >
+                  <h1 class="close-button" @click="$emit('close')">X</h1>
                 </div>
 
                 <div class="modal-body">
-                <slot name="body">
-                    default body
-                </slot>
+                <help-id-images v-if="helpRequest=='ID'"/>
                 </div>
 
-                <div class="modal-footer">
-                <slot name="footer">
-                    <!-- default footer -->
-                    <button class="btn btn-small btn-primary modal-default-button" @click="$emit('close')">
-                    OK
-                    </button>
-                </slot>
-                </div>
+  
             </div>
             </div>
         </div>
@@ -29,11 +20,17 @@
 </template>
 
 <script>
+import HelpIdImages from "./HelpIdImages.vue"
+
 export default {
   props: { hdr : Boolean }, //defaults to false
   data() {
     return ({
+      helpRequest: 'ID'
     })
+  },
+  components: {
+    HelpIdImages
   }
 }
 </script>
@@ -47,41 +44,46 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
-  display: table;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: opacity .3s ease;
 }
 
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+  width: 100%;
 }
 
 .modal-container {
-  width: 75%; /*300px;*/
-  max-width: 600px;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  padding: 10px !important;
+  padding-top: 0px !important;
+  color: black;
+  width: 100%;
+  height: 500px;
+  border-radius: 10px !important;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #484D5C !important;
+}
+.modal-header{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+  
+.close-button {
+  color: lightgrey;
+  font-weight: bold; 
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-/*
-.modal-default-button {
-  float: right;
-}
-*/
 .modal-enter {
   opacity: 0;
 }
@@ -94,5 +96,28 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.modal-body{
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (min-width: 800px) {
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  width: 60%;
+}
+
+.modal-container {
+  width: 100%;
+  padding: 20px 20px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
 }
 </style>
