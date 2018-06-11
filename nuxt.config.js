@@ -50,6 +50,6 @@ module.exports = {
     '~/plugins/vue-clipboard',
     // '~/plugins/vue-sweetalert2',
     '~/plugins/vee-validate',
-    { src: '~/plugins/local-storage', ssr: false }
+    // { src: '~/plugins/local-storage', ssr: false }
   ]
 }

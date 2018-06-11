@@ -84,22 +84,22 @@ export default {
     async validateId (evt) {
       evt.preventDefault();
 
-      const scope = this;
-      const { data } = await checkProfile(scope.forumUserId, BITCOINTALK_FORUM_ID)
+      const { data } = await checkProfile(this.forumUserId, BITCOINTALK_FORUM_ID)
         if (!data.found) {
-          scope.error = true;
+          this.error = true;
         } else {
-            await scope.createForumProfile(scope.forumUserId)
+            await this.createForumProfile(this.forumUserId)
+            this.doNext()
         }
     },
     async createForumProfile (forum_user_id) {
-      const { data } = createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
-          scope.$store.commit('forums/register', {
-            forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: data.forum_user_id,
-            venueForumUserId: data.forum_profile_id
-          })
-      },
+      const { data } = await createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
+      this.$store.commit('forums/register', {
+        forumId: BITCOINTALK_FORUM_ID,
+        forumUserId: forum_user_id,
+        venueForumUserId: data.id
+      })
+    },
     onCopy: function(e) {
         // FIXME 
         // this.$swal("You just copied: ", e.text);
