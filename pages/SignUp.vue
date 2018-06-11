@@ -1,17 +1,18 @@
 <template>
   <div class="main-section">
-    <div class="card login-section">
-        <Login/>
+    <div class="card login-section-large">
+        <Signup />
     </div>
   </div>
 </template>
 
+
 <script>
-import Login from '~/components/Login'
+import Signup from '~/components/Signup'
 
 export default {
   components: {
-    Login
+    Signup
   }
 }
 </script>

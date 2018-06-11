@@ -13,9 +13,11 @@
         <span class="venue-text" v-if="signUpError">Sign Up Error</span>
         <button
         class="btn">Sign Up</button>
+        <div>
         <a 
         @click="$emit('cancel')"
         class="cancel">CANCEL</a>
+        </div>
     </form>
   </div>
 </template>

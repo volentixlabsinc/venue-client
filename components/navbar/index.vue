@@ -1,6 +1,5 @@
 <template>
 <div class="menu">
-    
      <nav class="sidebar-navigation">
             <ul class="menu">
                 <li v-if="isAuthenticated()">
@@ -13,7 +12,10 @@
                     <nav-link name="PROFILE" route="/account" icon="far fa-user prefix" />
                 </li>
                 <li v-if="!isAuthenticated()">
-                    <nav-link name="LOG IN" route="/" icon="fas fa-power-off prefix" />
+                    <nav-link name="LOG IN" route="/login" icon="fas fa-power-off prefix" />
+                </li>
+                <li v-if="!isAuthenticated()">
+                    <nav-link name="SIGN UP" route="/signup" icon="fas fa-power-off prefix" />
                 </li>
                 <li v-if="isAuthenticated()">
                     <nav-link name="LOG OUT" route="/logout" icon="fas fa-power-off prefix" />
