@@ -37,7 +37,7 @@ export default {
 
 .menu-name {display: none;}
 
-.nuxt-link-active {
+.nuxt-link-exact-active {
     color: #85449A;
 }
 
