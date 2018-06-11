@@ -20,8 +20,8 @@
                 <h1 style="margin:0px">Step 3</h1>
                 <h3>Paste your USERID below:</h3>
                 <div class="md-form">
-                    <input class="form-control" placeholder="UserId"/>
-                    <button class="btn venue-accent-color">SUBMIT USERID</button>
+                    <input class="form-control" placeholder="UserId" v-model="userId"/>
+                    <button class="btn venue-accent-color" @click="submitUserId">SUBMIT USERID</button>
                 </div>
             </div>
         </div>
@@ -33,17 +33,42 @@
 </template>
 
 <script>
+
+import {
+  checkProfile,
+  createForumProfile
+} from "~/services/signatures";
+ 
+
 export default {
     data() {
         return({
             imageNumber: 1,
-            showstep: true
+            showstep: true,
+            userId: null,
+            BITCOINTALK_FORUM_ID: 1
         })
     },
     methods: {
-        swap() {
-            this.showstep = !this.showstep;
-        }
+        submitUserId: function(){
+            const scope = this;
+            checkProfile(2129367,0)
+            .then(response => {
+                console.log('>>>>>>>>>>>>>> fdsfsdfdgdrtrevgceryvhrtybrvgcretvgre');
+            })
+        },
+            
+        fetchCreateForumProfile() {
+            const scope = this;
+        createForumProfile (scope.userId, BITCOINTALK_FORUM_ID, true) 
+        .then(response => {
+            scope.$store.commit('forums/register', {
+            forumId: BITCOINTALK_FORUM_ID,
+            forumUserId: response.forum_user_id,
+            venueForumUserId: response.forum_profile_id
+          })
+        })
+      }
     },
     mounted() {
         // setInterval(this.swap, 4000);
