@@ -22,9 +22,9 @@
             
             <div v-if="imageNumber==3" class="userId-form">
                 <h3>3) Scroll down and accept the changes</h3>
-                <img v-if="imageNumber==3" src='/img/onboarding/bitcointalk/sigPaste3.png' />
+                <img v-if="imageNumber==3"  id="signature-container" src='/img/onboarding/bitcointalk/sigPaste3.png' />
                 <div class="md-form">
-                    <button class="btn venue-accent-color" @click="$emit('close')">Done</button>
+                    <button class="btn venue-accent-color"  @click="$emit('close')">Done</button>
                 </div>
             </div>
         </div>

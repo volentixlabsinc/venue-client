@@ -31,7 +31,6 @@ import {
 export default {
      components: {
     ModalWidget,
-    
   },
     data() {
         return{
