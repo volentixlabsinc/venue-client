@@ -60,7 +60,7 @@ export default {
             this.validateSignature()
         }
         },
-        async validateSignature (evt) {
+        async validateSignature () {
             console.log('this.$store.getters', this.$store.getters);
             var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
             

@@ -47,20 +47,6 @@ export default {
             BITCOINTALK_FORUM_ID: 1
         })
     },
-    methods: {
-            
-        fetchCreateForumProfile() {
-            const scope = this;
-        createForumProfile (scope.userId, BITCOINTALK_FORUM_ID, true) 
-        .then(response => {
-            scope.$store.commit('forums/register', {
-            forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: response.forum_user_id,
-            venueForumUserId: response.forum_profile_id
-          })
-        })
-      }
-    },
     mounted() {
         // setInterval(this.swap, 4000);
     }

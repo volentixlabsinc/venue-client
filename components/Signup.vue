@@ -41,7 +41,7 @@ export default {
   methods: {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(email) {
-      const data = await this.$axios.$get('check/email-exists/', { email: this.email })
+      const data = await this.$axios.$get('check/email-exists/', { email })
       if (data.email_exists) {
         // TODO Display error
       }
@@ -58,7 +58,7 @@ export default {
      })
 
      if (result.status !== 'success') {
-        console.error('There was an error: ', data)
+        console.error('There was an error: ', result)
         this.signUpError = true
      } else {
        console.log('SUCCESS!!! Click on registration link')

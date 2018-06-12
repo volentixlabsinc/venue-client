@@ -21,7 +21,6 @@
 import forum from '~/components/forum.vue';
 import myCampaign from '~/components/myCampaign.vue';
 import campaignRightPanel from '~/components/campaignRightPanel.vue';
-import ICountUp from 'vue-countup-v2';
 
 export default {
   data () {

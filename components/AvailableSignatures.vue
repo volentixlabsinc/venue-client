@@ -17,7 +17,6 @@
 
 <script>
 import ModalWidget from "~/components/ModalWidget.vue";
-    const BITCOINTALK_FORUM_ID = 1
     
  export default {
     props: {

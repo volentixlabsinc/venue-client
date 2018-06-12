@@ -25,13 +25,8 @@
                     <input type="textarea" rows="4" cols="50" 
                         v-model="message"
                         disabled
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError" />
+                        v-clipboard:copy="message" />
                     <button  
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError"
                         class="btn venue-accent-color">Copy</button>
                     <button class="btn btn-danger" @click="verify">Verify</button>
                 </div>
@@ -96,13 +91,6 @@ export default {
       const forumProfile = await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
       this.retrieveSignatures(forumProfile.id)
       this.doNext()
-    },
-    onCopy: function(e) {
-        // FIXME 
-        // this.$swal("You just copied: ", e.text);
-    },
-    onError: function(e) {
-      alert("Failed to copy texts");
     },
     async verify () {
       var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
