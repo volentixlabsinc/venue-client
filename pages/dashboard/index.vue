@@ -108,7 +108,6 @@ export default {
   justify-content: center;
   align-items: center;
   flex-shrink:0;
-  height: 110%;
   width: 100%;
 }
 

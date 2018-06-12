@@ -128,11 +128,11 @@ export default {
 
 .stats-container {
     width: 100%;
-    height: 40%;
+    /* height: 40%; */
     display:flex;
     flex-direction:column;
     justify-content: flex-start;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
 }
 
 .top-stats {
