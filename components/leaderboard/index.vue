@@ -10,7 +10,6 @@
 <script>
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
-import { readFromCookie } from '~/services/utils/browser-storage.js'
 export default {
     props:{
         shortenedLeaderboard: {

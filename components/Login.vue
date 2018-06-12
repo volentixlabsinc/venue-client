@@ -19,9 +19,6 @@
 
 
 <script>
-import { authenticate } from  '~/services/auth';
-import { retrieveStats } from '~/services/dashboard'
-
 export default {
   props: {
     action: {

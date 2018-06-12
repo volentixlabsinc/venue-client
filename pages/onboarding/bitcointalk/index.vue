@@ -53,6 +53,7 @@
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
 import AvailableSignatures from '~/components/AvailableSignatures.vue'
+import { registerForumUser } from '~/assets/utils'
 
 const BITCOINTALK_FORUM_ID = 1
 
@@ -91,29 +92,8 @@ export default {
     async validateId (evt) {
       evt.preventDefault();
 
-      const profileData = await this.$axios.$get('/check/profile/', {
-        params: {
-          forum_id: BITCOINTALK_FORUM_ID,
-          forum_user_id: this.forumUserId
-        }
-      })
-        if (!profileData.found) {
-          this.error = true;
-        } else {
-            await this.createForumProfile(this.forumUserId)
-            this.doNext()
-        }
-    },
-    async createForumProfile (forumUserId) {
-      const forumProfile = await this.$axios.$post('/create/forum-profile/', {
-        forum_id: BITCOINTALK_FORUM_ID,
-        forum_user_id: this.forumUserId
-      })
-      this.$store.commit('forums/register', {
-        forumId: BITCOINTALK_FORUM_ID,
-        forumUserId,
-        forumProfileId: forumProfile.id
-      })
+      await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+      this.doNext()
     },
     onCopy: function(e) {
         // FIXME 

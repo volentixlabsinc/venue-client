@@ -1,9 +1,4 @@
-import axios from 'axios'
-import { getLeaderBoardData } from '~/services/leaderboard'
 import cookie from 'cookie'
-
-import VenueAPI from '~/services/utils/venue-api'
-import { retrieveStats } from '~/services/dashboard'
 
 export const state = () => ({
   copiedSignatureId: undefined,

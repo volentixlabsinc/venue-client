@@ -15,7 +15,6 @@
 <script>
   import AvailableSignatures from "~/components/AvailableSignatures.vue"
   import campaignRightPanel from "~/components/campaignRightPanel.vue";
-  import axios from 'axios'
 
   export default {
     components: {
