@@ -18,10 +18,14 @@
                 <div class="form-group step-2" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <AvailableSignatures :signatures="signatures"/>
                     <button class="btn venue-accent-color" @click="doNext">NEXT</button>
 =======
                     <AvailableSignatures />
+=======
+                    <AvailableSignatures :signatures="signatures"/>
+>>>>>>> adds signature props
                     <button class="btn venue-accent-color"  @click="doNext">NEXT</button>
 >>>>>>> adds help images for signature paste
                 </div>
