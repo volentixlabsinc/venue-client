@@ -38,7 +38,8 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
+    },
+    vendor: ['vue-js-modal']
   },
   css: [
     '@/assets/scss/mdb.scss'
@@ -57,5 +58,6 @@ module.exports = {
     // '~/plugins/vue-sweetalert2',
     '~/plugins/vee-validate',
     // { src: '~/plugins/local-storage', ssr: false }
+    { src: '~/plugins/vue-js-modal.js', ssr: false}
   ]
 }

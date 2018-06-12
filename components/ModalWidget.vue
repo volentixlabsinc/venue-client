@@ -1,4 +1,5 @@
 <template>
+       
     <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
@@ -9,7 +10,9 @@
                 </div>
 
                 <div class="modal-body">
-                <help-id-images v-if="helpRequest=='ID'"/>
+                <help-id-images v-if="request=='ID'"/>
+                <confirm-copy v-if="request=='confirmCopy'" />
+                <help-signature-images v-if="request=='pasteSignature'" @close="$emit('close')"/>
                 </div>
 
   
@@ -21,16 +24,27 @@
 
 <script>
 import HelpIdImages from "./HelpIdImages.vue"
+import HelpSignatureImages from "./HelpSignatureImages.vue"
+import confirmCopy from "./confirmCopy.vue"
 
 export default {
-  props: { hdr : Boolean }, //defaults to false
+  name: 'ModalWidget',
+  props: { 
+    request: {
+      type: String,
+      default: 'ID'
+    }
+  },
   data() {
     return ({
-      helpRequest: 'ID'
+      // helpRequest: 'ID'
+      // timer: 240
     })
   },
   components: {
-    HelpIdImages
+    HelpIdImages,
+    confirmCopy,
+    HelpSignatureImages
   }
 }
 </script>
