@@ -1,7 +1,7 @@
 <template>
 <div class="all-campaigns">
         <div class="campaign-info-container" >
-          <h2 class="campaign-title">BITOINTALK SIGNATURE CAMPAIGN</h2>
+          <h2 class="campaign-title">BITCOINTALK CAMPAIGN</h2>
          </div>
        <div class="campaigns-numbers-container" @click="onClickLeaderboard">
         <div class="campaigns-number-card">
