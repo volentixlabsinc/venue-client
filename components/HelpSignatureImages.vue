@@ -9,19 +9,7 @@
 
 <script>
 export default {
-    data() {
-        return({
-            showstep: true
-        })
-    },
-    methods: {
-        swap() {
-            this.showstep = !this.showstep;
-        }
-    },
-    mounted() {
-        setInterval(this.swap, 4000);
-    }
+   
 }
 </script>
 

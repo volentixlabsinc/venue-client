@@ -11,7 +11,8 @@
 
                 <div class="modal-body">
                 <help-id-images v-if="request=='ID'"/>
-                <confirm-copy v-if="request=='confirmCopy'"/>
+                <confirm-copy v-if="request=='confirmCopy'" />
+                <help-signature-images v-if="request=='pasteSignature'" />
                 </div>
 
   
@@ -23,6 +24,7 @@
 
 <script>
 import HelpIdImages from "./HelpIdImages.vue"
+import HelpSignatureImages from "./HelpSignatureImages.vue"
 import confirmCopy from "./confirmCopy.vue"
 
 export default {
@@ -36,17 +38,32 @@ export default {
   data() {
     return ({
       // helpRequest: 'ID'
+      // timer: 240
     })
   },
   components: {
     HelpIdImages,
-    confirmCopy
+    confirmCopy,
+    HelpSignatureImages
   },
-  // mounted() {
-  //   if (this.request=="confirmCopy") {
-  //     this.countdown
-  //   }
-  // }
+    // mounted() { 
+    //   if (this.request=='confirmCopy') {
+    //     var scope = this;
+    //     scope.delay = setInterval(function() {
+    //         scope.timerCalc()
+    //     }, 6);
+    //     }
+    // },
+    // destroyed() {
+    //     if (this.delay) {
+    //         clearInterval(this.delay);
+    //     }
+    // },
+    // methods: {
+    //     timerCalc(){
+    //     this.timer = this.timer - 1;
+    //     }
+    // }
 }
 </script>
 

@@ -39,13 +39,13 @@
           </li>
         </ul>
       </form>
-      
-      <!-- <ModalWidget v-if="showModal" @close="showModal = false" :request="'confirmCopy'"/> -->
+      <ModalWidget v-if="showModal" @close="showModal = false" :request="'confirmCopy'"/>
   </div>
 </template>
 
 <script>
 import ModalWidget from "~/components/ModalWidget.vue";
+import copiedSignature from '~/components/copiedSignature.vue'
 
 
     const BITCOINTALK_FORUM_ID = 1
@@ -53,6 +53,7 @@ import ModalWidget from "~/components/ModalWidget.vue";
     export default {
         components: {
             ModalWidget,
+            copiedSignature
         },
         data() {
             return {
@@ -64,13 +65,8 @@ import ModalWidget from "~/components/ModalWidget.vue";
             onCopy: function (sig) {
                 this.$store.commit('signatureCopied', sig.id)
                 this.showModal = true;
-                // this.$modal.show('hello-world');
-                this.onclick()
             },
-            onclick () { 
-                console.log('this.$modal: ', this.$modal);
-                this.$modal.show('hello-world') 
-                }
+          
         },
         
     }
