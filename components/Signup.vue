@@ -2,15 +2,13 @@
 <div class="log-in-element">
   <h3>SIGNUP</h3>
     <form method="POST" @submit="registerUser($event)">
+        <ul>
+          <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+        </ul>
         <input v-validate="'required|email'" name="email" placeholder="email" v-model="email"/>
-        <span class="venue-text">{{ errors.first('email') }}</span>
         <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
-        <span class="venue-text">{{ errors.first('username') }}</span>
         <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password"/>
-        <span class="venue-text">{{ errors.first('password') }}</span>
         <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
-        <span class="venue-text">{{ errors.first('confirmation') }}</span>
-        <span class="venue-text" v-if="signUpError">Sign Up Error</span>
         <button
         class="btn">Sign Up</button>
         <div>

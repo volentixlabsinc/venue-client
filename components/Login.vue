@@ -2,11 +2,11 @@
 <div class="log-in-element">
   <h3>LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
+        <ul>
+          <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+        </ul>
         <input v-validate="'required'" name="username" placeholder="username or email" v-model="username"/>
-        <span class="venue-text">{{ errors.first('username') }}</span>
         <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
-        <span class="venue-text">{{ errors.first('password') }}</span>
-        <span v-if="loginError" class="venue-text">Authentication Error: Wrong credentials</span>
         <button 
         type="submit" 
         class="btn">Log In</button>
