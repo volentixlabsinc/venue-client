@@ -20,7 +20,7 @@
                 <h1 style="margin:0px">Step 3</h1>
                 <h3>Paste your USERID below:</h3>
                 <div class="md-form">
-                    <input class="form-control" placeholder="UserId" v-model="userId"/>
+                    <input class="form-control" placeholder="UserId" v-model="forumUserId"/>
                     <button class="btn venue-accent-color" @click="submitUserId">SUBMIT USERID</button>
                 </div>
             </div>
@@ -40,13 +40,13 @@ export default {
         return({
             imageNumber: 1,
             showstep: true,
-            userId: null,
-            BITCOINTALK_FORUM_ID: 1
+            forumUserId: null,
+            forumId: 1
         })
     },
     methods: {
         submitUserId: async function() {
-            await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+            await registerForumUser(this, this.forumId, this.forumUserId)
         }
     },
     mounted() {
