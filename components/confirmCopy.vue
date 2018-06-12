@@ -65,8 +65,9 @@ export default {
         async validateSignature (evt) {
             var signature_id = this.$store.state.copiedSignatureId
      
-            // const { data } = await retrievSignatureCode()
-        
+            // const { data } = await this.$axios.$get(create/signature);
+            console.log('data: ', data);
+
             this.verified = true;
             }
     }
