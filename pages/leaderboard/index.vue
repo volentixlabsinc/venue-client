@@ -122,7 +122,6 @@ export default {
 
 .top-left {
     width: 100%;
-    height: 60%;
     display:flex;
     flex-direction:column;
 }
@@ -141,6 +140,7 @@ export default {
 }
 
 .leaderboard{
+    padding-top: 10px;
     order:2;
     height: 80%;
 }
