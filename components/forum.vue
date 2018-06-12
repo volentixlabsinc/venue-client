@@ -2,7 +2,7 @@
 <div class="forum">
 <h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
 <div class="chart"> 
-<forum-chart :width="350" :height="200" ></forum-chart>
+<forum-chart ></forum-chart>
 </div>
 </div>
 </template>
@@ -76,7 +76,6 @@ export default {
 
 <style>
 #line-chart {
-  width: 100% !important;
-  height: 100% !important;
+  height: 300px !important;
 }
 </style>

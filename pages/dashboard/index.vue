@@ -4,7 +4,7 @@
         <div class="current-signature">
           <h3>Current Signature</h3>
           <img id="signature" src="/img/onboarding/sig1.png"/>
-          <button class="btn venue-accent-color">CHANGE</button>
+          <button class="btn venue-accent-color sign-button">CHANGE</button>
         </div>
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
            <forum :forumInfo="forumInfo"/>
@@ -108,7 +108,6 @@ export default {
   justify-content: center;
   align-items: center;
   flex-shrink:0;
-  height: 65%;
   width: 100%;
 }
 
@@ -131,7 +130,11 @@ height: 30%;
 }
 
 #signature {
-  height: 45px;
+  width: 70%;
+}
+
+.sign-button{
+  padding: 10px;
 }
 @media only screen and (min-width: 800px) {
 

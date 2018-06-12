@@ -153,9 +153,10 @@ export default {
   background-color:rgba(252, 248, 248, 0.05);
   padding-top: 5px;
   padding-bottom: 5px;
+  font-size: 20px;
 }
 
-.subtitle { width: 70%; margin-right: 2px;}
+.subtitle { width: 70%; margin-right: 2px; }
 .nb-tokens{ width: 30%;}
 
 .view-details {
@@ -167,7 +168,7 @@ export default {
 }
 
 .view-details-button {
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -186,6 +187,7 @@ export default {
     padding: 0px;
     margin: 10px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .clickable-section:hover{
@@ -206,6 +208,8 @@ export default {
     width: 90%;
     align-self: center;
 }
-
+.subtitle, .nb-tokens {
+  font-size: 25px;
+}
 }
 </style>

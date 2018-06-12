@@ -34,7 +34,7 @@
         </div>
         </div>
         <div class="tokens-info">
-            <h1 class="nb-tokens"><span v-if="myTokens">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
+            <h1 class="nb-tokens"><span v-if="$store.state.userStats.user_level">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
             <span v-if="bonus > 0" style="width:100%; margin:5px">{{forumUserRank}} Bonus: {{bonus}} (included)</span>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
@@ -59,7 +59,7 @@ export default {
             bonus: 0,
             dailyStats: [],
             myPosts: 0,
-            myPoints: 0,
+            myPoints: null,
             myTokens: 0,
             forumUserRank: '',
             options: {
@@ -80,6 +80,7 @@ export default {
                 forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
             })
         }
+        console.log('myTokens', data)
         return data
     },
 
@@ -106,20 +107,6 @@ export default {
     align-items: center;
 }
 
-.my-signature{
-    width: 100%;
-    display: flex;
-    flex-direction:column;
-    padding-bottom: 30px;
-}
-
-
-.signature-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 10px;
-}
 .view-details-text {
     padding: 0px;
     margin: 10px;
@@ -236,6 +223,7 @@ export default {
 }
 
 .view-details-button {
+    width: 55%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -244,12 +232,15 @@ export default {
     padding-bottom: 5px;
     margin-right: 0px;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 .view-details-button:hover{
     background-color: rgba(240, 248, 255, 0.2);
 }
-
+.chart {
+    display: none;
+}
 
 @media only screen and (min-width: 800px) {
 
@@ -282,8 +273,9 @@ export default {
 }
 
 .chart {
+    display:initial;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .tokens-info{
@@ -299,8 +291,9 @@ export default {
   padding: 0px;
   margin: 0px;
 }
-.my-signature{
+.view-details-text{
     width: 100%;
+    white-space: nowrap;
 }
 .top-section {
     /* background-color: #222C3B; */
@@ -316,6 +309,10 @@ export default {
 
  .view-details {
     width: 90%;
+}
+
+.view-details-button {
+    width: 60%;
 }
 }
 </style>

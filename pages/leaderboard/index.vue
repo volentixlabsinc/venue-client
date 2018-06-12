@@ -122,18 +122,17 @@ export default {
 
 .top-left {
     width: 100%;
-    height: 60%;
     display:flex;
     flex-direction:column;
 }
 
 .stats-container {
     width: 100%;
-    height: 40%;
+    /* height: 40%; */
     display:flex;
     flex-direction:column;
     justify-content: flex-start;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
 }
 
 .top-stats {
@@ -141,6 +140,7 @@ export default {
 }
 
 .leaderboard{
+    padding-top: 10px;
     order:2;
     height: 80%;
 }
