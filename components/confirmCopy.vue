@@ -1,38 +1,62 @@
 <template>
     <div class="main-modal">
         <div class="steps-section">
-           <h1>Signature Code Copied!</h1>
+           <h1>SIGNATURE CODE COPIED!</h1>
         </div>
-        <div class="tips-section">
+        <div class="tips-section" v-if="!verified">
             <div class="loader"></div>
             <div class="text-modal">
                 <h2>Simply paste the copied code to your Bitcointalk profile</h2>
-                <h3 style="text-align:left">We will attempt to auto-verify placement for the next : {{timer}} minutes </h3>
-                <div class="flex-row-80"><label>click for help</label> <button>Verify Now</button></div>
+                <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{timer}} </label> seconds </h3>
+                <div class="flex-row-80"><label class="help-link" @click="showModal = true">click for help</label> <button class="btn venue-accent-color">Verify Now</button></div>
+            </div>
+        </div>
+        <div class="tips-section" v-else>
+            <div class="text-success-message">
+                <h1>SUCCESS!</h1>
+                <h2>Congratulations! We successfully auto-verified your new signature!</h2>
             </div>
         </div>
 
-        
+        <ModalWidget v-if="showModal" @close="showModal = false" :request="'pasteSignature'"/>
     </div>
 </template>
 
 <script>
+import ModalWidget from "~/components/ModalWidget.vue";
+
 export default {
+     components: {
+    ModalWidget,
+    
+  },
     data() {
         return{
-            timer: 240
+            timer: 240,
+            verified: false,
+            showModal: false
         }
     },
-    // mounted() {
-    //     this.delay = setInterval(function() {
-    //         this.timerCalc()
-    //     }, 1000);
-    // },
-    // methods: {
-    //     timerCalc(){
-    //     this.timer = 240 - 1;
-    //     }
-    // }
+    mounted() { 
+        var scope = this;
+        scope.delay = setInterval(function() {
+            scope.timerCalc()
+        }, 1000);
+    },
+    destroyed() {
+        if (this.delay) {
+            clearInterval(this.delay);
+        }
+    },
+    methods: {
+        timerCalc(){
+        this.timer -=  1;
+        if (this.timer == 1) {
+            // confirm signature
+            this.verified = true;
+        }
+        }
+    }
 }
 </script>
 
@@ -64,10 +88,11 @@ button:focus {outline:0;}
 
 .main-modal{
     color: white;
-    width: 90%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
@@ -126,7 +151,7 @@ img {
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    animation: spin 3s linear infinite;
+    animation: spin 15s linear infinite;
 }
 .text-modal{
     width: 60%;
@@ -136,11 +161,20 @@ img {
     justify-content: space-evenly;
     align-items: center;
 }
+.help-link{
+    width: auto;
+    text-decoration:underline;
+}
+
+.help-link:hover{
+    cursor: pointer;
+}
 
 .flex-row-80{
     width: 80%;
     display: flex;
-    justify-content: space-around;}
+    justify-content: space-around;
+    align-items: center;}
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
