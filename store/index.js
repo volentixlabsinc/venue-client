@@ -130,8 +130,8 @@ export const actions = {
     // This is executed on the server
     async nuxtServerInit ( { commit }, { app, req }) {
 
-      this.$axios.setHeader('Accept', 'application/json')
-      this.$axios.setHeader('Content-Type', 'application/json', ['post'])
+      app.$axios.setHeader('Accept', 'application/json')
+      app.$axios.setHeader('Content-Type', 'application/json', ['post'])
 
       // TODO We should be able to do these calls in parallel, but be aware that
       // a bad token might be passed to the leaderboard which will cause it to
