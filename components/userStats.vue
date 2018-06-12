@@ -3,7 +3,7 @@
     <div class="tokens-info-title">
         <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
     </div>
-    <div class="card">
+    <div>
         <div class="chart" v-if="isAuthenticated"> 
             <forum-chart :width="450" :height="300" ></forum-chart>
         </div>
@@ -39,10 +39,10 @@
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
         <div class="view-details" v-if="dailyStats">
-            <button class="btn view-details-button" @click="onClickDetails">
+            <a class="button view-details-button" @click="onClickDetails">
             <h3 class="view-details-text">View details</h3>
-           <a><i class="fas fa-search"></i></a>
-           </button>
+                <i class="fas fa-search"></i>
+           </a>
         </div>
     </div>
 </div>

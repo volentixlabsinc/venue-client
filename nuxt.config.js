@@ -41,16 +41,22 @@ module.exports = {
     }
   },
   css: [
-    '@/assets/scss/mdb.scss'
+    // '@/assets/scss/mdb.scss'
+    '@/assets/mystyles.scss'
   ],
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8000/api'
   },
   modules: [
     '@nuxtjs/axios',
+    'nuxt-buefy'
   ],
   axios: {
     baseURL: 'http://localhost:8000/api'
+  },
+  buefy: {
+    materialDesignIcons: false,
+    defaultIconPack: 'fad'
   },
   plugins: [
     '~/plugins/vue-clipboard',

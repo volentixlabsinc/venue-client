@@ -37,11 +37,11 @@
       <h2 class="subtitle" style="">MY CURRENT REWARDS</h2>
       <h2 class="nb-tokens">{{myTokens}} VTX</h2>
     </div>
-    <div class="view-details">
-        <button class="btn view-details-button clickable-section" @click="onClickDetails">
-        <h3 class="view-details-text">View details</h3>
-        <a><i class="fas fa-search"></i></a>
-        </button>
+    <div>
+        <a class="button is-info is-outlined" @click="onClickDetails">
+          <h3 class="view-details-text">View details</h3>
+          <i class="fas fa-search"></i>
+        </a>
     </div>
 </div>
 </template>
@@ -150,7 +150,6 @@ export default {
 }
 
 .subtitle, .nb-tokens {
-  background-color:rgba(252, 248, 248, 0.05);
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 20px;

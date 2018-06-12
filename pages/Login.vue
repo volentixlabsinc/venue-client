@@ -1,6 +1,6 @@
 <template>
   <div class="main-section">
-    <div class="card login-section">
+    <div class="login-section">
         <Login/>
     </div>
   </div>

@@ -28,7 +28,6 @@ export default {
 <style lang="scss" scoped>
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;  
   text-align: center;
   height: 100vh;
   display: flex;

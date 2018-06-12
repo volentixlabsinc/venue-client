@@ -1,5 +1,5 @@
 <template>
-    <div class="button menu-item menu-link">
+    <div class="menu-item menu-link">
     <router-link :to="route">
         <div class="icons-align">
             <span :class="icon"></span>

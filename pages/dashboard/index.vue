@@ -1,17 +1,17 @@
 <template>
     <div class="main-section">
-      <div v-if="profile_level_global" class="card my-campaign-container">
+      <div v-if="profile_level_global" class="my-campaign-container">
         <div class="current-signature">
           <h3>Current Signature</h3>
           <img id="signature" src="/img/onboarding/sig1.png"/>
-          <button class="btn venue-accent-color sign-button">CHANGE</button>
+          <button class="button is-small is-primary">CHANGE</button>
         </div>
         <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
            <forum :forumInfo="forumInfo"/>
         </div>
         <my-campaign :data="profile_level_global" />
       </div>
-      <div v-if="profile_level_global" class="card all-campaigns-container">
+      <div v-if="profile_level_global" class="all-campaigns-container">
         <campaign-right-panel />
       </div>
     </div>
@@ -60,7 +60,6 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  color: white;
   flex-wrap: no-wrap;
   overflow: scroll;
   overflow-x: hidden;
@@ -141,7 +140,6 @@ height: 30%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white;
     flex-wrap: wrap;
     padding-bottom:0px;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="main-section">
-      <div class="card">
+      <div>
           <h1>MY PROFILE</h1>
       </div>
       <div class="my-id">

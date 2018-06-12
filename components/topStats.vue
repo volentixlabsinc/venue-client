@@ -1,5 +1,5 @@
 <template>
-     <div class="card">
+     <div>
               <div class="campaign_info-container">
                 <div class="campaigns_info">
                         <h1 class="dashboard-numbers">

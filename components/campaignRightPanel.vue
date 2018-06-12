@@ -26,7 +26,7 @@
           <h4 class="info-subtitles">TOTAL POSTS</h4>
         </div>
          </div>
-        <div class="tokens-info">
+        <div>
             <h1 class="nb-tokens">{{availableTokens}} VTX</h1>
             <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"></i>AVAILABLE REWARDS</h1>
           </div>
