@@ -18,7 +18,7 @@
                 <div class="form-group step-2" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
                     <AvailableSignatures />
-                    <button class="btn venue-accent-color" @click="doNext">NEXT</button>
+                    <button class="btn venue-accent-color"  @click="doNext">NEXT</button>
                 </div>
                 <div class="form-group" v-if="step === 3">
                     <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
@@ -265,6 +265,10 @@ export default {
   justify-content: space-evenly;
   align-items: center;
 }
+.step-2{
+  height: 90%;
+}
+
 .input-form{
   width: 90%;
 }

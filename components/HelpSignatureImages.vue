@@ -31,7 +31,7 @@
             NEXT
         </button>
         <div v-else class="md-form">
-            <button class="btn venue-accent-color"  @click="$emit('done')">Done</button>
+            <button class="btn venue-accent-color"  @click="$emit('done')">Close Help</button>
         </div>
     </div>
 </template>
