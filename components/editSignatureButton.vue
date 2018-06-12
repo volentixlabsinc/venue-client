@@ -49,9 +49,9 @@ export default {
 
 @media only screen and (min-width: 800px) {
 .my-signature{
-    width: 100%;
+    width: 95%;
     padding-bottom: 0px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 }
 </style>

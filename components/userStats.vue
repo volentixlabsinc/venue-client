@@ -34,7 +34,7 @@
         </div>
         </div>
         <div class="tokens-info">
-            <h1 class="nb-tokens"><span v-if="myTokens">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
+            <h1 class="nb-tokens"><span v-if="$store.state.userStats.user_level">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
             <span v-if="bonus > 0" style="width:100%; margin:5px">{{forumUserRank}} Bonus: {{bonus}} (included)</span>
             <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
         </div>
@@ -59,7 +59,7 @@ export default {
             bonus: 0,
             dailyStats: [],
             myPosts: 0,
-            myPoints: 0,
+            myPoints: null,
             myTokens: 0,
             forumUserRank: '',
             options: {
@@ -80,6 +80,7 @@ export default {
                 forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
             })
         }
+        console.log('myTokens', data)
         return data
     },
 
