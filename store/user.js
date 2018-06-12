@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 export const state = () => ({
     userId: undefined,
     username: '',
@@ -8,7 +10,6 @@ export const state = () => ({
 
 export const mutations = {
     authenticated (state, { userId, username, language, token }) {
-        console.log('****logging in')
         state.userId = userId
         state.username = username
         state.language = language
@@ -16,11 +17,10 @@ export const mutations = {
         state.token = token
 
         this.$axios.setToken(token, 'Token')
+        Cookies.set('venue', token)
     },
 
     unauthenticated (state) {
-        console.log('****logging out')
-
         state.userId = -1
         state.username = ''
         state.language = 'en'
@@ -28,5 +28,6 @@ export const mutations = {
         state.token = ''
 
         this.$axios.setToken(false)
+        Cookies.remove('venue')
     }
 };

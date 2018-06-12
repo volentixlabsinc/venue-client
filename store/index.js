@@ -146,11 +146,13 @@ export const actions = {
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
     const cookieHeader = req.headers.cookie
+
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader)
-      if (cookies.csrftoken) {
-        // VenueAPI.setToken(cookies.csrftoken)
-        this.$axios.setToken(cookies.csrftoken, 'Token')
+      if (cookies.venue) {
+        await commit('user/authenticated', {
+          token: cookies.venue
+        })
 
         try {
           const userStats = await app.$axios.$get('/retrieve/stats/')
@@ -162,7 +164,7 @@ export const actions = {
           // if (exc.status === 401) {
             // HTTP 401 Unauthorized means the token is bad
             // VenueAPI.clearToken()
-            this.$axios.setToken(false)
+            // this.$axios.setToken(false)
             await commit('user/unauthenticated')
           // }
         }
