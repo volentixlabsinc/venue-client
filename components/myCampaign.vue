@@ -1,49 +1,49 @@
 <template>
-<div class="my-campaign">
+  <div class="my-campaign">
     <div class="my-campaign-info-container">
-         <div class="my-campaign_info clickable-section" @click="onClickLeaderboard">
-           <h1 class="dashboard-numbers"><ICountUp
-            :startVal="50"
-            :endVal="myRank"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">MY RANK</h4>
-        </div>
+      <div class="my-campaign_info clickable-section" @click="onClickLeaderboard">
+        <h1 class="dashboard-numbers"><ICountUp
+          :start-val="50"
+          :end-val="myRank"
+          :decimals="0"
+          :duration="2.5"
+          :options="options"
+        /></h1>
+        <h4 class="info-subtitles">MY RANK</h4>
+      </div>
 
-        <div class="my-campaign_info clickable-section" @click="onClickDetails">
-          <h1 class="dashboard-numbers"><ICountUp
-            :startVal="myPosts+20"
-            :endVal="myPosts"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">MY POSTS</h4>
-        </div>
-        <div class="my-campaign_info clickable-section" @click="onClickDetails">
-          <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="myPoints"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">MY POINTS</h4>
-        </div>
+      <div class="my-campaign_info clickable-section" @click="onClickDetails">
+        <h1 class="dashboard-numbers"><ICountUp
+          :start-val="myPosts+20"
+          :end-val="myPosts"
+          :decimals="0"
+          :duration="2.5"
+          :options="options"
+        /></h1>
+        <h4 class="info-subtitles">MY POSTS</h4>
+      </div>
+      <div class="my-campaign_info clickable-section" @click="onClickDetails">
+        <h1 class="dashboard-numbers"><ICountUp
+          :start-val="0"
+          :end-val="myPoints"
+          :decimals="0"
+          :duration="2.5"
+          :options="options"
+        /></h1>
+        <h4 class="info-subtitles">MY POINTS</h4>
+      </div>
     </div>
     <div class="tokens-info clickable-section" @click="onClickDetails">
       <h2 class="subtitle" style="">MY CURRENT REWARDS</h2>
-      <h2 class="nb-tokens">{{myTokens}} VTX</h2>
+      <h2 class="nb-tokens">{{ myTokens }} VTX</h2>
     </div>
     <div>
-        <a class="button is-info is-outlined" @click="onClickDetails">
-          <h3 class="view-details-text">View details</h3>
-          <i class="fas fa-search"></i>
-        </a>
+      <a class="button is-info is-outlined" @click="onClickDetails">
+        <h3 class="view-details-text">View details</h3>
+        <i class="fas fa-search"/>
+      </a>
     </div>
-</div>
+  </div>
 </template>
 
 <script>

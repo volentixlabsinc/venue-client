@@ -1,24 +1,24 @@
 <template>
        
-    <transition name="modal">
-        <div class="modal-mask">
-            <div class="modal-wrapper">
-            <div class="modal-container">
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
 
-                <div class="modal-header" >
-                  <h1 class="close-button" @click="$emit('close')">X</h1>
-                </div>
+          <div class="modal-header" >
+            <h1 class="close-button" @click="$emit('close')">X</h1>
+          </div>
 
-                <div class="modal-body">
-                <help-id-images v-if="request=='ID'"/>
-                <confirm-copy v-if="request=='confirmCopy'" />
-                <help-signature-images v-if="request=='pasteSignature'" @close="$emit('close')"/>
-                </div>
+          <div class="modal-body">
+            <help-id-images v-if="request=='ID'"/>
+            <confirm-copy v-if="request=='confirmCopy'" />
+            <help-signature-images v-if="request=='pasteSignature'" @close="$emit('close')"/>
+          </div>
 
   
-            </div>
-            </div>
         </div>
+      </div>
+    </div>
   </transition>
 </template>
 

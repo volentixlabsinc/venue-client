@@ -7,7 +7,7 @@
       <AvailableSignatures :signatures="signatures"/>
     </div>
     <div class="right-panel">
-    <campaignRightPanel />
+      <campaignRightPanel />
     </div>  
   </main>
 </template>

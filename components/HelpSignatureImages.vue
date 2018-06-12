@@ -1,39 +1,39 @@
 <template>
-    <div class="main-modal">
-        <div class="steps-section">
-            <button class="steps-buttons" @click="imageNumber=1">1</button>
-            <hr width="30%" :style="[imageNumber>=2 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
-            <button class="steps-buttons" 
-            @click="imageNumber=2" 
-            :style="[imageNumber>=2 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">2</button>
-            <hr width="30%" :style="[imageNumber>=3 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
-            <button class="steps-buttons" @click="imageNumber=3"
-            :style="[imageNumber>=3 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">3</button>
-        </div>
-        <div class="tips-section">
-            <div v-if="imageNumber==1" class="userId-form">
-            <h3>1) Click on Forum Profile Information inside the Profile Tab</h3>
-            <img src='/img/onboarding/bitcointalk/sigPaste1.png' />
-            </div>
-            <div v-if="imageNumber==2" class="userId-form">
-            <h3>2) Scroll down to Signature and paste the code in the Text Area</h3>
-            <img v-if="imageNumber==2" id="signature-container" src='/img/onboarding/bitcointalk/sigPaste2.png' />
-            </div>
-            
-            <div v-if="imageNumber==3" class="userId-form">
-                <h3>3) Scroll down and accept the changes</h3>
-                <img v-if="imageNumber==3"  id="signature-container" src='/img/onboarding/bitcointalk/sigPaste3.png' />
-                
-            </div>
-        </div>
-
-        <button v-if="imageNumber<3" class="btn btn-small venue-accent-color modal-default-button" @click="imageNumber+=1">
-            NEXT
-        </button>
-        <div v-else class="md-form">
-            <button class="btn venue-accent-color"  @click="$emit('done')">Close Help</button>
-        </div>
+  <div class="main-modal">
+    <div class="steps-section">
+      <button class="steps-buttons" @click="imageNumber=1">1</button>
+      <hr width="30%" :style="[imageNumber>=2 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
+      <button class="steps-buttons" 
+              @click="imageNumber=2" 
+              :style="[imageNumber>=2 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">2</button>
+      <hr width="30%" :style="[imageNumber>=3 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
+      <button class="steps-buttons" @click="imageNumber=3"
+              :style="[imageNumber>=3 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">3</button>
     </div>
+    <div class="tips-section">
+      <div v-if="imageNumber==1" class="userId-form">
+        <h3>1) Click on Forum Profile Information inside the Profile Tab</h3>
+        <img src='/img/onboarding/bitcointalk/sigPaste1.png' >
+      </div>
+      <div v-if="imageNumber==2" class="userId-form">
+        <h3>2) Scroll down to Signature and paste the code in the Text Area</h3>
+        <img v-if="imageNumber==2" id="signature-container" src='/img/onboarding/bitcointalk/sigPaste2.png' >
+      </div>
+            
+      <div v-if="imageNumber==3" class="userId-form">
+        <h3>3) Scroll down and accept the changes</h3>
+        <img v-if="imageNumber==3" id="signature-container" src='/img/onboarding/bitcointalk/sigPaste3.png' >
+                
+      </div>
+    </div>
+
+    <button v-if="imageNumber<3" class="btn btn-small venue-accent-color modal-default-button" @click="imageNumber+=1">
+      NEXT
+    </button>
+    <div v-else class="md-form">
+      <button class="btn venue-accent-color" @click="$emit('done')">Close Help</button>
+    </div>
+  </div>
 </template>
 
 <script>

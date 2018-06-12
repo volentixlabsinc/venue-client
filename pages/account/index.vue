@@ -1,16 +1,14 @@
 <template>
   <div class="main-section">
-      <div>
-          <h1>MY PROFILE</h1>
-      </div>
-      <div class="my-id">
-        <h3>EMAIL</h3>
-        <h3>USER NAME</h3>
-        <h3>LANGUAGE</h3>
-      </div>
-      <div class="my-id">
-
-      </div>
+    <div>
+      <h1>MY PROFILE</h1>
+    </div>
+    <div class="my-id">
+      <h3>EMAIL</h3>
+      <h3>USER NAME</h3>
+      <h3>LANGUAGE</h3>
+    </div>
+    <div class="my-id"/>
   </div>
 </template>
 

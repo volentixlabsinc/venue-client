@@ -1,28 +1,28 @@
 <template>
-<div class="menu">
-     <nav class="sidebar-navigation">
-            <ul class="menu">
-                <li v-if="isAuthenticated()">
-                    <nav-link name="DASHBOARD" route="/dashboard" icon="fas fa-tachometer-alt prefix" />
-                </li>
-                <li>
-                    <nav-link name="LEADERBOARD" route="/leaderboard" icon="fas fa-rocket prefix" />
-                </li>
-                <li v-if="isAuthenticated()">
-                    <nav-link name="PROFILE" route="/account" icon="far fa-user prefix" />
-                </li>
-                <li v-if="!isAuthenticated()">
-                    <nav-link name="LOG IN" route="/login" icon="fas fa-sign-in-alt prefix" />
-                </li>
-                <li v-if="!isAuthenticated()">
-                    <nav-link name="SIGN UP" route="/signup" icon="fas fa-user-plus prefix" />
-                </li>
-                <li v-if="isAuthenticated()">
-                    <nav-link name="LOG OUT" route="/logout" icon="fas fa-sign-out-alt prefix" />
-                </li>
-            </ul>
-        </nav>
-</div>
+  <div class="menu">
+    <nav class="sidebar-navigation">
+      <ul class="menu">
+        <li v-if="isAuthenticated()">
+          <nav-link name="DASHBOARD" route="/dashboard" icon="fas fa-tachometer-alt prefix" />
+        </li>
+        <li>
+          <nav-link name="LEADERBOARD" route="/leaderboard" icon="fas fa-rocket prefix" />
+        </li>
+        <li v-if="isAuthenticated()">
+          <nav-link name="PROFILE" route="/account" icon="far fa-user prefix" />
+        </li>
+        <li v-if="!isAuthenticated()">
+          <nav-link name="LOG IN" route="/login" icon="fas fa-sign-in-alt prefix" />
+        </li>
+        <li v-if="!isAuthenticated()">
+          <nav-link name="SIGN UP" route="/signup" icon="fas fa-user-plus prefix" />
+        </li>
+        <li v-if="isAuthenticated()">
+          <nav-link name="LOG OUT" route="/logout" icon="fas fa-sign-out-alt prefix" />
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script>

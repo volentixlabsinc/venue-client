@@ -1,19 +1,19 @@
 <template>
-<div class="tokens-template">
-  <div class="top-left-container">
-    <img id="token-icon" src="/img/logos/VTX-Token-icon.eps"/>
+  <div class="tokens-template">
+    <div class="top-left-container">
+      <img id="token-icon" src="/img/logos/VTX-Token-icon.eps">
 
-    <div class="venue-logo">
-    <img id="venue-logo" src="/img/logos/venue-volentix.png"/>
-    </div>
+      <div class="venue-logo">
+        <img id="venue-logo" src="/img/logos/venue-volentix.png">
+      </div>
     
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
-  name: "app",
+  name: "App",
   props: {
     logIn: {
       type: Boolean,

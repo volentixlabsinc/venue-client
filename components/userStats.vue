@@ -1,51 +1,51 @@
 <template>
-<div> 
+  <div> 
     <div class="tokens-info-title">
-        <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
+      <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
     </div>
     <div>
-        <div class="chart" v-if="isAuthenticated"> 
-            <forum-chart :width="450" :height="300" ></forum-chart>
+      <div class="chart" v-if="isAuthenticated"> 
+        <forum-chart :width="450" :height="300" />
+      </div>
+      <div class="campaigns-info-container">
+        <div class="campaigns_info number-desktop">
+          <h1 class="dashboard-numbers" @click="onClickDetails">
+            <ICountUp v-if="isAuthenticated"
+                      :start-val="0"
+                      :end-val="Number(myPosts)"
+                      :decimals="0"
+                      :duration="2.5"
+                      :options="options"/>
+            <span v-else>N/A</span>
+          </h1>
+          <h4 class="info-subtitles">MY POSTS</h4>
         </div>
-        <div class="campaigns-info-container">
-         <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp v-if="isAuthenticated"
-                :startVal="0"
-                :endVal="Number(myPosts)"
-                :decimals="0"
-                :duration="2.5"
-                :options="options"/>
-                <span v-else>N/A</span>
-            </h1>
-            <h4 class="info-subtitles">MY POSTS</h4>
+        <div class="campaigns_info number-desktop">
+          <h1 class="dashboard-numbers" @click="onClickDetails">
+            <ICountUp v-if="isAuthenticated && myPoints >= 0"
+                      :start-val="0"
+                      :end-val="Number(myPoints)"
+                      :decimals="0"
+                      :duration="2.5"
+                      :options="options"/>
+            <span v-else>N/A</span>
+          </h1>
+          <h4 class="info-subtitles">MY POINTS</h4>
         </div>
-            <div class="campaigns_info number-desktop">
-            <h1 class="dashboard-numbers" @click="onClickDetails">
-                <ICountUp v-if="isAuthenticated && myPoints >= 0"
-                :startVal="0"
-                :endVal="Number(myPoints)"
-                :decimals="0"
-                :duration="2.5"
-                :options="options"/>
-                <span v-else>N/A</span>
-            </h1>
-            <h4 class="info-subtitles">MY POINTS</h4>
-        </div>
-        </div>
-        <div class="tokens-info">
-            <h1 class="nb-tokens"><span v-if="$store.state.userStats.user_level">{{myTokens}}</span><span v-else>N/A</span> VTX</h1>
-            <span v-if="bonus > 0" style="width:100%; margin:5px">{{forumUserRank}} Bonus: {{bonus}} (included)</span>
-            <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"></i>  MY CURRENT REWARDS</h1>
-        </div>
-        <div class="view-details" v-if="dailyStats">
-            <a class="button view-details-button" @click="onClickDetails">
-            <h3 class="view-details-text">View details</h3>
-                <i class="fas fa-search"></i>
-           </a>
-        </div>
+      </div>
+      <div class="tokens-info">
+        <h1 class="nb-tokens"><span v-if="$store.state.userStats.user_level">{{ myTokens }}</span><span v-else>N/A</span> VTX</h1>
+        <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
+        <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"/>  MY CURRENT REWARDS</h1>
+      </div>
+      <div class="view-details" v-if="dailyStats">
+        <a class="button view-details-button" @click="onClickDetails">
+          <h3 class="view-details-text">View details</h3>
+          <i class="fas fa-search"/>
+        </a>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>

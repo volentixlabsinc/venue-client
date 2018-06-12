@@ -1,14 +1,14 @@
 <template>
   <div class="main-section">
     <div class="login-section-large">
-        <Signup />
+      <Signup />
     </div>
   </div>
 </template>
 
 
 <script>
-import Signup from "~/components/Signup";
+import Signup from "~/components/Signup.vue";
 
 export default {
   components: {

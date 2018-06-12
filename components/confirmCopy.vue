@@ -1,28 +1,28 @@
 <template>
-    <div class="main-modal">
-        <div class="verification" v-if="!showHelp">
-        <div class="steps-section">
-           <h1>SIGNATURE CODE COPIED!</h1>
+  <div class="main-modal">
+    <div class="verification" v-if="!showHelp">
+      <div class="steps-section">
+        <h1>SIGNATURE CODE COPIED!</h1>
+      </div>
+      <div class="tips-section" v-if="!verified">
+        <div class="loader"/>
+        <div class="text-modal">
+          <h2>Simply paste the copied code to your Bitcointalk profile</h2>
+          <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{ timer }} </label> seconds </h3>
+          <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
         </div>
-        <div class="tips-section" v-if="!verified">
-            <div class="loader"></div>
-            <div class="text-modal">
-                <h2>Simply paste the copied code to your Bitcointalk profile</h2>
-                <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{timer}} </label> seconds </h3>
-                <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
-            </div>
+      </div>
+      <div class="tips-section" v-else>
+        <div class="text-success-message">
+          <h1>SUCCESS!</h1>
+          <h2>Congratulations! We successfully auto-verified your new signature!</h2>
         </div>
-        <div class="tips-section" v-else>
-            <div class="text-success-message">
-                <h1>SUCCESS!</h1>
-                <h2>Congratulations! We successfully auto-verified your new signature!</h2>
-            </div>
-        </div>
-        </div>
-        <div class="help-section" v-else>
-            <HelpSignatureImages @done="showHelp = !showHelp"/>
-        </div>
+      </div>
     </div>
+    <div class="help-section" v-else>
+      <HelpSignatureImages @done="showHelp = !showHelp"/>
+    </div>
+  </div>
 </template>
 
 <script>

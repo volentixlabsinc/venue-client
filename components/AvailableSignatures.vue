@@ -1,17 +1,17 @@
 <template>
   <div>
-     <form>
-       <ul>
-          <li v-for="sig in signatures" :key="sig.id">
-              <div>
-                <img :src="sig.image" />
-                <button type="button" v-clipboard:copy="sig.code"
+    <form>
+      <ul>
+        <li v-for="sig in signatures" :key="sig.id">
+          <div>
+            <img :src="sig.image" >
+            <button type="button" v-clipboard:copy="sig.code"
                     v-clipboard:success="() => onCopy(sig)">COPY CODE</button>
-             </div>
-          </li>
-        </ul>
-      </form>  
-      <ModalWidget v-if="showModal" @close="showModal = false" :request="'confirmCopy'"/>
+          </div>
+        </li>
+      </ul>
+    </form>  
+    <ModalWidget v-if="showModal" @close="showModal = false" :request="'confirmCopy'"/>
   </div>
 </template>
 

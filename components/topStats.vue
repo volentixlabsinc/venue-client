@@ -1,48 +1,48 @@
 <template>
-     <div>
-              <div class="campaign_info-container">
-                <div class="campaigns_info">
-                        <h1 class="dashboard-numbers">
-                            <img id="trophy" src="/img/svg/trophy2.svg"/>
-                            <ICountUp v-if="rank"
-                            :startVal="0"
-                            :endVal="Number(rank)"
-                            :decimals="0"
-                            :duration="2.5"
-                            :options="options"/>
-                            <span v-else>N/A</span>
-                        </h1>
-                    <h4 class="info-subtitles">MY RANK</h4>
-                </div>
+  <div>
+    <div class="campaign_info-container">
+      <div class="campaigns_info">
+        <h1 class="dashboard-numbers">
+          <img id="trophy" src="/img/svg/trophy2.svg">
+          <ICountUp v-if="rank"
+                    :start-val="0"
+                    :end-val="Number(rank)"
+                    :decimals="0"
+                    :duration="2.5"
+                    :options="options"/>
+          <span v-else>N/A</span>
+        </h1>
+        <h4 class="info-subtitles">MY RANK</h4>
+      </div>
 
-                <div class="campaigns_info">
-                    <h1 class="dashboard-numbers">
-                        <ICountUp
-                        :startVal="0"
-                        :endVal="Number(totalUsers)"
-                        :decimals="0"
-                        :duration="2.5"
-                        :options="options"/>
-                    </h1>
-                    <h4 class="info-subtitles">PARITICIPANTS</h4>
-                </div>
+      <div class="campaigns_info">
+        <h1 class="dashboard-numbers">
+          <ICountUp
+            :start-val="0"
+            :end-val="Number(totalUsers)"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"/>
+        </h1>
+        <h4 class="info-subtitles">PARITICIPANTS</h4>
+      </div>
 
-                <div class="campaigns_info">
-                    <h1 class="dashboard-numbers">
-                        <ICountUp
-                        :startVal="0"
-                        :endVal="Number(totalPosts)"
-                        :decimals="0"
-                        :duration="2.5"
-                        :options="options"/>
-                    </h1>
-                    <h4 class="info-subtitles">TOTAL POSTS</h4>
-                </div>
+      <div class="campaigns_info">
+        <h1 class="dashboard-numbers">
+          <ICountUp
+            :start-val="0"
+            :end-val="Number(totalPosts)"
+            :decimals="0"
+            :duration="2.5"
+            :options="options"/>
+        </h1>
+        <h4 class="info-subtitles">TOTAL POSTS</h4>
+      </div>
      
-        </div> 
+    </div> 
 
         
-      </div>
+  </div>
 </template>
 
 <script>

@@ -1,45 +1,45 @@
 <template>
   <section class="section">
     <div class="container">
-        <div class="bctalk-join">
-            <form v-on:submit.prevent class="stepform">
-              <h1> STEP {{ step }} </h1>
-                <div class="form-group" v-if="step === 1">
-                    <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
-                    <div class="input-form">
-                      <input type="text" v-model="forumUserId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
-                      <button class="btn venue-accent-color" @click="validateId">NEXT</button>
-                    </div>
-                    <span v-if="error" style="color:red; display:block;">
-                        <i class="fas fa-times-circle"></i> User not found - please try Again
-                    </span>
-                    <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
-                </div>
-                <div class="form-group step-2" v-if="step === 2">
-                    <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
-                    <AvailableSignatures :signatures="signatures"/>
-                    <button class="btn venue-accent-color" @click="doNext">NEXT</button>
-                </div>
-                <div class="form-group" v-if="step === 3">
-                    <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
-                    <input type="textarea" rows="4" cols="50" 
-                        v-model="message"
-                        disabled
-                        v-clipboard:copy="message" />
-                    <button  
-                        class="btn venue-accent-color">Copy</button>
-                    <button class="btn btn-danger" @click="verify">Verify</button>
-                </div>
+      <div class="bctalk-join">
+        <form @submit.prevent class="stepform">
+          <h1> STEP {{ step }} </h1>
+          <div class="form-group" v-if="step === 1">
+            <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
+            <div class="input-form">
+              <input type="text" v-model="forumUserId" id="userid" placeholder="Your user id" class="form-control form-control-lg">
+              <button class="btn venue-accent-color" @click="validateId">NEXT</button>
+            </div>
+            <span v-if="error" style="color:red; display:block;">
+              <i class="fas fa-times-circle"/> User not found - please try Again
+            </span>
+            <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
+          </div>
+          <div class="form-group step-2" v-if="step === 2">
+            <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
+            <AvailableSignatures :signatures="signatures"/>
+            <button class="btn venue-accent-color" @click="doNext">NEXT</button>
+          </div>
+          <div class="form-group" v-if="step === 3">
+            <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
+            <input type="textarea" rows="4" cols="50" 
+                   v-model="message"
+                   disabled
+                   v-clipboard:copy="message" >
+            <button  
+              class="btn venue-accent-color">Copy</button>
+            <button class="btn btn-danger" @click="verify">Verify</button>
+          </div>
         
-            </form>
-            <ModalWidget v-if="showHelp" @close="showHelp = false" />
+        </form>
+        <ModalWidget v-if="showHelp" @close="showHelp = false" />
             
-        </div>
-        <div class="lbox">
-            <campaign-right-panel/>
-        </div>
+      </div>
+      <div class="lbox">
+        <campaign-right-panel/>
+      </div>
     </div>
-</section>
+  </section>
 </template>
 
 

@@ -1,35 +1,35 @@
 <template>
-<main class="main">
-  <div class="container">
-  <h2>My Signatures</h2>
-  <p>Before you can start earning VTX points you will need to copy a custom signature generated 
+  <main class="main">
+    <div class="container">
+      <h2>My Signatures</h2>
+      <p>Before you can start earning VTX points you will need to copy a custom signature generated 
       by Venue and paste it in your various forum signatures. Start below:
       </p>            
-<table class="zui-table">
-    <thead>
-        <tr>
+      <table class="zui-table">
+        <thead>
+          <tr>
             <th>FORUM</th>
             <th>USERNAME</th>
             <th>USER ID</th>
             <th>STATUS</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
+            <th/>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td data-label="FORUM">bitcointalk.org</td>
             <td data-label="USERNAME">Sandra</td>
             <td data-label="USER ID">332584</td>
-            <td data-label="STATUS"><i class="fa fa-check" style="color:white"></i> Verified </td>
+            <td data-label="STATUS"><i class="fa fa-check" style="color:white"/> Verified </td>
             <td class="button"><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> Change Signature</button></td>
-        </tr>
+          </tr>
 
 
 
-    </tbody>
-</table>
-</div>
-</main>
+        </tbody>
+      </table>
+    </div>
+  </main>
 </template>
 
 

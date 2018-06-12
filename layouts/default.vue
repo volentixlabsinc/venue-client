@@ -5,7 +5,7 @@
     </div>
     
     <div class="nav-bar">
-        <navbar/>
+      <navbar/>
     </div>
     <div class="main"> 
       <nuxt/>

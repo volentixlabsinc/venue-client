@@ -1,21 +1,16 @@
 <template>
-<div class="forum">
-<h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
-<div class="chart"> 
-<forum-chart ></forum-chart>
-</div>
-</div>
+  <div class="forum">
+    <h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
+    <div class="chart"> 
+      <forum-chart />
+    </div>
+  </div>
 </template>
 
 <script>
 import ForumChart from "~/components/forumActivity/ForumChart.vue";
 
 export default {
-  props: {
-    forumInfo: {
-      type: Object
-    }
-  },
   components: {
     ForumChart
   }

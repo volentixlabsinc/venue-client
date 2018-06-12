@@ -1,10 +1,10 @@
 <template>
-     <div class="my-signature" @click="onClickSignature">
-        <div class="signature-title">
-           <h3 class="signature-title-text">EDIT SIGNATURE</h3>
-           <a><i class="far fa-edit"></i></a>
-        </div>
+  <div class="my-signature" @click="onClickSignature">
+    <div class="signature-title">
+      <h3 class="signature-title-text">EDIT SIGNATURE</h3>
+      <a><i class="far fa-edit"/></a>
     </div>
+  </div>
 </template>
 
 

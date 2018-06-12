@@ -1,35 +1,35 @@
 <template>
-    <div class="main-modal">
-        <div class="steps-section">
-            <button class="steps-buttons" @click="imageNumber=1">1</button>
-            <hr width="30%" :style="[imageNumber>=2 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
-            <button class="steps-buttons" 
-            @click="imageNumber=2" 
-            :style="[imageNumber>=2 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">2</button>
-            <hr width="30%" :style="[imageNumber>=3 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
-            <button class="steps-buttons" @click="imageNumber=3"
-            :style="[imageNumber>=3 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">3</button>
-        </div>
-        <div class="tips-section">
-            <div v-if="imageNumber==1" class="userId-form">
-            <h3>Click on profile</h3>
-            <img src='/img/onboarding/bitcointalk/step1a_alt2.png' />
-            </div>
-            <img v-if="imageNumber==2" src='/img/onboarding/bitcointalk/step1b_alt.png' />
-            <div v-if="imageNumber==3" class="userId-form">
-                <h1 style="margin:0px">Step 3</h1>
-                <h3>Paste your USERID below:</h3>
-                <div class="md-form">
-                    <input class="form-control" placeholder="UserId" v-model="forumUserId"/>
-                    <button class="btn venue-accent-color" @click="submitUserId">SUBMIT USERID</button>
-                </div>
-            </div>
-        </div>
-
-        <button v-if="imageNumber<3" class="btn btn-small venue-accent-color modal-default-button" @click="imageNumber+=1">
-            NEXT
-        </button>
+  <div class="main-modal">
+    <div class="steps-section">
+      <button class="steps-buttons" @click="imageNumber=1">1</button>
+      <hr width="30%" :style="[imageNumber>=2 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
+      <button class="steps-buttons" 
+              @click="imageNumber=2" 
+              :style="[imageNumber>=2 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">2</button>
+      <hr width="30%" :style="[imageNumber>=3 ? {'border-color':'#DD9C3F'} : {'border-color':'#cab595'}]">
+      <button class="steps-buttons" @click="imageNumber=3"
+              :style="[imageNumber>=3 ? {'background-color':'#DD9C3F'} : {'background-color':'#cab595', 'border-color':'#cab595', 'box-shadow':'none'}]">3</button>
     </div>
+    <div class="tips-section">
+      <div v-if="imageNumber==1" class="userId-form">
+        <h3>Click on profile</h3>
+        <img src='/img/onboarding/bitcointalk/step1a_alt2.png' >
+      </div>
+      <img v-if="imageNumber==2" src='/img/onboarding/bitcointalk/step1b_alt.png' >
+      <div v-if="imageNumber==3" class="userId-form">
+        <h1 style="margin:0px">Step 3</h1>
+        <h3>Paste your USERID below:</h3>
+        <div class="md-form">
+          <input class="form-control" placeholder="UserId" v-model="forumUserId">
+          <button class="btn venue-accent-color" @click="submitUserId">SUBMIT USERID</button>
+        </div>
+      </div>
+    </div>
+
+    <button v-if="imageNumber<3" class="btn btn-small venue-accent-color modal-default-button" @click="imageNumber+=1">
+      NEXT
+    </button>
+  </div>
 </template>
 
 <script>

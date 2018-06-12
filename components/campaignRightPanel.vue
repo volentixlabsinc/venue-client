@@ -1,40 +1,40 @@
 <template>
-<div class="all-campaigns">
-        <div class="campaign-info-container" >
-          <h2 class="campaign-title">BITCOINTALK CAMPAIGN</h2>
-         </div>
-       <div class="campaigns-numbers-container" @click="onClickLeaderboard">
-        <div class="campaigns-number-card">
-          <h1 class="dashboard-numbers"><ICountUp
-            :startVal="0"
-            :endVal="totalUsers"
+  <div class="all-campaigns">
+    <div class="campaign-info-container" >
+      <h2 class="campaign-title">BITCOINTALK CAMPAIGN</h2>
+    </div>
+    <div class="campaigns-numbers-container" @click="onClickLeaderboard">
+      <div class="campaigns-number-card">
+        <h1 class="dashboard-numbers"><ICountUp
+          :start-val="0"
+          :end-val="totalUsers"
+          :decimals="0"
+          :duration="2.5"
+          :options="options"
+        /></h1>
+        <h4 class="info-subtitles">PARTICIPANTS</h4>
+      </div>
+      <div class="campaigns-number-card">
+        <h1 class="dashboard-numbers">
+          <ICountUp
+            :start-val="0"
+            :end-val="totalPosts"
             :decimals="0"
             :duration="2.5"
             :options="options"
-          /></h1>
-          <h4 class="info-subtitles">PARTICIPANTS</h4>
-        </div>
-        <div class="campaigns-number-card">
-          <h1 class="dashboard-numbers">
-            <ICountUp
-            :startVal="0"
-            :endVal="totalPosts"
-            :decimals="0"
-            :duration="2.5"
-            :options="options"
-          /></h1>
-          <h4 class="info-subtitles">TOTAL POSTS</h4>
-        </div>
-         </div>
-        <div>
-            <h1 class="nb-tokens">{{availableTokens}} VTX</h1>
-            <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"></i>AVAILABLE REWARDS</h1>
-          </div>
-        <div class="leaderboard-container">
-             <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"></i></h2>
-        <leaderboard :shortenedLeaderboard="true" />
-        </div>
-</div>
+        /></h1>
+        <h4 class="info-subtitles">TOTAL POSTS</h4>
+      </div>
+    </div>
+    <div>
+      <h1 class="nb-tokens">{{ availableTokens }} VTX</h1>
+      <h1 class="available-rewards"><i class="fas fa-star" style="color:#fbc02d"/>AVAILABLE REWARDS</h1>
+    </div>
+    <div class="leaderboard-container">
+      <h2 class="campaign-title" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></h2>
+      <leaderboard :shortened-leaderboard="true" />
+    </div>
+  </div>
 </template>
 
 <script>

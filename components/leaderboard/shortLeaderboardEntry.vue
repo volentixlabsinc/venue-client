@@ -1,23 +1,23 @@
 <template>
-    <tbody>
-        <tr 
-        :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
-            <td 
-            class="rank">
-            {{elements.rank}}</td>
-            <td 
-            colspan="2"
-            class="username">
-            {{elements.username}}</td>
-             <td 
-            class="empty-cell"></td>
-            <td 
-            class="tokens">
-            {{elements.total_tokens}}</td>
-            <td 
-            class="tokens-unity">VTX</td>
-        </tr>
-    </tbody>
+  <tbody>
+    <tr 
+      :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
+      <td 
+        class="rank">
+        {{ elements.rank }}</td>
+      <td 
+        colspan="2"
+        class="username">
+        {{ elements.username }}</td>
+      <td 
+        class="empty-cell"/>
+      <td 
+        class="tokens">
+        {{ elements.total_tokens }}</td>
+      <td 
+        class="tokens-unity">VTX</td>
+    </tr>
+  </tbody>
 
 </template>
 

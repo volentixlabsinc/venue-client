@@ -1,12 +1,12 @@
 <template>
-    <div class="menu-item menu-link">
+  <div class="menu-item menu-link">
     <router-link :to="route">
-        <div class="icons-align">
-            <span :class="icon"></span>
-            <span class="menu-name">{{name}}</span>
-        </div>
+      <div class="icons-align">
+        <span :class="icon"/>
+        <span class="menu-name">{{ name }}</span>
+      </div>
     </router-link>
-    </div>
+  </div>
 </template>
 
 <script>

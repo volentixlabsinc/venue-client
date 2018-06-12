@@ -1,52 +1,52 @@
 <template>
-    <tbody>
-        <tr 
-        @click="expandInfo"
-        :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
-            <td 
-            class="rank"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
-            {{elements.rank}}</td>
-            <td 
-            colspan="2"
-            class="username"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
-            {{elements.username}}</td>
-             <td 
-            class="empty-cell"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"></td>
-            <td 
-            class="tokens"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
-            {{elements.total_tokens}}</td>
-            <td 
-            class="tokens-unity"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">VTX</td>
-            <td 
-            class="expand"
-            :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"><i class="fas fa-chevron-down"></i></td>
-        </tr>
+  <tbody>
+    <tr 
+      @click="expandInfo"
+      :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
+      <td 
+        class="rank"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        {{ elements.rank }}</td>
+      <td 
+        colspan="2"
+        class="username"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        {{ elements.username }}</td>
+      <td 
+        class="empty-cell"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"/>
+      <td 
+        class="tokens"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        {{ elements.total_tokens }}</td>
+      <td 
+        class="tokens-unity"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">VTX</td>
+      <td 
+        class="expand"
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"><i class="fas fa-chevron-down"/></td>
+    </tr>
         
-        <tr v-if="toggleDescription" class="toggleDescription">
-            <td class="no-border"></td>
-            <td class="no-border"></td>
-            <td 
-            class="expanded-data no-border"
-            colspan="1">
-            {{elements.total_posts}} Post</td>
-            <td 
-            class="expanded-data no-border total-points"
-            colspan="3">
-            {{elements.total_points}} Points</td>
-            <td 
-            class="expanded-data no-border"></td>
-        </tr>
-        <tr v-if="toggleDescription" class="toggleDescription-border">
-            <td 
-            class="expanded-data-border"
-            colspan="7"></td>
-        </tr>
-    </tbody>
+    <tr v-if="toggleDescription" class="toggleDescription">
+      <td class="no-border"/>
+      <td class="no-border"/>
+      <td 
+        class="expanded-data no-border"
+        colspan="1">
+        {{ elements.total_posts }} Post</td>
+      <td 
+        class="expanded-data no-border total-points"
+        colspan="3">
+        {{ elements.total_points }} Points</td>
+      <td 
+        class="expanded-data no-border"/>
+    </tr>
+    <tr v-if="toggleDescription" class="toggleDescription-border">
+      <td 
+        class="expanded-data-border"
+        colspan="7"/>
+    </tr>
+  </tbody>
 
 </template>
 

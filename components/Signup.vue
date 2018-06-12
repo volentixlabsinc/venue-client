@@ -1,21 +1,21 @@
 <template>
-<div class="log-in-element">
-  <h3>SIGNUP</h3>
+  <div class="log-in-element">
+    <h3>SIGNUP</h3>
     <form method="POST" @submit="registerUser($event)">
-        <ul>
-          <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
-        </ul>
-        <input v-validate="'required|email'" name="email" placeholder="email" v-model="email"/>
-        <input v-validate="'required'" name="username" placeholder="username" v-model="username"/>
-        <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password"/>
-        <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation"/>
-        <button
+      <ul>
+        <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+      </ul>
+      <input v-validate="'required|email'" name="email" placeholder="email" v-model="email">
+      <input v-validate="'required'" name="username" placeholder="username" v-model="username">
+      <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password">
+      <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation">
+      <button
         class="btn">Sign Up</button>
-        <div>
+      <div>
         <a 
-        @click="$emit('cancel')"
-        class="cancel">CANCEL</a>
-        </div>
+          @click="$emit('cancel')"
+          class="cancel">CANCEL</a>
+      </div>
     </form>
   </div>
 </template>
@@ -23,11 +23,6 @@
 
 <script>
 export default {
-  props: {
-    action: {
-      type: String
-    }
-  },
   data() {
     return {
       email: "",

@@ -1,16 +1,16 @@
 <template>
-<div class="log-in-element">
-  <h3>LOGIN</h3>
+  <div class="log-in-element">
+    <h3>LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
-        <ul>
-          <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
-        </ul>
-        <input v-validate="'required'" name="username" placeholder="username or email" v-model="username"/>
-        <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
-        <button 
+      <ul>
+        <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+      </ul>
+      <input v-validate="'required'" name="username" placeholder="username or email" v-model="username">
+      <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password">
+      <button 
         type="submit" 
         class="btn">Log In</button>
-        <a 
+      <a 
         @click="$emit('cancel')"
         class="cancel">CANCEL</a>
     </form>
@@ -20,11 +20,6 @@
 
 <script>
 export default {
-  props: {
-    action: {
-      type: String
-    }
-  },
   data() {
     return {
       logged: false,
