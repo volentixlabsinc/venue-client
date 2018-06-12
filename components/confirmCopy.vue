@@ -27,9 +27,6 @@
 
 <script>
 import HelpSignatureImages from "./HelpSignatureImages.vue"
-import {
-  retrievSignatureCode,
-} from "~/services/signatures";
 
 const BITCOINTALK_FORUM_ID = 1
 

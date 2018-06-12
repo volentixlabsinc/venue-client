@@ -38,12 +38,6 @@
 
 <script>
 
-import {
-  checkProfile,
-  createForumProfile
-} from "~/services/signatures";
- 
-
 export default {
     data() {
         return({
