@@ -29,6 +29,11 @@ import confirmCopy from "./confirmCopy.vue";
 
 export default {
   name: "ModalWidget",
+  components: {
+    HelpIdImages,
+    confirmCopy,
+    HelpSignatureImages
+  },
   props: {
     request: {
       type: String,
@@ -40,11 +45,6 @@ export default {
       // helpRequest: 'ID'
       // timer: 240
     };
-  },
-  components: {
-    HelpIdImages,
-    confirmCopy,
-    HelpSignatureImages
   }
 };
 </script>

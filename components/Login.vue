@@ -3,16 +3,16 @@
     <h3>LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
       <ul>
-        <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+        <li v-for="error in errors" :key="error.id" class="venue-text">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
-      <input v-validate="'required'" name="username" placeholder="username or email" v-model="username">
-      <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password">
+      <input v-validate="'required'" v-model="username" name="username" placeholder="username or email">
+      <input v-validate="'required|regex:[^]*'" v-model="password" type="password" name="password" placeholder="password">
       <button 
         type="submit" 
         class="btn">Log In</button>
       <a 
-        @click="$emit('cancel')"
-        class="cancel">CANCEL</a>
+        class="cancel"
+        @click="$emit('cancel')">CANCEL</a>
     </form>
   </div>
 </template>

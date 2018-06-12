@@ -3,18 +3,18 @@
     <h3>SIGNUP</h3>
     <form method="POST" @submit="registerUser($event)">
       <ul>
-        <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
+        <li v-for="error in errors" :key="error.id" class="venue-text">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
-      <input v-validate="'required|email'" name="email" placeholder="email" v-model="email">
-      <input v-validate="'required'" name="username" placeholder="username" v-model="username">
-      <input v-validate="'required|min:6'" type="password" name="password" placeholder="password" v-model="password">
-      <input v-validate="{is: password}" type="password" name="confirmation" placeholder="confirm password" v-model="confirmation">
+      <input v-validate="'required|email'" v-model="email" name="email" placeholder="email">
+      <input v-validate="'required'" v-model="username" name="username" placeholder="username">
+      <input v-validate="'required|min:6'" v-model="password" type="password" name="password" placeholder="password">
+      <input v-validate="{is: password}" v-model="confirmation" type="password" name="confirmation" placeholder="confirm password">
       <button
         class="btn">Sign Up</button>
       <div>
         <a 
-          @click="$emit('cancel')"
-          class="cancel">CANCEL</a>
+          class="cancel"
+          @click="$emit('cancel')">CANCEL</a>
       </div>
     </form>
   </div>

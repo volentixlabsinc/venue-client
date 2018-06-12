@@ -1,10 +1,10 @@
 <template>
   <div class="main-modal">
-    <div class="verification" v-if="!showHelp">
+    <div v-if="!showHelp" class="verification">
       <div class="steps-section">
         <h1>SIGNATURE CODE COPIED!</h1>
       </div>
-      <div class="tips-section" v-if="!verified">
+      <div v-if="!verified" class="tips-section">
         <div class="loader"/>
         <div class="text-modal">
           <h2>Simply paste the copied code to your Bitcointalk profile</h2>
@@ -12,14 +12,14 @@
           <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
         </div>
       </div>
-      <div class="tips-section" v-else>
+      <div v-else class="tips-section">
         <div class="text-success-message">
           <h1>SUCCESS!</h1>
           <h2>Congratulations! We successfully auto-verified your new signature!</h2>
         </div>
       </div>
     </div>
-    <div class="help-section" v-else>
+    <div v-else class="help-section">
       <HelpSignatureImages @done="showHelp = !showHelp"/>
     </div>
   </div>

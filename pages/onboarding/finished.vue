@@ -21,7 +21,7 @@
             <td data-label="USERNAME">Sandra</td>
             <td data-label="USER ID">332584</td>
             <td data-label="STATUS"><i class="fa fa-check" style="color:white"/> Verified </td>
-            <td class="button"><button @click="startOnBoarding('bitcointalk')" class="btn btn-outline"> Change Signature</button></td>
+            <td class="button"><button class="btn btn-outline" @click="startOnBoarding('bitcointalk')"> Change Signature</button></td>
           </tr>
 
 

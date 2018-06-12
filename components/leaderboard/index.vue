@@ -11,6 +11,10 @@
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
 export default {
+  components: {
+    leaderboardEntry,
+    shortLeaderboardEntry
+  },
   props: {
     shortenedLeaderboard: {
       type: Boolean,
@@ -25,10 +29,6 @@ export default {
         ? this.$store.state.userStats.user_level.overall_rank
         : 0
     };
-  },
-  components: {
-    leaderboardEntry,
-    shortLeaderboardEntry
   }
 };
 </script>

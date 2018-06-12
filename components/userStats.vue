@@ -4,7 +4,7 @@
       <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
     </div>
     <div>
-      <div class="chart" v-if="isAuthenticated"> 
+      <div v-if="isAuthenticated" class="chart"> 
         <forum-chart :width="450" :height="300" />
       </div>
       <div class="campaigns-info-container">
@@ -38,7 +38,7 @@
         <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
         <h1 class="subtitle" style="background-color:rgba(252, 248, 248, 0.05); display: flex; justify-content: space-evenly"><i class="fas fa-star" style="color:#fbc02d"/>  MY CURRENT REWARDS</h1>
       </div>
-      <div class="view-details" v-if="dailyStats">
+      <div v-if="dailyStats" class="view-details">
         <a class="button view-details-button" @click="onClickDetails">
           <h3 class="view-details-text">View details</h3>
           <i class="fas fa-search"/>
@@ -53,6 +53,10 @@ import ICountUp from "vue-countup-v2";
 import ForumChart from "~/components/forumActivity/ForumChart.vue";
 
 export default {
+  components: {
+    ICountUp,
+    ForumChart
+  },
   data() {
     const data = {
       isAuthenticated: this.$store.state.user.isAuthenticated,
@@ -92,10 +96,6 @@ export default {
     onClickDetails() {
       this.$router.push("/points-details");
     }
-  },
-  components: {
-    ICountUp,
-    ForumChart
   }
 };
 </script>

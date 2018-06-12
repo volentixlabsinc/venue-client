@@ -50,6 +50,9 @@
 import ICountUp from "vue-countup-v2";
 
 export default {
+  components: {
+    ICountUp
+  },
   data() {
     return {
       // TODO this should be at profile level, but API doesn't return it
@@ -74,9 +77,6 @@ export default {
     onClickDetails() {
       this.$router.push("/points-details");
     }
-  },
-  components: {
-    ICountUp
   }
 };
 </script>

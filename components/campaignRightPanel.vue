@@ -41,6 +41,10 @@
 import ICountUp from "vue-countup-v2";
 import leaderboard from "~/components/leaderboard/index.vue";
 export default {
+  components: {
+    ICountUp,
+    leaderboard
+  },
   data() {
     return {
       totalUsers: this.$store.state.leaderboard.sitewide.total_users,
@@ -60,10 +64,6 @@ export default {
     onClickLeaderboard() {
       this.$router.push("/leaderboard");
     }
-  },
-  components: {
-    ICountUp,
-    leaderboard
   }
 };
 </script>

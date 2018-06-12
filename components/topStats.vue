@@ -50,6 +50,10 @@ import ICountUp from "vue-countup-v2";
 import forumStatsPosts from "~/components/forumActivity/forumStatsPosts";
 
 export default {
+  components: {
+    ICountUp,
+    forumStatsPosts
+  },
   data() {
     return {
       rank: this.$store.state.userStats.user_level
@@ -66,10 +70,6 @@ export default {
         suffix: ""
       }
     };
-  },
-  components: {
-    ICountUp,
-    forumStatsPosts
   }
 };
 </script>

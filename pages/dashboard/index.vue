@@ -6,8 +6,10 @@
         <img id="signature" src="/img/onboarding/sig1.png">
         <button class="button is-small is-primary">CHANGE</button>
       </div>
-      <div v-if="profile_level_global" class=" forum" v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID">
-        <forum />
+      <div v-if="profile_level_global">
+        <div v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID" class=" forum">
+          <forum />
+        </div>
       </div>
       <my-campaign :data="profile_level_global" />
     </div>
@@ -23,6 +25,11 @@ import myCampaign from "~/components/myCampaign.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
+  components: {
+    forum,
+    myCampaign,
+    campaignRightPanel
+  },
   data() {
     return {
       profile_level_forum: this.$store.state.userStats.profile_level,
@@ -41,11 +48,6 @@ export default {
     if (this.$store.state.userStats.fresh) {
       this.$router.push("/onboarding/bitcointalk/");
     }
-  },
-  components: {
-    forum,
-    myCampaign,
-    campaignRightPanel
   }
 };
 </script>

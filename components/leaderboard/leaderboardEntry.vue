@@ -1,30 +1,30 @@
 <template>
   <tbody>
     <tr 
-      @click="expandInfo"
-      :style = "[this.myRank === this.elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}]" >
+      :style = "myRank === elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}"
+      @click="expandInfo" >
       <td 
-        class="rank"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
+        class="rank">
         {{ elements.rank }}</td>
       <td 
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
         colspan="2"
-        class="username"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        class="username">
         {{ elements.username }}</td>
       <td 
-        class="empty-cell"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"/>
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
+        class="empty-cell"/>
       <td 
-        class="tokens"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
+        class="tokens">
         {{ elements.total_tokens }}</td>
       <td 
-        class="tokens-unity"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]">VTX</td>
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
+        class="tokens-unity">VTX</td>
       <td 
-        class="expand"
-        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"><i class="fas fa-chevron-down"/></td>
+        :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
+        class="expand"><i class="fas fa-chevron-down"/></td>
     </tr>
         
     <tr v-if="toggleDescription" class="toggleDescription">

@@ -1,8 +1,8 @@
 <template>
-  <modal name="copied-signature"
-         :adaptive="true"
+  <modal :adaptive="true"
          :max-width="1000"
          :max-height="400"
+         name="copied-signature"
          width="80%"
          height="50%"
          @before-open="beforeOpen">

@@ -29,14 +29,14 @@
 import NavLink from "./NavLink.vue";
 
 export default {
+  components: {
+    NavLink
+  },
   methods: {
     // TODO I think this should work as a data member, but I can't get it to work :(
     isAuthenticated() {
       return this.$store.state.user.isAuthenticated;
     }
-  },
-  components: {
-    NavLink
   }
 };
 </script>

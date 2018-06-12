@@ -5,13 +5,13 @@
         <li v-for="sig in signatures" :key="sig.id">
           <div>
             <img :src="sig.image" >
-            <button type="button" v-clipboard:copy="sig.code"
-                    v-clipboard:success="() => onCopy(sig)">COPY CODE</button>
+            <button v-clipboard:copy="sig.code" v-clipboard:success="() => onCopy(sig)"
+                    type="button">COPY CODE</button>
           </div>
         </li>
       </ul>
     </form>  
-    <ModalWidget v-if="showModal" @close="showModal = false" :request="'confirmCopy'"/>
+    <ModalWidget v-if="showModal" :request="'confirmCopy'" @close="showModal = false"/>
   </div>
 </template>
 
@@ -19,6 +19,9 @@
 import ModalWidget from "~/components/ModalWidget.vue";
 
 export default {
+  components: {
+    ModalWidget
+  },
   props: {
     signatures: {
       type: Array,
@@ -103,22 +106,19 @@ export default {
       ]
     }
   },
-  components: {
-    ModalWidget
-  },
   data() {
     return {
       showModal: false
     };
+  },
+  created() {
+    console.log("created", this.signatures);
   },
   methods: {
     onCopy: function(sig) {
       this.$store.commit("signatureCopied", sig.id);
       this.showModal = true;
     }
-  },
-  created() {
-    console.log("created", this.signatures);
   }
 };
 </script>
