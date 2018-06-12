@@ -24,6 +24,9 @@
 
 <script>
 import ModalWidget from "~/components/ModalWidget.vue";
+import {
+  retrievSignatureCode,
+} from "~/services/signatures";
 
 export default {
      components: {
@@ -32,7 +35,7 @@ export default {
   },
     data() {
         return{
-            timer: 240,
+            timer: 2,
             verified: false,
             showModal: false
         }
@@ -51,11 +54,24 @@ export default {
     methods: {
         timerCalc(){
         this.timer -=  1;
-        if (this.timer == 1) {
+        if (this.timer == 0) {
             // confirm signature
+            this.validateSignature()
+        }
+        },
+        async validateSignature (evt) {
+            var signature_id = this.$store.state.copiedSignatureId
+     
+            const { data } = await retrievSignatureCode()
+            
+            if (!data.found) {
+            this.error = true;
+            } else {
+            console.log('worked');
+            }
+
             this.verified = true;
-        }
-        }
+            }
     }
 }
 </script>

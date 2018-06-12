@@ -12,7 +12,7 @@
                 <div class="modal-body">
                 <help-id-images v-if="request=='ID'"/>
                 <confirm-copy v-if="request=='confirmCopy'" />
-                <help-signature-images v-if="request=='pasteSignature'" />
+                <help-signature-images v-if="request=='pasteSignature'" @close="$emit('close')"/>
                 </div>
 
   
@@ -29,12 +29,11 @@ import confirmCopy from "./confirmCopy.vue"
 
 export default {
   props: { 
-    hdr : Boolean ,
     request: {
       type: String,
       default: 'ID'
     }
-  }, //defaults to false
+  },
   data() {
     return ({
       // helpRequest: 'ID'
