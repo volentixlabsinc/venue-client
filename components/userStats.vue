@@ -223,7 +223,7 @@ export default {
 }
 
 .view-details-button {
-    width: 70%;
+    width: 55%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -232,12 +232,15 @@ export default {
     padding-bottom: 5px;
     margin-right: 0px;
     border-radius: 5px;
+    white-space: nowrap;
 }
 
 .view-details-button:hover{
     background-color: rgba(240, 248, 255, 0.2);
 }
-
+.chart {
+    display: none;
+}
 
 @media only screen and (min-width: 800px) {
 
@@ -270,6 +273,7 @@ export default {
 }
 
 .chart {
+    display:initial;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -305,6 +309,10 @@ export default {
 
  .view-details {
     width: 90%;
+}
+
+.view-details-button {
+    width: 60%;
 }
 }
 </style>
