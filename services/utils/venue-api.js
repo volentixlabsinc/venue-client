@@ -10,18 +10,18 @@ import {
 
 class VenueAPI {
   constructor() {
-    this.http = axios.create({
-      baseURL: process.env.baseUrl
-    });
+    // this.http = axios.create({
+    //   baseURL: process.env.baseUrl
+    // });
 
-    this.http.defaults.headers.common["Accept"] = "application/json";
-    this.http.defaults.headers.post["Content-Type"] = "application/json";
+    // this.http.defaults.headers.common["Accept"] = "application/json";
+    // this.http.defaults.headers.post["Content-Type"] = "application/json";
 
-    const token = readFromCookie();
-    console.log('cookie', token)
-    if (token) {
-        this.setToken(token)
-    }
+    // const token = readFromCookie();
+    // console.log('cookie', token)
+    // if (token) {
+    //     this.setToken(token)
+    // }
   }
 
   /**

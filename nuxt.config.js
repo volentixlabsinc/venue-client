@@ -46,6 +46,12 @@ module.exports = {
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8000/api'
   },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  axios: {
+    baseURL: 'http://localhost:8000/api'
+  },
   plugins: [
     '~/plugins/vue-clipboard',
     // '~/plugins/vue-sweetalert2',
