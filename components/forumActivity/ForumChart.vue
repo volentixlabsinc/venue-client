@@ -61,7 +61,9 @@ export default {
     };
   },
   mounted() {
-    this.fillData();
+    if (this.$store.state.userStats.user_level) {
+      this.fillData();
+    }
   },
   methods: {
     fillData() {

@@ -71,7 +71,7 @@ export default {
                 suffix: ''
             },
         }
-        if (this.$store.state.user.isAuthenticated) {
+        if (this.$store.state.user.isAuthenticated && this.$store.state.userStats.user_level) {
             Object.assign(data, {
                 dailyStats: this.$store.state.userStats.user_level.daily_stats,
                 myPosts: this.$store.state.userStats.profile_level[0].numPosts,
