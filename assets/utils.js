@@ -22,6 +22,8 @@ async function registerForumUser (vm, forumId, forumUserId) {
     forumUserId,
     forumProfileId: forumProfile.id
   })
+  
+  return forumProfile
 }
 
 export {

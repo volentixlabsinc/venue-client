@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
-                    <AvailableSignatures />
+                    <AvailableSignatures :signatures="signatures"/>
                     <button class="btn venue-accent-color" @click="doNext">NEXT</button>
                 </div>
                 <div class="form-group" v-if="step === 3">
@@ -73,7 +73,8 @@ export default {
       forumUserId: undefined,
       error: undefined,
       message: "",
-      check: false
+      check: false,
+      signatures: []
     };
   },
   methods: {
@@ -92,7 +93,8 @@ export default {
     async validateId (evt) {
       evt.preventDefault();
 
-      await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+      const forumProfile = await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+      this.retrieveSignatures(forumProfile.id)
       this.doNext()
     },
     onCopy: function(e) {
@@ -136,7 +138,19 @@ export default {
             //   }
             // });
           }
-        }
+        },
+      async retrieveSignatures (forumProfileId) {
+        const signatures = await this.$axios.$get('/retrieve/signatures/', {
+          params: {
+            forum_site_id: BITCOINTALK_FORUM_ID,
+            forum_profile_id: forumProfileId
+          }
+        })
+        // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
+        this.signatures = signatures.signatures.filter(
+          signature => signature.name.startsWith('Full Member'))
+          // signature => signature.name.startsWith('Sr. Member'))
+      }
   }
 };
 </script>
