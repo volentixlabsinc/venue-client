@@ -23,15 +23,16 @@
             <div v-if="imageNumber==3" class="userId-form">
                 <h3>3) Scroll down and accept the changes</h3>
                 <img v-if="imageNumber==3"  id="signature-container" src='/img/onboarding/bitcointalk/sigPaste3.png' />
-                <div class="md-form">
-                    <button class="btn venue-accent-color"  @click="$emit('close')">Done</button>
-                </div>
+                
             </div>
         </div>
 
         <button v-if="imageNumber<3" class="btn btn-small venue-accent-color modal-default-button" @click="imageNumber+=1">
             NEXT
         </button>
+        <div v-else class="md-form">
+            <button class="btn venue-accent-color"  @click="$emit('done')">Done</button>
+        </div>
     </div>
 </template>
 
@@ -103,7 +104,7 @@ button:focus {outline:0;}
     width: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -113,14 +114,14 @@ button:focus {outline:0;}
 }
 
 img {
-    max-height: 90%;
+    max-height: 80%;
     border-radius: 5px;
 }
 #signature-container{
     width: 100%;
 }
 .userId-form{
-    height: 80%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
