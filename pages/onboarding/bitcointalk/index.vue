@@ -80,15 +80,10 @@ export default {
       forumUserId: undefined,
       error: undefined,
       message: "",
-      check: false
+      check: false,
+      signatures: []
     };
   },
-  // mounted() {
-  //   retrieveForumSites()
-  //   .then(res => {
-  //     console.log('Res', res);
-  //   })
-  // },
   methods: {
     doNext(evt) {
       if (evt) {
@@ -105,21 +100,9 @@ export default {
     async validateId (evt) {
       evt.preventDefault();
 
-      const { data } = await checkProfile(this.forumUserId, BITCOINTALK_FORUM_ID)
-        if (!data.found) {
-          this.error = true;
-        } else {
-            await this.createForumProfile(this.forumUserId)
-            this.doNext()
-        }
-    },
-    async createForumProfile (forum_user_id) {
-      const { data } = await createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
-      this.$store.commit('forums/register', {
-        forumId: BITCOINTALK_FORUM_ID,
-        forumUserId: forum_user_id,
-        venueForumUserId: data.id
-      })
+      const forumProfile = await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+      this.retrieveSignatures(forumProfile.id)
+      this.doNext()
     },
     onCopy: function(e) {
         // FIXME 
@@ -129,11 +112,15 @@ export default {
       alert("Failed to copy texts");
     },
     async verify () {
-      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).venueForumUserId
+      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
       var signature_id = this.$store.state.copiedSignatureId
 
-      const { data } = await createSignature(forum_profile_id, signature_id, true)
-          if (data.success) {
+      const signatureResult = await this.$axios.$post('/create/signature/', {
+        forum_profile_id, signature_id })
+          if (signatureResult.success) {
+            const userStats = await this.$axios.$get('/retrieve/stats/')
+            await this.$store.commit('setUserStats', userStats.stats)
+
             // this.$swal({
             //   title: "Signature Placement Verified",
             //   text: "You can now start posting and earning VTX",
@@ -158,7 +145,19 @@ export default {
             //   }
             // });
           }
-        }
+        },
+      async retrieveSignatures (forumProfileId) {
+        const signatures = await this.$axios.$get('/retrieve/signatures/', {
+          params: {
+            forum_site_id: BITCOINTALK_FORUM_ID,
+            forum_profile_id: forumProfileId
+          }
+        })
+        // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
+        this.signatures = signatures.signatures.filter(
+          signature => signature.name.startsWith('Full Member'))
+          // signature => signature.name.startsWith('Sr. Member'))
+      }
   }
 };
 </script>
