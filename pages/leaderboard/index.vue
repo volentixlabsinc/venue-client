@@ -1,11 +1,12 @@
 <template>
   <div class="main-section">
-      <h2 class="section-title">BITCOINTALK SIGNATURE CAMPAIGN</h2>
       <div class="top-left">
+          <h2 class="section-title">BITCOINTALK LEADERBOARD</h2>
           <top-stats v-if="$store.state.leaderboard.sitewide.total_users>0" />
           <leaderboard class="leaderboard" />
       </div>
         <div class="stats-container">
+              <h3 class="section-title">MY CAMPAIGN ACTIVITY</h3>
             <user-stats />
             <edit-signature-button v-if="$store.state.userStats.profile_level"/>
         </div>
