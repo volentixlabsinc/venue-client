@@ -48,7 +48,7 @@ export default {
         submitUserId: async function() {
             const profileData = await registerForumUser(this, this.forumId, this.forumUserId)
             if (profileData.success === true || profileData.exists === true) {
-                // TODO Close modal
+                // TODO Close modal and advance to step #2
             }
         }
     },
