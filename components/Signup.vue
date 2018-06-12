@@ -53,14 +53,16 @@ export default {
      const result = await this.$axios.$post('create/user/', {
        email: this.email, 
        username: this.username, 
-       password: this.password
+       password: this.password,
+       language: 'en'
      })
 
      if (result.status !== 'success') {
         console.error('There was an error: ', data)
         this.signUpError = true
      } else {
-       this.$emit('sucessfulRegistration'); 
+       console.log('SUCCESS!!! Click on registration link')
+       // TODO Display success modal here
      }
     }
   }
