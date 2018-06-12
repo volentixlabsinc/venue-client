@@ -28,6 +28,7 @@ import HelpSignatureImages from "./HelpSignatureImages.vue"
 import confirmCopy from "./confirmCopy.vue"
 
 export default {
+  name: 'ModalWidget',
   props: { 
     request: {
       type: String,

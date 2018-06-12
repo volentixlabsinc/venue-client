@@ -15,7 +15,7 @@
                     </span>
                     <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
                 </div>
-                <div class="form-group" v-if="step === 2">
+                <div class="form-group step-2" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
                     <AvailableSignatures />
                     <button class="btn venue-accent-color" @click="doNext">NEXT</button>
@@ -316,7 +316,7 @@ button{
   }
 }
 .stepform {
-  height: 70%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

@@ -1,5 +1,6 @@
 <template>
     <div class="main-modal">
+        <div class="verification" v-if="!showHelp">
         <div class="steps-section">
            <h1>SIGNATURE CODE COPIED!</h1>
         </div>
@@ -8,7 +9,7 @@
             <div class="text-modal">
                 <h2>Simply paste the copied code to your Bitcointalk profile</h2>
                 <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{timer}} </label> seconds </h3>
-                <div class="flex-row-80"><label class="help-link" @click="showModal = true">click for help</label> <button class="btn venue-accent-color">Verify Now</button></div>
+                <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color">Verify Now</button></div>
             </div>
         </div>
         <div class="tips-section" v-else>
@@ -17,26 +18,29 @@
                 <h2>Congratulations! We successfully auto-verified your new signature!</h2>
             </div>
         </div>
-
-        <ModalWidget v-if="showModal" @close="showModal = false" :request="'pasteSignature'"/>
+        </div>
+        <div class="help-section" v-else>
+            <HelpSignatureImages @done="showHelp = !showHelp"/>
+        </div>
     </div>
 </template>
 
 <script>
-import ModalWidget from "~/components/ModalWidget.vue";
+import HelpSignatureImages from "./HelpSignatureImages.vue"
+
 import {
   retrievSignatureCode,
 } from "~/services/signatures";
 
 export default {
      components: {
-    ModalWidget,
+    HelpSignatureImages,
   },
     data() {
         return{
-            timer: 2,
+            timer: 240,
             verified: false,
-            showModal: false
+            showHelp: false
         }
     },
     mounted() { 
@@ -61,14 +65,8 @@ export default {
         async validateSignature (evt) {
             var signature_id = this.$store.state.copiedSignatureId
      
-            const { data } = await retrievSignatureCode()
-            
-            if (!data.found) {
-            this.error = true;
-            } else {
-            console.log('worked');
-            }
-
+            // const { data } = await retrievSignatureCode()
+        
             this.verified = true;
             }
     }
@@ -110,7 +108,14 @@ button:focus {outline:0;}
     justify-content: center;
     align-items: center;
 }
-
+.help-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .tips-section{
     display: flex;
     flex-direction: row;
