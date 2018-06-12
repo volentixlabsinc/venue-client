@@ -2,12 +2,14 @@
   <section class="section">
     <div class="container">
         <div class="bctalk-join">
-            <h2>STEP {{ step }}</h2>
             <form v-on:submit.prevent class="stepform">
+              <h1> STEP {{ step }} </h1>
                 <div class="form-group" v-if="step === 1">
-                    <label class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</label>
-                    <input type="text" v-model="forumUserId" id="forumUserId" placeholder="Your user id" class="form-control form-control-lg"/>
-                    <button class="btn btn-primary" @click="validateId">NEXT</button>
+                    <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
+                    <div class="input-form">
+                      <input type="text" v-model="forumUserId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
+                      <button class="btn venue-accent-color" @click="validateId">NEXT</button>
+                    </div>
                     <span v-if="error" style="color:red; display:block;">
                         <i class="fas fa-times-circle"></i> User not found - please try Again
                     </span>
@@ -16,28 +18,40 @@
                 <div class="form-group" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
                     <AvailableSignatures />
+                    <button class="btn venue-accent-color" @click="doNext">NEXT</button>
+                </div>
+                <div class="form-group" v-if="step === 3">
+                    <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
+                    <input type="textarea" rows="4" cols="50" 
+                        v-model="message"
+                        disabled
+                        v-clipboard:copy="message"
+                        v-clipboard:success="onCopy"
+                        v-clipboard:error="onError" />
+                    <button  
+                        v-clipboard:copy="message"
+                        v-clipboard:success="onCopy"
+                        v-clipboard:error="onError"
+                        class="btn venue-accent-color">Copy</button>
                     <button class="btn btn-danger" @click="verify">Verify</button>
                 </div>
         
             </form>
-            <ModalWidget v-if="showHelp" @close="showHelp = false">
-                <HelpImages slot="body"/>
-            </ModalWidget>
+            <ModalWidget v-if="showHelp" @close="showHelp = false" />
+            
         </div>
         <div class="lbox">
-            <h2>Leaderboard</h2>
-            <leaderboard/>
+            <campaign-right-panel/>
         </div>
     </div>
 </section>
 </template>
 
 
-<script>
-import leaderboard from "~/components/leaderboard";
 
+<script>
+import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
-import HelpImages from "~/components/HelpImages.vue";
 import {
   checkProfile,
   createForumProfile
@@ -45,15 +59,16 @@ import {
 import { retrieveForumProfiles } from "~/services/forum";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { createSignature } from "~/services/signatures";
+import { retrieveForumSites } from "~/services/forum";
+
 
 const BITCOINTALK_FORUM_ID = 1
 
 export default {
   components: {
     ModalWidget,
-    HelpImages,
     AvailableSignatures,
-    leaderboard
+    campaignRightPanel
   },
   data() {
     return {
@@ -68,6 +83,12 @@ export default {
       check: false
     };
   },
+  // mounted() {
+  //   retrieveForumSites()
+  //   .then(res => {
+  //     console.log('Res', res);
+  //   })
+  // },
   methods: {
     doNext(evt) {
       if (evt) {
@@ -144,8 +165,9 @@ export default {
 
 <style scoped>
 .section {
+  color: white;
   height: 100%;
-  width: 90%;
+  width: 100%;
   overflow-x: auto;
   overflow-y: auto;
   scrollbar-face-color: #367cd2;
@@ -163,8 +185,8 @@ export default {
 
 /* Track */
 .section::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
   -webkit-border-radius: 0px;
   border-radius: 0px;
   background-clip: content-box;
@@ -174,8 +196,8 @@ export default {
 .section::-webkit-scrollbar-thumb {
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
 }
 
 .stepper-box {
@@ -189,16 +211,18 @@ export default {
   color: #97a5b3;
 }
 .container {
+  height: 100%;
   display: flex;
-  align-items: baseline;
+  justify-content: center;
+  align-items: center;
 }
 
 .lbox {
   /* based off of css in dashboard/allCampaigns.vue */
   /*padding-top: 20px;*/
   padding-top: 2rem;
-  width: 70%; /*90%;*/
-  height: 100%;
+  width: 50%; /*90%;*/
+  /* height: 100%; */
   display: inherit;
   flex-direction: column;
   justify-content: flex-start;
@@ -233,7 +257,39 @@ export default {
   -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
   box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
 }
-/* <<< */
+
+.form-group{
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.input-form{
+  width: 90%;
+}
+
+.form-control{
+  color: white;
+  width: 70% !important;
+  height: 30px;
+  border-radius: 0px;
+  background-color: rgba(255, 254, 254, 0.1);
+  border: none;
+  border-bottom: 1px solid white;
+}
+
+::placeholder{
+  color:white;
+  padding-left: 5px;
+}
+
+button{
+  width:70% !important;
+}
+.directive{
+  width: 70%;
+}
 </style>
 
 <style>
@@ -259,15 +315,16 @@ export default {
     width: 95%;
   }
 }
-.stepform form {
+.stepform {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-self: center;
   margin: 0;
-  padding: 10px;
   border-radius: 8px;
-  background-color: #484a5d;
 }
-.stepform form ul {
-  padding: 0;
-}
+
 </style>
 
 
@@ -282,18 +339,12 @@ h2 {
 .button-group {
   display: flex;
 }
-.bctalk-join,
-form.stepform {
-  padding: 0 2rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
+
 form.stepform input,
 form.stepform button,
 form.stepform label {
   width: 50%;
   max-width: 500px;
-  padding: 0.75rem;
   font-size: 1rem;
 }
 form.stepform label {
@@ -301,7 +352,6 @@ form.stepform label {
   display: inline-block;
   color: #97a5b3;
   font-size: 95%;
-  padding: 1rem;
 }
 form.stepform input {
   width: 45%;
@@ -309,6 +359,14 @@ form.stepform input {
 form.stepform input[type=textarea] {
     height: 100px;
     overflow-wrap: break-word;
+}
+
+.bctalk-join {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 span.joinhelptxt {
   display: block;
