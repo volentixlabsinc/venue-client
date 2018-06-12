@@ -46,7 +46,10 @@ export default {
     },
     methods: {
         submitUserId: async function() {
-            await registerForumUser(this, this.forumId, this.forumUserId)
+            const profileData = await registerForumUser(this, this.forumId, this.forumUserId)
+            if (profileData.success === true || profileData.exists === true) {
+                // TODO Close modal
+            }
         }
     },
     mounted() {
