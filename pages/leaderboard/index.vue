@@ -20,7 +20,6 @@ import leaderboard from '~/components/leaderboard/index.vue';
 import userStats from '~/components/userStats.vue';
 import topStats from '~/components/topStats.vue';
 import editSignatureButton from '~/components/editSignatureButton.vue';
-import { retrieveStats } from '~/services/dashboard'
 
 export default {
   components: {

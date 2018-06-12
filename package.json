@@ -13,6 +13,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.1",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "chart.piecelabel.js": "^0.10.0",

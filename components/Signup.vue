@@ -24,8 +24,6 @@
 
 
 <script>
-import { checkForEmail, checkForUsername, createUser } from '~/services/account';
-
 export default {
   props: {
     action: {
@@ -45,7 +43,7 @@ export default {
   methods: {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(email) {
-      const { data } = await checkForEmail(this.email)
+      const data = await this.$axios.$get('check/email-exists/', { email: this.email })
       if (data.email_exists) {
         // TODO Display error
       }
@@ -54,9 +52,13 @@ export default {
      event.preventDefault()
      this.signUpError = false
 
-     const result = await createUser(this.email, this.username, this.password)
+     const result = await this.$axios.$post('create/user/', {
+       email: this.email, 
+       username: this.username, 
+       password: this.password
+     })
 
-     if (result.status !== 200) {
+     if (result.status !== 'success') {
         console.error('There was an error: ', data)
         this.signUpError = true
      } else {

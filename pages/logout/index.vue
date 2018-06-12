@@ -4,15 +4,12 @@
 
 
 <script>
-    import {logout } from '~/services/auth';
-
     export default{
         mounted(){
             this.logout();            
         },
          methods: { 
              logout: async function(){
-                logout(); 
                 await this.$store.commit('user/unauthenticated')
                 this.$router.push('/')
             }

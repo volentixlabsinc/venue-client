@@ -52,15 +52,8 @@
 <script>
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
-import {
-  checkProfile,
-  createForumProfile
-} from "~/services/signatures";
-import { retrieveForumProfiles } from "~/services/forum";
-import AvailableSignatures from "~/components/AvailableSignatures.vue";
-import { createSignature } from "~/services/signatures";
-import { retrieveForumSites } from "~/services/forum";
-
+import AvailableSignatures from '~/components/AvailableSignatures.vue'
+import { registerForumUser } from '~/assets/utils'
 
 const BITCOINTALK_FORUM_ID = 1
 
@@ -83,12 +76,6 @@ export default {
       check: false
     };
   },
-  // mounted() {
-  //   retrieveForumSites()
-  //   .then(res => {
-  //     console.log('Res', res);
-  //   })
-  // },
   methods: {
     doNext(evt) {
       if (evt) {
@@ -105,21 +92,8 @@ export default {
     async validateId (evt) {
       evt.preventDefault();
 
-      const { data } = await checkProfile(this.forumUserId, BITCOINTALK_FORUM_ID)
-        if (!data.found) {
-          this.error = true;
-        } else {
-            await this.createForumProfile(this.forumUserId)
-            this.doNext()
-        }
-    },
-    async createForumProfile (forum_user_id) {
-      const { data } = await createForumProfile(forum_user_id, BITCOINTALK_FORUM_ID, true)
-      this.$store.commit('forums/register', {
-        forumId: BITCOINTALK_FORUM_ID,
-        forumUserId: forum_user_id,
-        venueForumUserId: data.id
-      })
+      await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+      this.doNext()
     },
     onCopy: function(e) {
         // FIXME 
@@ -129,11 +103,15 @@ export default {
       alert("Failed to copy texts");
     },
     async verify () {
-      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).venueForumUserId
+      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
       var signature_id = this.$store.state.copiedSignatureId
 
-      const { data } = await createSignature(forum_profile_id, signature_id, true)
-          if (data.success) {
+      const signatureResult = await this.$axios.$post('/create/signature/', {
+        forum_profile_id, signature_id })
+          if (signatureResult.success) {
+            const userStats = await this.$axios.$get('/retrieve/stats/')
+            await this.$store.commit('setUserStats', userStats.stats)
+
             // this.$swal({
             //   title: "Signature Placement Verified",
             //   text: "You can now start posting and earning VTX",

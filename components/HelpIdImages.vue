@@ -32,13 +32,8 @@
     </div>
 </template>
 
-<script>
-
-import {
-  checkProfile,
-  createForumProfile
-} from "~/services/signatures";
- 
+<script> 
+import { registerForumUser } from '~/assets/utils'
 
 export default {
     data() {
@@ -50,25 +45,9 @@ export default {
         })
     },
     methods: {
-        submitUserId: function(){
-            const scope = this;
-            checkProfile(scope,userId,scope.BITCOINTALK_FORUM_ID)
-            .then(response => {
-                scope.fetchCreateForumProfile
-            })
-        },
-            
-        fetchCreateForumProfile() {
-            const scope = this;
-        createForumProfile (scope.userId, BITCOINTALK_FORUM_ID, true) 
-        .then(response => {
-            scope.$store.commit('forums/register', {
-            forumId: BITCOINTALK_FORUM_ID,
-            forumUserId: response.forum_user_id,
-            venueForumUserId: response.forum_profile_id
-          })
-        })
-      }
+        submitUserId: async function() {
+            await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
+        }
     },
     mounted() {
         // setInterval(this.swap, 4000);

@@ -28,17 +28,15 @@
 <script>
 import NavLink from './NavLink.vue'
 
-import {logout } from '~/services/auth'
-    export default {
-        name: 'navbar',
-        methods: {
+export default {
+            methods: {
             // TODO I think this should work as a data member, but I can't get it to work :(
             isAuthenticated () { return this.$store.state.user.isAuthenticated },
         },
         components: {
             NavLink
         }
-    }   
+}
 </script>
 
 <style scoped>

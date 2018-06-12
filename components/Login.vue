@@ -19,9 +19,6 @@
 
 
 <script>
-import { authenticate } from  '~/services/auth';
-import { retrieveStats } from '~/services/dashboard'
-
 export default {
   props: {
     action: {
@@ -41,24 +38,24 @@ export default {
       event.preventDefault()
       this.loginError = false
       
-      const authResponse = await authenticate(this.username, this.password)
-      if (authResponse.status !== 200) {
-        //Handle Login Error here 
-        console.log('wrong credentials')
-        var message = 'something went wrong'
-        this.loginError = true
-        return message
-      }
+      const authResponse = await this.$axios.$post('/authenticate/', 
+        { username: this.username, password: this.password })
+      // if (authResponse.status !== 200) {
+      //   //Handle Login Error here 
+      //   console.log('wrong credentials')
+      //   var message = 'something went wrong'
+      //   this.loginError = true
+      //   return message
+      // }
 
-      // TODO Do these awaits in parallel
-      
       await this.$store.commit('user/authenticated', {
-        userId: authResponse.data.user_profile_id,
-        language: authResponse.language 
+        userId: authResponse.user_profile_id,
+        language: authResponse.language,
+        token: authResponse.token
       })
 
-      const { data: userStats } = await retrieveStats()
-      await this.$store.commit('setUserStats', userStats.stats)
+      const userStats = await this.$axios.$get('/retrieve/stats/')
+      this.$store.commit('setUserStats', userStats.stats)
 
       this.$router.push('/dashboard')
     }

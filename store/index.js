@@ -1,9 +1,4 @@
-import axios from 'axios'
-import { getLeaderBoardData } from '~/services/leaderboard'
 import cookie from 'cookie'
-
-import VenueAPI from '~/services/utils/venue-api'
-import { retrieveStats } from '~/services/dashboard'
 
 export const state = () => ({
   copiedSignatureId: undefined,
@@ -133,7 +128,10 @@ export const state = () => ({
 
 export const actions = {
     // This is executed on the server
-    async nuxtServerInit ( { commit }, { req }) {
+    async nuxtServerInit ( { commit }, { app, req }) {
+
+      app.$axios.setHeader('Accept', 'application/json')
+      app.$axios.setHeader('Content-Type', 'application/json', ['post'])
 
       // TODO We should be able to do these calls in parallel, but be aware that
       // a bad token might be passed to the leaderboard which will cause it to
@@ -143,13 +141,16 @@ export const actions = {
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
     const cookieHeader = req.headers.cookie
+
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader)
-      if (cookies.csrftoken) {
-        VenueAPI.setToken(cookies.csrftoken)
+      if (cookies.venue) {
+        await commit('user/authenticated', {
+          token: cookies.venue
+        })
 
         try {
-          const { data: userStats } = await retrieveStats()
+          const userStats = await app.$axios.$get('/retrieve/stats/')
           await commit('setUserStats', userStats.stats)
         } catch (exc) {
           console.log('catch ***** ' + exc)
@@ -157,15 +158,17 @@ export const actions = {
           // FIXME Only clear token when the token is bad
           // if (exc.status === 401) {
             // HTTP 401 Unauthorized means the token is bad
-            VenueAPI.clearToken()
+            // VenueAPI.clearToken()
+            // this.$axios.setToken(false)
             await commit('user/unauthenticated')
           // }
         }
       }
     }
 
-    const { data: leaderboardData } = await getLeaderBoardData()
-    await commit('setLeaderboardData', leaderboardData)
+    const leaderboardData = await app.$axios.$get('/retrieve/leaderboard-data/')
+    // const { data: leaderboardData } = await getLeaderBoardData()
+    commit('setLeaderboardData', leaderboardData)
   }
 }
 
