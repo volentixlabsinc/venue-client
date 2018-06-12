@@ -45,25 +45,7 @@ export default {
     HelpIdImages,
     confirmCopy,
     HelpSignatureImages
-  },
-    // mounted() { 
-    //   if (this.request=='confirmCopy') {
-    //     var scope = this;
-    //     scope.delay = setInterval(function() {
-    //         scope.timerCalc()
-    //     }, 6);
-    //     }
-    // },
-    // destroyed() {
-    //     if (this.delay) {
-    //         clearInterval(this.delay);
-    //     }
-    // },
-    // methods: {
-    //     timerCalc(){
-    //     this.timer = this.timer - 1;
-    //     }
-    // }
+  }
 }
 </script>
 
