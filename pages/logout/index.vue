@@ -4,15 +4,15 @@
 
 
 <script>
-    export default{
-        mounted(){
-            this.logout();            
-        },
-         methods: { 
-             logout: async function(){
-                await this.$store.commit('user/unauthenticated')
-                this.$router.push('/')
-            }
-         }
+export default {
+  mounted() {
+    this.logout();
+  },
+  methods: {
+    logout: async function() {
+      await this.$store.commit("user/unauthenticated");
+      this.$router.push("/");
     }
+  }
+};
 </script>

@@ -32,95 +32,99 @@
     </div>
 </template>
 
-<script> 
-import { registerForumUser } from '~/assets/utils'
+<script>
+import { registerForumUser } from "~/assets/utils";
 
 export default {
-    data() {
-        return({
-            imageNumber: 1,
-            showstep: true,
-            forumUserId: null,
-            forumId: 1
-        })
-    },
-    methods: {
-        submitUserId: async function() {
-            const profileData = await registerForumUser(this, this.forumId, this.forumUserId)
-            if (profileData.success === true || profileData.exists === true) {
-                // TODO Close modal and advance to step #2
-            }
-        }
-    },
-    mounted() {
-        // setInterval(this.swap, 4000);
+  data() {
+    return {
+      imageNumber: 1,
+      showstep: true,
+      forumUserId: null,
+      forumId: 1
+    };
+  },
+  methods: {
+    submitUserId: async function() {
+      const profileData = await registerForumUser(
+        this,
+        this.forumId,
+        this.forumUserId
+      );
+      if (profileData.success === true || profileData.exists === true) {
+        // TODO Close modal and advance to step #2
+      }
     }
-}
+  },
+  mounted() {
+    // setInterval(this.swap, 4000);
+  }
+};
 </script>
 
 <style scoped>
 hr {
-    border: 1px solid gray;
+  border: 1px solid gray;
 }
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 .steps-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-
 
 .steps-buttons {
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    background-color: #DD9C3F;
-    border: 1px solid #DD9C3F;
-    color: white;
-    box-shadow: 1px 0.5px 8px rgba(0, 0, 0, 0.312);
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #dd9c3f;
+  border: 1px solid #dd9c3f;
+  color: white;
+  box-shadow: 1px 0.5px 8px rgba(0, 0, 0, 0.312);
 }
 
-.main-modal{
-    color: white;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+.main-modal {
+  color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.tips-section{
-    width: 100%;
-    height: 70%;
+.tips-section {
+  width: 100%;
+  height: 70%;
 }
 
 img {
-    max-height: 90%;
-    border-radius: 5px;
+  max-height: 90%;
+  border-radius: 5px;
 }
 
-.userId-form{
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.userId-form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.md-form{
-    width: 100%;
-    margin:0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.md-form {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.form-control{
+.form-control {
   width: 50% !important;
   height: 25px;
   border-radius: 0px;
@@ -132,14 +136,16 @@ img {
   margin: 5px !important;
 }
 
-::placeholder{
-    color: white;
-    padding-left: 5px;
+::placeholder {
+  color: white;
+  padding-left: 5px;
 }
-.form-control:focus {outline:0;}
+.form-control:focus {
+  outline: 0;
+}
 @media only screen and (max-width: 800px) {
-    .img {
-        width: 95%;
-    }
+  .img {
+    width: 95%;
+  }
 }
 </style>

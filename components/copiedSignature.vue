@@ -23,13 +23,13 @@
 </template>
 <script>
 export default {
-  name: 'copiedSignature',
+  name: "copiedSignature",
   methods: {
-    beforeOpen (event) {
+    beforeOpen(event) {
       if (event.params.show === false) {
-        event.stop()
+        event.stop();
       }
     }
   }
-}
+};
 </script>

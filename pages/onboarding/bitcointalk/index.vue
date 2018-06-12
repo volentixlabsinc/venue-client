@@ -47,10 +47,10 @@
 <script>
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
-import AvailableSignatures from '~/components/AvailableSignatures.vue'
-import { registerForumUser } from '~/assets/utils'
+import AvailableSignatures from "~/components/AvailableSignatures.vue";
+import { registerForumUser } from "~/assets/utils";
 
-const BITCOINTALK_FORUM_ID = 1
+const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
@@ -85,60 +85,69 @@ export default {
       }
       this.step = this.step - 1;
     },
-    async validateId (evt) {
+    async validateId(evt) {
       evt.preventDefault();
 
-      const forumProfile = await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
-      this.retrieveSignatures(forumProfile.id)
-      this.doNext()
+      const forumProfile = await registerForumUser(
+        this,
+        BITCOINTALK_FORUM_ID,
+        this.forumUserId
+      );
+      this.retrieveSignatures(forumProfile.id);
+      this.doNext();
     },
-    async verify () {
-      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
-      var signature_id = this.$store.state.copiedSignatureId
+    async verify() {
+      var forum_profile_id = this.$store.getters["forums/byForumId"](
+        BITCOINTALK_FORUM_ID
+      ).forumProfileId;
+      var signature_id = this.$store.state.copiedSignatureId;
 
-      const signatureResult = await this.$axios.$post('/create/signature/', {
-        forum_profile_id, signature_id })
-          if (signatureResult.success) {
-            const userStats = await this.$axios.$get('/retrieve/stats/')
-            await this.$store.commit('setUserStats', userStats.stats)
+      const signatureResult = await this.$axios.$post("/create/signature/", {
+        forum_profile_id,
+        signature_id
+      });
+      if (signatureResult.success) {
+        const userStats = await this.$axios.$get("/retrieve/stats/");
+        await this.$store.commit("setUserStats", userStats.stats);
 
-            // this.$swal({
-            //   title: "Signature Placement Verified",
-            //   text: "You can now start posting and earning VTX",
-            //   icon: "success",
-            //   button: {
-            //     text: "ok",
-            //     className: "btn-primary",
-            //     closeModal: true
-            //   }
-            // }).then(() => {
-              this.$router.push("/leaderboard");
-            // });
-          } else {
-            // this.$swal({
-            //   title: "The signature was not found",
-            //   text: "Unfortunately the signature was not found",
-            //   icon: "error",
-            //   button: {
-            //     text: "OK",
-            //     className: "btn-primary",
-            //     closeModal: true
-            //   }
-            // });
-          }
-        },
-      async retrieveSignatures (forumProfileId) {
-        const signatures = await this.$axios.$get('/retrieve/signatures/', {
-          params: {
-            forum_site_id: BITCOINTALK_FORUM_ID,
-            forum_profile_id: forumProfileId
-          }
-        })
-        // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
-        this.signatures = signatures.signatures.filter(
-          signature => signature.name.startsWith('Full Member'))
-          // signature => signature.name.startsWith('Sr. Member'))
+        // this.$swal({
+        //   title: "Signature Placement Verified",
+        //   text: "You can now start posting and earning VTX",
+        //   icon: "success",
+        //   button: {
+        //     text: "ok",
+        //     className: "btn-primary",
+        //     closeModal: true
+        //   }
+        // }).then(() => {
+        this.$router.push("/leaderboard");
+        // });
+      } else {
+        // this.$swal({
+        //   title: "The signature was not found",
+        //   text: "Unfortunately the signature was not found",
+        //   icon: "error",
+        //   button: {
+        //     text: "OK",
+        //     className: "btn-primary",
+        //     closeModal: true
+        //   }
+        // });
       }
+    },
+    async retrieveSignatures(forumProfileId) {
+      const signatures = await this.$axios.$get("/retrieve/signatures/", {
+        params: {
+          forum_site_id: BITCOINTALK_FORUM_ID,
+          forum_profile_id: forumProfileId
+        }
+      });
+      // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
+      this.signatures = signatures.signatures.filter(signature =>
+        signature.name.startsWith("Full Member")
+      );
+      // signature => signature.name.startsWith('Sr. Member'))
+    }
   }
 };
 </script>
@@ -238,22 +247,22 @@ export default {
   box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
 }
 
-.form-group{
+.form-group {
   height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.step-2{
+.step-2 {
   height: 90%;
 }
 
-.input-form{
+.input-form {
   width: 90%;
 }
 
-.form-control{
+.form-control {
   color: white;
   width: 70% !important;
   height: 30px;
@@ -263,15 +272,15 @@ export default {
   border-bottom: 1px solid white;
 }
 
-::placeholder{
-  color:white;
+::placeholder {
+  color: white;
   padding-left: 5px;
 }
 
-button{
-  width:70% !important;
+button {
+  width: 70% !important;
 }
-.directive{
+.directive {
   width: 70%;
 }
 </style>
@@ -308,7 +317,6 @@ button{
   margin: 0;
   border-radius: 8px;
 }
-
 </style>
 
 
@@ -340,9 +348,9 @@ form.stepform label {
 form.stepform input {
   width: 45%;
 }
-form.stepform input[type=textarea] {
-    height: 100px;
-    overflow-wrap: break-word;
+form.stepform input[type="textarea"] {
+  height: 100px;
+  overflow-wrap: break-word;
 }
 
 .bctalk-join {

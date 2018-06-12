@@ -49,87 +49,90 @@
 </template>
 
 <script>
-import ICountUp from 'vue-countup-v2';
-import ForumChart from '~/components/forumActivity/ForumChart.vue'
+import ICountUp from "vue-countup-v2";
+import ForumChart from "~/components/forumActivity/ForumChart.vue";
 
 export default {
-    data() {
-        const data = {
-            isAuthenticated: this.$store.state.user.isAuthenticated,
-            bonus: 0,
-            dailyStats: [],
-            myPosts: 0,
-            myPoints: null,
-            myTokens: 0,
-            forumUserRank: '',
-            options: {
-                useEasing: true,
-                useGrouping: false,
-                separator: ',',
-                decimal: '.',
-                prefix: '',
-                suffix: ''
-            },
-        }
-        if (this.$store.state.user.isAuthenticated && this.$store.state.userStats.user_level) {
-            Object.assign(data, {
-                dailyStats: this.$store.state.userStats.user_level.daily_stats,
-                myPosts: this.$store.state.userStats.profile_level[0].numPosts,
-                myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
-                myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
-                forumUserRank: this.$store.state.userStats.profile_level[0].forumUserRank,
-            })
-        }
-        console.log('myTokens', data)
-        return data
-    },
-
-    methods: { 
-    onClickDetails() {
-        this.$router.push('/points-details')
-      },
-    },
-    components: {
-        ICountUp,
-        ForumChart
+  data() {
+    const data = {
+      isAuthenticated: this.$store.state.user.isAuthenticated,
+      bonus: 0,
+      dailyStats: [],
+      myPosts: 0,
+      myPoints: null,
+      myTokens: 0,
+      forumUserRank: "",
+      options: {
+        useEasing: true,
+        useGrouping: false,
+        separator: ",",
+        decimal: ".",
+        prefix: "",
+        suffix: ""
+      }
+    };
+    if (
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.user_level
+    ) {
+      Object.assign(data, {
+        dailyStats: this.$store.state.userStats.user_level.daily_stats,
+        myPosts: this.$store.state.userStats.profile_level[0].numPosts,
+        myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+        myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
+        forumUserRank: this.$store.state.userStats.profile_level[0]
+          .forumUserRank
+      });
     }
-}
+    console.log("myTokens", data);
+    return data;
+  },
+
+  methods: {
+    onClickDetails() {
+      this.$router.push("/points-details");
+    }
+  },
+  components: {
+    ICountUp,
+    ForumChart
+  }
+};
 </script>
 
 <style scoped>
-
 .user-campaign-info {
-    height: 100%;
-    width: 100% ;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .view-details-text {
-    padding: 0px;
-    margin: 10px;
-    text-align: left;
+  padding: 0px;
+  margin: 10px;
+  text-align: left;
 }
 .campaign_info-container {
-    height: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .info-subtitles {
   padding: 0px;
   margin: 0px;
-   padding-top: 5px;
-   color: rgba(255, 255, 255, 0.541);
+  padding-top: 5px;
+  color: rgba(255, 255, 255, 0.541);
 }
-.campaigns-info-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.campaigns-info-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .campaigns_info {
   width: 45%;
@@ -153,167 +156,164 @@ export default {
   padding: 0px;
   padding-top: 5px;
   margin: 0px;
-  line-height:1;
+  line-height: 1;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 2px black;
 }
 
+.tokens-info {
+  margin: 5px 0px 5px 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-.tokens-info{
-    margin: 5px 0px 5px 0px;
+#token-icon {
+  height: 50px;
+  margin: 5px;
+  padding-right: 10px;
+}
+.top-section {
+  width: 100%;
+  height: 100%;
+}
+
+.subtitle {
+  width: 100%;
+  font-size: 25px;
+  padding: 0px 10px 0px 15px;
+  margin: 0px;
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.nb-tokens {
+  font-size: 30px;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+.title {
+  display: none;
+}
+
+.number-desktop {
+  display: none;
+}
+.card {
+  box-shadow: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 0px;
+}
+.fa-star {
+  margin: -10px 0 0 -15px;
+  font-size: 1.5em;
+  transform: rotate(-10deg);
+}
+.view-details {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: flex-end;
+  width: 100%;
+}
+
+.view-details-button {
+  width: 55%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgba(240, 248, 255, 0.1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 0px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.view-details-button:hover {
+  background-color: rgba(240, 248, 255, 0.2);
+}
+.chart {
+  display: none;
+}
+
+@media only screen and (min-width: 800px) {
+  .dashboard-numbers {
+    font-size: 45px;
+  }
+
+  .user-campaign-info {
+    box-shadow: none;
+    padding-top: 0px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-bottom: 0px;
+    height: auto;
+    padding: 10px;
+    margin: 0px;
+    order: 2;
+  }
+  .card {
+    /* background-color: #222C3B; */
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-}
+    margin-top: 0;
+    box-shadow: none;
+    padding-bottom: 0px;
+  }
 
-#token-icon {
-  height:50px;
-  margin:5px;
-  padding-right: 10px;
-}
-.top-section{
+  .chart {
+    display: initial;
     width: 100%;
-    height: 100%
-}
+    margin-bottom: 10px;
+  }
 
-.subtitle{
+  .tokens-info {
+    width: 90%;
+  }
+
+  .tokens-info-title {
+    margin: 20px 0px 20px 0px;
     width: 100%;
-    font-size: 25px;
-    padding: 0px 10px 0px 15px;
-    margin: 0px;
-    display: flex;
-    justify-content: flex-start;
-    text-align:center;
-}
-
-.nb-tokens{
+  }
+  .nb-tokens {
     font-size: 30px;
     padding: 0px;
     margin: 0px;
-    text-align:center;
-}
-.title {
-    display: none;
-}
-
-.number-desktop{
-    display: none;
-}
-.card{
-    box-shadow:none;
-    width: 100%;
-    justify-content:center;
-    align-items: center;
-    flex-wrap:wrap;
-    padding-bottom: 0px;
-}
-.fa-star {
-    margin:-10px 0 0 -15px;
-    font-size: 1.5em;
-    transform: rotate(-10deg)
-}
-.view-details {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    align-self: flex-end;
-    width: 100%;
-}
-
-.view-details-button {
-    width: 55%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: rgba(240, 248, 255, 0.1);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin-right: 0px;
-    border-radius: 5px;
-    white-space: nowrap;
-}
-
-.view-details-button:hover{
-    background-color: rgba(240, 248, 255, 0.2);
-}
-.chart {
-    display: none;
-}
-
-@media only screen and (min-width: 800px) {
-
-.dashboard-numbers {
-    font-size: 45px;
-}
-
-.user-campaign-info { 
-    box-shadow: none;
-    padding-top: 0px;
-    flex-direction: column;
-    justify-content:space-around;
-    align-items:flex-start;
-    padding-bottom: 0px;
-    height: auto;
-    padding: 10px;
-    margin:0px;
-    order:2;
-}
-.card{
-    /* background-color: #222C3B; */
-    width: 100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-wrap:wrap;
-    margin-top: 0;
-    box-shadow: none;
-     padding-bottom: 0px;
-}
-
-.chart {
-    display:initial;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.tokens-info{
-    width: 90%;
-}
-
-.tokens-info-title{
-  margin: 20px 0px 20px 0px;
-  width: 100%;
-}
-.nb-tokens{
-  font-size: 30px;
-  padding: 0px;
-  margin: 0px;
-}
-.view-details-text{
+  }
+  .view-details-text {
     width: 100%;
     white-space: nowrap;
-}
-.top-section {
+  }
+  .top-section {
     /* background-color: #222C3B; */
     height: 50%;
     width: 100%;
     height: 250px;
     padding: 10px;
-}
+  }
 
-.number-desktop{
+  .number-desktop {
     display: inherit;
-}
+  }
 
- .view-details {
+  .view-details {
     width: 90%;
-}
+  }
 
-.view-details-button {
+  .view-details-button {
     width: 60%;
-}
+  }
 }
 </style>
-

@@ -26,131 +26,135 @@
 </template>
 
 <script>
-import HelpSignatureImages from "./HelpSignatureImages.vue"
+import HelpSignatureImages from "./HelpSignatureImages.vue";
 
-const BITCOINTALK_FORUM_ID = 1
+const BITCOINTALK_FORUM_ID = 1;
 
 export default {
-     components: {
-    HelpSignatureImages,
+  components: {
+    HelpSignatureImages
   },
-    data() {
-        return{
-            timer: 240,
-            verified: false,
-            showHelp: false
-        }
-    },
-    mounted() { 
-        var scope = this;
-        scope.delay = setInterval(function() {
-            scope.timerCalc()
-        }, 1000);
-    },
-    destroyed() {
-        if (this.delay) {
-            clearInterval(this.delay);
-        }
-    },
-    methods: {
-        timerCalc(){
-        this.timer -=  1;
-        if (this.timer == 0) {
-            // confirm signature
-            this.validateSignature()
-        }
-        },
-        async validateSignature () {
-            console.log('this.$store.getters', this.$store.getters);
-            var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
-            
-            var signature_id = this.$store.state.copiedSignatureId
-
-        const signatureResult = await this.$axios.$post('/create/signature/', {
-            forum_profile_id, signature_id })
-            console.log('data: ', signatureResult);
-
-            this.verified = true;
-            }
+  data() {
+    return {
+      timer: 240,
+      verified: false,
+      showHelp: false
+    };
+  },
+  mounted() {
+    var scope = this;
+    scope.delay = setInterval(function() {
+      scope.timerCalc();
+    }, 1000);
+  },
+  destroyed() {
+    if (this.delay) {
+      clearInterval(this.delay);
     }
-}
+  },
+  methods: {
+    timerCalc() {
+      this.timer -= 1;
+      if (this.timer == 0) {
+        // confirm signature
+        this.validateSignature();
+      }
+    },
+    async validateSignature() {
+      console.log("this.$store.getters", this.$store.getters);
+      var forum_profile_id = this.$store.getters["forums/byForumId"](
+        BITCOINTALK_FORUM_ID
+      ).forumProfileId;
+
+      var signature_id = this.$store.state.copiedSignatureId;
+
+      const signatureResult = await this.$axios.$post("/create/signature/", {
+        forum_profile_id,
+        signature_id
+      });
+      console.log("data: ", signatureResult);
+
+      this.verified = true;
+    }
+  }
+};
 </script>
 
 <style scoped>
 hr {
-    border: 1px solid gray;
+  border: 1px solid gray;
 }
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 .steps-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
-
 
 .steps-buttons {
-    font-weight: bold;
-    font-size: 14px;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    background-color: #DD9C3F;
-    border: 1px solid #DD9C3F;
-    color: white;
-    box-shadow: 1px 0.5px 8px rgba(0, 0, 0, 0.312);
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: #dd9c3f;
+  border: 1px solid #dd9c3f;
+  color: white;
+  box-shadow: 1px 0.5px 8px rgba(0, 0, 0, 0.312);
 }
 
-.main-modal{
-    color: white;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.main-modal {
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .help-section {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.tips-section{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 70%;
+.tips-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 70%;
 }
 
 img {
-    max-height: 90%;
-    border-radius: 5px;
+  max-height: 90%;
+  border-radius: 5px;
 }
 
-.userId-form{
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.userId-form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.md-form{
-    width: 100%;
-    margin:0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.md-form {
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.form-control{
+.form-control {
   width: 50% !important;
   height: 25px;
   border-radius: 0px;
@@ -162,49 +166,56 @@ img {
   margin: 5px !important;
 }
 
-::placeholder{
-    color: white;
-    padding-left: 5px;
+::placeholder {
+  color: white;
+  padding-left: 5px;
 }
-.form-control:focus {outline:0;}
+.form-control:focus {
+  outline: 0;
+}
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid gray; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 15s linear infinite;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid gray; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 15s linear infinite;
 }
-.text-modal{
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+.text-modal {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.help-link{
-    width: auto;
-    text-decoration:underline;
-}
-
-.help-link:hover{
-    cursor: pointer;
+.help-link {
+  width: auto;
+  text-decoration: underline;
 }
 
-.flex-row-80{
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;}
+.help-link:hover {
+  cursor: pointer;
+}
+
+.flex-row-80 {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @media only screen and (max-width: 800px) {
-    .img {
-        width: 95%;
-    }
+  .img {
+    width: 95%;
+  }
 }
 </style>

@@ -53,86 +53,85 @@
 <script>
 export default {
   props: {
-      elements: {
-          type: Object,
-          default: null
-      },
-        sitewide: {
-            type: Object,
-            default: null
-        },
-        myRank: {
-            type: Number,
-            default: 0
-        }
+    elements: {
+      type: Object,
+      default: null
+    },
+    sitewide: {
+      type: Object,
+      default: null
+    },
+    myRank: {
+      type: Number,
+      default: 0
+    }
   },
-   data() {
-        return {
-            toggleDescription: false,
-            pointsPercent: null,
-            tokensPercent: null,
-            userTokens: null,
-            userRank: 'my-element-container',
-            otherRank: 'element-container',
-            userEntry: null,
-        }
-    },
-    methods: {
-        
-        expandInfo() {
-            this.toggleDescription=!this.toggleDescription
-        }
-    },
-}
+  data() {
+    return {
+      toggleDescription: false,
+      pointsPercent: null,
+      tokensPercent: null,
+      userTokens: null,
+      userRank: "my-element-container",
+      otherRank: "element-container",
+      userEntry: null
+    };
+  },
+  methods: {
+    expandInfo() {
+      this.toggleDescription = !this.toggleDescription;
+    }
+  }
+};
 </script>
 
 <style scoped>
 td {
-    font-size: 18px;
-    padding: 5px;
-    border-bottom: 1px solid #94A8B6;
-    text-align: left;
+  font-size: 18px;
+  padding: 5px;
+  border-bottom: 1px solid #94a8b6;
+  text-align: left;
 }
 
-.rank{
-    width: 5px;
-    white-space: nowrap;
+.rank {
+  width: 5px;
+  white-space: nowrap;
 }
 
 .username {
-    width: 50%;
-    text-align: left;
-    padding-left: 0px;
+  width: 50%;
+  text-align: left;
+  padding-left: 0px;
 }
 .empty-cell {
-    width: 50%;
-    text-align: left;
-    padding-left: 0px;
+  width: 50%;
+  text-align: left;
+  padding-left: 0px;
 }
 
-.tokens{
-    width: 50px;
-    text-align: right;
+.tokens {
+  width: 50px;
+  text-align: right;
 }
 
-.tokens-unity{
-    width: 20px;
-    text-align: right;
+.tokens-unity {
+  width: 20px;
+  text-align: right;
 }
-.expand{
-    width: 5px;
-    text-align: right;
+.expand {
+  width: 5px;
+  text-align: right;
 }
 
-.expanded-data{
-    white-space: nowrap;
-    background-color: rgb(148, 168, 182, 0.2);
-    text-align: right;
+.expanded-data {
+  white-space: nowrap;
+  background-color: rgb(148, 168, 182, 0.2);
+  text-align: right;
 }
-.total-points{
-    text-align: center;
+.total-points {
+  text-align: center;
 }
 .no-border {
-    border-bottom: none;
+  border-bottom: none;
 }
 </style>

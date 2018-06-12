@@ -38,74 +38,72 @@
 </template>
 
 <script>
-import ICountUp from 'vue-countup-v2';
-import leaderboard from '~/components/leaderboard/index.vue'
+import ICountUp from "vue-countup-v2";
+import leaderboard from "~/components/leaderboard/index.vue";
 export default {
-  
-  data () {
+  data() {
     return {
       totalUsers: this.$store.state.leaderboard.sitewide.total_users,
       totalPosts: this.$store.state.leaderboard.sitewide.total_posts,
       availableTokens: this.$store.state.leaderboard.sitewide.available_tokens,
       options: {
-          useEasing: true,
-          useGrouping: false,
-          separator: ',',
-          decimal: '.',
-          prefix: '',
-          suffix: ''
-        },
-    }
+        useEasing: true,
+        useGrouping: false,
+        separator: ",",
+        decimal: ".",
+        prefix: "",
+        suffix: ""
+      }
+    };
   },
   methods: {
     onClickLeaderboard() {
-      this.$router.push('/leaderboard')
+      this.$router.push("/leaderboard");
     }
   },
   components: {
     ICountUp,
     leaderboard
   }
-}  
+};
 </script>
 
 <style scoped>
-
 .all-campaigns {
-  height:auto;
+  height: auto;
   width: 100%;
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
- padding-top: 10px;
- padding-bottom: 30px;
- margin-bottom: 10%;
- background-image: linear-gradient(to bottom,  rgba(0, 0, 0, 0.3), #494B5E);
+  padding-top: 10px;
+  padding-bottom: 30px;
+  margin-bottom: 10%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), #494b5e);
 }
 
-.all-campaigns:hover{
+.all-campaigns:hover {
   cursor: pointer;
 }
-.leaderboard-container{
-  display:none;
+.leaderboard-container {
+  display: none;
 }
 
-.campaign-title{
-    font-size: 20px;
-    width:100%;
-    padding-bottom: 10px;
-    border-bottom: 0.5px solid #92A5C1;
+.campaign-title {
+  font-size: 20px;
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid #92a5c1;
 }
 
-.campaigns-numbers-container{
+.campaigns-numbers-container {
   display: flex;
   flex-direction: row;
 }
-.campaign-info-container{
-  display:flex;
+.campaign-info-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -115,8 +113,8 @@ export default {
 }
 
 #token-icon {
-  height:45px;
-  margin:5px;
+  height: 45px;
+  margin: 5px;
 }
 .campaigns-number-card {
   width: 50%;
@@ -139,11 +137,11 @@ export default {
   padding: 0px;
   padding-top: 5px;
   margin: 0px;
-  line-height:1;
+  line-height: 1;
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 2px black;
 }
-.tokens-info{
+.tokens-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -152,136 +150,133 @@ export default {
 .info-subtitles {
   padding: 0px;
   margin: 0px;
-   padding-top: 5px;
-   color: rgba(255, 255, 255, 0.541);
+  padding-top: 5px;
+  color: rgba(255, 255, 255, 0.541);
 }
 
-.available-rewards{
+.available-rewards {
   width: 100%;
   font-size: 25px;
   padding: 0px 10px 0px 15px;
   margin: 0px;
   display: flex;
   justify-content: space-evenly;
-  text-align:center;
-  background-color:rgba(252, 248, 248, 0.05);
-  
+  text-align: center;
+  background-color: rgba(252, 248, 248, 0.05);
 }
 
 .fa-star {
-    margin:-10px 0 0 -15px;
-    font-size: 1.5em;
-    transform: rotate(-10deg)
+  margin: -10px 0 0 -15px;
+  font-size: 1.5em;
+  transform: rotate(-10deg);
 }
-.fa-chevron-right{
+.fa-chevron-right {
   padding-left: 20px;
 }
 @media only screen and (min-width: 600px) {
-.all-campaigns{
-  margin-bottom: 5%;
-}
+  .all-campaigns {
+    margin-bottom: 5%;
+  }
 }
 
 @media only screen and (min-width: 800px) {
-.all-campaigns{
-  height: auto;
-  flex-direction: column;
-  justify-content:space-evenly;
-  align-items:center;
-  padding: 0px;
-  margin-bottom: 0px;
-  background-color:transparent;
-  background-image: none;
-}
-.all-campaigns:hover{
-  cursor: pointer;
-}
+  .all-campaigns {
+    height: auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0px;
+    margin-bottom: 0px;
+    background-color: transparent;
+    background-image: none;
+  }
+  .all-campaigns:hover {
+    cursor: pointer;
+  }
 
-.campaign-info-container{
-  display: flex;
-  flex-direction: column;
-  box-shadow: none;
-  width: 90%;
-  border-radius:3px;
-  height: auto;
-  padding: 0px;
-  margin: 0px;
-}
+  .campaign-info-container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    width: 90%;
+    border-radius: 3px;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+  }
 
-.info-subtitles {
-  font-size:14px;
-}
-.nb-tokens{
-  font-size: 30px;
-  margin-bottom: 5px;
-}
+  .info-subtitles {
+    font-size: 14px;
+  }
+  .nb-tokens {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
 
-#token-icon {
-  height:60px;
-  padding-right: 5px; 
-}
-.campaigns-number-card {
-  width: 50%;
-  margin-top: 4px;
-}
-.dashboard-numbers {
-  font-size: 45px;
-}
-.available-rewards{
-  width: 90%;
-}
-.leaderboard-container{
-  padding-top: 20px;
-  width: 90%;
-  max-height: 500px;
-  display: inherit;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-face-color: #367CD2;
-  scrollbar-shadow-color: #FFFFFF;
-  scrollbar-highlight-color: #FFFFFF;
-  scrollbar-3dlight-color: #FFFFFF;
-  scrollbar-darkshadow-color: #FFFFFF;
-  scrollbar-track-color: #FFFFFF;
-  scrollbar-arrow-color: #FFFFFF;
-  padding-bottom:50px;
-}
+  #token-icon {
+    height: 60px;
+    padding-right: 5px;
+  }
+  .campaigns-number-card {
+    width: 50%;
+    margin-top: 4px;
+  }
+  .dashboard-numbers {
+    font-size: 45px;
+  }
+  .available-rewards {
+    width: 90%;
+  }
+  .leaderboard-container {
+    padding-top: 20px;
+    width: 90%;
+    max-height: 500px;
+    display: inherit;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-face-color: #367cd2;
+    scrollbar-shadow-color: #ffffff;
+    scrollbar-highlight-color: #ffffff;
+    scrollbar-3dlight-color: #ffffff;
+    scrollbar-darkshadow-color: #ffffff;
+    scrollbar-track-color: #ffffff;
+    scrollbar-arrow-color: #ffffff;
+    padding-bottom: 50px;
+  }
 
-.leaderboard-container::-webkit-scrollbar {
+  .leaderboard-container::-webkit-scrollbar {
     width: 0px;
-}
+  }
 
-/* Track */
-.leaderboard-container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
+  /* Track */
+  .leaderboard-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
     -webkit-border-radius: 0px;
     border-radius: 0px;
     background-clip: content-box;
-}
- 
-/* Handle */
-.leaderboard-container::-webkit-scrollbar-thumb {
+  }
+
+  /* Handle */
+  .leaderboard-container::-webkit-scrollbar-thumb {
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
-}
-
+    -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
+  }
 }
 
 @media only screen and (min-width: 1200px) {
-.campaign-info-container{
-  margin-bottom: 0px;
-}
+  .campaign-info-container {
+    margin-bottom: 0px;
+  }
 
-.campaigns-numbers-container{
-  width: 90%;
-  padding: 0px;
-  margin: 0px;
-}
-
+  .campaigns-numbers-container {
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+  }
 }
 </style>

@@ -18,28 +18,28 @@
 </template>
 
 <script>
-import forum from '~/components/forum.vue';
-import myCampaign from '~/components/myCampaign.vue';
-import campaignRightPanel from '~/components/campaignRightPanel.vue';
+import forum from "~/components/forum.vue";
+import myCampaign from "~/components/myCampaign.vue";
+import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
-  data () {
+  data() {
     return {
       profile_level_forum: this.$store.state.userStats.profile_level,
       profile_level_global: this.$store.state.userStats.user_level,
       options: {
-          useEasing: true,
-          useGrouping: false,
-          separator: ',',
-          decimal: '.',
-          prefix: '',
-          suffix: ''
-        },
-    }
+        useEasing: true,
+        useGrouping: false,
+        separator: ",",
+        decimal: ".",
+        prefix: "",
+        suffix: ""
+      }
+    };
   },
-  mounted () {
+  mounted() {
     if (this.$store.state.userStats.fresh) {
-      this.$router.push('/onboarding/bitcointalk/')
+      this.$router.push("/onboarding/bitcointalk/");
     }
   },
   components: {
@@ -47,11 +47,10 @@ export default {
     myCampaign,
     campaignRightPanel
   }
-}
+};
 </script>
 
 <style scoped>
-
 .main-section {
   width: 100%;
   height: 100vh;
@@ -62,110 +61,107 @@ export default {
   flex-wrap: no-wrap;
   overflow: scroll;
   overflow-x: hidden;
-  scrollbar-face-color: #367CD2;
-  scrollbar-shadow-color: #FFFFFF;
-  scrollbar-highlight-color: #FFFFFF;
-  scrollbar-3dlight-color: #FFFFFF;
-  scrollbar-darkshadow-color: #FFFFFF;
-  scrollbar-track-color: #FFFFFF;
-  scrollbar-arrow-color: #FFFFFF;
-  padding-bottom:50px;
+  scrollbar-face-color: #367cd2;
+  scrollbar-shadow-color: #ffffff;
+  scrollbar-highlight-color: #ffffff;
+  scrollbar-3dlight-color: #ffffff;
+  scrollbar-darkshadow-color: #ffffff;
+  scrollbar-track-color: #ffffff;
+  scrollbar-arrow-color: #ffffff;
+  padding-bottom: 50px;
 }
 
 .main-section::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 /* Track */
 .main-section::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
-}
- 
-/* Handle */
-.main-section::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0); 
+  box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-clip: content-box;
 }
 
- .forum {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-shrink:0;
-   width: 95%;
+/* Handle */
+.main-section::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
+}
+
+.forum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 95%;
 }
 .my-campaign-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-shrink:0;
+  flex-shrink: 0;
   width: 100%;
 }
 
 .all-campaigns-container {
-flex-shrink: 1;
-height: 30%;
+  flex-shrink: 1;
+  height: 30%;
 }
 
-.current-signature{
+.current-signature {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
-.current-signature > h3{
- width: 95%;
- text-align: left;
- margin-bottom: 0px;
+.current-signature > h3 {
+  width: 95%;
+  text-align: left;
+  margin-bottom: 0px;
 }
 
 #signature {
   width: 70%;
 }
 
-.sign-button{
+.sign-button {
   padding: 10px;
 }
 @media only screen and (min-width: 800px) {
-
-.main-section {
+  .main-section {
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding-bottom:0px;
-}
+    padding-bottom: 0px;
+  }
 
-.my-campaign-container, .all-campaigns-container {
-  width: 49%;
-  height: 100%;
-  margin: 0px;
-  box-shadow: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .my-campaign-container,
+  .all-campaigns-container {
+    width: 49%;
+    height: 100%;
+    margin: 0px;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .all-campaigns-container:hover {
+    cursor: pointer;
+  }
 
-.all-campaigns-container:hover{
-  cursor: pointer;
-}
-
-.forum{
-  height: auto;
-  width: auto;
-  background-color: transparent;
-  border: 0px;
-  margin-bottom: 20px;
-}
-
+  .forum {
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    border: 0px;
+    margin-bottom: 20px;
+  }
 }
 </style>
-

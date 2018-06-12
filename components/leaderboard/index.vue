@@ -11,66 +11,67 @@
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
 export default {
-    props:{
-        shortenedLeaderboard: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            rankings: this.$store.state.leaderboard.rankings,
-            sitewide: this.$store.state.leaderboard.sitewide,
-            myRank: this.$store.state.userStats.user_level ? this.$store.state.userStats.user_level.overall_rank : 0
-        }
-    },
-    components: {
-        leaderboardEntry,
-        shortLeaderboardEntry
+  props: {
+    shortenedLeaderboard: {
+      type: Boolean,
+      default: false
     }
-}
+  },
+  data() {
+    return {
+      rankings: this.$store.state.leaderboard.rankings,
+      sitewide: this.$store.state.leaderboard.sitewide,
+      myRank: this.$store.state.userStats.user_level
+        ? this.$store.state.userStats.user_level.overall_rank
+        : 0
+    };
+  },
+  components: {
+    leaderboardEntry,
+    shortLeaderboardEntry
+  }
+};
 </script>
 
 
 <style scoped>
-
 .leaderboard {
-    width: 100%;
-    overflow: scroll;
-    overflow-x: hidden;
-    scrollbar-face-color: #367CD2;
-    scrollbar-shadow-color: #FFFFFF;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-3dlight-color: #FFFFFF;
-    scrollbar-darkshadow-color: #FFFFFF;
-    scrollbar-track-color: #FFFFFF;
-    scrollbar-arrow-color: #FFFFFF;
+  width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-face-color: #367cd2;
+  scrollbar-shadow-color: #ffffff;
+  scrollbar-highlight-color: #ffffff;
+  scrollbar-3dlight-color: #ffffff;
+  scrollbar-darkshadow-color: #ffffff;
+  scrollbar-track-color: #ffffff;
+  scrollbar-arrow-color: #ffffff;
 }
 
 .leaderboard::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 /* Track */
 .leaderboard::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.2); 
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    background-clip: content-box;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background-clip: content-box;
 }
- 
+
 /* Handle */
 .leaderboard::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 25px rgba(0,0,0,0.3); 
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3);
 }
 
 table {
-    width: 100%;
-    display: table;
-    border-spacing: 0px;
-    text-align: left;
+  width: 100%;
+  display: table;
+  border-spacing: 0px;
+  text-align: left;
 }
 </style>
