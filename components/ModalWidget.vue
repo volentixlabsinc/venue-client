@@ -1,4 +1,5 @@
 <template>
+       
     <transition name="modal">
         <div class="modal-mask">
             <div class="modal-wrapper">
@@ -9,7 +10,8 @@
                 </div>
 
                 <div class="modal-body">
-                <help-id-images v-if="helpRequest=='ID'"/>
+                <help-id-images v-if="request=='ID'"/>
+                <confirm-copy v-if="request=='confirmCopy'"/>
                 </div>
 
   
@@ -21,17 +23,30 @@
 
 <script>
 import HelpIdImages from "./HelpIdImages.vue"
+import confirmCopy from "./confirmCopy.vue"
 
 export default {
-  props: { hdr : Boolean }, //defaults to false
+  props: { 
+    hdr : Boolean ,
+    request: {
+      type: String,
+      default: 'ID'
+    }
+  }, //defaults to false
   data() {
     return ({
-      helpRequest: 'ID'
+      // helpRequest: 'ID'
     })
   },
   components: {
-    HelpIdImages
-  }
+    HelpIdImages,
+    confirmCopy
+  },
+  // mounted() {
+  //   if (this.request=="confirmCopy") {
+  //     this.countdown
+  //   }
+  // }
 }
 </script>
 
