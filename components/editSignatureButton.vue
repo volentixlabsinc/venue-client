@@ -44,6 +44,7 @@ export default {
     padding: 0px;
     margin: 10px;
     text-align: left;
+    width: 100%;
 }
 
 @media only screen and (min-width: 800px) {

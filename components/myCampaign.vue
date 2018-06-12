@@ -167,7 +167,7 @@ export default {
 }
 
 .view-details-button {
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
@@ -186,6 +186,7 @@ export default {
     padding: 0px;
     margin: 10px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .clickable-section:hover{

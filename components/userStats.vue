@@ -106,20 +106,6 @@ export default {
     align-items: center;
 }
 
-.my-signature{
-    width: 100%;
-    display: flex;
-    flex-direction:column;
-    padding-bottom: 30px;
-}
-
-
-.signature-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 10px;
-}
 .view-details-text {
     padding: 0px;
     margin: 10px;
@@ -236,6 +222,7 @@ export default {
 }
 
 .view-details-button {
+    width: 70%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -283,7 +270,7 @@ export default {
 
 .chart {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .tokens-info{
@@ -299,8 +286,9 @@ export default {
   padding: 0px;
   margin: 0px;
 }
-.my-signature{
+.view-details-text{
     width: 100%;
+    white-space: nowrap;
 }
 .top-section {
     /* background-color: #222C3B; */
