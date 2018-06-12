@@ -27,10 +27,11 @@
 
 <script>
 import HelpSignatureImages from "./HelpSignatureImages.vue"
-
 import {
   retrievSignatureCode,
 } from "~/services/signatures";
+
+const BITCOINTALK_FORUM_ID = 1
 
 export default {
      components: {
@@ -63,7 +64,9 @@ export default {
         }
         },
         async validateSignature (evt) {
+            console.log('this.$store.getters', this.$store.getters);
             var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
+            
             var signature_id = this.$store.state.copiedSignatureId
 
         const signatureResult = await this.$axios.$post('/create/signature/', {
