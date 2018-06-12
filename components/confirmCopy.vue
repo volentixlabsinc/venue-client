@@ -9,7 +9,7 @@
             <div class="text-modal">
                 <h2>Simply paste the copied code to your Bitcointalk profile</h2>
                 <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{timer}} </label> seconds </h3>
-                <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color">Verify Now</button></div>
+                <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
             </div>
         </div>
         <div class="tips-section" v-else>
@@ -63,10 +63,12 @@ export default {
         }
         },
         async validateSignature (evt) {
+            var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
             var signature_id = this.$store.state.copiedSignatureId
-     
-            // const { data } = await this.$axios.$get(create/signature);
-            console.log('data: ', data);
+
+        const signatureResult = await this.$axios.$post('/create/signature/', {
+            forum_profile_id, signature_id })
+            console.log('data: ', signatureResult);
 
             this.verified = true;
             }
