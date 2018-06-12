@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group step-2" v-if="step === 2">
                     <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
-                    <AvailableSignatures />
+                    <AvailableSignatures :signatures="signatures"/>
                     <button class="btn venue-accent-color"  @click="doNext">NEXT</button>
                 </div>
                 <div class="form-group" v-if="step === 3">

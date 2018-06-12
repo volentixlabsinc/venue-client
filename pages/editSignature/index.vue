@@ -4,7 +4,7 @@
       <h3>CURRENT SIGNATURE</h3>
       <!-- <img :src="currentSignatureImg" /> -->
       <h2>AVAILABLE BITCOIN SIGNATURES</h2>
-      <AvailableSignatures />
+      <AvailableSignatures :signatures="signatures"/>
     </div>
     <div class="right-panel">
     <campaignRightPanel />
