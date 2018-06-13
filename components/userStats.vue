@@ -30,20 +30,7 @@
           <h4 class="info-subtitles">MY POINTS</h4>
         </div>
       </div>
-      <div>
-        <div class="is-size-3 has-text-centered">
-          <span v-if="$store.state.userStats.user_level" class="is-size-3 has-text-centered">{{ myTokens }}</span>
-          <span v-else>N/A</span> VTX
-        </div>
-        <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
-        <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>  MY CURRENT REWARDS</div>
-      </div>
-
-      <div v-if="dailyStats" class="view-details">
-        <a class="button is-info is-outlined" @click="onClickDetails">
-          <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
-        </a>
-      </div>
+      <MyCurrentRewards />
     </div>
   </div>
 </template>
@@ -51,21 +38,20 @@
 <script>
 import ICountUp from "vue-countup-v2";
 import ForumChart from "~/components/forumActivity/ForumChart.vue";
+import MyCurrentRewards from "~/components/MyCurrentRewards.vue";
 
 export default {
   components: {
     ICountUp,
-    ForumChart
+    ForumChart,
+    MyCurrentRewards
   },
   data() {
     const data = {
       isAuthenticated: this.$store.state.user.isAuthenticated,
-      bonus: 0,
       dailyStats: [],
       myPosts: 0,
       myPoints: null,
-      myTokens: 0,
-      forumUserRank: "",
       options: {
         useEasing: true,
         useGrouping: false,
@@ -82,16 +68,12 @@ export default {
       Object.assign(data, {
         dailyStats: this.$store.state.userStats.user_level.daily_stats,
         myPosts: this.$store.state.userStats.profile_level[0].numPosts,
-        myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
-        myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
-        forumUserRank: this.$store.state.userStats.profile_level[0]
-          .forumUserRank
+        myPoints: this.$store.state.userStats.profile_level[0].totalPoints
       });
     }
     console.log("myTokens", data);
     return data;
   },
-
   methods: {
     onClickDetails() {
       this.$router.push("/points-details");

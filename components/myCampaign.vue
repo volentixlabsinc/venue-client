@@ -33,25 +33,18 @@
         <h4 class="info-subtitles">MY POINTS</h4>
       </div>
     </div>
-    <div class="tokens-info clickable-section" @click="onClickDetails">
-      <h2 class="subtitle">MY CURRENT REWARDS</h2>
-      <h2 class="nb-tokens">{{ myTokens }} VTX</h2>
-    </div>
-    <div>
-      <a class="button is-info is-outlined" @click="onClickDetails">
-        <h3 class="view-details-text">View details</h3>
-        <i class="fas fa-search"/>
-      </a>
-    </div>
+    <MyCurrentRewards />
   </div>
 </template>
 
 <script>
 import ICountUp from "vue-countup-v2";
+import MyCurrentRewards from "~/components/MyCurrentRewards.vue";
 
 export default {
   components: {
-    ICountUp
+    ICountUp,
+    MyCurrentRewards
   },
   data() {
     return {
