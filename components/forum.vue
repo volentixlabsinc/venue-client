@@ -1,38 +1,33 @@
 <template>
-<div class="forum">
-<h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
-<div class="chart"> 
-<forum-chart ></forum-chart>
-</div>
-</div>
+  <div class="forum">
+    <h2 class="forum-title">BITCOINTALK ACTIVITY</h2>
+    <div class="chart"> 
+      <forum-chart />
+    </div>
+  </div>
 </template>
 
 <script>
-import ForumChart from '~/components/forumActivity/ForumChart.vue';
+import ForumChart from "~/components/forumActivity/ForumChart.vue";
 
 export default {
-  props: {
-    forumInfo: {
-      type: Object
-    },
-  },
   components: {
-     ForumChart,
+    ForumChart
   }
-}
+};
 </script>
 
 <style scoped>
 .forum {
-    height: 100%;
-    width: 100%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.forum-title{
+.forum-title {
   font-weight: 500;
   text-shadow: 3px 3px 5px #824363;
   width: 80%;
@@ -49,28 +44,25 @@ export default {
   height: 100%;
 }
 .fa-edit {
-    color:white !important;
+  color: white !important;
 }
 @media only screen and (min-width: 800px) {
-.forum {
-  margin-top:0px;
-  padding-top: 0px;
-  align-items: flex-start;
-}
-.forum-title{
-  font-weight: 200;
-  text-shadow: none;
-  width: 80%;
-  text-align: center;
-}
-.chart {
-  width: 95%;
-  height: 100%;
-  display: flex;
-}
-
-
-
+  .forum {
+    margin-top: 0px;
+    padding-top: 0px;
+    align-items: flex-start;
+  }
+  .forum-title {
+    font-weight: 200;
+    text-shadow: none;
+    width: 80%;
+    text-align: center;
+  }
+  .chart {
+    width: 95%;
+    height: 100%;
+    display: flex;
+  }
 }
 </style>
 

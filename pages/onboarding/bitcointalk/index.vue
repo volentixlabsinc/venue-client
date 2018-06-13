@@ -1,50 +1,45 @@
 <template>
   <section class="section">
     <div class="container">
-        <div class="bctalk-join">
-            <form v-on:submit.prevent class="stepform">
-              <h1> STEP {{ step }} </h1>
-                <div class="form-group" v-if="step === 1">
-                    <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
-                    <div class="input-form">
-                      <input type="text" v-model="forumUserId" id="userid" placeholder="Your user id" class="form-control form-control-lg"/>
-                      <button class="btn venue-accent-color" @click="validateId">NEXT</button>
-                    </div>
-                    <span v-if="error" style="color:red; display:block;">
-                        <i class="fas fa-times-circle"></i> User not found - please try Again
-                    </span>
-                    <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
-                </div>
-                <div class="form-group step-2" v-if="step === 2">
-                    <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
-                    <AvailableSignatures :signatures="signatures"/>
-                    <button class="btn venue-accent-color" @click="doNext">NEXT</button>
-                </div>
-                <div class="form-group" v-if="step === 3">
-                    <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
-                    <input type="textarea" rows="4" cols="50" 
-                        v-model="message"
-                        disabled
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError" />
-                    <button  
-                        v-clipboard:copy="message"
-                        v-clipboard:success="onCopy"
-                        v-clipboard:error="onError"
-                        class="btn venue-accent-color">Copy</button>
-                    <button class="btn btn-danger" @click="verify">Verify</button>
-                </div>
+      <div class="bctalk-join">
+        <form class="stepform" @submit.prevent>
+          <h1> STEP {{ step }} </h1>
+          <div v-if="step === 1" class="form-group">
+            <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
+            <div class="input-form">
+              <input id="userid" v-model="forumUserId" type="text" placeholder="Your user id" class="form-control form-control-lg">
+              <button class="btn venue-accent-color" @click="validateId">NEXT</button>
+            </div>
+            <span v-if="error" style="color:red; display:block;">
+              <i class="fas fa-times-circle"/> User not found - please try Again
+            </span>
+            <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
+          </div>
+          <div v-if="step === 2" class="form-group step-2">
+            <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
+            <AvailableSignatures :signatures="signatures"/>
+            <button class="btn venue-accent-color" @click="doNext">NEXT</button>
+          </div>
+          <div v-if="step === 3" class="form-group">
+            <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
+            <input v-clipboard:copy="message" v-model="message" type="textarea" 
+                   rows="4"
+                   cols="50"
+                   disabled >
+            <button  
+              class="btn venue-accent-color">Copy</button>
+            <button class="btn btn-danger" @click="verify">Verify</button>
+          </div>
         
-            </form>
-            <ModalWidget v-if="showHelp" @close="showHelp = false" />
+        </form>
+        <ModalWidget v-if="showHelp" @close="showHelp = false" />
             
-        </div>
-        <div class="lbox">
-            <campaign-right-panel/>
-        </div>
+      </div>
+      <div class="lbox">
+        <campaign-right-panel/>
+      </div>
     </div>
-</section>
+  </section>
 </template>
 
 
@@ -52,10 +47,10 @@
 <script>
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
-import AvailableSignatures from '~/components/AvailableSignatures.vue'
-import { registerForumUser } from '~/assets/utils'
+import AvailableSignatures from "~/components/AvailableSignatures.vue";
+import { registerForumUser } from "~/assets/utils";
 
-const BITCOINTALK_FORUM_ID = 1
+const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
@@ -90,67 +85,69 @@ export default {
       }
       this.step = this.step - 1;
     },
-    async validateId (evt) {
+    async validateId(evt) {
       evt.preventDefault();
 
-      const forumProfile = await registerForumUser(this, BITCOINTALK_FORUM_ID, this.forumUserId)
-      this.retrieveSignatures(forumProfile.id)
-      this.doNext()
+      const forumProfile = await registerForumUser(
+        this,
+        BITCOINTALK_FORUM_ID,
+        this.forumUserId
+      );
+      this.retrieveSignatures(forumProfile.id);
+      this.doNext();
     },
-    onCopy: function(e) {
-        // FIXME 
-        // this.$swal("You just copied: ", e.text);
-    },
-    onError: function(e) {
-      alert("Failed to copy texts");
-    },
-    async verify () {
-      var forum_profile_id = this.$store.getters['forums/byForumId'](BITCOINTALK_FORUM_ID).forumProfileId
-      var signature_id = this.$store.state.copiedSignatureId
+    async verify() {
+      var forum_profile_id = this.$store.getters["forums/byForumId"](
+        BITCOINTALK_FORUM_ID
+      ).forumProfileId;
+      var signature_id = this.$store.state.copiedSignatureId;
 
-      const signatureResult = await this.$axios.$post('/create/signature/', {
-        forum_profile_id, signature_id })
-          if (signatureResult.success) {
-            const userStats = await this.$axios.$get('/retrieve/stats/')
-            await this.$store.commit('setUserStats', userStats.stats)
+      const signatureResult = await this.$axios.$post("/create/signature/", {
+        forum_profile_id,
+        signature_id
+      });
+      if (signatureResult.success) {
+        const userStats = await this.$axios.$get("/retrieve/stats/");
+        await this.$store.commit("setUserStats", userStats.stats);
 
-            // this.$swal({
-            //   title: "Signature Placement Verified",
-            //   text: "You can now start posting and earning VTX",
-            //   icon: "success",
-            //   button: {
-            //     text: "ok",
-            //     className: "btn-primary",
-            //     closeModal: true
-            //   }
-            // }).then(() => {
-              this.$router.push("/leaderboard");
-            // });
-          } else {
-            // this.$swal({
-            //   title: "The signature was not found",
-            //   text: "Unfortunately the signature was not found",
-            //   icon: "error",
-            //   button: {
-            //     text: "OK",
-            //     className: "btn-primary",
-            //     closeModal: true
-            //   }
-            // });
-          }
-        },
-      async retrieveSignatures (forumProfileId) {
-        const signatures = await this.$axios.$get('/retrieve/signatures/', {
-          params: {
-            forum_site_id: BITCOINTALK_FORUM_ID,
-            forum_profile_id: forumProfileId
-          }
-        })
-        // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
-        this.signatures = signatures.signatures.filter(
-          signature => signature.name.startsWith('Full Member'))
-          // signature => signature.name.startsWith('Sr. Member'))
+        // this.$swal({
+        //   title: "Signature Placement Verified",
+        //   text: "You can now start posting and earning VTX",
+        //   icon: "success",
+        //   button: {
+        //     text: "ok",
+        //     className: "btn-primary",
+        //     closeModal: true
+        //   }
+        // }).then(() => {
+        this.$router.push("/leaderboard");
+        // });
+      } else {
+        // this.$swal({
+        //   title: "The signature was not found",
+        //   text: "Unfortunately the signature was not found",
+        //   icon: "error",
+        //   button: {
+        //     text: "OK",
+        //     className: "btn-primary",
+        //     closeModal: true
+        //   }
+        // });
       }
+    },
+    async retrieveSignatures(forumProfileId) {
+      const signatures = await this.$axios.$get("/retrieve/signatures/", {
+        params: {
+          forum_site_id: BITCOINTALK_FORUM_ID,
+          forum_profile_id: forumProfileId
+        }
+      });
+      // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
+      this.signatures = signatures.signatures.filter(signature =>
+        signature.name.startsWith("Full Member")
+      );
+      // signature => signature.name.startsWith('Sr. Member'))
+    }
   }
 };
 </script>
@@ -250,22 +247,22 @@ export default {
   box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
 }
 
-.form-group{
+.form-group {
   height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
-.step-2{
+.step-2 {
   height: 90%;
 }
 
-.input-form{
+.input-form {
   width: 90%;
 }
 
-.form-control{
+.form-control {
   color: white;
   width: 70% !important;
   height: 30px;
@@ -275,15 +272,15 @@ export default {
   border-bottom: 1px solid white;
 }
 
-::placeholder{
-  color:white;
+::placeholder {
+  color: white;
   padding-left: 5px;
 }
 
-button{
-  width:70% !important;
+button {
+  width: 70% !important;
 }
-.directive{
+.directive {
   width: 70%;
 }
 </style>
@@ -320,7 +317,6 @@ button{
   margin: 0;
   border-radius: 8px;
 }
-
 </style>
 
 
@@ -352,9 +348,9 @@ form.stepform label {
 form.stepform input {
   width: 45%;
 }
-form.stepform input[type=textarea] {
-    height: 100px;
-    overflow-wrap: break-word;
+form.stepform input[type="textarea"] {
+  height: 100px;
+  overflow-wrap: break-word;
 }
 
 .bctalk-join {

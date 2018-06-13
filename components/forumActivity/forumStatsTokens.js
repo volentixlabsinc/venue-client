@@ -1,9 +1,6 @@
-
-import { Pie, mixins } from 'vue-chartjs';
-import 'chart.piecelabel.js';
+import { Pie, mixins } from "vue-chartjs";
+import "chart.piecelabel.js";
 const { reactiveProp } = mixins;
-
-
 
 export default {
   extends: Pie,
@@ -14,25 +11,23 @@ export default {
       default: {}
     }
   },
-  data () {
+  data() {
     return {
-  options: {
-   
-    legend: {
-      display: false,
-      position: 'bottom',
-    },
-    pieceLabel: {
-      mode: 'value',
-      fontColor: ['#fff', 'transparent'],
-      fontSize: 12,
-      precision: 1
-    }
-    
-    }
+      options: {
+        legend: {
+          display: false,
+          position: "bottom"
+        },
+        pieceLabel: {
+          mode: "value",
+          fontColor: ["#fff", "transparent"],
+          fontSize: 12,
+          precision: 1
+        }
+      }
+    };
+  },
+  mounted() {
+    this.renderChart(this.chartData, this.options);
   }
-},
-  mounted () {
-    this.renderChart(this.chartData, this.options );
-}
-}
+};

@@ -1,18 +1,18 @@
 <template>
-<div class="log-in-element">
-  <h3>LOGIN</h3>
+  <div class="log-in-element">
+    <h3>LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
-        <ul>
-          <li class="venue-text" v-for="error in errors" :key="error.id">{{ error[0] ? error[0].msg: '' }}</li>
-        </ul>
-        <input v-validate="'required'" name="username" placeholder="username or email" v-model="username"/>
-        <input v-validate="'required|regex:[^]*'" type="password" name="password" placeholder="password" v-model="password"/>
-        <button 
+      <ul>
+        <li v-for="error in errors" :key="error.id" class="venue-text">{{ error[0] ? error[0].msg: '' }}</li>
+      </ul>
+      <input v-validate="'required'" v-model="username" name="username" placeholder="username or email">
+      <input v-validate="'required|regex:[^]*'" v-model="password" type="password" name="password" placeholder="password">
+      <button 
         type="submit" 
         class="btn">Log In</button>
-        <a 
-        @click="$emit('cancel')"
-        class="cancel">CANCEL</a>
+      <a 
+        class="cancel"
+        @click="$emit('cancel')">CANCEL</a>
     </form>
   </div>
 </template>
@@ -20,65 +20,61 @@
 
 <script>
 export default {
-  props: {
-    action: {
-      type: String,
-    }
-  },
-  data(){
-    return{
+  data() {
+    return {
       logged: false,
       loginError: false,
-      username: '',
-      password: ''
-    }
+      username: "",
+      password: ""
+    };
   },
   methods: {
-    async authenticateLogin (event) {
-      event.preventDefault()
-      this.loginError = false
-      
-      const authResponse = await this.$axios.$post('/authenticate/', 
-        { username: this.username, password: this.password })
+    async authenticateLogin(event) {
+      event.preventDefault();
+      this.loginError = false;
+
+      const authResponse = await this.$axios.$post("/authenticate/", {
+        username: this.username,
+        password: this.password
+      });
       // if (authResponse.status !== 200) {
-      //   //Handle Login Error here 
+      //   //Handle Login Error here
       //   console.log('wrong credentials')
       //   var message = 'something went wrong'
       //   this.loginError = true
       //   return message
       // }
 
-      await this.$store.commit('user/authenticated', {
+      await this.$store.commit("user/authenticated", {
         userId: authResponse.user_profile_id,
         language: authResponse.language,
         token: authResponse.token
-      })
+      });
 
-      const userStats = await this.$axios.$get('/retrieve/stats/')
-      this.$store.commit('setUserStats', userStats.stats)
+      const userStats = await this.$axios.$get("/retrieve/stats/");
+      this.$store.commit("setUserStats", userStats.stats);
 
-      this.$router.push('/dashboard')
+      this.$router.push("/dashboard");
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.log-in-element{
+.log-in-element {
   background-color: transparent;
-  display: flex ;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-
 }
 
 button {
   width: 80%;
   height: 10%;
-  background-color: #5B4C6C;
-     border: 1px solid #9B68CD;
+  background-color: #5b4c6c;
+  border: 1px solid #9b68cd;
   color: white;
 }
 
@@ -90,9 +86,9 @@ button {
   font-size: 16px;
   color: rgb(176, 176, 176);
   padding-top: 0.5rem;
-    padding-right: 1.6rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.6rem;
 }
 
 .cancel:hover {
@@ -101,11 +97,10 @@ button {
   background-color: inherit;
 }
 
-
-input{
+input {
   background-color: inherit;
   width: 80%;
-  margin:10px;
+  margin: 10px;
   border: none;
   border-bottom: 1px solid rgb(176, 176, 176);
   font-size: 16px;
@@ -113,16 +108,17 @@ input{
   color: whitesmoke;
 }
 
-textarea:focus, input:focus{
-    outline: none;
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 ::placeholder {
-    color: rgb(176, 176, 176);
-    opacity: 1;
+  color: rgb(176, 176, 176);
+  opacity: 1;
 }
 
-.venue-text{
+.venue-text {
   color: rgb(210, 1, 1);
   font-size: 16px;
   width: 80%;
