@@ -1,41 +1,38 @@
 <template>
-  <OneColumnLayout>
-    <div slot="content">
-      <section class="hero">
-        <div class="hero-body">
-          <div class="container">
-            <h1 class="title is-one">MY PROFILE</h1>
-          </div>
-        </div>
-      </section>
-      <div class="columns is-multiline">
-        <div class="column is-3">
-          <wallet-address />
-        </div>
-
-        <div class="column is-3">
-          <email-address/>
-        </div>
-
-        <div class="column is-3">
-          <account-username/>
-        </div>
-
-        <div class="column is-3">
-          <account-password/>
-        </div>
-
-        <div class="column is-3">
-          <language/>
-        </div>
-
-        <div class="column is-3">
-          <two-factor/>
-        </div>
-
+  <div>
+    <div v-if="userInfo" class="columns is-multiline">
+      <div class="column is-3">
+        <wallet-address />
       </div>
+
+      <div class="column is-3">
+        <email-address :user-info="userInfo.email" @changeEmail="$modal.show('MyEmailModal')"/>
+      </div>
+
+      <div class="column is-3">
+        <account-username/>
+      </div>
+
+      <div class="column is-3">
+        <account-password/>
+      </div>
+
+      <div class="column is-3">
+        <language/>
+      </div>
+
+      <div class="column is-3">
+        <two-factor/>
+      </div>
+
     </div>
-  </OneColumnLayout>
+    <div class="box">
+      <h1 class="title">
+        Ooops! You have to be logged in to see your profile
+      </h1>
+    </div>
+  </div>
+    
 </template>
 
 <script>
@@ -56,6 +53,27 @@ export default {
     EmailAddress,
     Language,
     TwoFactor
+  },
+  data() {
+    return {
+      request: null,
+      userInfo: null
+    };
+  },
+  mounted() {
+    this.retrieveUserInfo();
+  },
+  methods: {
+    async retrieveUserInfo() {
+      this.userInfo = await this.$axios.$get("/retrieve/user/");
+      console.log("forumProfiles: ", this.userInfo);
+    }
   }
 };
 </script>
+
+<style scoped>
+.column {
+  margin: 3em 1em;
+}
+</style>
