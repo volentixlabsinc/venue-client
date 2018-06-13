@@ -2,17 +2,28 @@
   <div>
     <h3 class="subtitle">Current Signature</h3>
     <img id="signature" :src="image">
-    <button class="button is-small is-primary">CHANGE</button>
+    <button v-if="showChangeButton" class="button is-small is-primary" @click="onClickSignature">CHANGE</button>
   </div>  
 </template>
 
 <script>
 export default {
-  data() {
+  props: {
     // TODO Signature needs to be passed in when we support multiple campaigns
-    return {
-      image: "/img/onboarding/sig1.png"
-    };
+    image: {
+      type: String,
+      default: "/img/onboarding/sig1.png"
+    },
+    showChangeButton: {
+      type: Boolean,
+      default: true
+    }
+  },
+  methods: {
+    onClickSignature() {
+      console.log("click");
+      this.$router.push("/editSignature");
+    }
   }
 };
 </script>

@@ -7,9 +7,7 @@
         </div>
       </div>
       <my-campaign :data="profile_level_global" />
-      <h3 class="subtitle">Current Signature</h3>
-      <img id="signature" src="/img/onboarding/sig1.png">
-      <button class="button is-small is-primary">CHANGE</button>
+      <MySignature />
     </div>
     <div slot="right">
       <campaign-right-panel />
@@ -21,6 +19,7 @@
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import forum from "~/components/forum.vue";
 import myCampaign from "~/components/myCampaign.vue";
+import MySignature from "~/components/MySignature";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
@@ -28,6 +27,7 @@ export default {
     TwoColumnLayout,
     forum,
     myCampaign,
+    MySignature,
     campaignRightPanel
   },
   data() {
