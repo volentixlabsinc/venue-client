@@ -1,7 +1,7 @@
 <template>
   <div class="main-section">
     <div class="login-section">
-      <Login/>
+      <Login class="p-lg"/>
     </div>
   </div>
 </template>

@@ -54,7 +54,8 @@ module.exports = {
   },
   css: [
     // '@/assets/scss/mdb.scss'
-    { src: "~/assets/mystyles.scss", lang: "scss" }
+    { src: "~/assets/mystyles.scss", lang: "scss" },
+    { src: "~/assets/spacing.scss", lang: "scss" }
   ],
   env: {
     baseUrl: process.env.BASE_URL || "http://localhost:8000/api"

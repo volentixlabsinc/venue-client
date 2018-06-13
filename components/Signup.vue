@@ -29,7 +29,7 @@
           <input v-validate="{is: password}" v-model="confirmation" class="input" type="password" name="confirmation">
         </div>
       </div>
-      <button class="button is-primary is-fullwidth">Sign Up</button>
+      <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
   </div>
 </template>

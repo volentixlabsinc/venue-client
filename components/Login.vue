@@ -19,7 +19,7 @@
       </div>
       <button 
         type="submit" 
-        class="button is-primary is-fullwidth">Log In</button>
+        class="button is-primary is-fullwidth m-t-lg">Log In</button>
     </form>
   </div>
 </template>

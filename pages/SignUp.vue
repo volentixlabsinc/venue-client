@@ -1,11 +1,8 @@
 <template>
-  <div class="main-section">
-    <div class="login-section-large">
-      <Signup />
-    </div>
+  <div class="p-lg">
+    <Signup />
   </div>
 </template>
-
 
 <script>
 import Signup from "~/components/Signup.vue";
