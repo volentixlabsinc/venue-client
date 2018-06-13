@@ -1,45 +1,61 @@
 <template>
-  <div class="main-section">
-    <div>
-      <h1>MY PROFILE</h1>
+  <OneColumnLayout>
+    <div slot="content">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title is-one">MY PROFILE</h1>
+          </div>
+        </div>
+      </section>
+      <div class="columns is-multiline">
+        <div class="column is-3">
+          <wallet-address />
+        </div>
+
+        <div class="column is-3">
+          <email-address/>
+        </div>
+
+        <div class="column is-3">
+          <account-username/>
+        </div>
+
+        <div class="column is-3">
+          <account-password/>
+        </div>
+
+        <div class="column is-3">
+          <language/>
+        </div>
+
+        <div class="column is-3">
+          <two-factor/>
+        </div>
+
+      </div>
     </div>
-    <div class="my-id">
-      <h3>EMAIL</h3>
-      <h3>USER NAME</h3>
-      <h3>LANGUAGE</h3>
-    </div>
-    <div class="my-id"/>
-  </div>
+  </OneColumnLayout>
 </template>
 
-<style scoped>
-.main-section {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  color: white;
-}
+<script>
+import OneColumnLayout from "~/components/OneColumnLayout.vue";
+import WalletAddress from "~/components/myProfile/WalletAddress.vue";
+import AccountPassword from "~/components/myProfile/AccountPassword.vue";
+import AccountUsername from "~/components/myProfile/AccountUsername.vue";
+import EmailAddress from "~/components/myProfile/EmailAddress.vue";
+import Language from "~/components/myProfile/Language.vue";
+import TwoFactor from "~/components/myProfile/TwoFactor.vue";
 
-.card {
-  width: 100%;
-  height: 15%;
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-start;
-  justify-content: center;
-  align-items: center;
-}
-.my-id {
-  height: 30%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  margin: 30px 0px 20px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-}
-</style>
+export default {
+  components: {
+    OneColumnLayout,
+    WalletAddress,
+    AccountPassword,
+    AccountUsername,
+    EmailAddress,
+    Language,
+    TwoFactor
+  }
+};
+</script>
