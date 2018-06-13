@@ -1,23 +1,25 @@
 <template>
-  <main class="main">
-    <div class="container">
-      <h3>CURRENT SIGNATURE</h3>
+  <TwoColumnLayout>
+    <div slot="left">
+      <h4 class="subtitle">CURRENT SIGNATURE</h4>
       <!-- <img :src="currentSignatureImg" /> -->
-      <h2>AVAILABLE BITCOIN SIGNATURES</h2>
+      <h4 class="subtitle">AVAILABLE BITCOIN SIGNATURES</h4>
       <AvailableSignatures :signatures="signatures"/>
     </div>
-    <div class="right-panel">
+    <div slot="right">
       <campaignRightPanel />
     </div>  
-  </main>
+  </TwoColumnLayout>
 </template>
 
 <script>
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
   components: {
+    TwoColumnLayout,
     AvailableSignatures,
     campaignRightPanel
   },
@@ -49,32 +51,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-h2 {
-  text-align: left;
-}
-
-h3 {
-  text-align: left;
-}
-
-.main {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  color: white;
-  align-items: center;
-}
-.container {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: inherit;
-}
-
-.right-panel {
-  width: 50%;
-}
-</style>

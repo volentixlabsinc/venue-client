@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    <div class="top-left">
-      <tokens />
+  <div id="app" class="columns">
+    <div class="column is-one-fifth">
+      <div>
+        <tokens />
+        <navbar/>
+      </div>
     </div>
-    
-    <div class="nav-bar">
-      <navbar/>
-    </div>
-    <div class="main"> 
+    <div class="column"> 
       <nuxt/>
     </div>
   </div>
@@ -24,106 +23,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-#app {
-  text-align: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #2e2e3f;
-  background-image: linear-gradient(to top, #222c3b, #494b5e);
-  flex-wrap: wrap;
-}
-
-.top-left {
-  height: 10%;
-  width: 100%;
-  order: 1;
-  box-shadow: 0px 2px 10px #1d2430;
-  z-index: 600;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: fixed;
-  background-color: #494b5e;
-}
-
-.nav-bar {
-  width: 100%;
-  height: 7%;
-  order: 4;
-  background-color: #494b5e;
-  align-self: flex-end;
-  position: fixed;
-  z-index: 500;
-}
-
-.main {
-  order: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  min-height: 50%;
-  position: relative;
-  padding-top: 18%;
-  overflow: hidden;
-}
-
-@media only screen and (min-width: 800px) {
-  #app {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .nav-bar {
-    order: 2;
-    height: 70%;
-    width: 15%;
-    align-self: center;
-    background-color: transparent;
-    opacity: 1;
-    position: relative;
-  }
-
-  .top-left {
-    order: 1;
-    height: 30%;
-    width: 15%;
-    align-self: flex-start;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
-    box-shadow: 0px 0px 0px black;
-    position: relative;
-    background-color: transparent;
-  }
-
-  .main {
-    padding-top: 0;
-    padding-left: 20px;
-    order: 3;
-    grid-area: main;
-    height: 100%;
-    width: 82%;
-    z-index: 2;
-  }
-}
-
-@media only screen and (min-width: 900px) {
-  #venue-logo {
-    max-height: 25px;
-    margin: 10px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  #venue-logo {
-    max-height: 40px;
-  }
-}
-</style>

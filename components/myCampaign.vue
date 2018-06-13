@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="tokens-info clickable-section" @click="onClickDetails">
-      <h2 class="subtitle" style="">MY CURRENT REWARDS</h2>
+      <h2 class="subtitle">MY CURRENT REWARDS</h2>
       <h2 class="nb-tokens">{{ myTokens }} VTX</h2>
     </div>
     <div>

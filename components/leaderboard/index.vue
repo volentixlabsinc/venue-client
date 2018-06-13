@@ -10,6 +10,7 @@
 <script>
 import leaderboardEntry from "./leaderboardEntry";
 import shortLeaderboardEntry from "./shortLeaderboardEntry";
+
 export default {
   components: {
     leaderboardEntry,
