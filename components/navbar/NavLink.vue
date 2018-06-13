@@ -31,7 +31,7 @@ export default {
 <style>
 .icons-align {
   display: flex;
-  text-align: right;
+  text-align: left;
   align-items: center;
 }
 

@@ -66,7 +66,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 #line-chart {
   height: 300px !important;
 }

@@ -243,18 +243,3 @@ export default {
   }
 }
 </style>
-
-<style>
-#pie-chart {
-  margin: 0px !important;
-  padding: 0px !important;
-  width: 150px !important;
-  height: 150px !important;
-  align-self: center;
-}
-canvas {
-  margin: 0px !important;
-  padding: 0px !important;
-  display: flex !important;
-}
-</style>
