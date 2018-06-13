@@ -88,7 +88,6 @@ export default {
           .forumUserRank
       });
     }
-    console.log("myTokens", data);
     return data;
   },
 
