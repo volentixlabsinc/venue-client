@@ -4,12 +4,10 @@
 
 <script>
 import Stats from "~/components/Stats.vue";
-import forumStatsPosts from "~/components/forumActivity/forumStatsPosts";
 
 export default {
   components: {
-    Stats,
-    forumStatsPosts
+    Stats
   },
   data() {
     const isAuthenticated = this.$store.state.user.isAuthenticated;
