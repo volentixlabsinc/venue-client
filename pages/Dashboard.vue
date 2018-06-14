@@ -6,7 +6,7 @@
           <forum />
         </div>
       </div>
-      <my-campaign :data="profile_level_global" />
+      <MyCampaign />
       <MySignature />
     </div>
     <div slot="right">
@@ -18,7 +18,7 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import forum from "~/components/forum.vue";
-import myCampaign from "~/components/myCampaign.vue";
+import MyCampaign from "~/components/MyCampaign.vue";
 import MySignature from "~/components/MySignature";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
@@ -26,7 +26,7 @@ export default {
   components: {
     TwoColumnLayout,
     forum,
-    myCampaign,
+    MyCampaign,
     MySignature,
     campaignRightPanel
   },
