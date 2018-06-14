@@ -53,8 +53,7 @@ module.exports = {
     vendor: ["vue-js-modal"]
   },
   css: [
-    // '@/assets/scss/mdb.scss'
-    { src: "~/assets/mystyles.scss", lang: "scss" },
+    { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
   env: {
