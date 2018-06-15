@@ -1,10 +1,11 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <h4 class="subtitle">CURRENT SIGNATURE</h4>
-      <!-- <img :src="currentSignatureImg" /> -->
-      <h4 class="subtitle">AVAILABLE BITCOIN SIGNATURES</h4>
-      <AvailableSignatures :signatures="signatures"/>
+      <MySignature :show-change-button="false" />
+      <div>
+        <h4 class="subtitle">AVAILABLE BITCOIN SIGNATURES</h4>
+        <AvailableSignatures :signatures="signatures"/>
+      </div>
     </div>
     <div slot="right">
       <campaignRightPanel />
@@ -14,12 +15,14 @@
 
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
+import MySignature from "~/components/MySignature";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
   components: {
     TwoColumnLayout,
+    MySignature,
     AvailableSignatures,
     campaignRightPanel
   },
