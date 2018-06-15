@@ -2,7 +2,7 @@
   <TwoColumnLayout>
     <div slot="left">
       <h2 class="title is-2">BITCOINTALK ACTIVITY</h2>
-      <ForumChart/>
+      <ForumChart class="chart"/>
       <Stats :data="stats" />
       <DashboardMyCurrentRewards />
       <MySignature />
@@ -16,6 +16,7 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import ForumChart from "~/components/ForumChart.vue";
+import Stats from "~/components/Stats.vue";
 import DashboardMyCurrentRewards from "~/components/DashboardMyCurrentRewards.vue";
 
 import MySignature from "~/components/MySignature";
@@ -25,6 +26,7 @@ export default {
   components: {
     TwoColumnLayout,
     ForumChart,
+    Stats,
     DashboardMyCurrentRewards,
     MySignature,
     campaignRightPanel
@@ -60,3 +62,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chart {
+  width: 100%;
+  height: 30vh;
+}
+</style>
