@@ -19,7 +19,6 @@ export default {
   },
   data() {
     const isAuthenticated = this.$store.state.user.isAuthenticated;
-    console.log("pro", this.$store.state.userStats.profile_level[0]);
     return {
       isAuthenticated,
       stats: [
