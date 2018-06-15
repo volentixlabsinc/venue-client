@@ -1,6 +1,6 @@
 <template>
   <div>
-    <forum-chart v-if="isAuthenticated" :width="450" :height="300" />
+    <forum-chart v-if="isAuthenticated" :width="450" :height="300" class="chart"/>
     <Stats :data="stats" />
     <UserStatsMyCurrentRewards />
   </div>
@@ -39,3 +39,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chart {
+  width: 100%;
+  height: 40vh;
+}
+</style>
