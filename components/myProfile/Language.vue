@@ -1,22 +1,18 @@
 <template>
-  <div class="box">
-    <div class="box-content">
+  <div class="card">
+    <div class="card-content">
       <h2 class="title"> Language</h2>
-      <footer class="box-footer">
-        <div class="box-footer-item">
-          <div class="rows">
-            <h2 class="subtitle">Set the site language</h2>
-            <b-dropdown v-if="languages=!undefined" hoverable>
-              <button slot="trigger" class="button is-white">
-                <span>{{ userInfo }}</span>
-                <i class="fas fa-caret-down" style="padding-left: 5px"/>
-              </button>
-              <b-dropdown-item>en</b-dropdown-item>
-              <b-dropdown-item>fr</b-dropdown-item>
-              <b-dropdown-item>Something else</b-dropdown-item>
-            </b-dropdown>
-          </div>
-        </div>
+      <h2 class="subtitle">Set the site language</h2>
+      <footer class="card-footer">
+            
+        <b-dropdown v-if="languages=!undefined" class="card-footer-item" hoverable>
+          <button slot="trigger" class="button is-white">
+            <span>Languages</span>
+            <i class="fas fa-caret-down" style="padding-left: 5px"/>
+          </button>
+          <b-dropdown-item>fr</b-dropdown-item>
+          <b-dropdown-item>Something else</b-dropdown-item>
+        </b-dropdown>
       </footer>
     </div>
   </div>
@@ -41,8 +37,9 @@ export default {
   },
   methods: {
     async fetchLanguages() {
-      const getLanguages = this.axios.get("/retrieve/languages/");
+      const getLanguages = await this.$axios.$get("/retrieve/languages/");
       this.languages = getLanguages;
+      console.log("this.languages: ", this.languages[0].text);
     }
   }
 };
