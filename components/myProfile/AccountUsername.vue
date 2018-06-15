@@ -1,17 +1,13 @@
 <template>
-  <div class="box">
-    <div class="box-content">
+  <div class="card">
+    <div class="card-content">
       <h2 class="title"> Account Username</h2>
-      <footer class="box-footer">
-        <div class="box-footer-item">
-          <div class="rows">
-            <h2 class="subtitle"> Change your username</h2>
-            <a class="button is-primary" @click="$modal.show('MyProfileModal', {request: 'Username', currentData: userInfo})"> Change Username </a>
-          </div>
-        </div>
+      <h2 class="subtitle"> Change your username</h2>
+      <footer class="card-footer">
+        <a class="button is-primary" @click="showModal"> Change Username </a>
       </footer>
     </div>
-    <MyProfileModal/>
+    <MyProfileModal v-if="loadModal" v-bind="{fetchRequest}"/>
   </div>
 </template>
 
@@ -26,6 +22,26 @@ export default {
     userInfo: {
       type: String,
       default: undefined
+    }
+  },
+  data: function() {
+    return {
+      async fetchRequest(insertData) {
+        const result = await this.$axios.$post("/manage/change-username/", {
+          username: insertData
+        });
+        return result;
+      },
+      loadModal: false
+    };
+  },
+  methods: {
+    showModal() {
+      this.$modal.show("MyProfileModal", {
+        request: "Username",
+        currentData: this.userInfo
+      });
+      this.loadModal = true;
     }
   }
 };

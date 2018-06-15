@@ -1,17 +1,13 @@
 <template>
-  <div v-if="userInfo!=undefined" class="box">
-    <div class="box-content">
+  <div v-if="userInfo!=undefined" class="card">
+    <div class="card-content">
       <h2 class="title">Email Address</h2>
-      <footer class="box-footer">
-        <div class="box-footer-item">
-          <div class="rows">
-            <h2 class="subtitle">Change your registered email address</h2>
-            <a class="button is-primary" @click="$modal.show('MyProfileModal', {request: 'Email', currentData: userInfo})"> Change Email </a>
-          </div>
-        </div>
+      <h2 class="subtitle">Change your registered email address</h2>
+      <footer class="card-footer">
+        <a class="button is-primary" @click="showModal"> Change Email </a>
       </footer>
     </div>
-    <MyProfileModal/>
+    <MyProfileModal v-if="loadModal" v-bind="{fetchRequest}"/>
   </div>
 </template>
 
@@ -28,8 +24,27 @@ export default {
       default: undefined
     }
   },
+  data: function() {
+    return {
+      async fetchRequest(insertData) {
+        await this.$axios.$post("/manage/change-email/", {
+          email: insertData
+        });
+      },
+      loadModal: false
+    };
+  },
   mounted() {
     console.log("userInfo", this.userInfo);
+  },
+  methods: {
+    showModal() {
+      this.$modal.show("MyProfileModal", {
+        request: "Email",
+        currentData: this.userInfo
+      });
+      this.loadModal = true;
+    }
   }
 };
 </script>

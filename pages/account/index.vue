@@ -1,31 +1,32 @@
 <template>
   <div style="width:100%; height:100%">
-    <div v-if="userInfo" class="columns is-multiline">
-      <div class="column is-3">
+    <div v-if="userInfo" class="tile is-ancestor is-multiline">
+      <div class="tile">
         <wallet-address />
       </div>
 
-      <div class="column is-3">
+      <div class="tile">
         <email-address :user-info="userInfo.email" @changeEmail="$modal.show('MyEmailModal')"/>
       </div>
 
-      <div class="column is-3">
+      <div class="tile">
         <account-username :user-info="userInfo.username"/>
       </div>
-
-      <div class="column is-3">
+    </div>
+    <div v-if="userInfo" class="tile is-ancestor is-multiline">
+      <div class="tile">
         <account-password/>
       </div>
 
-      <div class="column is-3">
+      <div class="tile">
         <language :user-info="userInfo.language"/>
       </div>
 
-      <div class="column is-3">
+      <div class="tile">
         <two-factor/>
       </div>
-
     </div>
+    
     <div v-else class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
       
       <h1 class="title ">
@@ -75,7 +76,7 @@ export default {
 </script>
 
 <style scoped>
-.column {
+.tile {
   margin: 3em 1em;
 }
 </style>

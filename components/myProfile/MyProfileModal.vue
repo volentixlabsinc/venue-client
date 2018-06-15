@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <input class="button is-pulled-right is-primary" type="submit" value="Change" @click="fetchRequest">
+        <input class="button is-pulled-right is-primary" type="submit" value="Change" @click="fetchChange()">
       </div>
       
     </div>
@@ -62,6 +62,12 @@
 <script>
 export default {
   name: "MyProfileModal",
+  props: {
+    fetchRequest: {
+      type: Function,
+      required: true
+    }
+  },
   data: function() {
     return {
       currentData: "",
@@ -78,45 +84,20 @@ export default {
       return this.request;
     }
   },
+  mounted() {
+    this.showSuccess = false;
+  },
   methods: {
     beforeOpen(event) {
       this.request = event.params.request;
       this.currentData = event.params.currentData;
     },
-    async fetchRequest() {
-      console.log("services need to be enabled");
-      //TODO
-
-      // if (this.newData === this.confirmation) {
-      //   if (this.request === "Username") {
-      //     const result = await this.$axios.$post("/manage/change-username/", {
-      //       username: this.newData
-      //     });
-      //     if (result.success) {
-      //       this.showSuccess = true;
-      //     }
-      //   } else if (this.request === "Email") {
-      //     console.log("this.axios", this.axios);
-      //     const result = await this.axios.post("/manage/change-email/", {
-      //       email: this.newData
-      //     });
-      //     console.log("result: ", result);
-      //     if (result.success) {
-      //       this.showSuccess = true;
-      //     }
-      //   }
-      // } else {
-      //   console.log(
-      //     "this.newData === this.confirmation: ",
-      //     this.newData === this.confirmation
-      //   );
-      //   console.log(
-      //     "this.currentData === this.currentDataAnswer: ",
-      //     this.currentData === this.currentDataAnswer
-      //   );
-      //   this.showError = true;
-      // }
-      this.showSuccess = true;
+    async fetchChange() {
+      this.fetchRequest(this.newData).then(result => {
+        if (result.success) {
+          this.showSuccess = true;
+        }
+      });
       this.newData = "";
       this.confirmation = "";
       this.currentData = "";
