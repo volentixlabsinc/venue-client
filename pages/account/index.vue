@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100%; height:100%">
     <div v-if="userInfo" class="columns is-multiline">
       <div class="column is-3">
         <wallet-address />
@@ -10,7 +10,7 @@
       </div>
 
       <div class="column is-3">
-        <account-username/>
+        <account-username :user-info="userInfo.username"/>
       </div>
 
       <div class="column is-3">
@@ -18,7 +18,7 @@
       </div>
 
       <div class="column is-3">
-        <language/>
+        <language :user-info="userInfo.language"/>
       </div>
 
       <div class="column is-3">
@@ -26,10 +26,12 @@
       </div>
 
     </div>
-    <div class="box">
-      <h1 class="title">
+    <div v-else class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
+      
+      <h1 class="title ">
         Ooops! You have to be logged in to see your profile
       </h1>
+      
     </div>
   </div>
     
