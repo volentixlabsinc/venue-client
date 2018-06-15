@@ -2,20 +2,20 @@
   <div>
     <forum-chart v-if="isAuthenticated" :width="450" :height="300" />
     <Stats :data="stats" />
-    <MyCurrentRewards />
+    <UserStatsMyCurrentRewards />
   </div>
 </template>
 
 <script>
 import Stats from "~/components/Stats.vue";
 import ForumChart from "~/components/ForumChart.vue";
-import MyCurrentRewards from "~/components/MyCurrentRewards.vue";
+import UserStatsMyCurrentRewards from "~/components/UserStatsMyCurrentRewards.vue";
 
 export default {
   components: {
     Stats,
     ForumChart,
-    MyCurrentRewards
+    UserStatsMyCurrentRewards
   },
   data() {
     const isAuthenticated = this.$store.state.user.isAuthenticated;
@@ -39,10 +39,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.chart {
-  width: 100%;
-  height: 40vh;
-}
-</style>

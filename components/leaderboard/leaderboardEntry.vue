@@ -18,7 +18,7 @@
       <td 
         :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
         class="tokens">
-        {{ elements.total_tokens }}</td>
+        {{ myTokens }}</td>
       <td 
         :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
         class="tokens-unity">VTX</td>
@@ -33,11 +33,11 @@
       <td 
         class="expanded-data no-border"
         colspan="1">
-        {{ elements.total_posts }} Post</td>
+        {{ myPosts }} Post</td>
       <td 
         class="expanded-data no-border total-points"
         colspan="3">
-        {{ elements.total_points }} Points</td>
+        {{ myPoints }} Points</td>
       <td 
         class="expanded-data no-border"/>
     </tr>
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import numeral from "numeral";
+
 export default {
   props: {
     elements: {
@@ -76,6 +78,17 @@ export default {
       otherRank: "element-container",
       userEntry: null
     };
+  },
+  computed: {
+    myTokens() {
+      return numeral(this.elements.total_tokens).format();
+    },
+    myPosts() {
+      return numeral(this.elements.total_posts).format();
+    },
+    myPoints() {
+      return numeral(this.elements.total_points).format();
+    }
   },
   methods: {
     expandInfo() {

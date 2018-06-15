@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import numeral from "numeral";
+
 export default {
   data() {
     const data = {
@@ -23,7 +25,9 @@ export default {
     };
     if (this.$store.state.user.isAuthenticated) {
       Object.assign(data, {
-        myTokens: this.$store.state.userStats.profile_level[0].VTX_Tokens,
+        myTokens: numeral(
+          this.$store.state.userStats.profile_level[0].VTX_Tokens
+        ).format(),
         forumUserRank: this.$store.state.userStats.profile_level[0]
           .forumUserRank
       });
