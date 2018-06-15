@@ -6,7 +6,7 @@
         <div class="box-footer-item">
           <div class="rows">
             <h2 class="subtitle">Change your registered email address</h2>
-            <a class="button is-primary" @click="$modal.show('MyProfileModal', {request: 'Email'})"> Change Email </a>
+            <a class="button is-primary" @click="$modal.show('MyProfileModal', {request: 'Email', currentData: userInfo})"> Change Email </a>
           </div>
         </div>
       </footer>

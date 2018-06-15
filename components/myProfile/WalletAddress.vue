@@ -6,8 +6,8 @@
         <div class="box-footer-item">
           <div class="rows">
             <h2 class="subtitle"> VTX address whete to send payouts</h2>
-            <p class="tag is-warning">Coming Soon</p>
-            <a href="#" class="button is-primary" disabled>Set VTX Adress </a>
+            
+            <a href="#" class="button is-primary is-small" disabled>Set VTX Adress <label class="tag is-warning is-small">Coming Soon</label></a>
           </div>
         </div>
       </footer>

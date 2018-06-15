@@ -6,34 +6,44 @@
         <div class="box-footer-item">
           <div class="rows">
             <h2 class="subtitle">Set the site language</h2>
-            <div class="dropdown">
-              <div class="dropdown-trigger">
-                <button class="button is-primary-invert" aria-haspopup="true" aria-controls="dropdown-menu2">
-                  <span>Choose Language</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"/>
-                  </span>
-                </button>
-              </div>
-              <div id="dropdown-menu2" class="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">
-                    <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                  </div>
-                  <hr class="dropdown-divider">
-                  <div class="dropdown-item">
-                    <p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
-                  </div>
-                  <hr class="dropdown-divider">
-                  <a href="#" class="dropdown-item">
-                    This is a link
-                  </a>
-                </div>
-              </div>
-            </div>
+            <b-dropdown v-if="languages=!undefined" hoverable>
+              <button slot="trigger" class="button is-white">
+                <span>{{ userInfo }}</span>
+                <i class="fas fa-caret-down" style="padding-left: 5px"/>
+              </button>
+              <b-dropdown-item>en</b-dropdown-item>
+              <b-dropdown-item>fr</b-dropdown-item>
+              <b-dropdown-item>Something else</b-dropdown-item>
+            </b-dropdown>
           </div>
         </div>
       </footer>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    userInfo: {
+      type: String,
+      default: undefined
+    }
+  },
+  data() {
+    return {
+      isActive: false,
+      languages: undefined
+    };
+  },
+  mounted() {
+    this.fetchLanguages();
+  },
+  methods: {
+    async fetchLanguages() {
+      const getLanguages = this.axios.get("/retrieve/languages/");
+      this.languages = getLanguages;
+    }
+  }
+};
+</script>
