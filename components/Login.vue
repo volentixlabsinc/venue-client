@@ -1,18 +1,25 @@
 <template>
-  <div class="log-in-element">
-    <h3>LOGIN</h3>
+  <div>
+    <h3 class="title">LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
       <ul>
-        <li v-for="error in errors" :key="error.id" class="venue-text">{{ error[0] ? error[0].msg: '' }}</li>
+        <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
-      <input v-validate="'required'" v-model="username" name="username" placeholder="username or email">
-      <input v-validate="'required|regex:[^]*'" v-model="password" type="password" name="password" placeholder="password">
+      <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+          <input v-validate="'required'" v-model="username" type="text" class="input" name="username">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+          <input v-validate="'required|regex:[^]*'" v-model="password" class="input" type="password" name="password">
+        </div>
+      </div>
       <button 
         type="submit" 
-        class="btn">Log In</button>
-      <a 
-        class="cancel"
-        @click="$emit('cancel')">CANCEL</a>
+        class="button is-primary is-fullwidth m-t-lg">Log In</button>
     </form>
   </div>
 </template>
@@ -59,70 +66,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.log-in-element {
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-button {
-  width: 80%;
-  height: 10%;
-  background-color: #5b4c6c;
-  border: 1px solid #9b68cd;
-  color: white;
-}
-
-.cancel {
-  border: 0px solid rgb(176, 176, 176);
-  box-shadow: 0px 0px 0px white;
-  background-color: inherit;
-  text-decoration: underline !important;
-  font-size: 16px;
-  color: rgb(176, 176, 176);
-  padding-top: 0.5rem;
-  padding-right: 1.6rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1.6rem;
-}
-
-.cancel:hover {
-  border: 0px solid rgb(176, 176, 176);
-  box-shadow: 0px 0px 0px white;
-  background-color: inherit;
-}
-
-input {
-  background-color: inherit;
-  width: 80%;
-  margin: 10px;
-  border: none;
-  border-bottom: 1px solid rgb(176, 176, 176);
-  font-size: 16px;
-  font-weight: 100;
-  color: whitesmoke;
-}
-
-textarea:focus,
-input:focus {
-  outline: none;
-}
-
-::placeholder {
-  color: rgb(176, 176, 176);
-  opacity: 1;
-}
-
-.venue-text {
-  color: rgb(210, 1, 1);
-  font-size: 16px;
-  width: 80%;
-  text-align: left;
-  display: inline-block;
-}
-</style>

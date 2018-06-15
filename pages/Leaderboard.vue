@@ -2,7 +2,7 @@
   <TwoColumnLayout>
     <div slot="left">
       <h2 class="title">BITCOINTALK LEADERBOARD</h2>
-      <top-stats v-if="$store.state.leaderboard.sitewide.total_users>0" />
+      <LeaderboardStats v-if="$store.state.leaderboard.sitewide.total_users>0" />
       <leaderboard />
     </div>
     <div slot="right">
@@ -16,20 +16,17 @@
 </template>
   
 <script>
-import ICountUp from "vue-countup-v2";
-
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
 import userStats from "~/components/userStats.vue";
-import topStats from "~/components/topStats.vue";
+import LeaderboardStats from "~/components/LeaderboardStats.vue";
 
 export default {
   components: {
     TwoColumnLayout,
     leaderboard,
-    ICountUp,
     userStats,
-    topStats
+    LeaderboardStats
   },
   methods: {
     onClickSignature() {

@@ -1,15 +1,10 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <div v-if="profile_level_global">
-        <div v-for="forumInfo in profile_level_forum" :key="forumInfo.User_ID" class=" forum">
-          <forum />
-        </div>
-      </div>
-      <my-campaign :data="profile_level_global" />
-      <h3 class="subtitle">Current Signature</h3>
-      <img id="signature" src="/img/onboarding/sig1.png">
-      <button class="button is-small is-primary">CHANGE</button>
+      <h2 class="title is-2">BITCOINTALK ACTIVITY</h2>
+      <ForumChart class="chart"/>
+      <MyCampaign />
+      <MySignature />
     </div>
     <div slot="right">
       <campaign-right-panel />
@@ -19,15 +14,17 @@
 
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import forum from "~/components/forum.vue";
-import myCampaign from "~/components/myCampaign.vue";
+import ForumChart from "~/components/ForumChart.vue";
+import MyCampaign from "~/components/MyCampaign.vue";
+import MySignature from "~/components/MySignature";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
   components: {
     TwoColumnLayout,
-    forum,
-    myCampaign,
+    ForumChart,
+    MyCampaign,
+    MySignature,
     campaignRightPanel
   },
   data() {
@@ -51,3 +48,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chart {
+  width: 100%;
+  height: 30vh;
+}
+</style>

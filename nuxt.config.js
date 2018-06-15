@@ -45,16 +45,21 @@ module.exports = {
         });
       }
     },
+    postcss: {
+      plugins: {
+        "postcss-custom-properties": false
+      }
+    },
     vendor: ["vue-js-modal"]
   },
   css: [
-    // '@/assets/scss/mdb.scss'
-    "@/assets/mystyles.scss"
+    { src: "~/assets/main.scss", lang: "scss" },
+    { src: "~/assets/spacing.scss", lang: "scss" }
   ],
   env: {
     baseUrl: process.env.BASE_URL || "http://localhost:8000/api"
   },
-  modules: ["@nuxtjs/axios", "nuxt-buefy"],
+  modules: ["@nuxtjs/axios"],
   axios: {
     baseURL: "http://localhost:8000/api"
   },
@@ -64,6 +69,7 @@ module.exports = {
   },
   plugins: [
     "~/plugins/vue-clipboard",
+    "~/plugins/buefy",
     // '~/plugins/vue-sweetalert2',
     "~/plugins/vee-validate",
     // { src: '~/plugins/local-storage', ssr: false }

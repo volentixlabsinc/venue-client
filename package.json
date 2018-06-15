@@ -21,6 +21,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
     "axios": "^0.18.0",
+    "buefy": "^0.6.6",
     "chart.js": "^2.7.2",
     "chart.piecelabel.js": "^0.10.0",
     "cookie": "^0.3.1",
@@ -28,7 +29,6 @@
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.10",
     "nuxt": "^1.0.0",
-    "nuxt-buefy": "^0.0.4",
     "vee-validate": "^2.0.8",
     "vue": "^2.5.16",
     "vue-chartjs": "^3.3.1",
@@ -52,8 +52,8 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.5.0",
+    "husky": "^0.14.3",
     "node-sass": "^4.9.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^1.13.5",
     "sass-loader": "^7.0.3"
   },

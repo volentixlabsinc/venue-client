@@ -1,9 +1,9 @@
 <template>
-  <div class="menu-item menu-link">
+  <div class="menu-item menu-link m-md">
     <router-link :to="route">
-      <div class="icons-align">
-        <span :class="icon"/>
-        <span class="menu-name">{{ name }}</span>
+      <div class="level">
+        <span class="icon is-large level-left"><i :class="icon" class="fa-2x"/></span>
+        <span class="is-size-6 is-pulled-left level-right">{{ name }}</span>
       </div>
     </router-link>
   </div>
@@ -28,23 +28,13 @@ export default {
 };
 </script>
 
-<style>
-.icons-align {
-  display: flex;
-  text-align: right;
-  align-items: center;
-}
-
-.menu-name {
-  display: none;
+<style scoped>
+.level {
+  justify-content: flex-start;
 }
 
 .nuxt-link-exact-active {
   color: #85449a;
-}
-
-a {
-  color: inherit;
 }
 
 a:hover {
@@ -52,29 +42,7 @@ a:hover {
   border-top: #85449a 1px solid;
 }
 
-.prefix {
-  text-align: right;
-}
-
-@media screen and (min-width: 800px) {
-  a {
-    width: 100%;
-  }
-  .prefix {
-    text-align: right;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .prefix {
-    width: 50%;
-    font-size: 24px;
-  }
-  .menu-name {
-    display: inherit;
-    font-size: 14px;
-    margin-left: 10px;
-    flex-shrink: 0;
-  }
+a {
+  color: inherit;
 }
 </style>
