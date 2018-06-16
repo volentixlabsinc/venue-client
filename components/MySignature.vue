@@ -9,15 +9,16 @@
 <script>
 export default {
   props: {
-    // TODO Signature needs to be passed in when we support multiple campaigns
-    image: {
-      type: String,
-      default: "/img/onboarding/sig1.png"
-    },
     showChangeButton: {
       type: Boolean,
       default: true
     }
+  },
+  data() {
+    // TODO Signature needs to be passed in when we support multiple campaigns
+    return {
+      image: this.$store.state.signature.image
+    };
   },
   methods: {
     onClickSignature() {

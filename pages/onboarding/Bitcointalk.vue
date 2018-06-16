@@ -48,7 +48,7 @@
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
-import { registerForumUser } from "~/assets/utils";
+import { registerForumUser, retrieveAvailableSignatures } from "~/assets/utils";
 
 const BITCOINTALK_FORUM_ID = 1;
 
@@ -93,7 +93,7 @@ export default {
         BITCOINTALK_FORUM_ID,
         this.forumUserId
       );
-      this.retrieveSignatures(forumProfile.id);
+      retrieveAvailableSignatures(forumProfile);
       this.doNext();
     },
     async verify() {
@@ -134,19 +134,6 @@ export default {
         //   }
         // });
       }
-    },
-    async retrieveSignatures(forumProfileId) {
-      const signatures = await this.$axios.$get("/retrieve/signatures/", {
-        params: {
-          forum_site_id: BITCOINTALK_FORUM_ID,
-          forum_profile_id: forumProfileId
-        }
-      });
-      // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
-      this.signatures = signatures.signatures.filter(signature =>
-        signature.name.startsWith("Full Member")
-      );
-      // signature => signature.name.startsWith('Sr. Member'))
     }
   }
 };

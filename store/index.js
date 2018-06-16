@@ -1,4 +1,5 @@
 import cookie from "cookie";
+import { loadUserData } from "~/assets/utils.js";
 
 export const state = () => ({
   copiedSignatureId: undefined,
@@ -129,8 +130,7 @@ export const state = () => ({
 export const actions = {
   // This is executed on the server
   async nuxtServerInit({ commit }, { app, req }) {
-    app.$axios.setHeader("Accept", "application/json");
-    app.$axios.setHeader("Content-Type", "application/json", ["post"]);
+    // TODO Move token into to token plugin
 
     // TODO We should be able to do these calls in parallel, but be aware that
     // a bad token might be passed to the leaderboard which will cause it to
@@ -141,9 +141,12 @@ export const actions = {
     // to get that data.
     const cookieHeader = req.headers.cookie;
 
+    console.log("cookie", cookieHeader);
+
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader);
       if (cookies.venue) {
+        app.$axios.setToken(cookies.venue.token, "Token");
         // This call also sets the token into $axios
         await commit("user/authenticated", {
           token: cookies.venue
@@ -153,10 +156,11 @@ export const actions = {
           // dispatch("loadUserStats");
           // FIXME Should be able to call dispatch as above, but the app seems
           // to be null in the action.
-          commit(
-            "setUserStats",
-            (await app.$axios.$get("/retrieve/stats/")).stats
-          );
+          await loadUserData(commit, app.$axios);
+          // commit(
+          //   "setUserStats",
+          //   (await app.$axios.$get("/retrieve/stats/")).stats
+          // );
         } catch (exc) {
           console.log("catch ***** " + exc);
           console.log(exc);
@@ -165,7 +169,7 @@ export const actions = {
           // HTTP 401 Unauthorized means the token is bad
           // VenueAPI.clearToken()
           // this.$axios.setToken(false)
-          commit("user/unauthenticated");
+          // commit("user/unauthenticated");
           // }
         }
       }
@@ -198,7 +202,9 @@ export const mutations = {
     };
   },
   setUserStats(state, { fresh, profile_level, user_level }) {
-    console.log("setUserStats", profile_level);
     state.userStats = { ...state.userStats, fresh, profile_level, user_level };
+  },
+  setSignature(state, { id, image }) {
+    state.signature = { ...state.signature, id, image };
   }
 };

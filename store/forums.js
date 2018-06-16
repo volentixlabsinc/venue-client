@@ -5,6 +5,7 @@ export const state = () => ({
   // 1: {                      <-- the ID of the forum
   //     forumUserId: 1929041  <-- the ID of the user on the forum
   //     forumProfileId: 9   <-- the ID of the user-forum relationship (forum_profile_id in API)
+  //     position: "Newbie",
   //     signatureId: 2
   // }
 });
