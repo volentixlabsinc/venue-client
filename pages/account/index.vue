@@ -19,7 +19,7 @@
       </div>
 
       <div class="tile">
-        <language :user-info="userInfo.language"/>
+        <language :user-info="userInfo.language" :languages="languages"/>
       </div>
 
       <div class="tile">
@@ -60,16 +60,22 @@ export default {
   data() {
     return {
       request: null,
-      userInfo: null
+      userInfo: null,
+      languages: null
     };
   },
   mounted() {
     this.retrieveUserInfo();
+    this.fetchLanguages();
   },
   methods: {
     async retrieveUserInfo() {
       this.userInfo = await this.$axios.$get("/retrieve/user/");
       console.log("forumProfiles: ", this.userInfo);
+    },
+    async fetchLanguages() {
+      const getLanguages = await this.$axios.$get("/retrieve/languages/");
+      this.languages = getLanguages;
     }
   }
 };
