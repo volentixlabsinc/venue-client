@@ -41,7 +41,8 @@ export default {
     showModal() {
       this.$modal.show("MyProfileModal", {
         request: "Email",
-        currentData: this.userInfo
+        currentData: this.userInfo,
+        fetchRequest: this.fetchRequest
       });
       this.loadModal = true;
     }

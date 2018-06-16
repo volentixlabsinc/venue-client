@@ -5,15 +5,15 @@
       <h2 class="subtitle">Set the site language</h2>
       <footer class="card-footer">
             
-        <b-dropdown v-if="languages=!undefined" class="card-footer-item" hoverable>
+        <b-dropdown class="card-footer-item" >
           <button slot="trigger" class="button is-white">
             <span>Languages</span>
             <i class="fas fa-caret-down" style="padding-left: 5px"/>
           </button>
-          <b-dropdown-item>fr</b-dropdown-item>
-          <b-dropdown-item>Something else</b-dropdown-item>
+          <b-dropdown-item v-for="(ln, index) in languages" :key="index" @click="onSelectLanguage(ln)">{{ ln.text }}</b-dropdown-item>
         </b-dropdown>
       </footer>
+      <h2 v-show="showSuccess.success" class="has-text-success">The site language was successfully changed to {{ showSuccess.newLanguage }}</h2>
     </div>
   </div>
 </template>
@@ -24,22 +24,31 @@ export default {
     userInfo: {
       type: String,
       default: undefined
+    },
+    languages: {
+      type: Array,
+      default: undefined
     }
   },
   data() {
     return {
-      isActive: false,
-      languages: undefined
+      showSuccess: {
+        success: false,
+        newLanguage: ""
+      }
     };
   },
   mounted() {
-    this.fetchLanguages();
+    console.log("userInfo", this.languages);
   },
   methods: {
-    async fetchLanguages() {
-      const getLanguages = await this.$axios.$get("/retrieve/languages/");
-      this.languages = getLanguages;
-      console.log("this.languages: ", this.languages[0].text);
+    async onSelectLanguage(ln) {
+      const result = await this.$axios.$put("/manage/change-language/", {
+        language: ln.value
+      });
+      if (result.success) {
+        this.showSuccess = { success: true, newLanguage: ln.text };
+      }
     }
   }
 };
