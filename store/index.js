@@ -144,13 +144,19 @@ export const actions = {
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader);
       if (cookies.venue) {
+        // This call also sets the token into $axios
         await commit("user/authenticated", {
           token: cookies.venue
         });
 
         try {
-          const userStats = await app.$axios.$get("/retrieve/stats/");
-          await commit("setUserStats", userStats.stats);
+          // dispatch("loadUserStats");
+          // FIXME Should be able to call dispatch as above, but the app seems
+          // to be null in the action.
+          commit(
+            "setUserStats",
+            (await app.$axios.$get("/retrieve/stats/")).stats
+          );
         } catch (exc) {
           console.log("catch ***** " + exc);
           console.log(exc);
@@ -159,7 +165,7 @@ export const actions = {
           // HTTP 401 Unauthorized means the token is bad
           // VenueAPI.clearToken()
           // this.$axios.setToken(false)
-          await commit("user/unauthenticated");
+          commit("user/unauthenticated");
           // }
         }
       }
@@ -170,6 +176,12 @@ export const actions = {
     );
     // const { data: leaderboardData } = await getLeaderBoardData()
     commit("setLeaderboardData", leaderboardData);
+  },
+  async loadUserData(context) {
+    context.commit(
+      "setUserStats",
+      (await context.app.$axios.$get("/retrieve/stats/")).stats
+    );
   }
 };
 
@@ -186,6 +198,7 @@ export const mutations = {
     };
   },
   setUserStats(state, { fresh, profile_level, user_level }) {
+    console.log("setUserStats", profile_level);
     state.userStats = { ...state.userStats, fresh, profile_level, user_level };
   }
 };

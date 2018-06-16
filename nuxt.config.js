@@ -50,7 +50,7 @@ module.exports = {
         "postcss-custom-properties": false
       }
     },
-    vendor: ["vue-js-modal"]
+    vendor: ["axios", "vue-js-modal"]
   },
   css: [
     { src: "~/assets/main.scss", lang: "scss" },
@@ -70,6 +70,7 @@ module.exports = {
   plugins: [
     "~/plugins/vue-clipboard",
     "~/plugins/buefy",
+    "~/plugins/token",
     // '~/plugins/vue-sweetalert2',
     "~/plugins/vee-validate",
     // { src: '~/plugins/local-storage', ssr: false }
