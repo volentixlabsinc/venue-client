@@ -19,6 +19,8 @@ import MySignature from "~/components/MySignature";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 
+import { retrieveAvailableSignatures } from "~/assets/utils.js";
+
 export default {
   components: {
     TwoColumnLayout,
@@ -37,19 +39,12 @@ export default {
           forum_user_id: store.state.userStats.profile_level[0].forumUserId
         }
       });
-      const signatures = await app.$axios.$get("/retrieve/signatures/", {
-        params: {
-          forum_site_id: 1,
-          forum_profile_id: forumProfiles.forum_profiles[0].id
-        }
-      });
-      // TODO Filter basesd on the store.state.userStats.profile_level[0].forumUserRank
-      data.signatures = signatures.signatures.filter(signature =>
-        signature.name.startsWith("Full Member")
+      data.signatures = await retrieveAvailableSignatures(
+        app.$axios,
+        forumProfiles.forum_profiles[0]
       );
-      // signature => signature.name.startsWith('Sr. Member'))
     }
-    console.log("data", data);
+
     return data;
   }
 };
