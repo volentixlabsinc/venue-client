@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     onClickDetails() {
-      this.$router.push("/points-details");
+      this.$router.push("/PointsDetails");
     }
   }
 };
