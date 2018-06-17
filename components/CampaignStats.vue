@@ -2,7 +2,6 @@
   <div class="level is-white box">
     <div v-for="stat in data" :key="stat.id" class="level-item">
       <p class="heading">{{ stat.label }}</p>
-      <img v-if="stat.trophy" id="trophy" src="/img/svg/trophy2.svg">
       <h1 class="title is-1">
         <ICountUp
           v-if="stat.value !== undefined"
@@ -27,15 +26,15 @@ export default {
     return {
       data: [
         {
-          label: "MY POSTS",
+          label: "PARTICIPANTS",
           value: isAuthenticated
-            ? this.$store.state.userStats.profile_level[0].numPosts
+            ? this.$store.state.leaderboard.sitewide.total_users
             : undefined
         },
         {
-          label: "MY POINTS",
+          label: "POSTS",
           value: isAuthenticated
-            ? this.$store.state.userStats.profile_level[0].totalPoints
+            ? this.$store.state.leaderboard.sitewide.total_posts
             : undefined
         }
       ],
@@ -48,6 +47,9 @@ export default {
         suffix: ""
       }
     };
+  },
+  mounted() {
+    console.log(" this.$store.state", this.$store.state);
   }
 };
 </script>
