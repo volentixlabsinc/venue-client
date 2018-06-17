@@ -7,7 +7,7 @@
         <a class="button is-primary" @click="showModal"> Change Email </a>
       </footer>
     </div>
-    <MyProfileModal v-if="loadModal" v-bind="{fetchRequest}"/>
+    <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>
   </div>
 </template>
 
@@ -45,6 +45,11 @@ export default {
         fetchRequest: this.fetchRequest
       });
       this.loadModal = true;
+    },
+    emitNewData(data) {
+      data.then(result => {
+        this.$emit("newUserData", result);
+      });
     }
   }
 };

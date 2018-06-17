@@ -10,7 +10,7 @@
       </div>
 
       <div class="tile">
-        <account-username :user-info="userInfo.username"/>
+        <account-username :user-info="userInfo.username" @newUserData="refreshData"/>
       </div>
     </div>
     <div v-if="userInfo" class="tile is-ancestor is-multiline">
@@ -27,12 +27,22 @@
       </div>
     </div>
     
-    <div v-else class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
-      
-      <h1 class="title ">
-        Ooops! You have to be logged in to see your profile
-      </h1>
-      
+    <div v-show="showError.error" class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title ">
+              Ooops, Bad Request! 
+            </h1>
+            <!-- <h2 class="subtitle">
+              {{ showError.message.stringify() }}
+            </h2> -->
+            <h2 class="subtitle">
+              To have access to your profile you must be logged in.
+            </h2>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
     
@@ -61,7 +71,8 @@ export default {
     return {
       request: null,
       userInfo: null,
-      languages: null
+      languages: null,
+      showError: false
     };
   },
   mounted() {
@@ -70,12 +81,24 @@ export default {
   },
   methods: {
     async retrieveUserInfo() {
-      this.userInfo = await this.$axios.$get("/retrieve/user/");
-      console.log("forumProfiles: ", this.userInfo);
+      await this.$axios
+        .$get("/retrieve/user/")
+        .then(result => {
+          this.userInfo = result;
+        })
+        .catch(error => {
+          this.showError = {
+            error: true,
+            message: error
+          };
+        });
     },
     async fetchLanguages() {
       const getLanguages = await this.$axios.$get("/retrieve/languages/");
       this.languages = getLanguages;
+    },
+    refreshData(data) {
+      this.userInfo = data;
     }
   }
 };
