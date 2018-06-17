@@ -4,7 +4,9 @@
       <h2 class="title"> Account Username</h2>
       <h2 class="subtitle"> Change your username</h2>
       <footer class="card-footer">
-        <a class="button is-primary" @click="showModal"> Change Username </a>
+        <div class="card-footer-item">
+          <a class="button is-primary is-pulled-right" @click="showModal"> Change Username </a>
+        </div>
       </footer>
     </div>
     <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>

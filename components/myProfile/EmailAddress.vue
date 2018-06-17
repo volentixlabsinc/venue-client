@@ -4,7 +4,9 @@
       <h2 class="title">Email Address</h2>
       <h2 class="subtitle">Change your registered email address</h2>
       <footer class="card-footer">
-        <a class="button is-primary" @click="showModal"> Change Email </a>
+        <div class="card-footer-item">
+          <a class="button is-primary" @click="showModal"> Change Email </a>
+        </div>
       </footer>
     </div>
     <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>

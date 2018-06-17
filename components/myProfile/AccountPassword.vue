@@ -4,7 +4,9 @@
       <h2 class="title"> Account Password</h2>
       <h2 class="subtitle"> Change your password</h2>
       <footer class="card-footer">
-        <a class="button is-primary" @click="showModal"> Change Password </a>
+        <div class="card-footer-item">
+          <a class="button is-primary" @click="showModal"> Change Password </a>
+        </div>
       </footer>
     </div>
     <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>
