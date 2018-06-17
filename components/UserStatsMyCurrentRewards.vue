@@ -5,11 +5,13 @@
       <span v-else>N/A</span> VTX
     </div>
     <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
-    <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>  MY CURRENT REWARDS</div>
-    <div v-if="isAuthenticated" class="view-details">
-      <a class="button is-info is-outlined" @click="onClickDetails">
-        <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
-      </a>
+    <div class="level">
+      <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>  MY CURRENT REWARDS</div>
+      <div v-if="isAuthenticated" class="view-details">
+        <a class="button is-info is-outlined" @click="onClickDetails">
+          <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
