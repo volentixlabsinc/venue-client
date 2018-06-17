@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="subtitle">Current Signature</h3>
+    <div class="is-size-5">Current Signature</div>
     <img id="signature" :src="image">
-    <button v-if="showChangeButton" class="button is-small is-primary" @click="onClickSignature">CHANGE</button>
+    <button v-if="showChangeButton" class="button is-primary is-outlined is-pulled-right" @click="onClickSignature">CHANGE</button>
   </div>  
 </template>
 
