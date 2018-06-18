@@ -3,7 +3,7 @@
     :coming-soon="true"
     title="Two-Factor Authentication"
     description="Modify two-factor authentication"
-    button="Coming Soon"/>
+    button="Enable 2FA"/>
 </template>
 
 <script>
