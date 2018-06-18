@@ -1,7 +1,7 @@
 <template>
   <div>
     <forum-chart v-if="isAuthenticated" :width="450" :height="300" class="chart"/>
-    <Stats :data="stats" />
+    <Stats :data-source="'user'" />
     <UserStatsMyCurrentRewards />
   </div>
 </template>

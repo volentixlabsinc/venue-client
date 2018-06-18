@@ -3,7 +3,7 @@
     <header class="card-header">
       <h2 class="title">BITCOINTALK CAMPAIGN</h2>
     </header>
-    <CampaignStats />
+    <Stats :data-source="'campaign'"/>
     <div>
       <div class="is-size-3 has-text-centered">{{ availableTokens }} VTX</div>
       <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>AVAILABLE REWARDS</div>
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import CampaignStats from "~/components/CampaignStats.vue";
+import Stats from "~/components/Stats.vue";
 
 export default {
   components: {
-    CampaignStats
+    Stats
   },
   data() {
     return {

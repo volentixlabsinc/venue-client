@@ -5,14 +5,14 @@
     </div>
     <div slot="right">
       <div>
-        <topSection/>
+        <CampaignRightPanelTopSection/>
         <br>
         <br>
         <div class="card">
           <header class="card-header">
             <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
           </header>
-          <bottomSection />
+          <Stats />
           <myCurrentAwards />
         </div>
       </div>
@@ -24,18 +24,16 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import PointsDetailsInfo from "~/components/PointsDetailsInfo.vue";
-import campaignRightPanel from "~/components/campaignRightPanel.vue";
-import topSection from "~/components/rightPanelTopSection.vue";
-import bottomSection from "~/components/Stats.vue";
+import CampaignRightPanelTopSection from "~/components/CampaignRightPanelTopSection.vue";
+import Stats from "~/components/Stats.vue";
 import myCurrentAwards from "~/components/myCurrentAwards.vue";
 
 export default {
   components: {
     TwoColumnLayout,
     PointsDetailsInfo,
-    campaignRightPanel,
-    topSection,
-    bottomSection,
+    CampaignRightPanelTopSection,
+    Stats,
     myCurrentAwards
   }
 };

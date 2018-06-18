@@ -11,7 +11,7 @@
 <script>
 import ICountUp from "vue-countup-v2";
 import leaderboard from "~/components/leaderboard/index.vue";
-import topSection from "~/components/rightPanelTopSection.vue";
+import topSection from "~/components/CampaignRightPanelTopSection.vue";
 
 export default {
   components: {
