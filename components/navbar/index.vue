@@ -8,7 +8,7 @@
         <nav-link name="LEADERBOARD" route="/leaderboard" icon="fas fa-rocket prefix" />
       </li>
       <li v-if="isAuthenticated()">
-        <nav-link name="PROFILE" route="/account" icon="far fa-user prefix" />
+        <nav-link name="MY PROFILE" route="/profile" icon="far fa-user prefix" />
       </li>
       <li v-if="!isAuthenticated()">
         <nav-link name="LOG IN" route="/login" icon="fas fa-sign-in-alt prefix" />
