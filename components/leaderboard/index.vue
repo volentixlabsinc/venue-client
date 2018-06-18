@@ -1,5 +1,5 @@
 <template>
-  <div class=" leaderboard">
+  <div class="leaderboard">
     <table v-for="(elements, key) in rankings" :key="key">
       <short-leaderboard-entry v-if="shortenedLeaderboard" :elements="elements" :sitewide="sitewide" :my-rank="myRank"/>
       <leaderboard-entry v-else :elements="elements" :sitewide="sitewide" :my-rank="myRank"/> 

@@ -7,7 +7,7 @@
       <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>AVAILABLE REWARDS</div>
     </div>
     <div class="section">
-      <h3 class="subtitle is-5" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></h3>
+      <div class="is-size-4" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></div>
       <leaderboard :shortened-leaderboard="true" />
     </div>
   </div>
