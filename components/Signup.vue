@@ -1,7 +1,7 @@
 <template>
   <div class="log-in-element">
     <h3 class="title">SIGNUP</h3>
-    <form method="POST" @submit="registerUser($event)">
+    <form method="POST" @submit="checkEmail($event)">
       <ul>
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
@@ -35,7 +35,7 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
-    <feedbackModal/>
+    <feedbackModal @feedbackEmits="closedFeedback"/>
   </div>
 </template>
 
@@ -52,48 +52,50 @@ export default {
       password: "",
       confirmation: "",
       signUpError: false,
-      newsletter: false
+      newsletter: false,
+      getActionFromFeedback: true
     };
   },
 
   methods: {
     // TODO Call this to verify a unique email address, before pressing the register button
-    checkEmail: async function(email) {
+    checkEmail: async function(event, email) {
+      event.preventDefault();
       const data = await this.$axios.$get("check/email-exists/", { email });
-      console.log("data: ", data);
-      if (!data.email_exists) {
-        // TODO Display error
+      if (data.email_exists) {
         this.$modal.show("feedbackModal", {
           type: "error",
-          title: "Sign Up",
+          title: "Error",
           message: "This email account already exists"
         });
-        const exist = false;
-        return exist;
+      } else {
+        this.registerUser();
       }
     },
-    registerUser: async function(event) {
-      event.preventDefault();
-      const continueSignUp = this.checkEmail();
-      console.log("continueSignUp: ", continueSignUp);
-      if (!continueSignUp) {
-        this.signUpError = false;
-        const result = await this.$axios.$post("create/user/", {
-          email: this.email,
-          username: this.username,
-          password: this.password,
-          language: "en",
-          receive_emails: this.newsletter
-        });
+    registerUser: async function() {
+      this.signUpError = false;
+      const result = await this.$axios.$post("create/user/", {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+        language: "en",
+        receive_emails: this.newsletter,
+        getActionFromFeedback: true
+      });
 
-        if (result.status !== "success") {
-          console.error("There was an error: ", result);
-          this.signUpError = true;
-        } else {
-          console.log("SUCCESS!!! Click on registration link");
-          // TODO Display success modal here
-        }
+      if (result.status !== "success") {
+        this.signUpError = true;
+      } else {
+        this.$modal.show("feedbackModal", {
+          type: "success",
+          title: "Success!",
+          message:
+            "Please click the email verification link we've just emailed to you to activater your Venue account."
+        });
       }
+    },
+    closedFeedback() {
+      this.$router.push("/");
     }
   }
 };
