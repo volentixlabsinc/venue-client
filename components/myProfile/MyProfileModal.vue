@@ -13,7 +13,7 @@
           <div class="field-body">
             <div class="field">
               <p class="control has-icons-left">
-                <input v-model="currentData" :type="request" class="input" >
+                <input v-model="currentData" :type="request" class="input" readonly>
               </p>
             </div>
           </div>
