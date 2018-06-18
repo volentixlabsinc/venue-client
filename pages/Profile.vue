@@ -1,50 +1,53 @@
 <template>
-  <div style="width:100%; height:100%">
-    <div v-if="userInfo" class="tile is-ancestor is-multiline">
-      <div class="tile">
-        <wallet-address />
-      </div>
+  <one-column-layout>
+    <div>
+      <h1 class="title is-2">MY PROFILE</h1>
+      <div v-if="userInfo" class="tile is-ancestor is-multiline">
+        <div class="tile">
+          <wallet-address />
+        </div>
 
-      <div class="tile">
-        <email-address :user-info="userInfo.email" @changeEmail="$modal.show('MyEmailModal')"/>
-      </div>
+        <div class="tile">
+          <email-address :user-info="userInfo.email" @changeEmail="$modal.show('MyEmailModal')"/>
+        </div>
 
-      <div class="tile">
-        <account-username :user-info="userInfo.username" @newUserData="refreshData"/>
+        <div class="tile">
+          <account-username :user-info="userInfo.username" @newUserData="refreshData"/>
+        </div>
       </div>
-    </div>
-    <div v-if="userInfo" class="tile is-ancestor is-multiline">
-      <div class="tile">
-        <account-password/>
-      </div>
+      <div v-if="userInfo" class="tile is-ancestor is-multiline">
+        <div class="tile">
+          <account-password/>
+        </div>
 
-      <div class="tile">
-        <language :user-info="userInfo.language" :languages="languages"/>
-      </div>
+        <div class="tile">
+          <language :user-info="userInfo.language" :languages="languages"/>
+        </div>
 
-      <div class="tile">
-        <two-factor/>
+        <div class="tile">
+          <two-factor/>
+        </div>
       </div>
-    </div>
     
-    <div v-show="showError.error" class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
-      <section class="hero">
-        <div class="hero-body">
-          <div class="container">
-            <h1 class="title ">
-              Ooops, Bad Request! 
-            </h1>
-            <!-- <h2 class="subtitle">
+      <div v-show="showError.error" class="columns is-desktop is-vcentered has-text-centered" style="width:100%; height:100%">
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title ">
+                Ooops, Bad Request! 
+              </h1>
+              <!-- <h2 class="subtitle">
               {{ showError.message.stringify() }}
             </h2> -->
-            <h2 class="subtitle">
-              To have access to your profile you must be logged in.
-            </h2>
+              <h2 class="subtitle">
+                To have access to your profile you must be logged in.
+              </h2>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-  </div>
+  </one-column-layout>
     
 </template>
 
