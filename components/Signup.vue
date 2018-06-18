@@ -35,11 +35,7 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
-    <<<<<<< HEAD
     <feedbackModal @feedbackEmits="closedFeedback"/>
-    =======
-    <feedbackModal/>
-    >>>>>>> 5985ad57eb65640d0eef2f6aa5f4c4cadbb68fdb
   </div>
 </template>
 
@@ -65,7 +61,11 @@ export default {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(event, email) {
       event.preventDefault();
-      const data = await this.$axios.$get("check/email-exists/", { email });
+      const data = await this.$axios
+        .$get("check/email-exists/", { email })
+        .then(response => {
+          console.log(response);
+        });
       if (data.email_exists) {
         this.$modal.show("feedbackModal", {
           type: "error",
