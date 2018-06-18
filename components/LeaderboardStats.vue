@@ -1,5 +1,5 @@
 <template>
-  <Stats :data="stats" />
+  <Stats :data-source="'user'" />
 </template>
 
 <script>

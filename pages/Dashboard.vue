@@ -3,7 +3,7 @@
     <div slot="left">
       <h2 class="title is-2">BITCOINTALK ACTIVITY</h2>
       <ForumChart class="chart"/>
-      <Stats :data="stats" />
+      <Stats :data-source="'user'" />
       <DashboardMyCurrentRewards />
       <MySignature />
     </div>

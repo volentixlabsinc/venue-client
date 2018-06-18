@@ -1,14 +1,11 @@
 <template>
   <div>
-    <div class="level is-marginless">
-      <span class="level-left is-size-5">MY CURRENT REWARDS</span>
-      <div class="level-right">
-        <span class="is-size-3">{{ myTokens }} VTX</span>
-        <a class="button is-info is-outlined" @click="onClickDetails">
-          <span class="icon"><i class="fas fa-search"/></span>
-        </a>
-      </div>
+    <div class="is-size-3 has-text-centered">
+      <span v-if="isAuthenticated" class="is-size-3 has-text-centered">{{ myTokens }}</span>
+      <span v-else>N/A</span> VTX
     </div>
+    <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
+    <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>  MY CURRENT REWARDS</div>
   </div>
 </template>
 
@@ -31,11 +28,6 @@ export default {
       });
     }
     return data;
-  },
-  methods: {
-    onClickDetails() {
-      this.$router.push("/PointsDetails");
-    }
   }
 };
 </script>
