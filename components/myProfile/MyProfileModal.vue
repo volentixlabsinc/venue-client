@@ -58,10 +58,10 @@
       
  
     </div>
-    <div v-else-if="showSuccess" class="card">
+    <div v-else-if="showSuccess.show" class="card">
       <div class="card-content is-vcentered has-text-centered">
        
-        <h1 class="title has-text-success">Success!</h1>
+        <h1 class="title has-text-success">{{ showSuccess.message }}</h1>
         <footer class="card-footer">
           <div class="card-footer-item">
             <input class="button" value="Close" @click="$modal.hide('MyProfileModal')" @keyup.enter="$modal.hide('MyProfileModal')">
@@ -93,7 +93,10 @@ export default {
       request: "",
       newData: "",
       confirmation: "",
-      showSuccess: false,
+      showSuccess: {
+        show: false,
+        message: "Success!"
+      },
       showError: {
         error: false,
         message: ""
@@ -133,16 +136,19 @@ export default {
       if (this.newData === this.confirmation) {
         this.actionRequested(this.newData)
           .then(result => {
-            if (result.success) {
-              this.showSuccess = true;
+            if (result.status) {
+              this.showSuccess = {
+                error: true
+              };
             }
           })
           .catch(er => {
-            console.log("er: ", er);
-            this.showError = {
-              error: true,
-              message: `This ${this.request} seems to already exist`
-            };
+            if (er.message === "Request failed with status code 302") {
+              this.showError = {
+                error: true,
+                message: `This ${this.request} seems to already exist`
+              };
+            }
             this.newData = "";
             this.confirmation = "";
           });

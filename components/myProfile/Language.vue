@@ -1,5 +1,5 @@
 <template>
-  <my-profile-setting :coming-soon="true" title="Language" description="Set the site language" button="Set Language" href="#" />
+  <my-profile-setting :coming-soon="true" title="Language" description="Set the site language" button="Set Language"/>
   <!-- <b-dropdown class="card-footer-item" >
     <button slot="trigger" class="button is-white">
       <span>Languages</span>

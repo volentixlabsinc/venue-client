@@ -1,23 +1,23 @@
 <template>
-  <div class="card">
-    <div class="card-content">
-      <h2 class="title"> Account Password</h2>
-      <h2 class="subtitle"> Change your password</h2>
-      <footer class="card-footer">
-        <div class="card-footer-item">
-          <a class="button is-primary" @click="showModal"> Change Password </a>
-        </div>
-      </footer>
-    </div>
+  <div class="panel">
+    <my-profile-setting 
+      :coming-soon="false" 
+      setting="password"
+      title="Account Password" 
+      description="Change your password" 
+      button="Change Password"
+      @activateModal="showModal"/>
     <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>
   </div>
 </template>
 
 <script>
+import MyProfileSetting from "~/components/MyProfileSetting.vue";
 import MyProfileModal from "~/components/myProfile/MyProfileModal.vue";
 
 export default {
   components: {
+    MyProfileSetting,
     MyProfileModal
   },
   props: {
@@ -38,13 +38,15 @@ export default {
     };
   },
   methods: {
-    showModal() {
-      this.$modal.show("MyProfileModal", {
-        request: "Password",
-        currentData: "",
-        fetchRequest: this.fetchRequest
-      });
-      this.loadModal = true;
+    showModal(setting) {
+      if (setting === "password") {
+        this.$modal.show("MyProfileModal", {
+          request: "Password",
+          currentData: "",
+          fetchRequest: this.fetchRequest
+        });
+        this.loadModal = true;
+      }
     },
     emitNewData(data) {
       data.then(result => {

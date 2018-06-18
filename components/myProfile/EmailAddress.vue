@@ -1,23 +1,23 @@
 <template>
-  <div v-if="userInfo!=undefined" class="card">
-    <div class="card-content">
-      <h2 class="title">Email Address</h2>
-      <h2 class="subtitle">Change your registered email address</h2>
-      <footer class="card-footer">
-        <div class="card-footer-item">
-          <a class="button is-primary" @click="showModal"> Change Email </a>
-        </div>
-      </footer>
-    </div>
+  <div class="panel">
+    <my-profile-setting 
+      :coming-soon="false" 
+      setting="email"
+      title="Email Address" 
+      description="Change your registered email address" 
+      button="Change Email" 
+      @activateModal="showModal"/>
     <MyProfileModal v-bind="{fetchRequest}" @userData="emitNewData"/>
   </div>
 </template>
 
 <script>
+import MyProfileSetting from "~/components/MyProfileSetting.vue";
 import MyProfileModal from "~/components/myProfile/MyProfileModal.vue";
 
 export default {
   components: {
+    MyProfileSetting,
     MyProfileModal
   },
   props: {
@@ -40,13 +40,15 @@ export default {
     console.log("userInfo", this.userInfo);
   },
   methods: {
-    showModal() {
-      this.$modal.show("MyProfileModal", {
-        request: "Email",
-        currentData: this.userInfo,
-        fetchRequest: this.fetchRequest
-      });
-      this.loadModal = true;
+    showModal(setting) {
+      if (setting === "email") {
+        this.$modal.show("MyProfileModal", {
+          request: "Email",
+          currentData: this.userInfo,
+          fetchRequest: this.fetchRequest
+        });
+        this.loadModal = true;
+      }
     },
     emitNewData(data) {
       data.then(result => {
