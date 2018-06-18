@@ -1,21 +1,30 @@
 <template>
   <div class="main-modal">
     <div v-if="!showHelp" class="verification">
-      <div class="steps-section">
-        <h1>SIGNATURE CODE COPIED!</h1>
-      </div>
-      <div v-if="!verified" class="tips-section">
-        <div class="loader"/>
-        <div class="text-modal">
-          <h2>Simply paste the copied code to your Bitcointalk profile</h2>
-          <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{ timer }} </label> seconds </h3>
-          <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
+      <div v-if="!verified" class="tips-section columns is-multiline is-vcentered">
+        <div class="steps-section column is-12">
+          <h1 class="title">SIGNATURE CODE COPIED!</h1>
         </div>
+      
+        <div class="column is-half">
+          <div class="loader is-pulled-right"/>
+        </div>
+        <div class="column is-half">
+          <div class="text-modal">
+            <h2>Simply paste the copied code to your Bitcointalk profile</h2>
+            <!-- <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{ timer }} </label> seconds </h3> -->
+            <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
+          </div>
+        </div>
+          
       </div>
       <div v-else class="tips-section">
         <div class="text-success-message">
           <h1>SUCCESS!</h1>
-          <h2>Congratulations! We successfully auto-verified your new signature!</h2>
+          <h2>Congratulations! We successfully verified your new signature!</h2>
+        </div>
+        <div>
+          <a class="button" @click="gotoLeaderboard">Close</a>
         </div>
       </div>
     </div>
@@ -27,6 +36,7 @@
 
 <script>
 import HelpSignatureImages from "./HelpSignatureImages.vue";
+import { loadUserData } from "~/assets/utils.js";
 
 const BITCOINTALK_FORUM_ID = 1;
 
@@ -75,6 +85,10 @@ export default {
       console.log("data: ", signatureResult);
 
       this.verified = true;
+    },
+    async gotoLeaderboard() {
+      await loadUserData(this.$store.commit, this.$axios);
+      this.$router.push("/leaderboard");
     }
   }
 };
@@ -123,14 +137,6 @@ button:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.tips-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 70%;
 }
 
 img {
@@ -182,14 +188,7 @@ img {
   height: 120px;
   animation: spin 15s linear infinite;
 }
-.text-modal {
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
+
 .help-link {
   width: auto;
   text-decoration: underline;
