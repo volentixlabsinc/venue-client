@@ -35,7 +35,11 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
+    <<<<<<< HEAD
     <feedbackModal @feedbackEmits="closedFeedback"/>
+    =======
+    <feedbackModal/>
+    >>>>>>> 5985ad57eb65640d0eef2f6aa5f4c4cadbb68fdb
   </div>
 </template>
 
@@ -66,7 +70,8 @@ export default {
         this.$modal.show("feedbackModal", {
           type: "error",
           title: "Error",
-          message: "This email account already exists"
+          message: "This email account already exists",
+          getActionFromFeedback: false
         });
       } else {
         this.registerUser();
@@ -79,8 +84,7 @@ export default {
         username: this.username,
         password: this.password,
         language: "en",
-        receive_emails: this.newsletter,
-        getActionFromFeedback: true
+        receive_emails: this.newsletter
       });
 
       if (result.status !== "success") {
@@ -90,7 +94,8 @@ export default {
           type: "success",
           title: "Success!",
           message:
-            "Please click the email verification link we've just emailed to you to activater your Venue account."
+            "Please click the email verification link we've just emailed to you to activater your Venue account.",
+          getActionFromFeedback: true
         });
       }
     },
