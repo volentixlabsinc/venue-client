@@ -35,11 +35,16 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
+    <feedbackModal/>
   </div>
 </template>
 
 <script>
+import feedbackModal from "~/components/feedbackModal.vue";
 export default {
+  components: {
+    feedbackModal
+  },
   data() {
     return {
       email: "",
@@ -55,28 +60,39 @@ export default {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(email) {
       const data = await this.$axios.$get("check/email-exists/", { email });
-      if (data.email_exists) {
+      console.log("data: ", data);
+      if (!data.email_exists) {
         // TODO Display error
+        this.$modal.show("feedbackModal", {
+          type: "error",
+          title: "Sign Up",
+          message: "This email account already exists"
+        });
+        const exist = false;
+        return exist;
       }
     },
     registerUser: async function(event) {
       event.preventDefault();
-      this.signUpError = false;
+      const continueSignUp = this.checkEmail();
+      console.log("continueSignUp: ", continueSignUp);
+      if (!continueSignUp) {
+        this.signUpError = false;
+        const result = await this.$axios.$post("create/user/", {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+          language: "en",
+          receive_emails: this.newsletter
+        });
 
-      const result = await this.$axios.$post("create/user/", {
-        email: this.email,
-        username: this.username,
-        password: this.password,
-        language: "en",
-        receive_emails: this.newsletter
-      });
-
-      if (result.status !== "success") {
-        console.error("There was an error: ", result);
-        this.signUpError = true;
-      } else {
-        console.log("SUCCESS!!! Click on registration link");
-        // TODO Display success modal here
+        if (result.status !== "success") {
+          console.error("There was an error: ", result);
+          this.signUpError = true;
+        } else {
+          console.log("SUCCESS!!! Click on registration link");
+          // TODO Display success modal here
+        }
       }
     }
   }
