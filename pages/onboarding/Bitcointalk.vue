@@ -93,7 +93,10 @@ export default {
         BITCOINTALK_FORUM_ID,
         this.forumUserId
       );
-      retrieveAvailableSignatures(forumProfile);
+      this.signatures = await retrieveAvailableSignatures(
+        this.$axios,
+        forumProfile
+      );
       this.doNext();
     },
     async verify() {
