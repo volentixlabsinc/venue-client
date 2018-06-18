@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     onClickSignature() {
-      console.log("click");
       this.$router.push("/editSignature");
     }
   }

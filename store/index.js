@@ -153,14 +153,7 @@ export const actions = {
         });
 
         try {
-          // dispatch("loadUserStats");
-          // FIXME Should be able to call dispatch as above, but the app seems
-          // to be null in the action.
           await loadUserData(commit, app.$axios);
-          // commit(
-          //   "setUserStats",
-          //   (await app.$axios.$get("/retrieve/stats/")).stats
-          // );
         } catch (exc) {
           // TODO Clear the cookie so we don't keep receiving old tokens
           console.warn("Caught exception in nuxtServerInit", exc);
@@ -178,12 +171,6 @@ export const actions = {
     );
     // const { data: leaderboardData } = await getLeaderBoardData()
     commit("setLeaderboardData", leaderboardData);
-  },
-  async loadUserData(context) {
-    context.commit(
-      "setUserStats",
-      (await context.app.$axios.$get("/retrieve/stats/")).stats
-    );
   }
 };
 
