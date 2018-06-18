@@ -8,11 +8,11 @@
           <account-password/>
         </div>
         <div class="column">
-          <email-address :user-info="userInfo.email" @changeEmail="$modal.show('MyEmailModal')"/>
+          <email-address :user-info="userInfo.email"/>
           <language />
         </div>
         <div class="column">
-          <account-username :user-info="userInfo.username" @newUserData="refreshData"/>
+          <account-username :user-info="userInfo.username"/>
           <two-factor/>
         </div>
       </div>

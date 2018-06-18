@@ -9,7 +9,7 @@
     </div>
      
     <div class="panel-block">
-      <a :href="href" :disabled="comingSoon" class="button is-fullwidth is-primary">{{ button }}</a>
+      <a :disabled="comingSoon" class="button is-fullwidth is-primary" @click="$emit('activateModal', setting)">{{ button }}</a>
     </div>
     
   </div>
@@ -18,6 +18,10 @@
 <script>
 export default {
   props: {
+    setting: {
+      type: String,
+      default: ""
+    },
     title: {
       type: String,
       default: ""
