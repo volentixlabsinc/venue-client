@@ -3,7 +3,8 @@
     <topSection/>
     <div class="section">
       <div class="is-size-4" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></div>
-      <leaderboard :shortened-leaderboard="true" />
+      <!-- TODO Determine the limit based on screen size -->
+      <leaderboard :shortened-leaderboard="true" limit="8"/>
     </div>
   </div>
 </template>

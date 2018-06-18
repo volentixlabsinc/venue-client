@@ -7,7 +7,7 @@
     <myCurrentAwards />
    
     <div v-if="isAuthenticated" class="view-details">
-      <a class="button is-info is-outlined" @click="onClickDetails">
+      <a class="button is-info is-outlined is-pulled-right m-b-md" @click="onClickDetails">
         <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
       </a>
     </div>

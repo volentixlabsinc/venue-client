@@ -8,7 +8,7 @@
     <div slot="right">
       <h2 class="title">MY CAMPAIGN ACTIVITY</h2>
       <user-stats />
-      <a v-if="$store.state.userStats.profile_level" class="button is-outlined is-fullwidth m-t-lg" @click="onClickSignature">
+      <a v-if="$store.state.user.isAuthenticated" class="button is-outlined is-fullwidth m-t-lg" @click="onClickSignature">
         <span class="icon"><i class="far fa-edit"/></span><span>Edit signature</span>
       </a>
     </div>

@@ -20,11 +20,21 @@ export default {
     shortenedLeaderboard: {
       type: Boolean,
       default: false
+    },
+    limit: {
+      type: Number,
+      default: -1
     }
   },
   data() {
+    let rankings = this.$store.state.leaderboard.rankings;
+    if (this.limit >= 0) {
+      // TODO Remove the users around the current user
+      rankings = rankings.slice(0, this.limit);
+    }
+
     return {
-      rankings: this.$store.state.leaderboard.rankings,
+      rankings,
       sitewide: this.$store.state.leaderboard.sitewide,
       myRank: this.$store.state.userStats.user_level
         ? this.$store.state.userStats.user_level.overall_rank
