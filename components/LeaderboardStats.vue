@@ -26,7 +26,7 @@ export default {
         },
         {
           label: "TOTAL POINTS",
-          value: this.$store.state.leaderboard.sitewide.total_posts
+          value: this.$store.state.leaderboard.sitewide.total_points
         }
       ]
     };
