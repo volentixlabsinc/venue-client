@@ -162,15 +162,13 @@ export const actions = {
           //   (await app.$axios.$get("/retrieve/stats/")).stats
           // );
         } catch (exc) {
-          console.log("catch ***** " + exc);
-          console.log(exc);
+          // TODO Clear the cookie so we don't keep receiving old tokens
+          console.warn("Caught exception in nuxtServerInit", exc);
           // FIXME Only clear token when the token is bad
-          // if (exc.status === 401) {
-          // HTTP 401 Unauthorized means the token is bad
-          // VenueAPI.clearToken()
-          // this.$axios.setToken(false)
-          // commit("user/unauthenticated");
-          // }
+          if (exc.response.status === 401) {
+            // HTTP 401 Unauthorized means the token is bad
+            commit("user/unauthenticated");
+          }
         }
       }
     }
