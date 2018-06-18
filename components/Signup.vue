@@ -29,6 +29,10 @@
           <input v-validate="{is: password}" v-model="confirmation" class="input" type="password" name="confirmation">
         </div>
       </div>
+      <label class="checkbox">
+        <input type="checkbox" name="newsletter">
+        Also add me to your newsletter distribution list
+      </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
   </div>
@@ -42,7 +46,8 @@ export default {
       username: "",
       password: "",
       confirmation: "",
-      signUpError: false
+      signUpError: false,
+      newsletter: false
     };
   },
 
@@ -62,7 +67,8 @@ export default {
         email: this.email,
         username: this.username,
         password: this.password,
-        language: "en"
+        language: "en",
+        receive_emails: this.newsletter
       });
 
       if (result.status !== "success") {
