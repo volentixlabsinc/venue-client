@@ -1,6 +1,9 @@
 <template>
   <div>
-    <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
+    <div class="hero">
+      <h1 class="title">Follow</h1>
+    </div>
+    <!-- <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/> -->
   </div>
 </template>
 
