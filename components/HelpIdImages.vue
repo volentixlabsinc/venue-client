@@ -10,11 +10,7 @@
       <h3>Paste your USERID below:</h3>
       <br>
       <footer>
-        <div class="cloumns is-vcentered">
-          <input v-model="forumUserId" class="input column is-one-third" placeholder="UserId">
-          <button class="button is-primary is-half" @click="submitUserId">SUBMIT USERID</button>
-        </div>
-        <h2 v-show="showMessageError.error" class="has-text-danger">{{ showMessageError.message }}</h2>
+        <OnboardingInputUserProfileId @userIdConfirmed="userIdConfirmed"/>
       </footer>
     </div>
     
@@ -22,53 +18,20 @@
 </template>
 
 <script>
-import { registerForumUser } from "~/assets/utils";
-
+import OnboardingInputUserProfileId from "~/components/OnboardingInputUserProfileId.vue";
 export default {
+  components: {
+    OnboardingInputUserProfileId
+  },
   props: {
     imageNumber: {
       type: Number,
       default: 1
     }
   },
-  data() {
-    return {
-      forumUserId: null,
-      forumId: 1,
-      showMessageError: {
-        error: true,
-        message: ""
-      }
-    };
-  },
-  mounted() {
-    // setInterval(this.swap, 4000);
-  },
   methods: {
-    submitUserId: async function() {
-      this.profileData = await registerForumUser(
-        this,
-        this.forumId,
-        this.forumUserId
-      );
-      if (this.profileData.success) {
-        this.$emit("userIdConfirmed", this.profileData);
-      } else {
-        this.displayError();
-      }
-    },
-    displayError() {
-      if (this.profileData.exists) {
-        this.showMessageError = {
-          error: true,
-          message: "This userid is already attached to a Venue profile"
-        };
-      } else {
-        this.showMessageError = {
-          error: true,
-          message: "Verify that you copied the correct userid"
-        };
-      }
+    userIdConfirmed(profileData) {
+      this.$emit("userIdConfirmed", profileData);
     }
   }
 };
