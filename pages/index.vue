@@ -16,10 +16,16 @@
     </div>
     <div class="level">
       <div class="columns">
-        <div class="column is-three-fifths">
-          <leaderboard :shortened-leaderboard="true" :limit="5"/>
+        <div class="column is-7">
+          <div class="level">
+            <leaderboard :shortened-leaderboard="true" :limit="5"/>
+            <div class="level-item">
+              <Stats :data-source="'campaign'"/>
+              <availableRewards/>
+            </div>
+          </div>
         </div>
-        <div class="column is-one-third">
+        <div class="column is-4 is-offset-1">
           <indexJoinCampaign/>
           
         </div>
@@ -37,13 +43,19 @@ import feedbackModal from "~/components/feedbackModal.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
 import indexSections from "~/components/indexSections.vue";
 import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
+import CampaignRightPanelTopSection from "~/components/CampaignRightPanelTopSection.vue";
+import Stats from "~/components/Stats.vue";
+import availableRewards from "~/components/availableRewards.vue";
 
 export default {
   components: {
     feedbackModal,
     leaderboard,
     indexSections,
-    indexJoinCampaign
+    indexJoinCampaign,
+    CampaignRightPanelTopSection,
+    Stats,
+    availableRewards
   },
   data() {
     return {
@@ -142,3 +154,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.level-item {
+  margin: 20px !important;
+}
+</style>
