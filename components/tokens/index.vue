@@ -3,9 +3,9 @@
     <div class="top-left-container">
       <img id="token-icon" src="/img/logos/VTX-Token-icon.eps">
 
-      <div class="venue-logo" @click="onClickLogo">
+      <a class="venue-logo" @click="onClickLogo">
         <img id="venue-logo" src="/img/logos/venue-volentix.png">
-      </div>
+      </a>
     
     </div>
   </div>

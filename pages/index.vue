@@ -16,7 +16,7 @@
     </div>
     <div class="level">
       <div class="columns">
-        <div class="column is-8">
+        <div class="column is-8" style="border:1px solid grey">
           <campaign-right-panel :columns="true" :limit="5"/>
         </div>
         <div class="column is-4 ">

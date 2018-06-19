@@ -1,6 +1,6 @@
 <template>
   <div class="card ">
-    <header class="card-header ">
+    <header class="card-header">
       <h1 class="title ">MY REWARDS</h1>
     </header>
     <div class="card-content">
