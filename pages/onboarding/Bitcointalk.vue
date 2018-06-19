@@ -122,7 +122,6 @@ export default {
         BITCOINTALK_FORUM_ID,
         this.forumUserId
       );
-      console.log("forumProfile: ", forumProfile);
       if (!forumProfile.exist && forumProfile.success) {
         this.retrieveSignature(forumProfile);
         this.doNext();
@@ -165,7 +164,6 @@ export default {
       }
     },
     showIdHelp() {
-      console.log("errrrrrr");
       this.$modal.show("helpModal", {
         element: "ID"
       });

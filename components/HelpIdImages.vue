@@ -51,8 +51,15 @@ export default {
         this.forumId,
         this.forumUserId
       );
-      if (profileData.success === true || profileData.exists === true) {
+      console.log("profileData: ", profileData);
+      if (profileData.success === true && profileData.exists === true) {
         this.$emit("userIdConfirmed", profileData);
+      }
+      if (profileData.exists && !profileData.success) {
+        this.showMessageError = {
+          error: true,
+          message: "This userid is already attached to a Venue profile"
+        };
       } else {
         this.showMessageError = {
           error: true,
