@@ -1,7 +1,7 @@
 <template>
   <div class="log-in-element">
     <h3 class="title">SIGNUP</h3>
-    <form method="POST" @submit="registerUser($event)">
+    <form method="POST" @submit="checkEmail($event)">
       <ul>
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
@@ -35,11 +35,16 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
+    <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
 </template>
 
 <script>
+import feedbackModal from "~/components/feedbackModal.vue";
 export default {
+  components: {
+    feedbackModal
+  },
   data() {
     return {
       email: "",
@@ -47,22 +52,35 @@ export default {
       password: "",
       confirmation: "",
       signUpError: false,
-      newsletter: false
+      newsletter: false,
+      ready: false,
+      getActionFromFeedback: true
     };
   },
-
+  mounted() {
+    this.ready = true;
+  },
   methods: {
-    // TODO Call this to verify a unique email address, before pressing the register button
-    checkEmail: async function(email) {
-      const data = await this.$axios.$get("check/email-exists/", { email });
+    checkEmail: async function(event) {
+      event.preventDefault();
+      const params = {
+        email: this.email
+      };
+      const data = await this.$axios.$get("check/email-exists/", { params });
       if (data.email_exists) {
-        // TODO Display error
+        this.$modal.show("feedbackModal", {
+          type: "error",
+          title: "Error",
+          message: "This email account already exists",
+          buttonText: "CLOSE",
+          sendActionToFeedback: false
+        });
+      } else {
+        this.registerUser();
       }
     },
-    registerUser: async function(event) {
-      event.preventDefault();
+    registerUser: async function() {
       this.signUpError = false;
-
       const result = await this.$axios.$post("create/user/", {
         email: this.email,
         username: this.username,
@@ -72,12 +90,20 @@ export default {
       });
 
       if (result.status !== "success") {
-        console.error("There was an error: ", result);
         this.signUpError = true;
       } else {
-        console.log("SUCCESS!!! Click on registration link");
-        // TODO Display success modal here
+        this.$modal.show("feedbackModal", {
+          type: "success",
+          title: "Success!",
+          message:
+            "Please click the email verification link we've just emailed to you to activate your Venue account.",
+          buttonText: "CLOSE",
+          sendActionToFeedback: true
+        });
       }
+    },
+    recieveAction() {
+      this.$router.push("/");
     }
   }
 };
