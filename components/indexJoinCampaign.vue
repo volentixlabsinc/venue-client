@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card ">
 
     <div class="card-content">
       <div class="media">
@@ -7,7 +7,7 @@
           <h1 class="title">EARN VTX!</h1>
         </div>
         <div class="media-left">
-          <figure class="image is-48x48">
+          <figure class="image is-64x64">
             <img src="~/static/img/logos/VTX-Token-icon-new.png">
           </figure>
         </div>

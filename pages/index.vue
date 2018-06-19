@@ -18,7 +18,7 @@
       <div class="columns">
         <div class="column is-8">
           <div class="level">
-            <leaderboard :shortened-leaderboard="true" :limit="5"/>
+            <leaderboard :shortened-leaderboard="true" :limit="6"/>
             <div class="level-item">
               <Stats :data-source="'campaign'"/>
               <availableRewards/>
