@@ -1,25 +1,25 @@
 <template>
   <div>
     <div class="level" >
-      <div class="level-item has-text-centered" style="width:15%!important">
+      <div class="level-item has-text-centered">
         <p class="title">Follow on:</p>
       </div>
-      <a target="_blank" href="https://medium.com/@marketing_33515" class="level-item has-text-centered" style="width:15%!important ">
+      <a target="_blank" href="https://medium.com/@marketing_33515" class="level-item has-text-centered">
         <img src="~/static/img/logos/Medium.png">
       </a>
-      <a target="_blank" href="https://twitter.com/Volentix" class="level-item has-text-centered" style="width:15%!important">
+      <a target="_blank" href="https://twitter.com/Volentix" class="level-item has-text-centered">
         <img src="~/static/img/logos/twitter.png">
       </a>
-      <a target="_blank" href="https://t.me/volentix" class="level-item has-text-centered" style="width:15%!important">
+      <a target="_blank" href="https://t.me/volentix" class="level-item has-text-centered">
         <img src="~/static/img/logos/telegram.png">
       </a>
     </div>
-    <div class="level">
-      <div class="columns">
-        <div class="column is-8" style="border:1px solid grey">
+    <div class="columns">
+      <div class="level">
+        <div class="column is-7" style="border:1px solid grey">
           <campaign-right-panel :columns="true" :limit="5"/>
         </div>
-        <div class="column is-4 ">
+        <div class="column is-4">
           <indexJoinCampaign v-if="(!isAuthenticated)"/>
           <index-logged-in v-else/>
         </div>
@@ -147,9 +147,9 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .level-item {
   margin: 20px !important;
+  width: 15% !important;
 }
 </style>
