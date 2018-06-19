@@ -166,11 +166,15 @@ export const actions = {
       }
     }
 
-    const leaderboardData = await app.$axios.$get(
-      "/retrieve/leaderboard-data/"
+    commit(
+      "setLeaderboardData",
+      await app.$axios.$get("/retrieve/leaderboard-data/")
     );
-    // const { data: leaderboardData } = await getLeaderBoardData()
-    commit("setLeaderboardData", leaderboardData);
+  },
+  clearUserState({ commit }) {
+    commit("setUserStats", {});
+    commit("setSignature", {});
+    commit("user/unauthenticated");
   }
 };
 

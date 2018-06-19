@@ -48,7 +48,11 @@
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import ModalWidget from "~/components/ModalWidget.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
-import { registerForumUser, retrieveAvailableSignatures } from "~/assets/utils";
+import {
+  registerForumUser,
+  retrieveAvailableSignatures,
+  loadUserData
+} from "~/assets/utils";
 
 const BITCOINTALK_FORUM_ID = 1;
 
@@ -110,8 +114,12 @@ export default {
         signature_id
       });
       if (signatureResult.success) {
-        const userStats = await this.$axios.$get("/retrieve/stats/");
-        await this.$store.commit("setUserStats", userStats.stats);
+        await loadUserData(this.$store.commit, this.$axios);
+
+        this.$store.commit(
+          "setLeaderboardData",
+          await this.$axios.$get("/retrieve/leaderboard-data/")
+        );
 
         // this.$swal({
         //   title: "Signature Placement Verified",

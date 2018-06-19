@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     logout: async function() {
-      await this.$store.commit("user/unauthenticated");
+      await this.$store.dispatch("clearUserState");
       this.$router.push("/");
     }
   }

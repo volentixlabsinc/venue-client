@@ -26,6 +26,8 @@
 
 
 <script>
+import { loadUserData } from "~/assets/utils.js";
+
 export default {
   data() {
     return {
@@ -58,8 +60,7 @@ export default {
         token: authResponse.token
       });
 
-      const userStats = await this.$axios.$get("/retrieve/stats/");
-      this.$store.commit("setUserStats", userStats.stats);
+      await loadUserData(this.$store.commit, this.$axios);
 
       this.$router.push("/dashboard");
     }
