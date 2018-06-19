@@ -11,7 +11,7 @@
         <img src="~/static/img/logos/twitter.png">
       </div>
       <div class="level-item has-text-centered" style="width:20%!important">
-        <p class="title">Telegram</p>
+        <img src="~/static/img/logos/telegram.png">
       </div>
     </div>
     <div class="level">
