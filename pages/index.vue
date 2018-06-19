@@ -1,11 +1,32 @@
 <template>
   <div>
-    <div class="hero">
-      <h1 class="title">Follow</h1>
+    <div class="level">
+      <div class="level-item has-text-centered">
+        <p class="title">Follow on:</p>
+      </div>
+      <div class="level-item has-text-centered">
+        <p class="title">Medium</p>
+      </div>
+      <div class="level-item has-text-centered">
+        <p class="title">Twitter</p>
+      </div>
+      <div class="level-item has-text-centered">
+        <p class="title">Telegram</p>
+      </div>
     </div>
-    <div class="hero">
-      <leaderboard :shortened-leaderboard="true" :limit="8"/>
+    <div class="level">
+      <div class="columns">
+        <div class="column is-three-fifths">
+          <leaderboard :shortened-leaderboard="true" :limit="5"/>
+        </div>
+        <div class="column is-one-third">
+          <h1>text</h1>
+        </div>
+      </div>
     </div>
+    <index-sections :title="'Campaigns'" :content="content.campaigns"/>
+    <index-sections :title="'Bounties'" :content="content.bounties"/>
+    <index-sections :title="'Proposals'" :content="content.proposals"/>
     <!-- <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/> -->
   </div>
 </template>
@@ -13,14 +34,73 @@
 <script>
 import feedbackModal from "~/components/feedbackModal.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
+import indexSections from "~/components/indexSections.vue";
+
 export default {
   components: {
     feedbackModal,
-    leaderboard
+    leaderboard,
+    indexSections
   },
   data() {
     return {
-      ready: false
+      ready: false,
+      content: {
+        campaigns: [
+          {
+            text: "Bitcointalk",
+            linkText: "Join"
+          },
+          {
+            text: "Facebook",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Reddit",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Twitter",
+            linkText: "Coming Soon"
+          }
+        ],
+        bounties: [
+          {
+            text: "Volentix",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Venue",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "VDX",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Vespucci",
+            linkText: "Coming Soon"
+          }
+        ],
+        proposals: [
+          {
+            text: "Vlabs",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Public",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Accepted",
+            linkText: "Coming Soon"
+          },
+          {
+            text: "Completed",
+            linkText: "Coming Soon"
+          }
+        ]
+      }
     };
   },
   mounted() {
