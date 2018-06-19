@@ -17,13 +17,7 @@
     <div class="level">
       <div class="columns">
         <div class="column is-8">
-          <div class="level">
-            <leaderboard :shortened-leaderboard="true" :limit="6"/>
-            <div class="level-item">
-              <Stats :data-source="'campaign'"/>
-              <availableRewards/>
-            </div>
-          </div>
+          <campaign-right-panel :columns="true" :limit="5"/>
         </div>
         <div class="column is-4 ">
           <indexJoinCampaign v-if="(!isAuthenticated)"/>
@@ -44,9 +38,7 @@ import leaderboard from "~/components/leaderboard/index.vue";
 import indexSections from "~/components/indexSections.vue";
 import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
 import indexLoggedIn from "~/components/indexLoggedIn.vue";
-import CampaignRightPanelTopSection from "~/components/CampaignRightPanelTopSection.vue";
-import Stats from "~/components/Stats.vue";
-import availableRewards from "~/components/availableRewards.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 
 export default {
   components: {
@@ -54,9 +46,7 @@ export default {
     leaderboard,
     indexSections,
     indexJoinCampaign,
-    CampaignRightPanelTopSection,
-    Stats,
-    availableRewards,
+    CampaignRightPanel,
     indexLoggedIn
   },
   data() {

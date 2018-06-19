@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <h2 class="title">BITCOINTALK CAMPAIGN</h2>
+      <h2 v-show="(!columns)" class="title">BITCOINTALK CAMPAIGN</h2>
     </header>
     <Stats :data-source="'campaign'"/>
     <availableRewards/>
@@ -16,6 +16,12 @@ export default {
   components: {
     Stats,
     availableRewards
+  },
+  props: {
+    columns: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {

@@ -33,9 +33,6 @@ export default {
       });
     }
     return data;
-  },
-  mounted() {
-    console.log("this.$store.state.userStats", this.$store.state.userStats);
   }
 };
 </script>
