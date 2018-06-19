@@ -14,7 +14,7 @@
           <input v-model="forumUserId" class="input column is-one-third" placeholder="UserId">
           <button class="button is-primary is-half" @click="submitUserId">SUBMIT USERID</button>
         </div>
-        <h2 v-show="showMessageError.error" class="subtitle has-text-danger">{{ showMessageError.message }}</h2>
+        <h2 v-show="showMessageError.error" class="has-text-danger">{{ showMessageError.message }}</h2>
       </footer>
     </div>
     
@@ -46,15 +46,19 @@ export default {
   },
   methods: {
     submitUserId: async function() {
-      const profileData = await registerForumUser(
+      this.profileData = await registerForumUser(
         this,
         this.forumId,
         this.forumUserId
       );
-      if (profileData.success === true && profileData.exists === true) {
-        this.$emit("userIdConfirmed", profileData);
+      if (this.profileData.success) {
+        this.$emit("userIdConfirmed", this.profileData);
+      } else {
+        this.displayError();
       }
-      if (profileData.exists && !profileData.success) {
+    },
+    displayError() {
+      if (this.profileData.exists) {
         this.showMessageError = {
           error: true,
           message: "This userid is already attached to a Venue profile"
