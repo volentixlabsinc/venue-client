@@ -11,11 +11,11 @@
           <div v-if="step === 1" class="form-group">
             <h4 class="subtitle">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
             <div class="columns is-multiline">
-              <div class="column">
+              <div class="column is-6">
                 <input id="userid" v-model="forumUserId" type="text" placeholder="Your user id" class="input ">
                 <p v-show="showMessageError.error" class="is-size-7 has-text-danger">{{ showMessageError.message }}</p>
               </div>
-              <div class="column">
+              <div class="column is-1">
                 <button class="button is-primary" @click="validateId">NEXT</button>
               </div>
               
@@ -116,20 +116,26 @@ export default {
     },
     async validateId(evt) {
       evt.preventDefault();
-
-      const forumProfile = await registerForumUser(
-        this,
-        BITCOINTALK_FORUM_ID,
-        this.forumUserId
-      );
-      console.log("forumProfile: ", forumProfile);
-      if (!forumProfile.exist && forumProfile.success) {
-        this.retrieveSignature(forumProfile);
-        this.doNext();
-      } else {
+      try {
+        this.forumProfile = await registerForumUser(
+          this,
+          BITCOINTALK_FORUM_ID,
+          this.forumUserId
+        );
+        if (!this.forumProfile.exist && this.forumProfile.success) {
+          this.retrieveSignature(this.forumProfile);
+          this.doNext();
+        } else {
+          this.showMessageError = {
+            error: true,
+            message: "This userid is already attached to a Venue profile"
+          };
+        }
+      } catch (error) {
         this.showMessageError = {
           error: true,
-          message: "This userid is already attached to a Venue profile"
+          message:
+            "You must be at least a bitcointalk full member to join this campaign"
         };
       }
     },

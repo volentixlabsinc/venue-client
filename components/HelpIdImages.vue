@@ -14,7 +14,7 @@
           <input v-model="forumUserId" class="input column is-one-third" placeholder="UserId">
           <button class="button is-primary is-half" @click="submitUserId">SUBMIT USERID</button>
         </div>
-        <h2 v-show="showMessageError.error" class="subtitle has-text-danger">{{ showMessageError.message }}</h2>
+        <h2 v-show="showMessageError.error" class="has-text-danger">{{ showMessageError.message }}</h2>
       </footer>
     </div>
     
@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      profileData: null,
       forumUserId: null,
       forumId: 1,
       showMessageError: {
@@ -46,17 +47,34 @@ export default {
   },
   methods: {
     submitUserId: async function() {
-      const profileData = await registerForumUser(
-        this,
-        this.forumId,
-        this.forumUserId
-      );
-      if (profileData.success === true || profileData.exists === true) {
-        this.$emit("userIdConfirmed", profileData);
-      } else {
+      try {
+        this.profileData = await registerForumUser(
+          this,
+          this.forumId,
+          this.forumUserId
+        );
+        if (
+          this.profileData.success === true &&
+          this.profileData.exists === true
+        ) {
+          this.$emit("userIdConfirmed", this.profileData);
+        }
+        if (this.profileData.exists && !this.profileData.success) {
+          this.showMessageError = {
+            error: true,
+            message: "This userid is already attached to a Venue profile"
+          };
+        } else {
+          this.showMessageError = {
+            error: true,
+            message: "Verify that you copied the correct userid"
+          };
+        }
+      } catch (error) {
         this.showMessageError = {
           error: true,
-          message: "Verify that you copied the correct userid"
+          message:
+            "You must be at least a bitcointalk full member to join this campaign"
         };
       }
     }
