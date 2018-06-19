@@ -16,7 +16,7 @@
       
       <footer class="card-footer">
         <div class="card-footer-item">
-          <input class="button is-pulled-right is-primary" value="CLOSE" @click="$modal.hide('feedbackModal')">
+          <input :value="buttonText" class="button is-pulled-right is-primary" @click="onClickButton">
         </div>
       </footer>
  
@@ -33,7 +33,9 @@ export default {
       successColor: "has-text-success",
       type: "",
       title: "",
-      message: ""
+      message: "",
+      recievedAction: undefined,
+      buttonText: undefined
     };
   },
   methods: {
@@ -41,15 +43,22 @@ export default {
       this.type = event.params.type;
       this.title = event.params.title;
       this.message = event.params.message;
-      this.sendAction = event.params.getActionFromFeedback;
+      this.recievedAction = event.params.sendActionToFeedback;
+      this.buttonText = event.params.buttonText;
     },
     beforeClose() {
       this.type = "";
       this.title = "";
       this.message = "";
-      if (this.sendAction) {
+      if (this.recievedAction) {
         this.$emit("feedbackEmits");
       }
+    },
+    onClickButton() {
+      // if (this.recievedAction) {
+      //   this.recievedAction();
+      // }
+      this.$modal.hide("feedbackModal");
     }
   }
 };

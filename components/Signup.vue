@@ -35,7 +35,7 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
-    <feedbackModal @feedbackEmits="closedFeedback"/>
+    <feedbackModal/>
   </div>
 </template>
 
@@ -61,17 +61,14 @@ export default {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(event, email) {
       event.preventDefault();
-      const data = await this.$axios
-        .$get("check/email-exists/", { email })
-        .then(response => {
-          console.log(response);
-        });
+      const data = await this.$axios.$get("check/email-exists/", { email });
       if (data.email_exists) {
         this.$modal.show("feedbackModal", {
           type: "error",
           title: "Error",
           message: "This email account already exists",
-          getActionFromFeedback: false
+          buttonText: "CLOSE",
+          sendActionToFeedback: false
         });
       } else {
         this.registerUser();
@@ -95,13 +92,14 @@ export default {
           title: "Success!",
           message:
             "Please click the email verification link we've just emailed to you to activater your Venue account.",
-          getActionFromFeedback: true
+          buttonText: "CLOSE",
+          sendActionToFeedback: this.$router.push("/")
         });
       }
-    },
-    closedFeedback() {
-      this.$router.push("/");
     }
+    // closedFeedback() {
+    //   this.$router.push("/");
+    // }
   }
 };
 </script>
