@@ -16,7 +16,7 @@
     </div>
     <div class="level">
       <div class="columns">
-        <div class="column is-7">
+        <div class="column is-8">
           <div class="level">
             <leaderboard :shortened-leaderboard="true" :limit="5"/>
             <div class="level-item">
@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="column is-4 is-offset-1">
+        <div class="column is-4 ">
           <indexJoinCampaign/>
           
         </div>
