@@ -19,7 +19,7 @@
         <div class="column is-7" style="border:1px solid grey">
           <campaign-right-panel :columns="true" :limit="5"/>
         </div>
-        <div class="column is-4">
+        <div class="column is-4" style="margin-right:20px">
           <indexJoinCampaign v-if="(!isAuthenticated)"/>
           <index-logged-in v-else/>
         </div>
