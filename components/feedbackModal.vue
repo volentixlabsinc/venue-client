@@ -9,7 +9,7 @@
       </header>
       <div class="card-content" style="height:100%">
         
-        <h1 class="title"> {{ message }}</h1>
+        <h1 class="subtitle"> {{ message }}</h1>
 
        
       </div>
@@ -30,7 +30,7 @@ export default {
   data: function() {
     return {
       errorColor: "has-text-danger",
-      successColor: "has-text-success",
+      successColor: "has-text-primary",
       type: "",
       title: "",
       message: "",

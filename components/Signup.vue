@@ -35,7 +35,7 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
-    <feedbackModal/>
+    <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
 </template>
 
@@ -53,10 +53,13 @@ export default {
       confirmation: "",
       signUpError: false,
       newsletter: false,
+      ready: false,
       getActionFromFeedback: true
     };
   },
-
+  mounted() {
+    this.ready = true;
+  },
   methods: {
     // TODO Call this to verify a unique email address, before pressing the register button
     checkEmail: async function(event, email) {
@@ -93,13 +96,13 @@ export default {
           message:
             "Please click the email verification link we've just emailed to you to activater your Venue account.",
           buttonText: "CLOSE",
-          sendActionToFeedback: this.$router.push("/")
+          sendActionToFeedback: true
         });
       }
+    },
+    recieveAction() {
+      this.$router.push("/");
     }
-    // closedFeedback() {
-    //   this.$router.push("/");
-    // }
   }
 };
 </script>

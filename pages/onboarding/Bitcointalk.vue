@@ -13,11 +13,11 @@
             <span v-if="error" style="color:red; display:block;">
               <i class="fas fa-times-circle"/> User not found - please try Again
             </span>
-            <span class="joinhelptxt" @click="showHelp = true">How do I find my bitcointalk user id?</span>
+            <span class="joinhelptxt" @click="showIdHelp">How do I find my bitcointalk user id?</span>
           </div>
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
-            <AvailableSignatures :signatures="signatures"/>
+            <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures"/>
             <button class="btn venue-accent-color" @click="doNext">NEXT</button>
           </div>
           <div v-if="step === 3" class="form-group">
@@ -32,8 +32,8 @@
           </div>
         
         </form>
-        <ModalWidget v-if="showHelp" @close="showHelp = false" />
             
+        <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
       </div>
       <div class="lbox">
         <campaign-right-panel/>
@@ -46,7 +46,7 @@
 
 <script>
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
-import ModalWidget from "~/components/ModalWidget.vue";
+import helpModal from "~/components/helpModal.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { registerForumUser, retrieveAvailableSignatures } from "~/assets/utils";
 
@@ -54,7 +54,7 @@ const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
-    ModalWidget,
+    helpModal,
     AvailableSignatures,
     campaignRightPanel
   },
@@ -69,8 +69,13 @@ export default {
       error: undefined,
       message: "",
       check: false,
-      signatures: []
+      signatures: [],
+      forumProfile: undefined,
+      ready: false
     };
+  },
+  mounted() {
+    this.ready = true;
   },
   methods: {
     doNext(evt) {
@@ -93,10 +98,17 @@ export default {
         BITCOINTALK_FORUM_ID,
         this.forumUserId
       );
+      this.retrieveSignature(forumProfile);
+      this.doNext();
+    },
+    async retrieveSignature(forumProfile) {
       this.signatures = await retrieveAvailableSignatures(
         this.$axios,
         forumProfile
       );
+    },
+    confirmedID(forumProfile) {
+      this.retrieveSignature(forumProfile);
       this.doNext();
     },
     async verify() {
@@ -113,30 +125,13 @@ export default {
         const userStats = await this.$axios.$get("/retrieve/stats/");
         await this.$store.commit("setUserStats", userStats.stats);
 
-        // this.$swal({
-        //   title: "Signature Placement Verified",
-        //   text: "You can now start posting and earning VTX",
-        //   icon: "success",
-        //   button: {
-        //     text: "ok",
-        //     className: "btn-primary",
-        //     closeModal: true
-        //   }
-        // }).then(() => {
         this.$router.push("/leaderboard");
-        // });
-      } else {
-        // this.$swal({
-        //   title: "The signature was not found",
-        //   text: "Unfortunately the signature was not found",
-        //   icon: "error",
-        //   button: {
-        //     text: "OK",
-        //     className: "btn-primary",
-        //     closeModal: true
-        //   }
-        // });
       }
+    },
+    showIdHelp() {
+      this.$modal.show("helpModal", {
+        element: "ID"
+      });
     }
   }
 };

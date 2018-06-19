@@ -1,6 +1,6 @@
 <template>
   <div>
-    <feedbackModal @feedbackEmits="recieveAction"/>
+    <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
 </template>
 
@@ -10,15 +10,21 @@ export default {
   components: {
     feedbackModal
   },
+  data() {
+    return {
+      ready: false
+    };
+  },
   mounted() {
     this.showConfirmationMessage();
+
+    this.ready = true;
   },
   methods: {
     //TODO
     // find another solution the modal is not rendered, may be a lifecycle problem
     showConfirmationMessage() {
       const hash = this.$route.hash;
-      console.log("hash: ", hash);
       if (hash === "#/?email_confirmed=1") {
         this.$modal.show("feedbackModal", {
           type: "success",

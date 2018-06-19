@@ -11,16 +11,16 @@
         </li>
       </ul>
     </form>  
-    <ModalWidget v-if="showModal" :request="'confirmCopy'" @close="showModal = false"/>
+    <VerifySignature />
   </div>
 </template>
 
 <script>
-import ModalWidget from "~/components/ModalWidget.vue";
+import VerifySignature from "~/components/VerifySignature.vue";
 
 export default {
   components: {
-    ModalWidget
+    VerifySignature
   },
   props: {
     signatures: {
@@ -33,13 +33,11 @@ export default {
       showModal: false
     };
   },
-  created() {
-    console.log("created", this.signatures);
-  },
   methods: {
     onCopy: function(sig) {
       this.$store.commit("signatureCopied", sig.id);
       this.showModal = true;
+      this.$modal.show("VerifySignature");
     }
   }
 };

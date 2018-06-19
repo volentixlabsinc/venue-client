@@ -1,24 +1,27 @@
 <template>
-  <div class="main-modal">
-    <div v-if="!showHelp" class="verification">
-      <div v-if="!verified" class="tips-section columns is-multiline is-vcentered">
-        <div class="steps-section column is-12">
-          <h1 class="title">SIGNATURE CODE COPIED!</h1>
-        </div>
-      
-        <div class="column is-half">
-          <div class="loader is-pulled-right"/>
-        </div>
-        <div class="column is-half">
-          <div class="text-modal">
-            <h2>Simply paste the copied code to your Bitcointalk profile</h2>
-            <!-- <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{ timer }} </label> seconds </h3> -->
-            <div class="flex-row-80"><label class="help-link" @click="showHelp = true">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
+  <div>
+    <div class="card">
+      <div>
+        <header class="card-header ">
+          <h1 class="card-header-title title has-text-white">SIGNATURE CODE COPIED!</h1>
+        </header>
+        <div class="card-content">
+        
+          <div class="columns is-multiline is-vcentered">
+            <div class="column is-half ">
+              <div class="loader is-pulled-right"/>
+            </div>
+            <div class="column is-half">
+              <div class="text-modal">
+                <h2>Simply paste the copied code to your Bitcointalk profile</h2>
+                <!-- <h3 style="text-align:left">We will attempt to <u>auto-verify</u> placement for the next :<label style="color:gold"> {{ timer }} </label> seconds </h3> -->
+                <div class="flex-row-80"><label class="help-link" @click="showHelp">click for help</label> <button class="btn venue-accent-color" @click="validateSignature">Verify Now</button></div>
+              </div>
+            </div>
           </div>
         </div>
-          
       </div>
-      <div v-else class="tips-section">
+      <!-- <div v-else class="tips-section">
         <div class="text-success-message">
           <h1>SUCCESS!</h1>
           <h2>Congratulations! We successfully verified your new signature!</h2>
@@ -26,29 +29,34 @@
         <div>
           <a class="button" @click="gotoLeaderboard">Close</a>
         </div>
-      </div>
+      </div> -->
+      <feedbackModal @feedbackEmits="closeModal"/>
+      <helpModal />
     </div>
-    <div v-else class="help-section">
-      <HelpSignatureImages @done="showHelp = !showHelp"/>
-    </div>
+    <!-- <div v-else class="help-section"> -->
+    <!-- <HelpSignatureImages @done="showHelp = !showHelp"/> -->
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
-import HelpSignatureImages from "./HelpSignatureImages.vue";
+// import HelpSignatureImages from "./HelpSignatureImages.vue";
+import feedbackModal from "~/components/feedbackModal.vue";
+import helpModal from "~/components/helpModal.vue";
 import { loadUserData } from "~/assets/utils.js";
 
 const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
-    HelpSignatureImages
+    // HelpSignatureImages,
+    feedbackModal,
+    helpModal
   },
   data() {
     return {
       timer: 240,
-      verified: false,
-      showHelp: false
+      verified: false
     };
   },
   mounted() {
@@ -63,6 +71,10 @@ export default {
     }
   },
   methods: {
+    showHelp() {
+      // console.log("click");
+      this.$modal.show("helpModal", { element: "signature" });
+    },
     timerCalc() {
       this.timer -= 1;
       if (this.timer == 0) {
@@ -71,7 +83,6 @@ export default {
       }
     },
     async validateSignature() {
-      console.log("this.$store.getters", this.$store.getters);
       var forum_profile_id = this.$store.getters["forums/byForumId"](
         BITCOINTALK_FORUM_ID
       ).forumProfileId;
@@ -84,7 +95,18 @@ export default {
       });
       console.log("data: ", signatureResult);
 
-      this.verified = true;
+      this.$modal.show("feedbackModal", {
+        type: "success",
+        title: "Success!",
+        message:
+          "Congratulations! We successfully verified your new signature!",
+        buttonText: "CLOSE",
+        sendActionToFeedback: true
+      });
+    },
+    closeModal() {
+      this.$modal.hide("VerifySignature");
+      this.gotoLeaderboard();
     },
     async gotoLeaderboard() {
       await loadUserData(this.$store.commit, this.$axios);
