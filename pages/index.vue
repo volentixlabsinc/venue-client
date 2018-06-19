@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="level">
-      <div class="level-item has-text-centered">
+      <div class="level-item has-text-centered" style="width:20%!important">
         <p class="title">Follow on:</p>
       </div>
-      <div class="level-item has-text-centered">
-        <p class="title">Medium</p>
+      <div class="level-item has-text-centered" style="width:20%!important">
+        <img src="~/static/img/logos/Medium.png">
       </div>
-      <div class="level-item has-text-centered">
-        <p class="title">Twitter</p>
+      <div class="level-item has-text-centered" style="width:20%!important">
+        <img src="~/static/img/logos/twitter.png">
       </div>
-      <div class="level-item has-text-centered">
+      <div class="level-item has-text-centered" style="width:20%!important">
         <p class="title">Telegram</p>
       </div>
     </div>

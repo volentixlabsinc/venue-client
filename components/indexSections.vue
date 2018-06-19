@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="subtitle">{{ title }} (View All)</h1>
+    <h1 class="subtitle">{{ title }} <span><a class="has-text-primary">(<u> View All </u>)</a></span></h1>
     <div class="level">
       
       <div v-for="(elements, index) in content" :key="index" class="card" style="width:24%!important; border:1px solid white">
