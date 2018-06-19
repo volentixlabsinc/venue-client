@@ -20,13 +20,14 @@
           <leaderboard :shortened-leaderboard="true" :limit="5"/>
         </div>
         <div class="column is-one-third">
-          <h1>text</h1>
+          <indexJoinCampaign/>
+          
         </div>
       </div>
     </div>
-    <index-sections :title="'Campaigns'" :content="content.campaigns"/>
-    <index-sections :title="'Bounties'" :content="content.bounties"/>
-    <index-sections :title="'Proposals'" :content="content.proposals"/>
+    <div v-for="(el, index) in contents" :key="index">
+      <index-sections :title="el.title" :content="el.content"/>
+    </div>
     <!-- <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/> -->
   </div>
 </template>
@@ -35,77 +36,89 @@
 import feedbackModal from "~/components/feedbackModal.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
 import indexSections from "~/components/indexSections.vue";
+import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
 
 export default {
   components: {
     feedbackModal,
     leaderboard,
-    indexSections
+    indexSections,
+    indexJoinCampaign
   },
   data() {
     return {
       ready: false,
-      content: {
-        campaigns: [
-          {
-            text: "Bitcointalk",
-            linkText: "Join"
-          },
-          {
-            text: "Facebook",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Reddit",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Twitter",
-            linkText: "Coming Soon"
-          }
-        ],
-        bounties: [
-          {
-            text: "Volentix",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Venue",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "VDX",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Vespucci",
-            linkText: "Coming Soon"
-          }
-        ],
-        proposals: [
-          {
-            text: "Vlabs",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Public",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Accepted",
-            linkText: "Coming Soon"
-          },
-          {
-            text: "Completed",
-            linkText: "Coming Soon"
-          }
-        ]
-      }
+      contents: [
+        {
+          title: "Campaigns",
+          content: [
+            {
+              text: "Bitcointalk",
+              linkText: "Join"
+            },
+            {
+              text: "Facebook",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Reddit",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Twitter",
+              linkText: "Coming Soon"
+            }
+          ]
+        },
+
+        {
+          title: "Bounties",
+          content: [
+            {
+              text: "Volentix",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Venue",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "VDX",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Vespucci",
+              linkText: "Coming Soon"
+            }
+          ]
+        },
+
+        {
+          title: "Proposals",
+          content: [
+            {
+              text: "Vlabs",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Public",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Accepted",
+              linkText: "Coming Soon"
+            },
+            {
+              text: "Completed",
+              linkText: "Coming Soon"
+            }
+          ]
+        }
+      ]
     };
   },
   mounted() {
     this.ready = true;
-
     this.showConfirmationMessage();
   },
   methods: {

@@ -6,7 +6,7 @@
       <div v-for="(elements, index) in content" :key="index" class="card" style="width:24%!important; border:1px solid white">
         <div class="card-content">
           <h1 class="title">{{ elements.text }}</h1>
-          <a class="is-pulled-right">{{ elements.linkText }}</a>
+          <a :disabled="elements.linkText=='Coming Soon'" class="is-pulled-right" @click="onclickJoin(elements.linkText)">{{ elements.linkText }}</a>
         </div>
       </div>
     
@@ -26,8 +26,12 @@ export default {
       default: null
     }
   },
-  mounted() {
-    console.log(this.content[0]);
+  methods: {
+    onclickJoin(e) {
+      if (e == "Join") {
+        this.$router.push("/signup");
+      }
+    }
   }
 };
 </script>
