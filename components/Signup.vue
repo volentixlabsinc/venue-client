@@ -94,7 +94,7 @@ export default {
           type: "success",
           title: "Success!",
           message:
-            "Please click the email verification link we've just emailed to you to activater your Venue account.",
+            "Please click the email verification link we've just emailed to you to activate your Venue account.",
           buttonText: "CLOSE",
           sendActionToFeedback: true
         });
