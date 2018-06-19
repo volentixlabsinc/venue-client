@@ -1,13 +1,18 @@
 <template>
-  <Stats :data-source="'user'" />
+  <div>
+    <Stats :data-source="'user'" />
+    <availableRewards :column="true"/>
+  </div>
 </template>
 
 <script>
+import availableRewards from "~/components/availableRewards.vue";
 import Stats from "~/components/Stats.vue";
 
 export default {
   components: {
-    Stats
+    Stats,
+    availableRewards
   },
   data() {
     const isAuthenticated = this.$store.state.user.isAuthenticated;

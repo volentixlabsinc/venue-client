@@ -4,19 +4,18 @@
       <h2 class="title">BITCOINTALK CAMPAIGN</h2>
     </header>
     <Stats :data-source="'campaign'"/>
-    <div>
-      <div class="is-size-3 has-text-centered">{{ availableTokens }} VTX</div>
-      <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>AVAILABLE REWARDS</div>
-    </div>
+    <availableRewards/>
   </div>
 </template>
 
 <script>
 import Stats from "~/components/Stats.vue";
+import availableRewards from "~/components/availableRewards.vue";
 
 export default {
   components: {
-    Stats
+    Stats,
+    availableRewards
   },
   data() {
     return {
