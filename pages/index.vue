@@ -3,15 +3,20 @@
     <div class="hero">
       <h1 class="title">Follow</h1>
     </div>
+    <div class="hero">
+      <leaderboard :shortened-leaderboard="true" :limit="8"/>
+    </div>
     <!-- <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/> -->
   </div>
 </template>
 
 <script>
 import feedbackModal from "~/components/feedbackModal.vue";
+import leaderboard from "~/components/leaderboard/index.vue";
 export default {
   components: {
-    feedbackModal
+    feedbackModal,
+    leaderboard
   },
   data() {
     return {
