@@ -24,7 +24,8 @@
             <span v-if="error" style="color:red; display:block;">
               <i class="fas fa-times-circle"/> User not found - please try Again
             </span>
-            <a class="button is-text has-text-white" @click="showIdHelp">How do I find my bitcointalk user id?</a>
+            <a @click="showIdHelp"><u>How do I find my bitcointalk user id?</u></a>
+            <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
           </div>
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
@@ -53,7 +54,6 @@
     <div slot="right">
       <campaign-right-panel/>
     </div>
-    <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
   </TwoColumnLayout>
 </template>
 
@@ -157,6 +157,7 @@ export default {
       }
     },
     showIdHelp() {
+      console.log("errrrrrr");
       this.$modal.show("helpModal", {
         element: "ID"
       });

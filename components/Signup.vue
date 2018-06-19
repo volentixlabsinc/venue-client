@@ -61,10 +61,12 @@ export default {
     this.ready = true;
   },
   methods: {
-    // TODO Call this to verify a unique email address, before pressing the register button
-    checkEmail: async function(event, email) {
+    checkEmail: async function(event) {
       event.preventDefault();
-      const data = await this.$axios.$get("check/email-exists/", { email });
+      const params = {
+        email: this.email
+      };
+      const data = await this.$axios.$get("check/email-exists/", { params });
       if (data.email_exists) {
         this.$modal.show("feedbackModal", {
           type: "error",

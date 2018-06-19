@@ -1,6 +1,6 @@
 <template>
        
-  <modal :adaptive="true" :resizable="true" :draggable="true" :scrollable="true" height="auto" name="VerifySignature" @before-open="beforeOpen">
+  <modal :adaptive="true" :resizable="true" :draggable="true" :scrollable="true" height="auto" name="VerifySignature">
     <div class="card">
       <header class="card-header" >
         <h1 class="card-header-title title has-text-white"/>
