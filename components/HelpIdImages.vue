@@ -51,7 +51,6 @@ export default {
         this.forumId,
         this.forumUserId
       );
-      console.log("profileData: ", profileData);
       if (profileData.success === true && profileData.exists === true) {
         this.$emit("userIdConfirmed", profileData);
       }
