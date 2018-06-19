@@ -16,9 +16,9 @@ export default {
     };
   },
   mounted() {
-    this.showConfirmationMessage();
-
     this.ready = true;
+
+    this.showConfirmationMessage();
   },
   methods: {
     //TODO

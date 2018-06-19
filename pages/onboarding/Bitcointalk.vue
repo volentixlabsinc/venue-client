@@ -1,19 +1,27 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="bctalk-join">
-        <form class="stepform" @submit.prevent>
-          <h1> STEP {{ step }} </h1>
+  
+  <TwoColumnLayout>
+    <div slot="left">
+     
+      <form class="card" @submit.prevent>
+        <header class="card-header">
+          <h1 class="card-header-title title has-text-white"> STEP {{ step }} </h1>
+        </header>
+        <div class="card-content">
           <div v-if="step === 1" class="form-group">
-            <h4 class="directive">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
-            <div class="input-form">
-              <input id="userid" v-model="forumUserId" type="text" placeholder="Your user id" class="form-control form-control-lg">
-              <button class="btn venue-accent-color" @click="validateId">NEXT</button>
+            <h4 class="subtitle">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
+            <div class="columns">
+              <div class="column">
+                <input id="userid" v-model="forumUserId" type="text" placeholder="Your user id" class="input ">
+              </div>
+              <div class="column">
+                <button class="button is-primary" @click="validateId">NEXT</button>
+              </div>
             </div>
             <span v-if="error" style="color:red; display:block;">
               <i class="fas fa-times-circle"/> User not found - please try Again
             </span>
-            <span class="joinhelptxt" @click="showIdHelp">How do I find my bitcointalk user id?</span>
+            <a class="button is-text has-text-white" @click="showIdHelp">How do I find my bitcointalk user id?</a>
           </div>
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
@@ -30,21 +38,26 @@
               class="btn venue-accent-color">Copy</button>
             <button class="btn btn-danger" @click="verify">Verify</button>
           </div>
+        </div>
         
-        </form>
+      </form>
             
-        <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
-      </div>
-      <div class="lbox">
-        <campaign-right-panel/>
-      </div>
+       
+  
     </div>
-  </section>
+
+
+    <div slot="right">
+      <campaign-right-panel/>
+    </div>
+    <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
+  </TwoColumnLayout>
 </template>
 
 
 
 <script>
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
 import helpModal from "~/components/helpModal.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
@@ -54,6 +67,7 @@ const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
+    TwoColumnLayout,
     helpModal,
     AvailableSignatures,
     campaignRightPanel
@@ -62,7 +76,6 @@ export default {
     return {
       activeProfile: "",
       activeForum: "",
-      showHelp: false,
       disableProceed: true,
       step: 1,
       forumUserId: undefined,
@@ -136,226 +149,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.section {
-  color: white;
-  height: 100%;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: auto;
-  scrollbar-face-color: #367cd2;
-  scrollbar-shadow-color: #ffffff;
-  scrollbar-highlight-color: #ffffff;
-  scrollbar-3dlight-color: #ffffff;
-  scrollbar-darkshadow-color: #ffffff;
-  scrollbar-track-color: #ffffff;
-  scrollbar-arrow-color: #ffffff;
-}
-
-.section::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-.section::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
-  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-  background-clip: content-box;
-}
-
-/* Handle */
-.section::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
-}
-
-.stepper-box {
-  border-radius: 10px;
-  width: 100%;
-  height: 80%;
-  overflow: scroll;
-}
-/* >>> #68 - add leaderboard on rhs */
-.lbox h2 {
-  color: #97a5b3;
-}
-.container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.lbox {
-  /* based off of css in dashboard/allCampaigns.vue */
-  /*padding-top: 20px;*/
-  padding-top: 2rem;
-  width: 50%; /*90%;*/
-  /* height: 100%; */
-  display: inherit;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-face-color: #367cd2;
-  scrollbar-shadow-color: #ffffff;
-  scrollbar-highlight-color: #ffffff;
-  scrollbar-3dlight-color: #ffffff;
-  scrollbar-darkshadow-color: #ffffff;
-  scrollbar-track-color: #ffffff;
-  scrollbar-arrow-color: #ffffff;
-  padding-bottom: 50px;
-}
-
-.lbox::-webkit-scrollbar {
-  width: 0px;
-}
-
-.lbox::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.2);
-  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0);
-  -webkit-border-radius: 0px;
-  border-radius: 0px;
-  background-clip: content-box;
-}
-
-.lbox::-webkit-scrollbar-thumb {
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0);
-}
-
-.form-group {
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.step-2 {
-  height: 90%;
-}
-
-.input-form {
-  width: 90%;
-}
-
-.form-control {
-  color: white;
-  width: 70% !important;
-  height: 30px;
-  border-radius: 0px;
-  background-color: rgba(255, 254, 254, 0.1);
-  border: none;
-  border-bottom: 1px solid white;
-}
-
-::placeholder {
-  color: white;
-  padding-left: 5px;
-}
-
-button {
-  width: 70% !important;
-}
-.directive {
-  width: 70%;
-}
-</style>
-
-<style>
-#app .lbox table tbody td {
-  color: white;
-}
-@media only screen and (max-width: 1300px) {
-  #app .lbox th.RANK,
-  #app .lbox th.USERNAME,
-  #app .lbox th.POSTS,
-  #app .lbox th.VTX,
-  #app .lbox table tbody td {
-    font-size: 0.9rem;
-  }
-}
-@media only screen and (max-width: 1100px) {
-  #app .lbox {
-    display: none;
-  }
-}
-@media only screen and (max-width: 600px) {
-  #app .step-image {
-    width: 95%;
-  }
-}
-.stepform {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-self: center;
-  margin: 0;
-  border-radius: 8px;
-}
-</style>
-
-
-<style scoped>
-/* #68 - corrected layout */
-.emphasis {
-  text-decoration: underline;
-}
-h2 {
-  color: #97a5b3;
-}
-.button-group {
-  display: flex;
-}
-
-form.stepform input,
-form.stepform button,
-form.stepform label {
-  width: 50%;
-  max-width: 500px;
-  font-size: 1rem;
-}
-form.stepform label {
-  /* text-align: justify; */
-  display: inline-block;
-  color: #97a5b3;
-  font-size: 95%;
-}
-form.stepform input {
-  width: 45%;
-}
-form.stepform input[type="textarea"] {
-  height: 100px;
-  overflow-wrap: break-word;
-}
-
-.bctalk-join {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-span.joinhelptxt {
-  display: block;
-  color: #97a5b3;
-  cursor: pointer;
-  text-decoration: underline;
-  margin-top: 1rem;
-}
-span.joinhelptxt:hover {
-  color: #85449a;
-}
-.joinhelp {
-  padding: 2rem;
-}
-</style>

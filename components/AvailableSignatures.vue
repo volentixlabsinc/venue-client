@@ -28,15 +28,10 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-      showModal: false
-    };
-  },
+
   methods: {
     onCopy: function(sig) {
       this.$store.commit("signatureCopied", sig.id);
-      this.showModal = true;
       this.$modal.show("VerifySignature");
     }
   }
