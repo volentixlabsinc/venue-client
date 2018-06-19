@@ -4,15 +4,15 @@
       <div class="level-item has-text-centered" style="width:20%!important">
         <p class="title">Follow on:</p>
       </div>
-      <div class="level-item has-text-centered" style="width:20%!important">
+      <a class="level-item has-text-centered" style="width:20%!important">
         <img src="~/static/img/logos/Medium.png">
-      </div>
-      <div class="level-item has-text-centered" style="width:20%!important">
+      </a>
+      <a class="level-item has-text-centered" style="width:20%!important">
         <img src="~/static/img/logos/twitter.png">
-      </div>
-      <div class="level-item has-text-centered" style="width:20%!important">
+      </a>
+      <a class="level-item has-text-centered" style="width:20%!important">
         <img src="~/static/img/logos/telegram.png">
-      </div>
+      </a>
     </div>
     <div class="level">
       <div class="columns">
