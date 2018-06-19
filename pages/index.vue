@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="level">
-      <div class="level-item has-text-centered" style="width:20%!important">
+    <div class="level" >
+      <div class="level-item has-text-centered" style="width:15%!important">
         <p class="title">Follow on:</p>
       </div>
-      <a class="level-item has-text-centered" style="width:20%!important">
+      <a target="_blank" href="https://medium.com/@marketing_33515" class="level-item has-text-centered" style="width:15%!important ">
         <img src="~/static/img/logos/Medium.png">
       </a>
-      <a class="level-item has-text-centered" style="width:20%!important">
+      <a target="_blank" href="https://twitter.com/Volentix" class="level-item has-text-centered" style="width:15%!important">
         <img src="~/static/img/logos/twitter.png">
       </a>
-      <a class="level-item has-text-centered" style="width:20%!important">
+      <a target="_blank" href="https://t.me/volentix" class="level-item has-text-centered" style="width:15%!important">
         <img src="~/static/img/logos/telegram.png">
       </a>
     </div>
@@ -26,8 +26,8 @@
           </div>
         </div>
         <div class="column is-4 ">
-          <indexJoinCampaign/>
-          
+          <indexJoinCampaign v-if="(!isAuthenticated)"/>
+          <index-logged-in v-else/>
         </div>
       </div>
     </div>
@@ -43,6 +43,7 @@ import feedbackModal from "~/components/feedbackModal.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
 import indexSections from "~/components/indexSections.vue";
 import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
+import indexLoggedIn from "~/components/indexLoggedIn.vue";
 import CampaignRightPanelTopSection from "~/components/CampaignRightPanelTopSection.vue";
 import Stats from "~/components/Stats.vue";
 import availableRewards from "~/components/availableRewards.vue";
@@ -55,11 +56,13 @@ export default {
     indexJoinCampaign,
     CampaignRightPanelTopSection,
     Stats,
-    availableRewards
+    availableRewards,
+    indexLoggedIn
   },
   data() {
     return {
       ready: false,
+      isAuthenticated: this.$store.state.user.isAuthenticated,
       contents: [
         {
           title: "Campaigns",
