@@ -32,9 +32,8 @@ export default {
           {
             label: "Number of Posts",
             lineTension: 0.01,
-            // backgroundColor: "#84429a",
             borderColor: "#84429a",
-            borderWidth: "1",
+            borderWidth: "2",
             data: numberOfPosts //[2, 3, 5, 3, 6, 7, 8]
           },
           {
