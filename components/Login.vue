@@ -54,7 +54,8 @@ export default {
           password: this.password
         });
       } catch (error) {
-        this.displayErrorMessage(error.response.data.error_code);
+        const errorCode = error.response.data.error_code;
+        this.displayErrorMessage(errorCode);
       }
 
       await this.$store.commit("user/authenticated", {
