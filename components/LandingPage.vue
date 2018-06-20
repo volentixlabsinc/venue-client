@@ -110,7 +110,7 @@ export default {
           title: "Proposals",
           content: [
             {
-              text: "Vlabs",
+              text: "VLabs",
               linkText: "Coming Soon",
               disabled: true
             },
