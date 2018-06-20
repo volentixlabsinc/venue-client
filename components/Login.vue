@@ -54,14 +54,7 @@ export default {
           password: this.password
         });
       } catch (error) {
-        console.log("authResponse", JSON.parse(JSON.stringify(error, 2)));
         this.displayErrorMessage(error.response.data.error_code);
-        if (error.response.data.error_code === "wrong_credentials") {
-          this.showMessageError = {
-            error: true,
-            message: "Incorrect username or password."
-          };
-        }
       }
 
       await this.$store.commit("user/authenticated", {
