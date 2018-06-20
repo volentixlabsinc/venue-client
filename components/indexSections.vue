@@ -6,10 +6,10 @@
       <div v-for="(elements, index) in content" :key="index" class="card has-background-light" style="width:24%!important; border:1px solid grey">
         <div class="card-content">
           <h1 :class="elements.disabled ? disabled : active" class="is-size-3 has-text-weight-semibold" >{{ elements.text }}</h1>
-          <a 
-            :disabled="elements.disabled" 
-            :class="elements.disabled ? disabled : active" class="is-pulled-right" 
-            @click="onclickJoin(elements.disabled)">{{ elements.linkText }}</a>
+          <a v-show="!(isAuthenticated && !elements.disabled)"
+             :disabled="elements.disabled" 
+             :class="elements.disabled ? disabled : active" class="is-pulled-right" 
+             @click="onclickJoin(elements.disabled)">{{ elements.linkText }}</a>
         </div>
       </div>
     
