@@ -54,6 +54,8 @@ export default {
           password: this.password
         });
       } catch (error) {
+        console.log("authResponse", JSON.parse(JSON.stringify(error, 2)));
+        this.displayErrorMessage(error.response.data.error_code);
         if (error.response.data.error_code === "wrong_credentials") {
           this.showMessageError = {
             error: true,
@@ -71,6 +73,15 @@ export default {
       await loadUserData(this.$store.commit, this.$axios);
 
       this.$router.push("/dashboard");
+    },
+    displayErrorMessage(error) {
+      this.showMessageError.error = true;
+      if (error === "wrong_credentials") {
+        this.showMessageError.message = "Incorrect username or password.";
+      } else if (error === "email_verification_required") {
+        this.showMessageError.message =
+          "Your email address has not been verified. Please check your email account.";
+      }
     }
   }
 };
