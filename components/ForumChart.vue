@@ -1,5 +1,5 @@
 <template>
-  <line-chart :data="data" :options="{ maintainAspectRatio: false }" class="chart"/>
+  <line-chart :data="data" :options="chartOptions" class="chart"/>
 </template>
 
 <script>
@@ -45,6 +45,18 @@ export default {
             data: rankPostion //[2,3,1,5,3,2,1]
           }
         ]
+      },
+      chartOptions: {
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                reverse: true
+              }
+            }
+          ]
+        }
       }
     };
   }
