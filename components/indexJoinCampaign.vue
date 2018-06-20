@@ -23,10 +23,8 @@
 <script>
 export default {
   methods: {
-    onclickJoin(e) {
-      if (e == "Join") {
-        this.$router.push("/signup");
-      }
+    onclickJoin() {
+      this.$router.push("/signup");
     }
   }
 };

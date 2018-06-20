@@ -1,12 +1,15 @@
 <template>
   <section class="section">
-    <h1 class="subtitle">{{ title }} <span><a class="has-text-primary">(<u> View All </u>)</a></span></h1>
+    <h1 class="is-size-4 ">{{ title }} <span><a class="has-text-primary is-size-6">(View All)</a></span></h1>
     <div class="level">
       
       <div v-for="(elements, index) in content" :key="index" class="card has-background-light" style="width:24%!important; border:1px solid grey">
         <div class="card-content">
-          <h1 :class="elements.linkText=='Coming Soon' ? disabled : active" class="title" >{{ elements.text }}</h1>
-          <a :disabled="elements.linkText=='Coming Soon'" :class="elements.linkText=='Coming Soon' ? disabled : active" class="is-pulled-right" @click="onclickJoin(elements.linkText)">{{ elements.linkText }}</a>
+          <h1 :class="elements.disabled ? disabled : active" class="is-size-3 has-text-weight-semibold" >{{ elements.text }}</h1>
+          <a 
+            :disabled="elements.disabled" 
+            :class="elements.disabled ? disabled : active" class="is-pulled-right" 
+            @click="onclickJoin(elements.disabled)">{{ elements.linkText }}</a>
         </div>
       </div>
     
@@ -24,6 +27,10 @@ export default {
     content: {
       type: Array,
       default: null
+    },
+    isAuthenticated: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -33,8 +40,8 @@ export default {
     };
   },
   methods: {
-    onclickJoin(e) {
-      if (e == "Join") {
+    onclickJoin(disabled) {
+      if (!disabled) {
         this.$router.push("/signup");
       }
     }
