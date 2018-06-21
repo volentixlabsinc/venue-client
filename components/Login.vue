@@ -53,20 +53,20 @@ export default {
           username: this.username,
           password: this.password
         });
+
+        await this.$store.commit("user/authenticated", {
+          userId: this.authResponse.user_profile_id,
+          language: this.authResponse.language,
+          token: this.authResponse.token
+        });
+
+        await loadUserData(this.$store.commit, this.$axios);
+
+        this.$router.push("/dashboard");
       } catch (error) {
         const errorCode = error.response.data.error_code;
         this.displayErrorMessage(errorCode);
       }
-
-      await this.$store.commit("user/authenticated", {
-        userId: this.authResponse.user_profile_id,
-        language: this.authResponse.language,
-        token: this.authResponse.token
-      });
-
-      await loadUserData(this.$store.commit, this.$axios);
-
-      this.$router.push("/dashboard");
     },
     displayErrorMessage(error) {
       this.showMessageError.error = true;
