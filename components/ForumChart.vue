@@ -16,15 +16,13 @@ export default {
     let numberOfPosts = [];
     let dates = [];
     let splitDate = "";
-    let rankPostion = [];
 
     for (var i = 0; i < dailyStats.length; i++) {
       numberOfPosts.push(dailyStats[i].posts.total);
-      rankPostion.push(dailyStats[i].rank);
       splitDate = dailyStats[i].date.split("-");
       dates.push(`${splitDate[1]}-${splitDate[2]}`);
     }
-    console.log("numberOfPosts: ", numberOfPosts);
+
     return {
       data: {
         labels: dates,
@@ -32,17 +30,10 @@ export default {
           {
             label: "Number of Posts",
             lineTension: 0.01,
-            borderColor: "#84429a",
-            borderWidth: "2",
-            data: numberOfPosts //[2, 3, 5, 3, 6, 7, 8]
-          },
-          {
-            label: "My Rank",
-            lineTension: 0.01,
             backgroundColor: "rgba(148, 168, 182, 0.05)",
             borderColor: "#94A8B6",
             borderWidth: "2",
-            data: rankPostion //[2,3,1,5,3,2,1]
+            data: numberOfPosts //[52, 49, 55, 58, 59, 60, 63]
           }
         ]
       },
@@ -52,10 +43,9 @@ export default {
           yAxes: [
             {
               ticks: {
-                min: 0,
-                beginAtZero: true,
                 stepSize: 1,
-                reverse: true
+                reverse: false,
+                suggestedMax: 5
               }
             }
           ]
