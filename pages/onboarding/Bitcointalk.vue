@@ -37,12 +37,7 @@
         </div>
         
       </form>
-            
-       
-  
     </div>
-
-
     <div slot="right">
       <campaign-right-panel/>
     </div>

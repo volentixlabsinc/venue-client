@@ -62,15 +62,11 @@ export default {
         data: [
           {
             label: "PARTICIPANTS",
-            value: isAuthenticated
-              ? this.$store.state.leaderboard.sitewide.total_users
-              : undefined
+            value: this.$store.state.leaderboard.sitewide.total_users
           },
           {
             label: "POSTS",
-            value: isAuthenticated
-              ? this.$store.state.leaderboard.sitewide.total_posts
-              : undefined
+            value: this.$store.state.leaderboard.sitewide.total_posts
           }
         ]
       });

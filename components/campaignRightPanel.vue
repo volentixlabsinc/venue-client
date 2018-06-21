@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <topSection/>
-    <div class="section">
+  <div :class="[columns ? columnsLayout[0]: rowsLayout]">
+    <topSection :class="[columns ? columnsLayout[1]: rowsLayout]" :columns="columns"/>
+    <div :class="[columns ? columnsLayout[2]: rowsLayout]" class="section">
       <div class="is-size-4" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></div>
       <!-- TODO Determine the limit based on screen size -->
-      <leaderboard :shortened-leaderboard="true" :limit="8"/>
+      <leaderboard :shortened-leaderboard="true" :limit="limit"/>
     </div>
   </div>
 </template>
@@ -20,7 +20,26 @@ export default {
     leaderboard,
     topSection
   },
-
+  props: {
+    columns: {
+      type: Boolean,
+      default: false
+    },
+    limit: {
+      type: Number,
+      default: 8
+    }
+  },
+  data() {
+    return {
+      columnsLayout: [
+        "columns reverse-row-order",
+        "column is-4",
+        "column is-7"
+      ],
+      rowsLayout: ""
+    };
+  },
   methods: {
     onClickLeaderboard() {
       this.$router.push("/leaderboard");
@@ -28,3 +47,11 @@ export default {
   }
 };
 </script>
+
+<style>
+.reverse-row-order {
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+}
+</style>
