@@ -28,12 +28,10 @@
     <div v-for="(el, index) in contents" :key="index">
       <index-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
     </div>
-    <!-- <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/> -->
   </div>
 </template>
 
 <script>
-import feedbackModal from "~/components/feedbackModal.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
 import indexSections from "~/components/indexSections.vue";
 import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
@@ -42,7 +40,6 @@ import CampaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
   components: {
-    feedbackModal,
     leaderboard,
     indexSections,
     indexJoinCampaign,
@@ -135,7 +132,6 @@ export default {
     };
   },
   mounted() {
-    this.ready = true;
     this.showConfirmationMessage();
   },
   methods: {

@@ -21,23 +21,49 @@
         type="submit" 
         class="button is-primary is-fullwidth m-t-lg">Log In</button>
     </form>
+
+    <feedbackModal v-show="ready"/>
   </div>
 </template>
 
 
 <script>
 import { loadUserData } from "~/assets/utils.js";
+import feedbackModal from "~/components/feedbackModal.vue";
 
 export default {
+  components: {
+    feedbackModal
+  },
   data() {
     return {
+      ready: false,
       logged: false,
       loginError: false,
       username: "",
       password: ""
     };
   },
+  mounted() {
+    this.checkConfirmation();
+  },
   methods: {
+    checkConfirmation() {
+      const emailConfirmed = this.$route.query.email_confirmed;
+      if (emailConfirmed == 1) {
+        this.showConfirmationMessage();
+        this.ready = true;
+      }
+    },
+    showConfirmationMessage() {
+      this.$modal.show("feedbackModal", {
+        type: "success",
+        title: "Email Verified!",
+        message: "You can now log in",
+        buttonText: "Close",
+        sendActionToFeedback: false
+      });
+    },
     async authenticateLogin(event) {
       event.preventDefault();
       this.loginError = false;
