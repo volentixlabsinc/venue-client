@@ -22,7 +22,7 @@ export default {
       splitDate = dailyStats[i].date.split("-");
       dates.push(`${splitDate[1]}-${splitDate[2]}`);
     }
-
+    console.log("numberOfPosts: ", numberOfPosts);
     return {
       data: {
         labels: dates,
