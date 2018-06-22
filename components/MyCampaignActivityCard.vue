@@ -10,7 +10,7 @@
     </div>
     <div class="card-footer">
       <a v-if="(showDetailsButton && hasCampaignData)" class="is-info is-outlined card-footer-item" @click="onClickDetails">
-        <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
+        <span>View details</span><span class="icon"><i class="fas fa-info-circle"/></span>
       </a>
       <a v-if="hasCampaignData" class="card-footer-item" @click="onClickSignature">
         <span>Edit signature</span><span class="icon"><i class="fas fa-edit"/></span>

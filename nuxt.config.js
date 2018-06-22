@@ -61,8 +61,7 @@ module.exports = {
   },
   modules: ["@nuxtjs/axios"],
   axios: {
-    baseURL:
-      "http://ab7f871a6765811e8a75f026d47c84cb-1776905570.ca-central-1.elb.amazonaws.com/api"
+    baseURL: "http://localhost:8000/api"
   },
   buefy: {
     materialDesignIcons: false,
