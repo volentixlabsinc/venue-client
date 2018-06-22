@@ -13,7 +13,7 @@
         class="empty-cell"/>
       <td 
         class="tokens">
-        {{ elements.total_tokens }}</td>
+        {{ totalTokens }}</td>
       <td 
         class="tokens-unity">VTX</td>
     </tr>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import numeral from "numeral";
+
 export default {
   props: {
     elements: {
@@ -39,6 +41,7 @@ export default {
   },
   data() {
     return {
+      totalTokens: numeral(this.elements.total_tokens).format(),
       pointsPercent: null,
       tokensPercent: null,
       userTokens: null,

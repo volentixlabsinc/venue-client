@@ -22,7 +22,8 @@ export default {
   data() {
     const data = {
       hasCampaignData: this.$store.state.userStats.hasCampaignData,
-      bonus: 0
+      bonus: 0,
+      myTokens: 0
     };
     if (this.hasCampaignData) {
       Object.assign(data, {
