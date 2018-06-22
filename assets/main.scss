@@ -7,8 +7,10 @@
 // 2. Set your own initial variables
 $venue-purple: #84429a;
 $venue-purple-invert: findColorInvert($purple);
+$purple-med: #aa6abf;
+$purple-light: #e6d9ea;
 $volentix-blue-grey: #232C3b;
-$grey: #d5d8da;
+// $grey: #d5d8da;
 $family-sans-serif: "Titillium", "Helvetica", "Aria", "sans-serif";
 
 // 3. Set the derived variables
@@ -18,26 +20,18 @@ $primary-invert: $venue-purple-invert;
 $family-primary: $family-sans-serif;
 
 // These are generic variables; not sure the difference between this and derived
-$body-background-color: $volentix-blue-grey;
-$body-color: $grey;
+$body-background-color: $white-ter;
+$body-color: $grey-dark;
 
-$panel-block-color: $grey;
+// Purple tints
+$border: $purple-light;
+$box-background-color: $purple-light;
+$card-header-background-color: $purple-med;
+$card-shadow: 0 2px 3px rgba($purple-med, 0.1), 0 0 0 1px rgba($purple-med, 0.1);
 
-$card-color: $grey;
-$card-background-color: $volentix-blue-grey;
+$link: $purple-med;
+$link-hover: $primary;
 
-$title-color: $grey;
-$subtitle-color: $grey;
-
-$link: $grey;
-$link-hover: $venue-purple;
-
-$input-hover-color: $grey;
-
-$label-color: $grey;
-
-$card-background-color: $volentix-blue-grey;
-$card-color: $grey;
 // 4. Setup your Custom Colors
 // $linkedin: #0077b5;
 // $linkedin-invert: findColorInvert($linkedin);

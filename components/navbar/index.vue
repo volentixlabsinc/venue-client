@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="navigation">
     <nav class="menu p-md">
       <ul>
         <li v-if="isAuthenticated()">
@@ -24,13 +24,13 @@
     </nav>
     <div class="has-text-centered">
       <a target="_blank" href="https://twitter.com/Volentix">
-        <span class="icon m-md"><i class="fab fa-twitter fa-lg"/></span>
+        <span class="icon m-md"><i class="fab fa-twitter fa-2x"/></span>
       </a>
       <a target="_blank" href="https://medium.com/@marketing_33515">
-        <span class="icon m-md"><i class="fab fa-medium fa-lg"/></span>
+        <span class="icon m-md"><i class="fab fa-medium fa-2x"/></span>
       </a>
       <a target="_blank" href="https://t.me/volentix">
-        <span class="icon m-md"><i class="fab fa-telegram fa-lg"/></span>
+        <span class="icon m-md"><i class="fab fa-telegram fa-2x"/></span>
       </a>
     </div>
   </div>
@@ -51,3 +51,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#navigation {
+  background-color: #84429a;
+  height: 100vh;
+}
+
+a {
+  color: #aa6abf;
+}
+
+a:hover {
+  color: #42214d;
+}
+</style>

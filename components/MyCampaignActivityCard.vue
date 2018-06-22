@@ -8,11 +8,11 @@
       <ForumChart v-if="isChartVisible" class="chart"/>
       <MyCurrentRewards/>
     </div>
-    <div v-if="showDetailsButton" class="card-footer">
-      <a class="is-info is-outlined card-footer-item" @click="onClickDetails">
+    <div class="card-footer">
+      <a v-if="(showDetailsButton && isAuthenticated)" class="is-info is-outlined card-footer-item" @click="onClickDetails">
         <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
       </a>
-      <a class="card-footer-item" @click="onClickSignature">
+      <a v-if="isAuthenticated" class="card-footer-item" @click="onClickSignature">
         <span>Edit signature</span><span class="icon"><i class="fas fa-edit"/></span>
       </a>
     </div>
@@ -43,9 +43,14 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      isAuthenticated: this.$store.state.user.isAuthenticated
+    };
+  },
   computed: {
     isChartVisible() {
-      return this.showChart && this.$store.state.user.isAuthenticated;
+      return this.showChart && this.isAuthenticated;
     }
   },
   methods: {
