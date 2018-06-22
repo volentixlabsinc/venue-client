@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="m-lg">
     <div class="level" >
       <div class="level-item has-text-centered m-r-lg">
         <p class="title">Follow on:</p>
@@ -15,36 +15,43 @@
       </a>
     </div>
     <div class="columns">
-      <div class="level">
-        <div class="column is-7 border-column">
+      <div class="column">
+        <LeaderboardCard />
+      </div>
+      <div class="column">
+        <CampaignInfoCard />
+      </div>
+      <!-- <div class="level">
+        <div class="column is-9 border-column">
           <campaign-right-panel :columns="true" :limit="5"/>
-        </div>
-        <div class="column is-4 m-r-lg">
-          <indexJoinCampaign v-if="(!isAuthenticated)"/>
-          <index-logged-in v-else/>
-        </div>
+        </div> -->
+      <div class="column is-one-quarter">
+        <LandingPageJoinCampaign v-if="(!isAuthenticated)"/>
+        <LandingPageMyRewardsCard v-else/>
       </div>
     </div>
-    <div v-for="(el, index) in contents" :key="index">
-      <index-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
+    <div v-for="(el, LandingPage) in contents" :key="LandingPage">
+      <LandingPage-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
     </div>
   </div>
 </template>
 
 <script>
-import leaderboard from "~/components/leaderboard/index.vue";
-import indexSections from "~/components/indexSections.vue";
-import indexJoinCampaign from "~/components/indexJoinCampaign.vue";
-import indexLoggedIn from "~/components/indexLoggedIn.vue";
+import LeaderboardCard from "~/components/LeaderboardCard.vue";
+import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
+import LandingPageSections from "~/components/LandingPageSections.vue";
+import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
+import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
 import CampaignRightPanel from "~/components/campaignRightPanel.vue";
 
 export default {
   components: {
-    leaderboard,
-    indexSections,
-    indexJoinCampaign,
+    LeaderboardCard,
+    CampaignInfoCard,
+    LandingPageSections,
+    LandingPageJoinCampaign,
     CampaignRightPanel,
-    indexLoggedIn
+    LandingPageMyRewardsCard
   },
   data() {
     return {
