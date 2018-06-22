@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="is-size-3 has-text-centered">
-      <span v-if="isAuthenticated" class="is-size-3 has-text-centered">{{ myTokens }}</span>
+      <span v-if="hasCampaignData" class="is-size-3 has-text-centered">{{ myTokens }}</span>
       <span v-else>N/A</span> VTX
     </div>
     <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
@@ -21,10 +21,10 @@ export default {
   },
   data() {
     const data = {
-      isAuthenticated: this.$store.state.user.isAuthenticated,
+      hasCampaignData: this.$store.state.user.hasCampaignData,
       bonus: 0
     };
-    if (this.$store.state.user.isAuthenticated) {
+    if (this.hasCampaignData) {
       Object.assign(data, {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens

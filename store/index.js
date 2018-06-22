@@ -40,6 +40,7 @@ export const state = () => ({
     // }
   },
   userStats: {
+    hasCampaignData: false
     //   "fresh": false,
     //   "profile_level": [
     //     {
@@ -192,6 +193,7 @@ export const mutations = {
   },
   setUserStats(state, { fresh, profile_level, user_level }) {
     state.userStats = { ...state.userStats, fresh, profile_level, user_level };
+    state.userStats.hasCampaignData = fresh === false;
   },
   setSignature(state, { id, image }) {
     state.signature = { ...state.signature, id, image };
