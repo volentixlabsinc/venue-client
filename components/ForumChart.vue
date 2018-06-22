@@ -23,8 +23,8 @@ export default {
       dates.push(`${splitDate[1]}-${splitDate[2]}`);
     }
 
-    //numberOfPosts = [52, 49, 55, 58, 59, 72, 58];
-    //numberOfPosts = [5, 5, 5, 5, 5, 5, 5];
+    // numberOfPosts = [52, 49, 55, 58, 59, 72, 58];
+    // numberOfPosts = [0, 5, 5, 5, 5, 5, 5];
     return {
       data: {
         labels: dates,
@@ -49,7 +49,7 @@ export default {
                 min: Math.min(...numberOfPosts),
                 stepSize: 1,
                 reverse: false,
-                suggestedMax: numberOfPosts[numberOfPosts.length - 1] + 10
+                suggestedMax: numberOfPosts[numberOfPosts.length - 1] + 5
               }
             }
           ]
