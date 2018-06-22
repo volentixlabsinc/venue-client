@@ -17,7 +17,7 @@ export default {
           value: this.$store.state.leaderboard.sitewide.total_users
         },
         {
-          label: "POSTS",
+          label: "TOTAL POSTS",
           value: this.$store.state.leaderboard.sitewide.total_posts
         }
       ]

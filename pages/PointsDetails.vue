@@ -5,14 +5,14 @@
     </div>
     <div slot="right">
       <div>
-        <CampaignRightPanelTopSection/>
+        <CampaignRightPanelTopSection :columns="false"/>
         <br>
         <br>
         <div class="card">
           <header class="card-header">
             <h1 class="title">MY CAMPAIGN ACTIVITY</h1>
           </header>
-          <Stats />
+          <UserStats />
           <myCurrentAwards />
         </div>
       </div>
@@ -25,7 +25,7 @@
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import PointsDetailsInfo from "~/components/PointsDetailsInfo.vue";
 import CampaignRightPanelTopSection from "~/components/CampaignRightPanelTopSection.vue";
-import Stats from "~/components/Stats.vue";
+import UserStats from "~/components/UserStats.vue";
 import myCurrentAwards from "~/components/myCurrentAwards.vue";
 
 export default {
@@ -33,7 +33,7 @@ export default {
     TwoColumnLayout,
     PointsDetailsInfo,
     CampaignRightPanelTopSection,
-    Stats,
+    UserStats,
     myCurrentAwards
   }
 };
