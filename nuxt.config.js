@@ -69,6 +69,7 @@ module.exports = {
   },
   plugins: [
     "~/plugins/vue-clipboard",
+    "~/plugins/vue-qriously",
     "~/plugins/buefy",
     "~/plugins/token",
     // '~/plugins/vue-sweetalert2',

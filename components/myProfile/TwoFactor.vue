@@ -6,7 +6,7 @@
       title="Two-Factor Authentication"
       description="Modify two-factor authentication"
       @activateModal="showModal"/>
-    <two-factor-auth-modal />
+    <two-factor-auth-modal v-show="loadModal" />
   </div>
 </template>
 
@@ -28,7 +28,8 @@ export default {
   data: function() {
     const data = {
       buttonText: "",
-      bodyText: ""
+      bodyText: "",
+      loadModal: false
     };
     if (this.userInfo) {
       Object.assign(data, {
@@ -48,15 +49,26 @@ export default {
     }
     return data;
   },
+  mounted() {
+    if (!this.userInfo) {
+      this.fetchRequest();
+    }
+  },
   methods: {
     showModal() {
       this.$modal.show("twoFactorAuthModal", {
         disable: this.userInfo,
         title: this.buttonText,
-        currentData: this.userInfo,
-        bodyText: this.bodyText
+        bodyText: this.bodyText,
+        response: this.response
       });
       this.loadModal = true;
+    },
+    async fetchRequest() {
+      this.response = await this.$axios.$post(
+        "/manage/enable-two-factor-auth/"
+      );
+      console.log("this.response: ", this.response);
     }
   }
 };
