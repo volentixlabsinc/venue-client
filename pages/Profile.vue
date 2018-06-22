@@ -14,7 +14,6 @@
         <div class="column">
           <account-username :user-info="userInfo.username"/>
           <two-factor :user-info="userInfo.enabled_2fa"/>
-          <!-- <two-factor :user-info="true"/> -->
         </div>
       </div>
     </div>
