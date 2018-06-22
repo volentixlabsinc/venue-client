@@ -22,7 +22,9 @@ export default {
       splitDate = dailyStats[i].date.split("-");
       dates.push(`${splitDate[1]}-${splitDate[2]}`);
     }
-    console.log("numberOfPosts: ", numberOfPosts);
+
+    //numberOfPosts = [52, 49, 55, 58, 59, 72, 58];
+    //numberOfPosts = [5, 5, 5, 5, 5, 5, 5];
     return {
       data: {
         labels: dates,
@@ -33,7 +35,7 @@ export default {
             backgroundColor: "rgba(148, 168, 182, 0.05)",
             borderColor: "#94A8B6",
             borderWidth: "2",
-            data: numberOfPosts //[52, 49, 55, 58, 59, 60, 63]
+            data: numberOfPosts
           }
         ]
       },
@@ -43,9 +45,11 @@ export default {
           yAxes: [
             {
               ticks: {
+                beginAtZero: true,
+                min: Math.min(...numberOfPosts),
                 stepSize: 1,
                 reverse: false,
-                suggestedMax: 5
+                suggestedMax: numberOfPosts[numberOfPosts.length - 1] + 10
               }
             }
           ]
