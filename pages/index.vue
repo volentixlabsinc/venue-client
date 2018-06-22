@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import landingPage from "~/components/landingPage.vue";
+import LandingPage from "~/pages/LandingPage.vue";
 
 export default {
   components: {
-    landingPage
+    LandingPage
   }
 };
 </script>

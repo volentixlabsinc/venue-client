@@ -1,5 +1,5 @@
 <template>
-  <div class="level is-white box">
+  <div class="level box">
     <div v-for="stat in data" :key="stat.id" class="level-item">
       <p class="heading">{{ stat.label }}</p>
       <img v-if="stat.trophy" id="trophy" src="/img/svg/trophy2.svg">
@@ -43,7 +43,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* .level {
+} */
+
 .level-item {
   flex-direction: column;
 }

@@ -5,7 +5,7 @@
       <span v-else>N/A</span> VTX
     </div>
     <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
-    <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>  MY CURRENT REWARDS</div>
+    <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>MY CURRENT REWARDS</div>
   </div>
 </template>
 
@@ -13,6 +13,12 @@
 import numeral from "numeral";
 
 export default {
+  props: {
+    showDetailsButton: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     const data = {
       isAuthenticated: this.$store.state.user.isAuthenticated,
@@ -28,6 +34,11 @@ export default {
       });
     }
     return data;
+  },
+  methods: {
+    onClickDetails() {
+      this.$router.push("/PointsDetails");
+    }
   }
 };
 </script>
