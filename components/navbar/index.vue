@@ -52,14 +52,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 #navigation {
   background-color: #84429a;
   height: 100vh;
-}
-
-a {
-  color: #aa6abf;
 }
 
 a:hover {

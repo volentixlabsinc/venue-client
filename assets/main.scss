@@ -26,8 +26,9 @@ $body-color: $grey-dark;
 // Purple tints
 $border: $purple-light;
 $box-background-color: $purple-light;
-$card-header-background-color: $purple-med;
-$card-shadow: 0 2px 3px rgba($purple-med, 0.1), 0 0 0 1px rgba($purple-med, 0.1);
+$card-header-background-color: $primary;
+$card-header-color: $grey-lighter;
+$card-shadow: 0 2px 3px rgba($primary, 0.1), 0 0 0 1px rgba($primary, 0.1);
 
 $link: $purple-med;
 $link-hover: $primary;

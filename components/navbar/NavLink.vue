@@ -37,10 +37,6 @@ export default {
   color: #42214d;
 }
 
-a {
-  color: #aa6abf;
-}
-
 a:hover {
   color: #42214d;
 }

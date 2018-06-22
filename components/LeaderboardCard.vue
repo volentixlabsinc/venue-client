@@ -25,3 +25,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a:hover {
+  color: grey;
+}
+</style>
