@@ -1,17 +1,75 @@
 <template>
-  <my-profile-setting
-    :coming-soon="true"
-    title="Two-Factor Authentication"
-    description="Modify two-factor authentication"
-    button="Enable 2FA"/>
+  <div class="panel">
+    <my-profile-setting
+      :coming-soon="false"
+      :button="buttonText"
+      title="Two-Factor Authentication"
+      description="Modify two-factor authentication"
+      @activateModal="showModal"/>
+    <two-factor-auth-modal />
+  </div>
 </template>
 
 <script>
 import MyProfileSetting from "~/components/MyProfileSetting.vue";
+import twoFactorAuthModal from "~/components/myProfile/twoFactorAuthModal.vue";
 
 export default {
   components: {
-    MyProfileSetting
+    MyProfileSetting,
+    twoFactorAuthModal
+  },
+  props: {
+    userInfo: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function() {
+    const data = {
+      buttonText: "",
+      bodyText: ""
+    };
+    if (this.userInfo) {
+      Object.assign(data, {
+        buttonText: "Disable 2FA",
+        bodyText: [
+          "Are you sure you want to disable two-factor authentication?"
+        ],
+        async fetchRequest() {
+          const response = await this.$axios.$post(
+            "/manage/disable-two-factor-auth/"
+          );
+          console.log("response: ", response);
+        }
+      });
+    } else {
+      Object.assign(data, {
+        buttonText: "Enable 2FA",
+        bodyText: [
+          "Step 1: Scan this with your authenticator app",
+          "Step 2: Enter the displayed OTP code"
+        ],
+        async fetchEnable() {
+          const response = await this.$axios.$post(
+            "/manage/enable-two-factor-auth/"
+          );
+          console.log("response: ", response);
+        }
+      });
+    }
+    return data;
+  },
+  methods: {
+    showModal() {
+      this.$modal.show("twoFactorAuthModal", {
+        disable: this.userInfo,
+        title: this.buttonText,
+        currentData: this.userInfo,
+        fetchRequest: this.fetchRequest
+      });
+      this.loadModal = true;
+    }
   }
 };
 </script>
