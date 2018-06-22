@@ -36,4 +36,12 @@ export default {
 .nuxt-link-exact-active {
   color: #85449a;
 }
+
+a {
+  color: #e6d9ea;
+}
+
+a:hover {
+  color: #85449a;
+}
 </style>
