@@ -16,6 +16,7 @@ export default {
     let numberOfPosts = [];
     let dates = [];
     let splitDate = "";
+    let steps = 1;
 
     for (var i = 0; i < dailyStats.length; i++) {
       numberOfPosts.push(dailyStats[i].posts.total);
@@ -23,8 +24,15 @@ export default {
       dates.push(`${splitDate[1]}-${splitDate[2]}`);
     }
 
-    // numberOfPosts = [52, 49, 55, 58, 59, 72, 58];
-    // numberOfPosts = [0, 5, 5, 5, 5, 5, 5];
+    // numberOfPosts = [107, 108, 107, 108, 109, 122, 108];
+    // numberOfPosts = [207, 208, 207, 208, 209, 222, 208];
+    // numberOfPosts = [53, 54, 54, 55, 56, 57, 58];
+    if (Math.min(...numberOfPosts) >= 100) {
+      steps = 20;
+    } else if (Math.min(...numberOfPosts) >= 10) {
+      steps = 10;
+    }
+    console.log("steps", steps);
     return {
       data: {
         labels: dates,
@@ -46,10 +54,9 @@ export default {
             {
               ticks: {
                 beginAtZero: true,
-                min: Math.min(...numberOfPosts),
-                stepSize: 1,
+                stepSize: steps,
                 reverse: false,
-                suggestedMax: numberOfPosts[numberOfPosts.length - 1] + 5
+                suggestedMax: numberOfPosts[numberOfPosts.length - 1] + 10
               }
             }
           ]
