@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Stats :data-source="'campaign'" />
+    <Stats :data="stats" />
     <availableRewards :column="true"/>
   </div>
 </template>

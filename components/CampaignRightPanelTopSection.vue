@@ -3,18 +3,18 @@
     <header class="card-header">
       <h2 v-show="(!columns)" class="title">BITCOINTALK CAMPAIGN</h2>
     </header>
-    <Stats :data-source="'campaign'"/>
+    <CampaignStats />
     <availableRewards/>
   </div>
 </template>
 
 <script>
-import Stats from "~/components/Stats.vue";
+import CampaignStats from "~/components/CampaignStats.vue";
 import availableRewards from "~/components/availableRewards.vue";
 
 export default {
   components: {
-    Stats,
+    CampaignStats,
     availableRewards
   },
   props: {
@@ -22,19 +22,6 @@ export default {
       type: Boolean,
       default: true
     }
-  },
-  data() {
-    return {
-      availableTokens: this.$store.state.leaderboard.sitewide.available_tokens,
-      options: {
-        useEasing: true,
-        useGrouping: false,
-        separator: ",",
-        decimal: ".",
-        prefix: "",
-        suffix: ""
-      }
-    };
   }
 };
 </script>
