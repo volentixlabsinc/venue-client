@@ -1,33 +1,23 @@
 <template>
   <div :class="[columns ? columnsLayout[0]: rowsLayout]">
-    <topSection :class="[columns ? columnsLayout[1]: rowsLayout]" :columns="columns"/>
-    <div :class="[columns ? columnsLayout[2]: rowsLayout]" class="section">
-      <div class="is-size-4" @click="onClickLeaderboard">LEADERBOARD <i class="fas fa-chevron-right"/></div>
-      <!-- TODO Determine the limit based on screen size -->
-      <leaderboard :shortened-leaderboard="true" :limit="limit"/>
-    </div>
+    <CampaignInfoCard :class="[columns ? columnsLayout[1]: rowsLayout]" :columns="columns"/>
+    <LeaderboardCard class="m-t-lg"/>
   </div>
 </template>
 
 <script>
-import ICountUp from "vue-countup-v2";
-import leaderboard from "~/components/leaderboard/index.vue";
-import topSection from "~/components/CampaignRightPanelTopSection.vue";
+import LeaderboardCard from "~/components/LeaderboardCard.vue";
+import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 
 export default {
   components: {
-    ICountUp,
-    leaderboard,
-    topSection
+    CampaignInfoCard,
+    LeaderboardCard
   },
   props: {
     columns: {
       type: Boolean,
       default: false
-    },
-    limit: {
-      type: Number,
-      default: 8
     }
   },
   data() {
@@ -39,11 +29,6 @@ export default {
       ],
       rowsLayout: ""
     };
-  },
-  methods: {
-    onClickLeaderboard() {
-      this.$router.push("/leaderboard");
-    }
   }
 };
 </script>

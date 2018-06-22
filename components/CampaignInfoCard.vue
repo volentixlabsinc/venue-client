@@ -1,10 +1,12 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <h2 v-show="(!columns)" class="title">BITCOINTALK CAMPAIGN</h2>
+      <div class="card-header-title subtitle">BITCOINTALK CAMPAIGN</div>
     </header>
-    <CampaignStats />
-    <availableRewards/>
+    <div class="card-content">
+      <CampaignStats />
+      <availableRewards/>
+    </div>
   </div>
 </template>
 
@@ -16,12 +18,6 @@ export default {
   components: {
     CampaignStats,
     availableRewards
-  },
-  props: {
-    columns: {
-      type: Boolean,
-      default: true
-    }
   }
 };
 </script>
