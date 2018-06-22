@@ -3,7 +3,7 @@
     <div slot="left">
       <h2 class="title is-2">BITCOINTALK ACTIVITY</h2>
       <ForumChart class="chart"/>
-      <Stats :data-source="'user'" />
+      <UserStats />
       <DashboardMyCurrentRewards />
       <MySignature />
     </div>
@@ -16,7 +16,7 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import ForumChart from "~/components/ForumChart.vue";
-import Stats from "~/components/Stats.vue";
+import UserStats from "~/components/UserStats.vue";
 import DashboardMyCurrentRewards from "~/components/DashboardMyCurrentRewards.vue";
 
 import MySignature from "~/components/MySignature";
@@ -26,7 +26,7 @@ export default {
   components: {
     TwoColumnLayout,
     ForumChart,
-    Stats,
+    UserStats,
     DashboardMyCurrentRewards,
     MySignature,
     campaignRightPanel

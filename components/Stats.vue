@@ -23,14 +23,13 @@ export default {
     ICountUp
   },
   props: {
-    dataSource: {
-      type: String,
-      default: "user"
+    data: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
-    const isAuthenticated = this.$store.state.user.isAuthenticated;
-    const data = {
+    return {
       options: {
         useEasing: true,
         useGrouping: false,
@@ -40,38 +39,6 @@ export default {
         suffix: ""
       }
     };
-    if (this.dataSource === "user") {
-      Object.assign(data, {
-        data: [
-          {
-            label: "MY POSTS",
-            value: isAuthenticated
-              ? this.$store.state.userStats.profile_level[0].numPosts
-              : undefined
-          },
-          {
-            label: "MY POINTS",
-            value: isAuthenticated
-              ? this.$store.state.userStats.profile_level[0].totalPoints
-              : undefined
-          }
-        ]
-      });
-    } else if (this.dataSource === "campaign") {
-      Object.assign(data, {
-        data: [
-          {
-            label: "PARTICIPANTS",
-            value: this.$store.state.leaderboard.sitewide.total_users
-          },
-          {
-            label: "POSTS",
-            value: this.$store.state.leaderboard.sitewide.total_posts
-          }
-        ]
-      });
-    }
-    return data;
   }
 };
 </script>
