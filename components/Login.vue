@@ -2,6 +2,7 @@
   <div>
     <h3 class="title">LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
+      <p v-show="showMessageError.error" class="is-size-6 has-text-danger">{{ showMessageError.message }}</p>
       <ul>
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
@@ -34,7 +35,12 @@ export default {
       logged: false,
       loginError: false,
       username: "",
-      password: ""
+      password: "",
+      showMessageError: {
+        error: true,
+        message: "",
+        authResponse: null
+      }
     };
   },
   methods: {
@@ -42,27 +48,34 @@ export default {
       event.preventDefault();
       this.loginError = false;
 
-      const authResponse = await this.$axios.$post("/authenticate/", {
-        username: this.username,
-        password: this.password
-      });
-      // if (authResponse.status !== 200) {
-      //   //Handle Login Error here
-      //   console.log('wrong credentials')
-      //   var message = 'something went wrong'
-      //   this.loginError = true
-      //   return message
-      // }
+      try {
+        this.authResponse = await this.$axios.$post("/authenticate/", {
+          username: this.username,
+          password: this.password
+        });
 
-      await this.$store.commit("user/authenticated", {
-        userId: authResponse.user_profile_id,
-        language: authResponse.language,
-        token: authResponse.token
-      });
+        await this.$store.commit("user/authenticated", {
+          userId: this.authResponse.user_profile_id,
+          language: this.authResponse.language,
+          token: this.authResponse.token
+        });
 
-      await loadUserData(this.$store.commit, this.$axios);
+        await loadUserData(this.$store.commit, this.$axios);
 
-      this.$router.push("/dashboard");
+        this.$router.push("/dashboard");
+      } catch (error) {
+        const errorCode = error.response.data.error_code;
+        this.displayErrorMessage(errorCode);
+      }
+    },
+    displayErrorMessage(error) {
+      this.showMessageError.error = true;
+      if (error === "wrong_credentials") {
+        this.showMessageError.message = "Incorrect username or password.";
+      } else if (error === "email_verification_required") {
+        this.showMessageError.message =
+          "Your email address has not been verified. Please check your email account.";
+      }
     }
   }
 };
