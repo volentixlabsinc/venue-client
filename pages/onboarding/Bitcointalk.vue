@@ -5,11 +5,11 @@
      
       <form class="card" @submit.prevent>
         <header class="card-header">
-          <h1 class="card-header-title title has-text-white"> STEP {{ step }} </h1>
+          <h1 class="card-header-title title"> STEP {{ step }} </h1>
         </header>
         <div class="card-content">
           <div v-if="step === 1" class="form-group">
-            <h4 class="subtitle">PLEASE INPUT YOUR BITCOINTALK <span class="emphasis">USERID</span> BELOW AND CLICK "NEXT"</h4>
+            <h4 class="subtitle">Input your Bitcointalk user ID below and click NEXT.</h4>
            
             <OnboardingInputUserProfileId @userIdConfirmed="confirmedID"/>
 
@@ -20,22 +20,11 @@
             <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
           </div>
           <div v-if="step === 2" class="form-group step-2">
-            <label class="directive">PLEASE CHOOSE YOUR NEW SIGNATURE BELOW</label>
+            <label class="directive">Choose your signature</label>
             <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures"/>
-            <button class="btn venue-accent-color" @click="doNext">NEXT</button>
+            <button class="button is-primary" @click="doNext">NEXT</button>
           </div>
-          <div v-if="step === 3" class="form-group">
-            <label class="directive">COPY THE CODE BELOW AND PASTE IT INTO YOUR FORUM SIGNATURE. CLICK VERIFY. </label>
-            <input v-clipboard:copy="message" v-model="message" type="textarea" 
-                   rows="4"
-                   cols="50"
-                   disabled >
-            <button  
-              class="btn venue-accent-color">Copy</button>
-            <button class="btn btn-danger" @click="verify">Verify</button>
-          </div>
-        </div>
-        
+        </div>        
       </form>
     </div>
     <div slot="right">
@@ -43,8 +32,6 @@
     </div>
   </TwoColumnLayout>
 </template>
-
-
 
 <script>
 import OnboardingInputUserProfileId from "~/components/OnboardingInputUserProfileId.vue";
@@ -123,10 +110,11 @@ export default {
       if (signatureResult.success) {
         await loadUserData(this.$store.commit, this.$axios);
 
-        this.$store.commit(
-          "setLeaderboardData",
-          await this.$axios.$get("/retrieve/leaderboard-data/")
+        const leaderboardData = await this.$axios.$get(
+          "/retrieve/leaderboard-data/"
         );
+        console.log(leaderboardData);
+        await this.$store.commit("setLeaderboardData", leaderboardData);
 
         this.$router.push("/leaderboard");
       }

@@ -89,7 +89,7 @@ export default {
         await loadUserData(this.$store.commit, this.$axios);
 
         this.$router.push(
-          this.$store.state.user.hasCampaignData
+          this.$store.state.userStats.hasCampaignData
             ? "/dashboard"
             : "/onboarding/bitcointalk"
         );

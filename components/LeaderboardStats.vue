@@ -19,7 +19,7 @@ export default {
       stats: [
         {
           label: "MY RANK",
-          value: this.$store.state.user.hasCampaignData
+          value: this.$store.state.userStats.hasCampaignData
             ? this.$store.state.userStats.user_level.overall_rank
             : undefined,
           trophy: true

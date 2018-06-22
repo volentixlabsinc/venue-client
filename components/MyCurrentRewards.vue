@@ -21,7 +21,7 @@ export default {
   },
   data() {
     const data = {
-      hasCampaignData: this.$store.state.user.hasCampaignData,
+      hasCampaignData: this.$store.state.userStats.hasCampaignData,
       bonus: 0
     };
     if (this.hasCampaignData) {
