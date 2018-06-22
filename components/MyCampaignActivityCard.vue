@@ -5,7 +5,7 @@
     </header>
     <div class="card-content">
       <UserStats :show-rank="showRank" />
-      <ForumChart v-if="showChart" class="chart"/>
+      <ForumChart v-if="isChartVisible" class="chart"/>
       <MyCurrentRewards/>
     </div>
     <div v-if="showDetailsButton" class="card-footer">
@@ -43,12 +43,10 @@ export default {
       default: true
     }
   },
-  data() {
-    return {
-      data: {
-        isAuthenticated: this.$store.state.user.isAuthenticated
-      }
-    };
+  computed: {
+    isChartVisible() {
+      return this.showChart && this.$store.state.user.isAuthenticated;
+    }
   },
   methods: {
     onClickDetails() {

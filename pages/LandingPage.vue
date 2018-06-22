@@ -21,10 +21,6 @@
       <div class="column">
         <CampaignInfoCard />
       </div>
-      <!-- <div class="level">
-        <div class="column is-9 border-column">
-          <campaign-right-panel :columns="true" :limit="5"/>
-        </div> -->
       <div class="column is-one-quarter">
         <LandingPageJoinCampaign v-if="(!isAuthenticated)"/>
         <LandingPageMyRewardsCard v-else/>

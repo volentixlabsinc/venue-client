@@ -14,7 +14,6 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import leaderboard from "~/components/leaderboard/index.vue";
-import ForumChart from "~/components/ForumChart.vue";
 import MyCampaignActivityCard from "~/components/MyCampaignActivityCard.vue";
 import LeaderboardStats from "~/components/LeaderboardStats.vue";
 
@@ -22,7 +21,6 @@ export default {
   components: {
     TwoColumnLayout,
     leaderboard,
-    ForumChart,
     LeaderboardStats,
     MyCampaignActivityCard
   }

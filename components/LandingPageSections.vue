@@ -1,18 +1,17 @@
 <template>
   <section class="section">
-    <h1 class="is-size-4 ">{{ title }} <span><a class="has-text-primary is-size-6">(View All)</a></span></h1>
+    <h3 class="title is-3">{{ title }}</h3>
     <div class="level">
       
       <div v-for="(elements, index) in content" :key="index" class="card has-background-light" style="width:24%!important; border:1px solid grey">
         <div class="card-content">
-          <h1 :class="elements.disabled ? disabled : active" class="is-size-3 has-text-weight-semibold" >{{ elements.text }}</h1>
+          <div :class="elements.disabled ? disabled : active" class="is-size-3" >{{ elements.text }}</div>
           <a v-show="!(isAuthenticated && !elements.disabled)"
              :disabled="elements.disabled" 
              :class="elements.disabled ? disabled : active" class="is-pulled-right" 
              @click="onclickJoin(elements.disabled)">{{ elements.linkText }}</a>
         </div>
       </div>
-    
     </div>
   </section>
 </template>
@@ -48,3 +47,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.card {
+  height: 10rem;
+}
+</style>
