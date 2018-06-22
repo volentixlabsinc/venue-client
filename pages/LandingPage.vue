@@ -1,19 +1,5 @@
 <template>
   <div class="m-lg">
-    <div class="level" >
-      <div class="level-item has-text-centered m-r-lg">
-        <p class="title">Follow on:</p>
-      </div>
-      <a target="_blank" href="https://medium.com/@marketing_33515" class="level-item has-text-centered m-r-lg">
-        <img src="~/static/img/logos/Medium.png">
-      </a>
-      <a target="_blank" href="https://twitter.com/Volentix" class="level-item has-text-centered m-r-lg">
-        <img src="~/static/img/logos/twitter.png">
-      </a>
-      <a target="_blank" href="https://t.me/volentix" class="level-item has-text-centered m-r-lg">
-        <img src="~/static/img/logos/telegram.png">
-      </a>
-    </div>
     <div class="columns">
       <div class="column">
         <LeaderboardCard />
