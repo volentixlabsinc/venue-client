@@ -6,7 +6,7 @@
         <a class="button card-header-icon is-primary is-outlined" style="width:auto" @click="$modal.hide('twoFactorAuthModal')">X</a>
       </header>
       <div class="card-content" style="height:100%">
-        <enable2FA v-if="!disable"/>
+        <enable2FA v-if="!disable" :body-text="bodyText"/>
         <disable2FA v-else/>
         <!-- <div class="field is-horizontal" >
           <div class="field-label is-normal">
@@ -109,7 +109,6 @@ export default {
         error: false,
         message: ""
       },
-      actionRequested: undefined,
       NewUserInfo: {}
     };
   },
@@ -126,7 +125,6 @@ export default {
       this.title = event.params.title;
       this.disable = event.params.disable;
       this.bodyText = event.params.bodyText;
-      this.actionRequested = event.params.fetchRequest;
     },
     beforeClose() {
       this.actionRequested = undefined;
