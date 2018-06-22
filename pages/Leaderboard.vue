@@ -2,7 +2,7 @@
   <TwoColumnLayout>
     <div slot="left">
       <h1 class="title">BITCOINTALK LEADERBOARD</h1>
-      <LeaderboardStats v-if="$store.state.leaderboard.sitewide.total_users>0" />
+      <LeaderboardStats />
       <leaderboard />
     </div>
     <div slot="right">

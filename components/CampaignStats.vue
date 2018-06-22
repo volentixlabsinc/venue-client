@@ -14,11 +14,15 @@ export default {
       data: [
         {
           label: "PARTICIPANTS",
-          value: this.$store.state.leaderboard.sitewide.total_users
+          value: this.$store.state.leaderboard.sitewide
+            ? this.$store.state.leaderboard.sitewide.total_users
+            : 0
         },
         {
           label: "TOTAL POSTS",
-          value: this.$store.state.leaderboard.sitewide.total_posts
+          value: this.$store.state.leaderboard.sitewide
+            ? this.$store.state.leaderboard.sitewide.total_posts
+            : 0
         }
       ]
     };

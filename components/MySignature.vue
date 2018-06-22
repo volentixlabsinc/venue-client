@@ -17,7 +17,9 @@ export default {
   data() {
     // TODO Signature needs to be passed in when we support multiple campaigns
     return {
-      image: this.$store.state.signature.image
+      image: this.$store.state.signature
+        ? this.$store.state.signature.image
+        : ""
     };
   },
   methods: {

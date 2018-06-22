@@ -140,6 +140,10 @@ export const actions = {
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
+    if (!req) {
+      return;
+    }
+
     const cookieHeader = req.headers.cookie;
 
     console.log("cookie", cookieHeader);

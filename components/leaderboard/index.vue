@@ -28,7 +28,7 @@ export default {
   },
   data() {
     let rankings = this.$store.state.leaderboard.rankings;
-    if (this.limit >= 0) {
+    if (rankings && this.limit >= 0) {
       // TODO Remove the users around the current user
       rankings = rankings.slice(0, this.limit);
     }

@@ -11,7 +11,6 @@ export default {
   },
   data() {
     const dailyStats = this.$store.state.userStats.user_level.daily_stats;
-    console.log("dailyStats: ", dailyStats);
 
     let numberOfPosts = [];
     let dates = [];
@@ -32,7 +31,6 @@ export default {
     } else if (Math.min(...numberOfPosts) >= 10) {
       steps = 10;
     }
-    console.log("steps", steps);
     return {
       data: {
         labels: dates,

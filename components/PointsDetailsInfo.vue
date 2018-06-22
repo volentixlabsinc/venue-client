@@ -46,7 +46,9 @@ export default {
       totalPosts: undefined,
       myPosts: undefined,
       position: undefined,
-      bonus: undefined
+      bonus: undefined,
+      myTokens: -1,
+      availableTokens: -1
     };
     if (this.$store.state.user.isAuthenticated) {
       Object.assign(data, {

@@ -21,7 +21,9 @@ export default {
         "is-size-3 has-text-centered",
         "is-size-5 has-text-centered"
       ],
-      availableTokens: this.$store.state.leaderboard.sitewide.available_tokens
+      availableTokens: this.$store.state.leaderboard.sitewide
+        ? this.$store.state.leaderboard.sitewide.available_tokens
+        : 0
     };
   }
 };

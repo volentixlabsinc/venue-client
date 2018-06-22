@@ -26,11 +26,15 @@ export default {
         },
         {
           label: "PARTICIPANTS",
-          value: this.$store.state.leaderboard.sitewide.total_users
+          value: this.$store.state.leaderboard.sitewide
+            ? this.$store.state.leaderboard.sitewide.total_users
+            : 0
         },
         {
           label: "TOTAL POINTS",
-          value: this.$store.state.leaderboard.sitewide.total_points
+          value: this.$store.state.leaderboard.sitewide
+            ? this.$store.state.leaderboard.sitewide.total_points
+            : 0
         }
       ]
     };
