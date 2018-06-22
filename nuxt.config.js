@@ -17,9 +17,9 @@ module.exports = {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
-        href: "https://use.fontawesome.com/releases/v5.0.13/css/all.css",
+        href: "https://use.fontawesome.com/releases/v5.1.0/css/all.css",
         integrity:
-          "sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp",
+          "sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt",
         crossorigin: "anonymous"
       }
     ]

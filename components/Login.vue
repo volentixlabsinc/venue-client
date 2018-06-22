@@ -88,7 +88,11 @@ export default {
 
         await loadUserData(this.$store.commit, this.$axios);
 
-        this.$router.push("/dashboard");
+        this.$router.push(
+          this.$store.state.user.hasCampaignData
+            ? "/dashboard"
+            : "/onboarding/bitcointalk"
+        );
       } catch (error) {
         const errorCode = error.response.data.error_code;
         this.displayErrorMessage(errorCode);
