@@ -4,7 +4,7 @@
       <img id="token-icon" src="/img/logos/VTX-Token-icon.eps">
 
       <a class="venue-logo" @click="onClickLogo">
-        <img id="venue-logo" src="/img/logos/venue-volentix.png">
+        <img id="venue-logo" src="/img/logos/venue-volentix-dark.png">
       </a>
     
     </div>

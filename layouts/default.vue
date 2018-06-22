@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="columns">
-    <div class="column is-one-fifth">
+    <div id="navcol" class="column is-one-fifth">
       <div>
-        <tokens />
+        <tokens class="m-md"/>
         <navbar/>
       </div>
     </div>
