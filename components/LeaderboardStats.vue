@@ -15,12 +15,11 @@ export default {
     availableRewards
   },
   data() {
-    const isAuthenticated = this.$store.state.user.isAuthenticated;
     return {
       stats: [
         {
           label: "MY RANK",
-          value: isAuthenticated
+          value: this.$store.state.user.hasCampaignData
             ? this.$store.state.userStats.user_level.overall_rank
             : undefined,
           trophy: true

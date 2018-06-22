@@ -9,10 +9,10 @@
       <MyCurrentRewards/>
     </div>
     <div class="card-footer">
-      <a v-if="(showDetailsButton && isAuthenticated)" class="is-info is-outlined card-footer-item" @click="onClickDetails">
+      <a v-if="(showDetailsButton && hasCampaignData)" class="is-info is-outlined card-footer-item" @click="onClickDetails">
         <span>View details</span><span class="icon"><i class="fas fa-search"/></span>
       </a>
-      <a v-if="isAuthenticated" class="card-footer-item" @click="onClickSignature">
+      <a v-if="hasCampaignData" class="card-footer-item" @click="onClickSignature">
         <span>Edit signature</span><span class="icon"><i class="fas fa-edit"/></span>
       </a>
     </div>
@@ -45,12 +45,12 @@ export default {
   },
   data() {
     return {
-      isAuthenticated: this.$store.state.user.isAuthenticated
+      hasCampaignData: this.$store.state.userStats.hasCampaignData
     };
   },
   computed: {
     isChartVisible() {
-      return this.showChart && this.isAuthenticated;
+      return this.showChart && this.hasCampaignData;
     }
   },
   methods: {

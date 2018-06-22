@@ -16,17 +16,19 @@ export default {
     }
   },
   data() {
-    const isAuthenticated = this.$store.state.user.isAuthenticated;
+    const hasStats =
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
     const data = [
       {
         label: "MY POSTS",
-        value: isAuthenticated
+        value: hasStats
           ? this.$store.state.userStats.profile_level[0].numPosts
           : undefined
       },
       {
         label: "MY POINTS",
-        value: isAuthenticated
+        value: hasStats
           ? this.$store.state.userStats.profile_level[0].totalPoints
           : undefined
       }
@@ -35,13 +37,12 @@ export default {
     if (this.showRank) {
       data.unshift({
         label: "MY RANK",
-        value: isAuthenticated
+        value: hasStats
           ? this.$store.state.userStats.user_level.overall_rank
           : undefined
       });
     }
     return {
-      isAuthenticated,
       data
     };
   }
