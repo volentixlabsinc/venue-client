@@ -1,7 +1,7 @@
 <template>
   <tbody>
     <tr 
-      :style = "myRank === elements.rank ? {'background-color': 'rgba(46, 46, 63)'} : { 'background-color': 'transparent'}" >
+      :style = "myRank === elements.rank ? {'background-color': '#84429a', 'color': 'white', 'font-weight': 'bold'} : { 'background-color': 'transparent'}" >
       <td 
         class="rank">
         {{ elements.rank }}</td>
