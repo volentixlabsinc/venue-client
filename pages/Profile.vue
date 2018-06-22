@@ -13,7 +13,8 @@
         </div>
         <div class="column">
           <account-username :user-info="userInfo.username"/>
-          <two-factor/>
+          <two-factor :user-info="userInfo.enabled_2fa"/>
+          <!-- <two-factor :user-info="true"/> -->
         </div>
       </div>
     </div>
@@ -47,6 +48,7 @@ export default {
   },
   async asyncData({ app }) {
     const userInfo = await app.$axios.$get("/retrieve/user/");
+    console.log("const userInfo: ", userInfo);
     return { userInfo };
   }
 };
