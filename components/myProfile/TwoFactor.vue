@@ -35,13 +35,7 @@ export default {
         buttonText: "Disable 2FA",
         bodyText: [
           "Are you sure you want to disable two-factor authentication?"
-        ],
-        async fetchRequest() {
-          const response = await this.$axios.$post(
-            "/manage/disable-two-factor-auth/"
-          );
-          console.log("response: ", response);
-        }
+        ]
       });
     } else {
       Object.assign(data, {
@@ -49,13 +43,7 @@ export default {
         bodyText: [
           "Step 1: Scan this with your authenticator app",
           "Step 2: Enter the displayed OTP code"
-        ],
-        async fetchEnable() {
-          const response = await this.$axios.$post(
-            "/manage/enable-two-factor-auth/"
-          );
-          console.log("response: ", response);
-        }
+        ]
       });
     }
     return data;
@@ -66,7 +54,7 @@ export default {
         disable: this.userInfo,
         title: this.buttonText,
         currentData: this.userInfo,
-        fetchRequest: this.fetchRequest
+        bodyText: this.bodyText
       });
       this.loadModal = true;
     }
