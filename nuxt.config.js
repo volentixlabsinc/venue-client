@@ -56,9 +56,6 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  env: {
-    baseUrl: process.env.BASE_URL || "http://localhost:8000/api"
-  },
   modules: ["@nuxtjs/axios"],
   axios: {
     baseURL: "http://server.venue.ninja/api"
