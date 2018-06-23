@@ -12,12 +12,12 @@
 
 <script>
 import MyProfileSetting from "~/components/MyProfileSetting.vue";
-import twoFactorAuthModal from "~/components/myProfile/twoFactorAuthModal.vue";
+import TwoFactorAuthModal from "~/components/myProfile/TwoFactorAuthModal.vue";
 
 export default {
   components: {
     MyProfileSetting,
-    twoFactorAuthModal
+    TwoFactorAuthModal
   },
   props: {
     userInfo: {
