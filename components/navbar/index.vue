@@ -59,7 +59,7 @@ export default {
 
 <style scoped lang="scss">
 #navigation {
-  background-color: #84429a;
+  background-color: #e6d9ea;
   height: 100vh;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="columns">
-    <div id="navcol" class="column is-one-fifth">
+    <div id="navigation" class="column is-one-fifth">
       <div>
         <tokens class="m-md"/>
         <navbar/>
@@ -23,3 +23,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+#navigation {
+  background-color: #e6d9ea;
+  height: 100vh;
+}
+</style>
