@@ -21,7 +21,7 @@
       <hr>
       <h2 class="card-header-title">{{ bodyText[1] }}</h2>
       <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
-      <input v-validate="'required'" v-model="OTPcode" class="input" placeholder="OTP code from authenticator app" name="Code">
+      <input v-validate="'required'" v-model.trim="OTPcode" class="input" placeholder="OTP code from authenticator app" name="Code">
       <p v-show="showError.show" class="is-size-7 has-text-danger">{{ showError.message }}</p>
     </div>
     <div v-else class="card-content">
@@ -29,7 +29,7 @@
     </div>
     <footer class="card-footer">
       <div class="card-footer-item">
-        <a v-if="!success" class="button is-primary" @click="verifyOtpCode">Submit</a>
+        <a v-if="!success" class="button is-primary" @click="verifyOtpCode" @keyup.enter="verifyOtpCode">Submit</a>
         <a v-else class="button is-primary" @click="close">Close</a>
       </div>
     </footer>
@@ -66,26 +66,21 @@ export default {
       );
       this.response = response;
     },
-    verifyOtpCode() {
+    async verifyOtpCode() {
+      const scope = this;
       event.preventDefault();
-
-      this.formSubmitted = true;
-      let payload = {
-        otpCode: this.OTPcode.trim()
-      };
-      this.$axios
-        .$post("/manage/verify-otp-code/", { payload })
-        .then(response => {
-          if (response.verified) {
-            this.$refs.twoFactorModal.hide();
-            this.success = true;
-          } else {
-            this.showError = {
-              show: true,
-              message: "You entered a wrong or expired OTP code"
-            };
-          }
-        });
+      const response = await scope.$axios.$post("/manage/verify-otp-code/", {
+        otpCode: scope.OTPcode,
+        enable_2fa: true
+      });
+      if (response.verified) {
+        scope.success = true;
+      } else {
+        this.showError = {
+          show: true,
+          message: "You entered a wrong or expired OTP code"
+        };
+      }
     },
     close() {
       this.$modal.hide("twoFactorAuthModal");

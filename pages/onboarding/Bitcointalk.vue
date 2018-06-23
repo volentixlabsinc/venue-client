@@ -113,7 +113,6 @@ export default {
         const leaderboardData = await this.$axios.$get(
           "/retrieve/leaderboard-data/"
         );
-        console.log(leaderboardData);
         await this.$store.commit("setLeaderboardData", leaderboardData);
 
         this.$router.push("/leaderboard");
