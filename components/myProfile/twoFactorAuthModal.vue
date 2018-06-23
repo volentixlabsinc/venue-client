@@ -1,11 +1,11 @@
 <template>
-  <modal :resizable="true" :adaptive="true" height="auto" name="twoFactorAuthModal" @before-open="beforeOpen" >
+  <modal :resizable="true" :adaptive="true" height="auto" name="twoFactorAuthModal" @before-open="beforeOpen">
     <div class="card" style="height:100%">
       <header class="card-header" >
         <h1 class="card-header-title title has-text-white"> {{ title }}</h1>
         <a class="button card-header-icon is-primary is-outlined" style="width:auto" @click="$modal.hide('twoFactorAuthModal')">X</a>
       </header>
-      <enable2FA v-if="!disable" :body-text="bodyText" :response="response"/>
+      <enable2FA v-if="enable" :body-text="bodyText" :response="response"/>
       <disable2FA v-else :body-text="bodyText"/>
     </div>
   </modal>
@@ -23,15 +23,16 @@ export default {
   data: function() {
     return {
       response: null,
-      disable: "",
+      enable: "",
       bodyText: "",
-      title: ""
+      title: "",
+      userData: null
     };
   },
   methods: {
     beforeOpen(event) {
       this.title = event.params.title;
-      this.disable = event.params.disable;
+      this.enable = event.params.enable;
       this.bodyText = event.params.bodyText;
       this.response = event.params.response;
     }

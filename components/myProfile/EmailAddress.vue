@@ -36,9 +36,6 @@ export default {
       loadModal: false
     };
   },
-  mounted() {
-    console.log("userInfo", this.userInfo);
-  },
   methods: {
     showModal(setting) {
       if (setting === "email") {
