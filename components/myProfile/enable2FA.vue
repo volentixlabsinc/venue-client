@@ -73,9 +73,8 @@ export default {
       let payload = {
         otpCode: this.OTPcode.trim()
       };
-      console.log("payload: ", payload);
       this.$axios
-        .$post("/manage/verify-otp-code/", { otpCode: this.OTPcode })
+        .$post("/manage/verify-otp-code/", { payload })
         .then(response => {
           if (response.verified) {
             this.$refs.twoFactorModal.hide();

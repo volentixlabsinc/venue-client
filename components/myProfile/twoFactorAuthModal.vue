@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import enable2FA from "~/components/myProfile/enable2FA.vue";
-import disable2FA from "~/components/myProfile/disable2FA.vue";
+import enable2FA from "~/components/myProfile/Enable2FA.vue";
+import disable2FA from "~/components/myProfile/Disable2FA.vue";
 export default {
   name: "TwoFactorAuthModal",
   components: {
