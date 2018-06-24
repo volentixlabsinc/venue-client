@@ -37,7 +37,7 @@
 import OnboardingInputUserProfileId from "~/components/OnboardingInputUserProfileId.vue";
 
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import campaignRightPanel from "~/components/campaignRightPanel.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 import HelpModal from "~/components/HelpModal.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { retrieveAvailableSignatures, loadUserData } from "~/assets/utils";
@@ -50,7 +50,7 @@ export default {
     OnboardingInputUserProfileId,
     HelpModal,
     AvailableSignatures,
-    campaignRightPanel
+    CampaignRightPanel
   },
   data() {
     return {

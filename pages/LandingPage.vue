@@ -24,7 +24,7 @@ import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import LandingPageSections from "~/components/LandingPageSections.vue";
 import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
 import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
-import CampaignRightPanel from "~/components/campaignRightPanel.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 
 export default {
   components: {

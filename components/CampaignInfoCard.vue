@@ -5,19 +5,19 @@
     </header>
     <div class="card-content">
       <CampaignStats />
-      <availableRewards/>
+      <AvailableRewards/>
     </div>
   </div>
 </template>
 
 <script>
 import CampaignStats from "~/components/CampaignStats.vue";
-import availableRewards from "~/components/availableRewards.vue";
+import AvailableRewards from "~/components/AvailableRewards.vue";
 
 export default {
   components: {
     CampaignStats,
-    availableRewards
+    AvailableRewards
   }
 };
 </script>

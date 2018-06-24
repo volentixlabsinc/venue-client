@@ -12,13 +12,13 @@
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import MyCampaignActivityCard from "~/components/MyCampaignActivityCard.vue";
-import campaignRightPanel from "~/components/campaignRightPanel.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 
 export default {
   components: {
     TwoColumnLayout,
     MyCampaignActivityCard,
-    campaignRightPanel
+    CampaignRightPanel
   },
   mounted() {
     if (this.$store.state.userStats.fresh) {
