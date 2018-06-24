@@ -30,8 +30,8 @@
           <a class="button" @click="gotoLeaderboard">Close</a>
         </div>
       </div> -->
-      <feedbackModal @feedbackEmits="closeModal"/>
-      <helpModal />
+      <FeedbackModal @feedbackEmits="closeModal"/>
+      <HelpModal />
     </div>
     <!-- <div v-else class="help-section"> -->
     <!-- <HelpSignatureImages @done="showHelp = !showHelp"/> -->
@@ -41,8 +41,8 @@
 
 <script>
 // import HelpSignatureImages from "./HelpSignatureImages.vue";
-import feedbackModal from "~/components/feedbackModal.vue";
-import helpModal from "~/components/helpModal.vue";
+import FeedbackModal from "~/components/FeedbackModal.vue";
+import HelpModal from "~/components/HelpModal.vue";
 import { loadUserData } from "~/assets/utils.js";
 
 const BITCOINTALK_FORUM_ID = 1;
@@ -50,8 +50,8 @@ const BITCOINTALK_FORUM_ID = 1;
 export default {
   components: {
     // HelpSignatureImages,
-    feedbackModal,
-    helpModal
+    FeedbackModal,
+    HelpModal
   },
   data() {
     return {
@@ -73,7 +73,7 @@ export default {
   methods: {
     showHelp() {
       // console.log("click");
-      this.$modal.show("helpModal", { element: "signature" });
+      this.$modal.show("HelpModal", { element: "signature" });
     },
     timerCalc() {
       this.timer -= 1;
@@ -95,7 +95,7 @@ export default {
       });
       console.log("data: ", signatureResult);
 
-      this.$modal.show("feedbackModal", {
+      this.$modal.show("FeedbackModal", {
         type: "success",
         title: "Success!",
         message:

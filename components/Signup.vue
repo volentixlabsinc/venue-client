@@ -35,15 +35,15 @@
       </label>
       <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
     </form>
-    <feedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
+    <FeedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
 </template>
 
 <script>
-import feedbackModal from "~/components/feedbackModal.vue";
+import FeedbackModal from "~/components/FeedbackModal.vue";
 export default {
   components: {
-    feedbackModal
+    FeedbackModal
   },
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
       };
       const data = await this.$axios.$get("check/email-exists/", { params });
       if (data.email_exists) {
-        this.$modal.show("feedbackModal", {
+        this.$modal.show("FeedbackModal", {
           type: "error",
           title: "Error",
           message: "This email account already exists",
@@ -92,7 +92,7 @@ export default {
       if (result.status !== "success") {
         this.signUpError = true;
       } else {
-        this.$modal.show("feedbackModal", {
+        this.$modal.show("FeedbackModal", {
           type: "success",
           title: "Success!",
           message:

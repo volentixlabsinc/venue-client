@@ -1,6 +1,6 @@
 <template>
 
-  <modal height="500px" name="helpModal" @before-open="beforeOpen" @before-close="beforeClose">
+  <modal height="500px" name="HelpModal" @before-open="beforeOpen" @before-close="beforeClose">
     <div class="card is-vcentered" style="height:100%">
       <header class="card-header is-flex is-vcentered has-text-centered" >
         
@@ -24,7 +24,7 @@
           <button v-if="imageNumber<3" class="button is-primary" @click="imageNumber+=1">
             NEXT
           </button>
-          <button v-else class="button is-primary" @click="$modal.hide('helpModal')">
+          <button v-else class="button is-primary" @click="$modal.hide('HelpModal')">
             close
           </button>
         </div>
@@ -62,7 +62,7 @@ export default {
     },
     submitUserId(profileData) {
       this.$emit("userIdConfirmed", profileData);
-      this.$modal.hide("helpModal");
+      this.$modal.hide("HelpModal");
     }
   }
 };

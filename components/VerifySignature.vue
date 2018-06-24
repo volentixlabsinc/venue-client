@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import confirmCopy from "./confirmCopy.vue";
+import ConfirmCopy from "./ConfirmCopy.vue";
 
 export default {
   name: "VerifySignature",
   components: {
-    confirmCopy
+    ConfirmCopy
   }
 };
 </script>

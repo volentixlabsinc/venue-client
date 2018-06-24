@@ -17,7 +17,7 @@
               <i class="fas fa-times-circle"/> User not found - please try Again
             </span>
             <a @click="showIdHelp"><u>How do I find my bitcointalk user id?</u></a>
-            <helpModal v-if="ready" @userIdConfirmed="confirmedID"/>
+            <HelpModal v-if="ready" @userIdConfirmed="confirmedID"/>
           </div>
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">Choose your signature</label>
@@ -38,7 +38,7 @@ import OnboardingInputUserProfileId from "~/components/OnboardingInputUserProfil
 
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import campaignRightPanel from "~/components/campaignRightPanel.vue";
-import helpModal from "~/components/helpModal.vue";
+import HelpModal from "~/components/HelpModal.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import { retrieveAvailableSignatures, loadUserData } from "~/assets/utils";
 
@@ -48,7 +48,7 @@ export default {
   components: {
     TwoColumnLayout,
     OnboardingInputUserProfileId,
-    helpModal,
+    HelpModal,
     AvailableSignatures,
     campaignRightPanel
   },
@@ -120,7 +120,7 @@ export default {
       }
     },
     showIdHelp() {
-      this.$modal.show("helpModal", {
+      this.$modal.show("HelpModal", {
         element: "ID"
       });
     }

@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import leaderboardEntry from "./leaderboardEntry";
-import shortLeaderboardEntry from "./shortLeaderboardEntry";
+import LeaderboardEntry from "./LeaderboardEntry";
+import ShortLeaderboardEntry from "./ShortLeaderboardEntry";
 
 export default {
   components: {
-    leaderboardEntry,
-    shortLeaderboardEntry
+    LeaderboardEntry,
+    ShortLeaderboardEntry
   },
   props: {
     shortenedLeaderboard: {

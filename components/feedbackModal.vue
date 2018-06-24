@@ -1,11 +1,11 @@
 <template>
-  <modal height="auto" name="feedbackModal" @before-open="beforeOpen" @before-close="beforeClose">
+  <modal height="auto" name="FeedbackModal" @before-open="beforeOpen" @before-close="beforeClose">
     <div class="card" style="height:100%">
       <header class="card-header" >
         <h1 :class="[type === 'error' ? errorColor : '', successColor]" class="card-header-title title">
           {{ title }}
         </h1>
-        <a class="button card-header-icon is-primary is-outlined" style="width:auto" @click="$modal.hide('feedbackModal')">X</a>
+        <a class="button card-header-icon is-primary is-outlined" style="width:auto" @click="$modal.hide('FeedbackModal')">X</a>
       </header>
       <div class="card-content" style="height:100%">
         
@@ -58,7 +58,7 @@ export default {
       // if (this.recievedAction) {
       //   this.recievedAction();
       // }
-      this.$modal.hide("feedbackModal");
+      this.$modal.hide("FeedbackModal");
     }
   }
 };

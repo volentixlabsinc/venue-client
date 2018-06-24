@@ -23,18 +23,18 @@
         class="button is-primary is-fullwidth m-t-lg">Log In</button>
     </form>
 
-    <feedbackModal v-show="ready"/>
+    <FeedbackModal v-show="ready"/>
   </div>
 </template>
 
 
 <script>
 import { loadUserData } from "~/assets/utils.js";
-import feedbackModal from "~/components/feedbackModal.vue";
+import FeedbackModal from "~/components/FeedbackModal.vue";
 
 export default {
   components: {
-    feedbackModal
+    FeedbackModal
   },
   data() {
     return {
@@ -62,7 +62,7 @@ export default {
       }
     },
     showConfirmationMessage() {
-      this.$modal.show("feedbackModal", {
+      this.$modal.show("FeedbackModal", {
         type: "success",
         title: "Email Verified!",
         message: "You can now log in",
