@@ -58,7 +58,10 @@ module.exports = {
   ],
   modules: ["@nuxtjs/axios"],
   axios: {
-    browserBaseURL: "/api"
+    // FIXME This should be set as an env variable, but I'm not able to get it to work.
+    // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
+    // in logs), but still axios is going to localhost :(
+    baseURL: "http://server.venue.ninja/api"
   },
   buefy: {
     materialDesignIcons: false,
@@ -68,9 +71,7 @@ module.exports = {
     "~/plugins/vue-clipboard",
     "~/plugins/buefy",
     "~/plugins/token",
-    // '~/plugins/vue-sweetalert2',
     "~/plugins/vee-validate",
-    // { src: '~/plugins/local-storage', ssr: false }
     { src: "~/plugins/vue-js-modal.js", ssr: false }
   ]
 };
