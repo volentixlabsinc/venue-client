@@ -8,7 +8,7 @@
       </div>
     </div>
     <div slot="right">
-      <campaignRightPanel />
+      <CampaignRightPanel />
     </div>  
   </TwoColumnLayout>
 </template>
@@ -17,7 +17,7 @@
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import MySignature from "~/components/MySignature";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
-import campaignRightPanel from "~/components/campaignRightPanel.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 
 import { retrieveAvailableSignatures } from "~/assets/utils.js";
 
@@ -26,7 +26,7 @@ export default {
     TwoColumnLayout,
     MySignature,
     AvailableSignatures,
-    campaignRightPanel
+    CampaignRightPanel
   },
   async asyncData({ app, store }) {
     const data = {

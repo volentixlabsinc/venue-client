@@ -1,18 +1,18 @@
 <template>
   <div>
     <Stats :data="stats" />
-    <availableRewards :column="true"/>
+    <AvailableRewards :column="true"/>
   </div>
 </template>
 
 <script>
-import availableRewards from "~/components/availableRewards.vue";
+import AvailableRewards from "~/components/AvailableRewards.vue";
 import Stats from "~/components/Stats.vue";
 
 export default {
   components: {
     Stats,
-    availableRewards
+    AvailableRewards
   },
   data() {
     return {
