@@ -27,7 +27,6 @@
     "cookie": "^0.3.1",
     "countup.js": "^1.9.3",
     "js-cookie": "^2.2.0",
-    "lodash": "^4.17.10",
     "numeral": "^2.0.6",
     "nuxt": "^1.0.0",
     "vee-validate": "^2.0.8",
