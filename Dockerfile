@@ -22,4 +22,5 @@ RUN yarn run build
 CMD [ "yarn", "run", "start"]
 
 ENV HOST 0.0.0.0
+
 EXPOSE 3000

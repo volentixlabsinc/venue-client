@@ -58,7 +58,7 @@ module.exports = {
   ],
   modules: ["@nuxtjs/axios"],
   axios: {
-    baseURL: "http://server.venue.ninja/api"
+    browserBaseURL: "/api"
   },
   buefy: {
     materialDesignIcons: false,
