@@ -1,21 +1,12 @@
 FROM node:8-alpine
 
-WORKDIR /venue/
+WORKDIR venue/
 
-COPY package.json yarn.lock ./
+COPY venue/package.json venue/yarn.lock ./
 
 RUN yarn install
 
-# Keep the directory structure
-COPY /assets ./assets
-COPY /components ./components
-COPY /layouts ./layouts
-COPY /middleware ./middleware
-COPY /pages ./pages
-COPY /plugins ./plugins
-COPY /static ./static
-COPY /store ./store
-COPY .babelrc nuxt.config.js ./
+COPY venue .
 
 RUN yarn run build
 
