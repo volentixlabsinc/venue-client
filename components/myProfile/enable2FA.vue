@@ -60,12 +60,6 @@ export default {
     };
   },
   methods: {
-    async fetchRequest() {
-      const response = await this.$axios.$post(
-        "/manage/enable-two-factor-auth"
-      );
-      this.response = response;
-    },
     async verifyOtpCode() {
       const scope = this;
       event.preventDefault();
