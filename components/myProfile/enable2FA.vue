@@ -1,8 +1,39 @@
 <template>
   <div>
-    <h1>enable</h1>
-    <h2 class="subtitile">{{ bodyText[0] }}</h2>
-    <qr-code :text="uri" :size="220"/>
+    <div v-if="!success" class="card-content">
+      <h2 class="card-header-title subtitile">{{ bodyText[0] }}</h2>
+      <div v-if="response!==undefined" class="columns">
+        <div class="column">
+          <qriously :size="200" :value="response.uri" />
+        </div>
+        <div class="column is-7">
+          <h2 class="card-header-title subtitile">Or enter these details manually:</h2>
+          <p class="venue-text is-size-6">
+            <strong>Service:</strong>
+            {{ response.service }}</p>
+          <p class="venue-text is-size-6"> <strong>Account:</strong>
+            {{ response.account }}</p>
+          <p class="venue-text is-size-6"><strong>Key:</strong>
+            {{ response.key }}
+          </p>
+        </div>
+      </div>
+      <hr>
+      <h2 class="card-header-title">{{ bodyText[1] }}</h2>
+      <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
+      <input v-validate="'required'" v-model="OTPcode" class="input" placeholder="OTP code from authenticator app" name="Code">
+      <p v-show="showError.show" class="is-size-7 has-text-danger">{{ showError.message }}</p>
+    </div>
+    <div v-else class="card-content">
+      <h2 class="subtitle">The two-factor authentication has been successfully enabled!</h2>
+    </div>
+    <footer class="card-footer">
+      <div class="card-footer-item">
+        <a v-if="!success" class="button is-primary" @click="verifyOtpCode">Submit</a>
+        <a v-else class="button is-primary" @click="close">Close</a>
+      </div>
+    </footer>
+    
   </div>
 </template>
 
@@ -12,22 +43,53 @@ export default {
     bodyText: {
       type: Array,
       default: null
+    },
+    response: {
+      type: Object,
+      default: null
     }
   },
   data() {
     return {
-      uri: undefined
+      OTPcode: null,
+      showError: {
+        show: false,
+        message: ""
+      },
+      success: false
     };
-  },
-  mounted() {
-    this.fetchRequest();
   },
   methods: {
     async fetchRequest() {
       const response = await this.$axios.$post(
         "/manage/enable-two-factor-auth"
       );
-      this.uri = response.uri;
+      this.response = response;
+    },
+    verifyOtpCode() {
+      event.preventDefault();
+
+      this.formSubmitted = true;
+      let payload = {
+        otpCode: this.OTPcode.trim()
+      };
+      console.log("payload: ", payload);
+      this.$axios
+        .$post("/manage/verify-otp-code/", { otpCode: this.OTPcode })
+        .then(response => {
+          if (response.verified) {
+            this.$refs.twoFactorModal.hide();
+            this.success = true;
+          } else {
+            this.showError = {
+              show: true,
+              message: "You entered a wrong or expired OTP code"
+            };
+          }
+        });
+    },
+    close() {
+      this.$modal.hide("twoFactorAuthModal");
     }
   }
 };
