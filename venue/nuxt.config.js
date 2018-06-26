@@ -32,6 +32,10 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    analyze: {
+      analyzerMode: "static",
+      excludeAssets: /^vendor.*/
+    },
     /*
     ** Run ESLint on save
     */
@@ -50,7 +54,7 @@ module.exports = {
         "postcss-custom-properties": false
       }
     },
-    vendor: ["axios", "vue-js-modal"]
+    vendor: ["axios", "vue-js-modal", "moment", "chart.js", "numeral"]
   },
   css: [
     { src: "~/assets/main.scss", lang: "scss" },
@@ -62,6 +66,7 @@ module.exports = {
     // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
     // in logs), but still axios is going to localhost :(
     baseURL: "http://service.venue.ninja/api"
+    // baseURL: "http://localhost:8000/api"
   },
   buefy: {
     materialDesignIcons: false,
@@ -69,7 +74,7 @@ module.exports = {
   },
   plugins: [
     "~/plugins/vue-clipboard",
-    "~/plugins/buefy",
+    // "~/plugins/buefy",
     "~/plugins/token",
     "~/plugins/vee-validate",
     { src: "~/plugins/vue-js-modal.js", ssr: false }
