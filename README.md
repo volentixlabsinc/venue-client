@@ -6,6 +6,8 @@
 
 ## Build Setup
 
+Venue is located in the `venue` directory, so run all commands from there.
+
 ``` bash
 # install dependencies
 $ npm install # Or yarn install
@@ -15,7 +17,9 @@ $ npm run dev
 
 # build for production and launch server
 $ npm run build
-$ npm start
+
+# Start the client server, specifying where the API server is running (see [venue-server](https://github.com/Volentix/venue-server))
+$ API_URL=http://localhost:8000/api npm start
 
 # generate static project
 $ npm run generate

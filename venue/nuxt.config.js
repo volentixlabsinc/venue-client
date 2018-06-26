@@ -67,7 +67,7 @@ module.exports = {
     // in logs), but still axios is going to localhost :(
     //
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
-    baseURL: "/api",
+    baseURL: "http://venue-server/api",
     browserBaseURL: "https://venue.volentix.io/api"
     // baseURL: "http://localhost:8000/api"
   },
