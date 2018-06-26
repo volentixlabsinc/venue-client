@@ -13,7 +13,7 @@
         </div>
         <div class="column">
           <account-username :user-info="userInfo.username"/>
-          <two-factor/>
+          <two-factor :user-info="userInfo.enabled_2fa" />
         </div>
       </div>
     </div>
