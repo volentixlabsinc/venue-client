@@ -6,7 +6,7 @@ export async function registerForumUser(vm, forumId, forumUserId) {
     }
   });
 
-  const position = profileData.position;
+  const position = profileData.position; 
 
   // FIXME Handle this better
   if (!profileData.found) {
