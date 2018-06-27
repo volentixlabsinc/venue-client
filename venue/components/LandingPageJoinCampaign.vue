@@ -4,7 +4,7 @@
       <div class="level">
         <div class="is-size-3">EARN VTX!</div>
         <figure class="image is-64x64">
-          <img src="~/static/img/logos/VTX-Token-icon-new.png">
+          <img src="~/assets/VTX-Token-icon-new.png">
         </figure>
       </div>
       <div class="content">

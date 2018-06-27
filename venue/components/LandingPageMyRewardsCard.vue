@@ -5,7 +5,7 @@
     </header>
     <div class="card-content">
       <div class="level">
-        <img src="~/static/img/logos/VTX-Token-icon-new.png" class="image is-64x64 media-left">
+        <img src="~/assets/VTX-Token-icon-new.png" class="image is-64x64 media-left">
         <span class="is-size-3">{{ myTokens }} VTX</span>
       </div>
     </div>

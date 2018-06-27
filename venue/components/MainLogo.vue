@@ -1,7 +1,7 @@
 <template>
   <div>
     <a @click="onClickLogo">
-      <img class="image is-image-centered" src="/img/logos/venue-volentix.png">
+      <img class="image is-image-centered" src="~assets/venue-volentix.png">
     </a>
   </div>
 </template>

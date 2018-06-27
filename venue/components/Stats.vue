@@ -2,7 +2,7 @@
   <div class="level box">
     <div v-for="stat in data" :key="stat.id" class="level-item">
       <p class="heading">{{ stat.label }}</p>
-      <img v-if="stat.trophy" id="trophy" src="/img/svg/trophy2.svg">
+      <img v-if="stat.trophy" id="trophy" src="~assets/trophy2.svg">
       <h1 class="title is-1">
         <ICountUp
           v-if="stat.value !== undefined"
