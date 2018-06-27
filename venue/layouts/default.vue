@@ -1,10 +1,20 @@
 <template>
   <div>
+    <div class="columns is-fullheight is-hidden-mobile">
+      <aside class="navbar column is-one-fifth-desktop">
+        <MainLogo class="p-lg"/>
+        <Navigation />
+        <!-- <SocialMediaLinks class="level" /> -->
+      </aside>
+      <div class="column">
+        <nuxt />
+      </div>
+    </div>
     <div class="is-hidden-tablet">
-      <nav class="navbar is-primary" role="navigation">
+      <nav class="navbar" role="navigation">
         <div class="navbar-brand">
           <MainLogo class="navbar-item" />
-          <a :class="{ 'is-active': showMenu }" role="button" class="navbar-burger burger" 
+          <a :class="{ 'is-active': showMenu }" role="button" class="navbar-burger" 
              aria-label="menu" aria-expanded="false" @click="toggleMenu">
             <span aria-hidden="true"/>
             <span aria-hidden="true"/>
@@ -12,24 +22,10 @@
           </a>    
         </div>
         <div :class="{ 'is-active': showMenu }" class="navbar-menu">
-          <div class="navbar-start">
-            <Navigation />
-          </div>
+          <Navigation/>
         </div>
       </nav>
       <nuxt />
-    </div>
-    <div class="columns is-fullheight is-hidden-mobile">
-      <aside class="menu column is-one-fifth-desktop">
-        <MainLogo />
-        <div class="menu-list">
-          <Navigation />
-        </div>
-        <SocialMediaLinks class="level" />
-      </aside>
-      <div class="column">
-        <nuxt />
-      </div>
     </div>
   </div>
 </template>
@@ -54,7 +50,6 @@ export default {
   },
   methods: {
     toggleMenu() {
-      console.log("click");
       this.showMenu = !this.showMenu;
     }
   }
@@ -62,7 +57,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.menu {
-  background-color: #e6d9ea;
+.navbar {
+  background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
+}
+
+// TODO Understand why $navbar-burger-color isn't working
+.navbar-burger {
+  color: #98a5ae;
+}
+.navbar-burger:hover {
+  color: white;
 }
 </style>

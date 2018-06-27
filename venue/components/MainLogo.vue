@@ -1,7 +1,9 @@
 <template>
-  <a class="venue-logo" @click="onClickLogo">
-    <img id="venue-logo" class="image" src="/img/logos/venue-volentix-dark.png">
-  </a>
+  <div>
+    <a @click="onClickLogo">
+      <img class="image is-image-centered" src="/img/logos/venue-volentix.png">
+    </a>
+  </div>
 </template>
 
 <script>
@@ -13,3 +15,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.image {
+  max-width: 8rem;
+}
+</style>

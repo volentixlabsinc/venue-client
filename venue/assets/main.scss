@@ -18,6 +18,7 @@ $family-sans-serif: "Titillium", "Helvetica", "Aria", "sans-serif";
 $primary: $venue-purple;
 $primary-invert: $venue-purple-invert;
 $family-primary: $family-sans-serif;
+$bluegrey-light: #98a5ae;
 
 // These are generic variables; not sure the difference between this and derived
 $body-background-color: $white-ter;
@@ -25,13 +26,22 @@ $body-color: $grey-dark;
 
 // Purple tints
 $border: $purple-light;
-$box-background-color: $purple-light;
+$box-background-color: #e0e5e9;
 $card-header-background-color: $primary;
 $card-header-color: $white-ter;
 $card-shadow: 0 2px 3px rgba($primary, 0.1), 0 0 0 1px rgba($primary, 0.1);
 
 $link: $purple-med;
 $link-hover: $primary;
+
+$navbar-background-color: #475868;
+$navbar-item-color: $bluegrey-light;
+
+// TODO Understand why this isn't being picked up (I set it in CSS now)
+// $navbar-burger-color: $bluegrey-light;
+
+$navbar-item-hover-color: white;
+$navbar-item-hover-background-color: #374a59;
 
 // 4. Setup your Custom Colors
 // $linkedin: #0077b5;
@@ -42,7 +52,7 @@ $link-hover: $primary;
 // $github-invert: findColorInvert($github);
 
 // 5. Add new color variables to the color map.
-// @import "~bulma/sass/utilities/derived-variables";
+// @import "../sass/utilities/derived-variables";
 // $addColors: (
 //   "twitter":($twitter, $twitter-invert),
 //   "linkedin": ($linkedin, $linkedin-invert),

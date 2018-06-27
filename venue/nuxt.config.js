@@ -57,6 +57,7 @@ module.exports = {
     vendor: ["axios", "vue-js-modal", "moment", "chart.js", "numeral"]
   },
   css: [
+    { src: "~/assets/custom.css", lang: "css" },
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],

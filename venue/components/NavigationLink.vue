@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="route">
-    <div class="navbar-item level">
+  <router-link :to="route" class="navbar-item">
+    <div class="level">
       <span class="icon is-large"><i :class="icon" class="fas fa-lg prefix"/></span>
       <span class="is-size-6">{{ name }}</span>
     </div>
@@ -27,15 +27,8 @@ export default {
 </script>
 
 <style scoped>
-.level {
-  justify-content: flex-start;
-}
-
 .nuxt-link-exact-active {
-  color: #42214d;
-}
-
-a:hover {
-  color: #42214d;
+  color: white;
+  background-color: #374a59;
 }
 </style>

@@ -41,14 +41,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-#navigation {
-  background-color: #e6d9ea;
-  height: 100vh;
-}
-
-a:hover {
-  color: #42214d;
-}
-</style>
