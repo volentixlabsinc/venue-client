@@ -21,6 +21,10 @@ module.exports = {
         integrity:
           "sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt",
         crossorigin: "anonymous"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Titillium+Web"
       }
     ]
   },
