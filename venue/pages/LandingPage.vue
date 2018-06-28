@@ -13,7 +13,11 @@
       </div>
     </div>
     <div v-for="(el, LandingPage) in contents" :key="LandingPage">
-      <LandingPage-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center" >
+          <LandingPage-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
+        </div>
+      </div>
     </div>
   </div>
 </template>
