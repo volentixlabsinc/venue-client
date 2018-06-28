@@ -34,7 +34,7 @@ export default {
           this.forumId,
           this.forumUserId
         );
-        if (this.forumProfile.success) {
+        if (this.forumProfile.success || this.forumProfile.verified === false) {
           this.$emit("userIdConfirmed", this.forumProfile);
         } else {
           this.displayError();
