@@ -74,9 +74,8 @@ module.exports = {
     //
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
     baseURL: "http://venue-service/api",
-    //baseURL: "http://localhost:8000/api",
     browserBaseURL: "/api"
-    
+    // baseURL: "http://localhost:8000/api"
   },
   buefy: {
     materialDesignIcons: false,
