@@ -1,6 +1,6 @@
 module.exports = {
   router: {
-    middleware: 'stats'
+    middleware: "stats"
   },
   /*
   ** Headers of the page
@@ -69,7 +69,7 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
   axios: {
     // FIXME This should be set as an env variable, but I'm not able to get it to work.
     // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
@@ -77,9 +77,11 @@ module.exports = {
     //
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
     baseURL: "http://venue-service/api",
-    // baseURL: "http://localhost:8000/api"
     browserBaseURL: "/api"
-    
+    // baseURL: "http://localhost:8000/api"
+  },
+  "google-analytics": {
+    id: "UA-119876313-3"
   },
   buefy: {
     materialDesignIcons: false,
