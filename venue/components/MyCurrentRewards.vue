@@ -28,7 +28,7 @@ export default {
     const hasStats =
       this.$store.state.user.isAuthenticated &&
       this.$store.state.userStats.fresh === false;
-    
+
     if (this.hasCampaignData && hasStats) {
       Object.assign(data, {
         myTokens: numeral(

@@ -23,12 +23,16 @@ export default {
     const hasStats =
       this.$store.state.user.isAuthenticated &&
       this.$store.state.userStats.fresh === false;
-      
+
     if (hasStats) {
       Object.assign(data, {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens
         ).format()
+      });
+    } else {
+      Object.assign(data, {
+        myTokens: 0
       });
     }
     return data;

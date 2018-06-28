@@ -22,7 +22,6 @@
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">Choose your signature</label>
             <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures"/>
-            <button class="button is-primary" @click="doNext">NEXT</button>
           </div>
         </div>        
       </form>
