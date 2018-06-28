@@ -25,7 +25,11 @@ export default {
       bonus: 0,
       myTokens: 0
     };
-    if (this.hasCampaignData) {
+    const hasStats =
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
+    
+    if (this.hasCampaignData && hasStats) {
       Object.assign(data, {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens

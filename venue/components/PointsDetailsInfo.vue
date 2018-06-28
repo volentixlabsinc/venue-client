@@ -50,7 +50,11 @@ export default {
       myTokens: -1,
       availableTokens: -1
     };
-    if (this.$store.state.user.isAuthenticated) {
+    const hasStats =
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
+
+    if (hasStats) {
       Object.assign(data, {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens

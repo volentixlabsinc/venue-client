@@ -32,7 +32,11 @@ export default {
     const data = {
       signatures: []
     };
-    if (store.state.user.isAuthenticated) {
+    const hasStats =
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
+
+    if (hasStats) {
       const forumProfiles = await app.$axios.$get("/retrieve/forum-profiles/", {
         params: {
           forum_id: 1,
