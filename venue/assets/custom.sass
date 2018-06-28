@@ -1,0 +1,15 @@
+
+// This would need to be enabled if we add a navbar along the top
+// $navbar-height: 3.25rem
+$navbar-height: 0rem
+
+.columns
+  &.is-fullheight
+    min-height: calc(100vh - ( #{$navbar-height} - .75rem ) )
+    max-height: calc(100vh - ( #{$navbar-height} - .75rem ) )
+    height: calc(100vh - ( #{$navbar-height} - .75rem ) )
+    display: flex
+    flex-direction: row
+    justify-content: stretch
+    .column
+      overflow-y: auto

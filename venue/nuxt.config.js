@@ -62,6 +62,7 @@ module.exports = {
   },
   css: [
     { src: "~/assets/custom.css", lang: "css" },
+    { src: "~/assets/custom.sass", lang: "sass" },
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
