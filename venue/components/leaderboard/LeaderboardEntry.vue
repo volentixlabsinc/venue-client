@@ -24,7 +24,7 @@
         class="tokens-unity">VTX</td>
       <td 
         :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
-        class="expand"><i class="fas fa-chevron-down"/></td>
+        class="expand"><i :class="[toggleDescription ? 'fa-chevron-down' : 'fa-chevron-right', fas]" class="fas"/></td>
     </tr>
         
     <tr v-if="toggleDescription" class="toggleDescription">
@@ -99,6 +99,11 @@ export default {
 </script>
 
 <style scoped>
+tr {
+  /* Without this, expanding and contracting the description bar creates gap on right side;
+     no idea why this solves it */
+  box-sizing: content-box !important;
+}
 td {
   font-size: 18px;
   padding: 5px;
