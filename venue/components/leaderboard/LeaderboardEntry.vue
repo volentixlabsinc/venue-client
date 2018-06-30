@@ -24,7 +24,7 @@
         class="tokens-unity">VTX</td>
       <td 
         :style="[toggleDescription ? {'border-bottom': 'none'} : { 'border-bottom': '1px solid #94A8B6'}]"
-        class="expand"><i :class="[toggleDescription ? 'fa-chevron-down' : 'fa-chevron-right', fas]" class="fas"/></td>
+        class="expand"><i :class="[toggleDescription ? 'fa-chevron-down' : 'fa-chevron-right']" class="fas"/></td>
     </tr>
         
     <tr v-if="toggleDescription" class="toggleDescription">
