@@ -31,6 +31,7 @@ import Language from "~/components/myProfile/Language.vue";
 import TwoFactor from "~/components/myProfile/TwoFactor.vue";
 
 export default {
+  middleware: "authenticated",
   components: {
     OneColumnLayout,
     WalletAddress,

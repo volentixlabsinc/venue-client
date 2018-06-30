@@ -19,6 +19,7 @@ import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import MyCampaignActivityCard from "~/components/MyCampaignActivityCard.vue";
 
 export default {
+  middleware: "authenticated",
   components: {
     TwoColumnLayout,
     PointsDetailsInfo,

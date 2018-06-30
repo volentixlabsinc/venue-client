@@ -1,7 +1,4 @@
 module.exports = {
-  router: {
-    middleware: "stats"
-  },
   /*
   ** Headers of the page
   */

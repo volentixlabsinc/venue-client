@@ -28,6 +28,7 @@ export default {
     AvailableSignatures,
     CampaignRightPanel
   },
+  middleware: "authenticated",
   async asyncData({ app, store }) {
     const data = {
       signatures: []
