@@ -18,7 +18,7 @@ import numeral from "numeral";
 export default {
   data() {
     const data = {
-      isAuthenticated: this.$store.state.user.isAuthenticated
+      myTokens: 0
     };
     const hasStats =
       this.$store.state.user.isAuthenticated &&
@@ -29,10 +29,6 @@ export default {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens
         ).format()
-      });
-    } else {
-      Object.assign(data, {
-        myTokens: 0
       });
     }
     return data;
