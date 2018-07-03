@@ -2,7 +2,7 @@
   <div class="m-lg">
     <div class="columns">
       <div class="column">
-        <LeaderboardCard class="column"/>
+        <LeaderboardCard />
       </div>
       <div class="column">
         <CampaignInfoCard />
