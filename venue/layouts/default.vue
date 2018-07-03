@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns is-fullheight is-hidden-mobile">
-      <aside class="navbar column is-one-fifth-desktop">
+      <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
         <!-- <SocialMediaLinks class="level" /> -->
