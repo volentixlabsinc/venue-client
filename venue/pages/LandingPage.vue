@@ -2,7 +2,7 @@
   <div class="m-lg">
     <div class="columns">
       <div class="column">
-        <LeaderboardCard />
+        <LeaderboardCard class="column"/>
       </div>
       <div class="column">
         <CampaignInfoCard />
@@ -12,8 +12,28 @@
         <LandingPageMyRewardsCard v-else/>
       </div>
     </div>
-    <div v-for="(el, LandingPage) in contents" :key="LandingPage">
-      <LandingPage-sections :title="el.title" :content="el.content" :is-authenticated="isAuthenticated"/>
+    <h2 class="title">Campaigns</h2>
+    <div class="tile is-ancestor">
+      <LandingPageItem name="Bitcoin Talk" info="Join now" link="/signup"/>
+      <LandingPageItem name="Facebook" info="Coming soon" />
+      <LandingPageItem name="Telegram" info="Coming soon" />
+      <LandingPageItem name="Twitter" info="Coming soon" />
+    </div>
+
+    <h2 class="title">Bounties</h2>
+    <div class="tile is-ancestor">
+      <LandingPageItem name="Venue" info="Coming soon"/>
+      <LandingPageItem name="Vespucci" info="Coming soon" />
+      <LandingPageItem name="Verto" info="Coming soon" />
+      <LandingPageItem name="VDex" info="Coming soon" />
+    </div>
+
+    <h2 class="title">Proposals</h2>
+    <div class="tile is-ancestor">
+      <LandingPageItem name="VLabs" info="Coming soon"/>
+      <LandingPageItem name="Public" info="Coming soon" />
+      <LandingPageItem name="Accepted" info="Coming soon" />
+      <LandingPageItem name="Complete" info="Coming soon" />
     </div>
   </div>
 </template>
@@ -21,50 +41,48 @@
 <script>
 import LeaderboardCard from "~/components/LeaderboardCard.vue";
 import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
-import LandingPageSections from "~/components/LandingPageSections.vue";
 import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
 import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
-import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
+import LandingPageItem from "~/components/LandingPageItem.vue";
 
 export default {
   components: {
     LeaderboardCard,
     CampaignInfoCard,
-    LandingPageSections,
     LandingPageJoinCampaign,
-    CampaignRightPanel,
-    LandingPageMyRewardsCard
+    LandingPageMyRewardsCard,
+    LandingPageItem
   },
   data() {
     return {
       ready: false,
       isAuthenticated: this.$store.state.user.isAuthenticated,
       contents: [
-        {
-          title: "Campaigns",
-          content: [
-            {
-              text: "Bitcointalk",
-              linkText: "Join",
-              disabled: false
-            },
-            {
-              text: "Facebook",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Reddit",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Twitter",
-              linkText: "Coming Soon",
-              disabled: true
-            }
-          ]
-        },
+        // {
+        //   title: "Campaigns",
+        //   content: [
+        //     {
+        //       text: "Bitcointalk",
+        //       linkText: "Join",
+        //       disabled: false
+        //     },
+        //     {
+        //       text: "Facebook",
+        //       linkText: "Coming Soon",
+        //       disabled: true
+        //     },
+        //     {
+        //       text: "Reddit",
+        //       linkText: "Coming Soon",
+        //       disabled: true
+        //     },
+        //     {
+        //       text: "Twitter",
+        //       linkText: "Coming Soon",
+        //       disabled: true
+        //     }
+        //   ]
+        // },
 
         {
           title: "Bounties",
