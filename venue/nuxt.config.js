@@ -92,7 +92,7 @@ module.exports = {
     "~/plugins/vue-clipboard",
     // We currently don't use any Buefy components; when we do, we should include them individually
     // "~/plugins/buefy",
-    "~/plugins/token",
+    "~/plugins/axios",
     "~/plugins/vee-validate",
     { src: "~/plugins/vue-js-modal.js", ssr: false }
   ]
