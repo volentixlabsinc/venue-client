@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <h2 class="card-header-title">MY CAMPAIGN ACTIVITY</h2>
+      <div class="card-header-title">MY CAMPAIGN ACTIVITY</div>
     </header>
     <div class="card-content">
       <UserStats :show-rank="showRank" />
