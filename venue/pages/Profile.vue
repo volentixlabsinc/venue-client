@@ -2,18 +2,18 @@
   <one-column-layout>
     <div>
       <h1 class="title is-2">MY PROFILE</h1>
-      <div v-if="userInfo" class="columns">
+      <div class="columns">
         <div class="column">
-          <wallet-address/>
-          <account-password/>
+          <ProfileWalletAddress/>
+          <ProfilePassword class="m-t-lg"/>
         </div>
         <div class="column">
-          <email-address :user-info="userInfo.email"/>
-          <language />
+          <ProfileEmailAddress/>
+          <ProfileLanguage class="m-t-lg"/>
         </div>
         <div class="column">
-          <account-username :user-info="userInfo.username"/>
-          <two-factor/>
+          <ProfileUsername/>
+          <ProfileTwoFactor class="m-t-lg"/>
         </div>
       </div>
     </div>
@@ -23,32 +23,23 @@
 
 <script>
 import OneColumnLayout from "~/components/OneColumnLayout.vue";
-import WalletAddress from "~/components/myProfile/WalletAddress.vue";
-import AccountPassword from "~/components/myProfile/AccountPassword.vue";
-import AccountUsername from "~/components/myProfile/AccountUsername.vue";
-import EmailAddress from "~/components/myProfile/EmailAddress.vue";
-import Language from "~/components/myProfile/Language.vue";
-import TwoFactor from "~/components/myProfile/TwoFactor.vue";
+import ProfileWalletAddress from "~/components/ProfileWalletAddress.vue";
+import ProfilePassword from "~/components/ProfilePassword.vue";
+import ProfileUsername from "~/components/ProfileUsername.vue";
+import ProfileEmailAddress from "~/components/ProfileEmailAddress.vue";
+import ProfileLanguage from "~/components/ProfileLanguage.vue";
+import ProfileTwoFactor from "~/components/ProfileTwoFactor.vue";
 
 export default {
   middleware: "authenticated",
   components: {
     OneColumnLayout,
-    WalletAddress,
-    AccountPassword,
-    AccountUsername,
-    EmailAddress,
-    Language,
-    TwoFactor
-  },
-  data() {
-    return {
-      userInfo: null
-    };
-  },
-  async asyncData({ app }) {
-    const userInfo = await app.$axios.$get("/retrieve/user/");
-    return { userInfo };
+    ProfileWalletAddress,
+    ProfilePassword,
+    ProfileUsername,
+    ProfileEmailAddress,
+    ProfileLanguage,
+    ProfileTwoFactor
   }
 };
 </script>

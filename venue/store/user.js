@@ -3,15 +3,17 @@ import Cookies from "js-cookie";
 export const state = () => ({
   userId: undefined,
   username: "",
+  email: "",
   language: "en",
   isAuthenticated: false,
   token: ""
 });
 
 export const mutations = {
-  authenticated(state, { userId, username, language, token }) {
+  authenticated(state, { userId, username, email, language, token }) {
     state.userId = userId;
     state.username = username;
+    state.email = email;
     state.language = language;
     state.isAuthenticated = true;
     state.token = token;
@@ -29,5 +31,19 @@ export const mutations = {
 
     this.$axios.setToken(false);
     Cookies.remove("venue");
+  },
+
+  setUserData(state, { username, email, language }) {
+    state.username = username;
+    state.email = email;
+    state.language = language;
+  },
+
+  updateUsername(state, username) {
+    state.username = username;
+  },
+
+  updateEmail(state, email) {
+    state.email = email;
   }
 };

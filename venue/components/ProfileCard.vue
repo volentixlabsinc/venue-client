@@ -1,27 +1,28 @@
 <template>
-  <div class="panel">
-    <h2 class="panel-heading">{{ title }}</h2>
+  <div class="card">
+    <header class="card-header">
+      <h2 class="card-header-title">{{ title }}</h2>
+    </header>
     <div id="content" class="panel-block">
       <div>
         <div>{{ description }}</div>
-        <span v-if="comingSoon" class="tag is-bluegrey-light m-t-md">Coming Soon</span>
       </div>
     </div>
      
-    <div class="panel-block">
-      <a :disabled="comingSoon" class="button is-fullwidth is-primary" @click="$emit('activateModal', setting)">{{ button }}</a>
-    </div>
-    
+    <footer class="card-footer">
+      <a v-if="!comingSoon" class="card-footer-item" @click="$emit('clicked')">{{ button }}
+        <span class="icon p-l-sm"><i class="fas fa-edit"/></span>
+      </a>
+      <div v-else class="card-footer-item" >
+        <span v-if="comingSoon" class="tag">Coming Soon</span>
+      </div>
+    </footer> 
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    setting: {
-      type: String,
-      default: ""
-    },
     title: {
       type: String,
       default: ""
@@ -31,10 +32,6 @@ export default {
       default: ""
     },
     button: {
-      type: String,
-      default: ""
-    },
-    href: {
       type: String,
       default: ""
     },
@@ -48,6 +45,6 @@ export default {
 
 <style>
 #content {
-  height: 8em;
+  height: 6rem;
 }
 </style>
