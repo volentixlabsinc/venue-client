@@ -15,9 +15,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.image {
-  max-width: 12rem;
-}
-</style>
