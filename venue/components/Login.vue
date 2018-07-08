@@ -18,9 +18,13 @@
           <input v-validate="'required|regex:[^]*'" v-model="password" class="input" type="password" name="password">
         </div>
       </div>
-      <button 
-        type="submit" 
-        class="button is-primary is-fullwidth m-t-lg">Log In</button>
+      <div class="field">
+        <div class="control">
+          <button 
+            type="submit" 
+            class="button is-primary">Log In</button>
+        </div>
+      </div>
     </form>
 
     <FeedbackModal v-show="ready"/>
@@ -110,3 +114,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+input {
+  max-width: 30rem;
+}
+</style>

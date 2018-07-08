@@ -1,5 +1,5 @@
 <template>
-  <div class="log-in-element">
+  <div>
     <h3 class="title">SIGNUP</h3>
     <form method="POST" @submit="checkEmail($event)">
       <ul>
@@ -29,11 +29,19 @@
           <input v-validate="{is: password}" v-model="confirmation" class="input" type="password" name="confirmation">
         </div>
       </div>
-      <label class="checkbox">
-        <input type="checkbox" name="newsletter">
-        Also add me to your newsletter distribution list
-      </label>
-      <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input type="checkbox" name="newsletter">
+            Also add me to your newsletter distribution list
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary">Sign Up</button>
+        </div>
+      </div>
     </form>
     <FeedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
@@ -108,3 +116,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+input {
+  max-width: 30rem;
+}
+</style>
