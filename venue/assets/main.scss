@@ -51,7 +51,8 @@ $navbar-item-hover-background-color: #374a59;
 // 5. Add new color variables to the color map.
 @import "~bulma/sass/utilities/derived-variables";
 $addColors: (
-  "venue-purple":($venue-purple, $venue-purple-invert)
+  "venue-purple":($venue-purple, $venue-purple-invert),
+  "bluegrey-light":($bluegrey-light, findColorInvert($bluegrey-light))
 );
 $colors: map-merge($colors, $addColors);
 

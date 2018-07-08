@@ -4,7 +4,7 @@
     <div id="content" class="panel-block">
       <div>
         <div>{{ description }}</div>
-        <span v-if="comingSoon" class="tag is-warning m-t-md">Coming Soon</span>
+        <span v-if="comingSoon" class="tag is-bluegrey-light m-t-md">Coming Soon</span>
       </div>
     </div>
      
