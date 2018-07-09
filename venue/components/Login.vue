@@ -7,10 +7,10 @@
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
       <b-field label="Username">
-        <b-input v-validate="'required'" v-model="username" type="text" icon-pack="fas" name="username"/>
+        <b-input v-model="username" type="text" icon-pack="fas" required/>
       </b-field>
       <b-field label="Password">
-        <b-input v-model="password" type="password" name="password" icon-pack="fas" password-reveal/>
+        <b-input v-model="password" type="password" icon-pack="fas" required password-reveal/>
       </b-field>
       <b-field>
         <div class="control">
@@ -19,9 +19,30 @@
             class="button is-primary">Log In</button>
         </div>
       </b-field>
+      <a href="#" @click="isForgotPasswordModalActive = true">Forgot password?</a>
     </form>
 
     <FeedbackModal v-show="ready"/>
+    
+    <b-modal :active.sync="isForgotPasswordModalActive">
+      <form class="card">
+        <header class="card-header">
+          <div class="card-header-title">Reset password</div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div>Forgot your password? No problem. Enter your email address and we'll send you a reset code.</div>
+            <b-field label="Email">
+              <b-input v-model="email" type="email" icon-pack="fas" required/>
+            </b-field>
+          </div> 
+        </div>
+        <footer class="card-footer">
+          <a class="card-footer-item" @click="isForgotPasswordModalActive = false">Cancel</a>
+          <a class="card-footer-item" type="submit" @click="resetPassword">Reset password</a>
+        </footer>
+      </form>
+    </b-modal>
   </div>
 </template>
 
@@ -41,11 +62,13 @@ export default {
       loginError: false,
       username: "",
       password: "",
+      email: "",
       showMessageError: {
         error: true,
         message: "",
         authResponse: null
-      }
+      },
+      isForgotPasswordModalActive: false
     };
   },
   mounted() {
@@ -104,7 +127,22 @@ export default {
         this.showMessageError.message =
           "Your email address has not been verified. Please check your email account.";
       }
+    },
+    async resetPassword() {
+      const authResponse = await this.$axios.$post("/manage/reset-password/", {
+        action: "request",
+        email: this.email
+      });
+      if (authResponse.success === true) {
+        this.isForgotPasswordModalActive = false;
+      }
     }
   }
 };
 </script>
+
+<style scoped>
+form > a {
+  text-decoration: underline;
+}
+</style>
