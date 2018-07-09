@@ -7,7 +7,7 @@
         </header>
         <section class="modal-card-body">
           <b-field label="New password">
-            <b-input v-model="newValue" placeholder="Enter password" type="password" required password-reveal/>
+            <b-input v-model="newValue" placeholder="Enter password" icon-pack="fas" type="password" required password-reveal/>
           </b-field>
         </section>
         <footer class="modal-card-foot">

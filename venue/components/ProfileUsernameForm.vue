@@ -11,7 +11,7 @@
             <span>{{ value }}</span>
           </b-field>
           <b-field label="New username">
-            <b-input v-model="newValue" :placeholder="value" type="text" required />
+            <b-input v-model="newValue" :placeholder="value" icon-pack="fas" type="text" required />
           </b-field>
         </section>
         <footer class="modal-card-foot">

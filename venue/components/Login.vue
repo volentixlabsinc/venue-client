@@ -6,25 +6,19 @@
       <ul>
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
-      <div class="field">
-        <label class="label">Username</label>
-        <div class="control">
-          <input v-validate="'required'" v-model="username" type="text" class="input" name="username">
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Password</label>
-        <div class="control">
-          <input v-validate="'required|regex:[^]*'" v-model="password" class="input" type="password" name="password">
-        </div>
-      </div>
-      <div class="field">
+      <b-field label="Username">
+        <b-input v-validate="'required'" v-model="username" type="text" icon-pack="fas" name="username"/>
+      </b-field>
+      <b-field label="Password">
+        <b-input v-model="password" type="password" name="password" icon-pack="fas" password-reveal/>
+      </b-field>
+      <b-field>
         <div class="control">
           <button 
             type="submit" 
             class="button is-primary">Log In</button>
         </div>
-      </div>
+      </b-field>
     </form>
 
     <FeedbackModal v-show="ready"/>
@@ -114,9 +108,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-input {
-  max-width: 30rem;
-}
-</style>

@@ -4,3 +4,4 @@ import Buefy from "buefy";
 Vue.component(Buefy.Modal.name, Buefy.Modal);
 Vue.component(Buefy.Field.name, Buefy.Field);
 Vue.component(Buefy.Input.name, Buefy.Input);
+Vue.component(Buefy.Checkbox.name, Buefy.Checkbox);
