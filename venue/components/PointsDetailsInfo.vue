@@ -12,14 +12,6 @@
             
       <div class="is-size-5">Your total posts X {{ multiplier }} = <u>{{ myPoints }} points </u></div>
       <div class="is-size-5">Your total points X {{ vtxPerPoint }} = {{ myTokens }} VTX</div>
-      
-      <h2 class="title is-title-2 m-t-lg">Upcoming points (posts) </h2>
-      <div class="level">
-        <span class="level-item is-size-4">{{ upComingPosts }} Posts</span>
-        <span class="level-item is-size-4">{{ upComingPostPoints }} Points</span>
-      </div>
-      
-      <div class="is-size-5 is-italic">Each post is required to mature for 24 hours (with signature) before points are awarded</div>
     </div>
 </div></template>
 
@@ -41,8 +33,6 @@ export default {
       myPoints: undefined,
       myVTX: undefined,
       multiplier: undefined,
-      upComingPostPoints: undefined,
-      upComingPosts: undefined,
       totalPosts: undefined,
       myPosts: undefined,
       position: undefined,
@@ -99,8 +89,6 @@ export default {
       );
       this.myPoints = this.pointsBreakDown.user_stats.total_post_points;
       this.myPosts = this.pointsBreakDown.user_stats.total_posts;
-      this.upComingPostPoints = this.pointsBreakDown.user_stats.upcoming_post_points;
-      this.upComingPosts = this.pointsBreakDown.user_stats.upcoming_posts;
       this.bonus = this.pointsBreakDown.sitewide_stats.bonus_points;
       this.upComingPostPoints = this.pointsBreakDown.user_stats.upcoming_post_points;
       this.upComingPosts = this.pointsBreakDown.user_stats.upcoming_posts;
