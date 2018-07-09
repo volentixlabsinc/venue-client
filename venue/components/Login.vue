@@ -7,7 +7,7 @@
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
       <b-field label="Username">
-        <b-input v-model="username" type="text" icon-pack="fas" required/>
+        <b-input v-model="username" type="text" maxlength="25" icon-pack="fas" !has-counter required/>
       </b-field>
       <b-field label="Password">
         <b-input v-model="password" type="password" icon-pack="fas" required password-reveal/>

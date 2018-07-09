@@ -12,7 +12,7 @@
         <b-input v-model="username" icon-pack="fas" name="username" required />
       </b-field>
       <b-field label="Password">
-        <b-input v-model="password" minlength="6" type="password" name="password" icon-pack="fas" required reveal-password/>
+        <b-input v-model="password" minlength="6" maxlength="25" type="password" name="password" icon-pack="fas" !has-counter required reveal-password/>
       </b-field>
       <div class="field">
         <b-checkbox v-model="newsletter" icon-pack="fas">Also add me to your newsletter distribution list</b-checkbox>
