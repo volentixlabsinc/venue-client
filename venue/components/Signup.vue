@@ -17,6 +17,9 @@
       <div class="field">
         <b-checkbox v-model="newsletter" icon-pack="fas">Also add me to your newsletter distribution list</b-checkbox>
       </div>
+      <div class="field">
+        By signing up, you agree to the Volentix <a href="https://www.volentix.io/privacy.html" target="_blank">privacy policy</a> and <a href="https://www.volentix.io/terms.html" target="_blank">terms of use</a>.
+      </div>
       <b-field>
         <button class="button is-primary" type="submit">Sign Up</button>
       </b-field>
@@ -96,5 +99,9 @@ export default {
 <style scoped>
 input {
   max-width: 30rem;
+}
+
+a {
+  text-decoration: underline;
 }
 </style>
