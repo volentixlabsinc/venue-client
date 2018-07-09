@@ -1,5 +1,5 @@
 <template>
-  <my-profile-setting :coming-soon="true" title="Language" description="Set the site language" button="Set Language"/>
+  <ProfileCard :coming-soon="true" title="Language" description="Set the site language" button="Set Language"/>
   <!-- <b-dropdown class="card-footer-item" >
     <button slot="trigger" class="button is-white">
       <span>Languages</span>
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import MyProfileSetting from "~/components/MyProfileSetting.vue";
+import ProfileCard from "~/components/ProfileCard.vue";
 
 export default {
   components: {
-    MyProfileSetting
+    ProfileCard
   }
   // TODO Support changing languages
   // methods: {

@@ -5,7 +5,7 @@
       <div class="level-right">
         <span class="is-size-3">{{ myTokens }} VTX</span>
         <a class="button is-info is-outlined" @click="onClickDetails">
-          <span class="icon"><i class="fas fa-info-circle"/></span>
+          <span class="icon p-l-sm"><i class="fas fa-info-circle"/></span>
         </a>
       </div>
     </div>
