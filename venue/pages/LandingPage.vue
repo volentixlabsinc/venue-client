@@ -2,7 +2,7 @@
   <div class="m-lg">
     <div class="columns">
       <div class="column">
-        <LeaderboardCard />
+        <LeaderboardCard :paginated="false" limit="5"/>
       </div>
       <div class="column">
         <CampaignInfoCard />

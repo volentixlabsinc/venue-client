@@ -7,16 +7,30 @@
       </a>
     </header>
     <!-- TODO Determine the limit based on screen size -->
-    <Leaderboard :shortened-leaderboard="true" :limit="7" class="card-content"/>
+    <Leaderboard :limit="limit" :paginated="paginated" :per-page="perPage" class="card-content"/>
   </div> 
 </template>
 
 <script>
-import Leaderboard from "~/components/leaderboard/index.vue";
+import Leaderboard from "~/components/Leaderboard.vue";
 
 export default {
   components: {
     Leaderboard
+  },
+  props: {
+    paginated: {
+      type: Boolean,
+      default: true
+    },
+    limit: {
+      type: Number,
+      default: undefined
+    },
+    perPage: {
+      type: Number,
+      default: 5
+    }
   },
   methods: {
     onClickLeaderboard() {

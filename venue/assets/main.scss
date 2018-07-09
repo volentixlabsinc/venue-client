@@ -34,6 +34,10 @@ $link-hover: $venue-purple;
 $navbar-background-color: $bluegrey;
 $navbar-item-color: $bluegrey-medium;
 
+$table-background-color: inherit;
+$table-row-active-background-color: $bluegrey-light;
+$table-row-active-color: $grey-darker;
+
 // TODO Understand why this isn't being picked up (I set it in CSS now)
 // $navbar-burger-color: $bluegrey-light;
 
