@@ -129,10 +129,13 @@ export default {
       }
     },
     async resetPassword() {
-      this.authResponse = await this.$axios.$post("/manage/reset-password/", {
-        action: "trigger",
+      const authResponse = await this.$axios.$post("/manage/reset-password/", {
+        action: "request",
         email: this.email
       });
+      if (authResponse.success === true) {
+        this.isForgotPasswordModalActive = false;
+      }
     }
   }
 };
