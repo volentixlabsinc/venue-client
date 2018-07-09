@@ -1,39 +1,28 @@
 <template>
-  <div class="log-in-element">
+  <div>
     <h3 class="title">SIGNUP</h3>
-    <form method="POST" @submit="checkEmail($event)">
+    <form method="POST" @submit.prevent="registerUser">
       <ul>
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
+      <b-field label="Email">
+        <b-input v-model="email" type="email" icon-pack="fas" name="email" required/>
+      </b-field>
+      <b-field label="Username">
+        <b-input v-model="username" icon-pack="fas" name="username" required />
+      </b-field>
+      <b-field label="Password">
+        <b-input v-model="password" minlength="6" type="password" name="password" icon-pack="fas" required reveal-password/>
+      </b-field>
       <div class="field">
-        <label class="label">Email</label>
-        <div class="control">
-          <input v-validate="'required|email'" v-model="email" class="input" type="email" name="email">
-        </div>
+        <b-checkbox v-model="newsletter" icon-pack="fas">Also add me to your newsletter distribution list</b-checkbox>
       </div>
       <div class="field">
-        <label class="label">Username</label>
-        <div class="control">
-          <input v-validate="'required'" v-model="username" class="input" name="username">
-        </div>
+        By signing up, you agree to the Volentix <a href="https://www.volentix.io/privacy.html" target="_blank">privacy policy</a> and <a href="https://www.volentix.io/terms.html" target="_blank">terms of use</a>.
       </div>
-      <div class="field">
-        <label class="label">Password</label>
-        <div class="control">
-          <input v-validate="'required|min:6'" v-model="password" class="input" type="password" name="password">
-        </div>
-      </div>
-      <div class="field">
-        <label class="label">Confirm password</label>
-        <div class="control">
-          <input v-validate="{is: password}" v-model="confirmation" class="input" type="password" name="confirmation">
-        </div>
-      </div>
-      <label class="checkbox">
-        <input type="checkbox" name="newsletter">
-        Also add me to your newsletter distribution list
-      </label>
-      <button class="button is-primary is-fullwidth m-t-lg">Sign Up</button>
+      <b-field>
+        <button class="button is-primary" type="submit">Sign Up</button>
+      </b-field>
     </form>
     <FeedbackModal v-if="ready" @feedbackEmits="recieveAction"/>
   </div>
@@ -47,22 +36,20 @@ export default {
   },
   data() {
     return {
+      ready: false,
       email: "",
       username: "",
       password: "",
-      confirmation: "",
       signUpError: false,
-      newsletter: false,
-      ready: false,
-      getActionFromFeedback: true
+      newsletter: false
     };
   },
   mounted() {
     this.ready = true;
   },
   methods: {
-    checkEmail: async function(event) {
-      event.preventDefault();
+    // TODO Call this after username is entered
+    async checkEmail() {
       const params = {
         email: this.email
       };
@@ -79,7 +66,7 @@ export default {
         this.registerUser();
       }
     },
-    registerUser: async function() {
+    async registerUser() {
       this.signUpError = false;
       const result = await this.$axios.$post("create/user/", {
         email: this.email,
@@ -108,3 +95,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+input {
+  max-width: 30rem;
+}
+
+a {
+  text-decoration: underline;
+}
+</style>

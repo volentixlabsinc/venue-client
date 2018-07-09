@@ -59,6 +59,8 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
+  padding-right: 0px;
+  border-right: 8px #e0e5e9 solid;
 }
 
 // TODO Understand why $navbar-burger-color isn't working

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <h2 class="card-header-title">MY CAMPAIGN ACTIVITY</h2>
+      <div class="card-header-title">MY CAMPAIGN ACTIVITY</div>
     </header>
     <div class="card-content">
       <UserStats :show-rank="showRank" />
@@ -9,11 +9,11 @@
       <MyCurrentRewards/>
     </div>
     <div class="card-footer">
-      <a v-if="(showDetailsButton && hasCampaignData)" class="is-info is-outlined card-footer-item" @click="onClickDetails">
-        <span>View details</span><span class="icon"><i class="fas fa-info-circle"/></span>
+      <a v-if="(showDetailsButton && hasCampaignData)" class="card-footer-item" @click="onClickDetails">
+        <span>View details</span><span class="icon p-l-sm"><i class="fas fa-info-circle"/></span>
       </a>
       <a v-if="hasCampaignData" class="card-footer-item" @click="onClickSignature">
-        <span>Edit signature</span><span class="icon"><i class="fas fa-edit"/></span>
+        <span>Edit signature</span><span class="icon p-l-sm"><i class="fas fa-edit"/></span>
       </a>
     </div>
 </div></template> 

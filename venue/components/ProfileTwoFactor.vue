@@ -1,5 +1,5 @@
 <template>
-  <my-profile-setting
+  <ProfileCard
     :coming-soon="true"
     title="Two-Factor Authentication"
     description="Modify two-factor authentication"
@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import MyProfileSetting from "~/components/MyProfileSetting.vue";
+import ProfileCard from "~/components/ProfileCard.vue";
 
 export default {
   components: {
-    MyProfileSetting
+    ProfileCard
   }
 };
 </script>

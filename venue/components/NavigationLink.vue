@@ -30,5 +30,6 @@ export default {
 .nuxt-link-exact-active {
   color: white;
   background-color: #374a59;
+  border-left: 5px #84429a solid;
 }
 </style>
