@@ -7,10 +7,10 @@
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
       <b-field label="Username">
-        <b-input v-model="username" type="text" maxlength="25" icon-pack="fas" !has-counter required/>
+        <b-input v-model="username" type="text" required/>
       </b-field>
       <b-field label="Password">
-        <b-input v-model="password" type="password" icon-pack="fas" required password-reveal/>
+        <b-input v-model="password" type="password" required password-reveal/>
       </b-field>
       <b-field>
         <div class="control">
@@ -33,7 +33,7 @@
           <div class="content">
             <div>Forgot your password? No problem. Enter your email address and we'll send you a reset code.</div>
             <b-field label="Email">
-              <b-input v-model="email" type="email" icon-pack="fas" required/>
+              <b-input v-model="email" type="email" required/>
             </b-field>
           </div> 
         </div>

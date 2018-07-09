@@ -6,16 +6,16 @@
         <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
       </ul>
       <b-field label="Email">
-        <b-input v-model="email" type="email" icon-pack="fas" name="email" required/>
+        <b-input v-model="email" type="email" name="email" required/>
       </b-field>
       <b-field label="Username">
-        <b-input v-model="username" icon-pack="fas" name="username" required />
+        <b-input v-model="username" name="username" maxlength="25" required />
       </b-field>
       <b-field label="Password">
-        <b-input v-model="password" minlength="6" maxlength="25" type="password" name="password" icon-pack="fas" !has-counter required reveal-password/>
+        <b-input v-model="password" minlength="6" type="password" name="password" required reveal-password/>
       </b-field>
       <div class="field">
-        <b-checkbox v-model="newsletter" icon-pack="fas">Also add me to your newsletter distribution list</b-checkbox>
+        <b-checkbox v-model="newsletter">Also add me to your newsletter distribution list</b-checkbox>
       </div>
       <div class="field">
         By signing up, you agree to the Volentix <a href="https://www.volentix.io/privacy.html" target="_blank">privacy policy</a> and <a href="https://www.volentix.io/terms.html" target="_blank">terms of use</a>.
