@@ -58,32 +58,6 @@ export default {
       ready: false,
       isAuthenticated: this.$store.state.user.isAuthenticated,
       contents: [
-        // {
-        //   title: "Campaigns",
-        //   content: [
-        //     {
-        //       text: "Bitcointalk",
-        //       linkText: "Join",
-        //       disabled: false
-        //     },
-        //     {
-        //       text: "Facebook",
-        //       linkText: "Coming Soon",
-        //       disabled: true
-        //     },
-        //     {
-        //       text: "Reddit",
-        //       linkText: "Coming Soon",
-        //       disabled: true
-        //     },
-        //     {
-        //       text: "Twitter",
-        //       linkText: "Coming Soon",
-        //       disabled: true
-        //     }
-        //   ]
-        // },
-
         {
           title: "Bounties",
           content: [
@@ -109,7 +83,6 @@ export default {
             }
           ]
         },
-
         {
           title: "Proposals",
           content: [
