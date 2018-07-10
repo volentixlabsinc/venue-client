@@ -1,10 +1,14 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <MySignature :show-change-button="false" />
+      <h1 class="title">EDIT SIGNATURE</h1>
       <div>
-        <h4 class="subtitle">AVAILABLE BITCOIN SIGNATURES</h4>
-        <AvailableSignatures :signatures="signatures"/>
+        <h4 class="subtitle is-4">Current Signature</h4>
+        <img id="signature" :src="currentSignature">
+        <div>
+          <h4 class="subtitle is-4">Available signatures</h4>
+          <AvailableSignatures :signatures="signatures"/>
+        </div>
       </div>
     </div>
     <div slot="right">
@@ -15,7 +19,6 @@
 
 <script>
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import MySignature from "~/components/MySignature";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 
@@ -24,14 +27,14 @@ import { retrieveAvailableSignatures } from "~/assets/utils.js";
 export default {
   components: {
     TwoColumnLayout,
-    MySignature,
     AvailableSignatures,
     CampaignRightPanel
   },
   middleware: "authenticated",
   async asyncData({ app, store }) {
     const data = {
-      signatures: []
+      signatures: [],
+      currentSignature: store.state.signature ? store.state.signature.image : ""
     };
     const hasStats =
       store.state.user.isAuthenticated && store.state.userStats.fresh === false;
