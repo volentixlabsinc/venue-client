@@ -50,12 +50,15 @@ export default {
     }
     return {
       rankings,
-      selected: this.$store.state.user.isAuthenticated
-        ? rankings.find(
-            user =>
-              this.$store.state.userStats.user_level.overall_rank === user.rank
-          )
-        : undefined
+      selected:
+        this.$store.state.user.isAuthenticated &&
+        this.$store.state.userStats.hasCampaignData
+          ? rankings.find(
+              user =>
+                this.$store.state.userStats.user_level.overall_rank ===
+                user.rank
+            )
+          : undefined
     };
   },
   methods: {
