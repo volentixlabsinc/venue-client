@@ -12,7 +12,7 @@
         <b-input v-model="username" name="username" maxlength="25" required />
       </b-field>
       <b-field label="Password">
-        <b-input v-model="password" minlength="6" type="password" name="password" required reveal-password/>
+        <b-input v-model="password" minlength="6" type="password" name="password" required password-reveal/>
       </b-field>
       <div class="field">
         <b-checkbox v-model="newsletter">Also add me to your newsletter distribution list</b-checkbox>
