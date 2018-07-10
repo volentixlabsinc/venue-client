@@ -20,8 +20,9 @@ export default {
     }
   },
   data() {
+    const hasCampaignData = this.$store.state.userStats.hasCampaignData;
     const data = {
-      hasCampaignData: this.$store.state.userStats.hasCampaignData,
+      hasCampaignData,
       bonus: 0,
       myTokens: 0
     };
@@ -29,7 +30,7 @@ export default {
       this.$store.state.user.isAuthenticated &&
       this.$store.state.userStats.fresh === false;
 
-    if (this.hasCampaignData && hasStats) {
+    if (hasCampaignData && hasStats) {
       Object.assign(data, {
         myTokens: numeral(
           this.$store.state.userStats.profile_level[0].VTX_Tokens
@@ -39,11 +40,6 @@ export default {
       });
     }
     return data;
-  },
-  methods: {
-    onClickDetails() {
-      this.$router.push("/PointsDetails");
-    }
   }
 };
 </script>
