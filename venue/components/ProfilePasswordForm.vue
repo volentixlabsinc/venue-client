@@ -6,8 +6,11 @@
           <div class="modal-card-title">Change password</div>
         </header>
         <section class="modal-card-body">
+          <b-field label="Current password">
+            <b-input v-model="currentValue" placeholder="Current password" type="password" required password-reveal/>
+          </b-field>
           <b-field label="New password">
-            <b-input v-model="newValue" placeholder="Enter password" type="password" required password-reveal/>
+            <b-input v-model="newValue" placeholder="New password" type="password" required password-reveal/>
           </b-field>
         </section>
         <footer class="modal-card-foot">
@@ -23,6 +26,7 @@
 export default {
   data() {
     return {
+      currentValue: "",
       newValue: ""
     };
   },
@@ -31,7 +35,8 @@ export default {
       if (this.newValue !== "") {
         // TODO Check for errors
         const result = await this.$axios.$put("/manage/change-password/", {
-          password: this.newValue
+          old_password: this.currentValue,
+          new_password: this.newValue
         });
         if (result.success === true) {
           this.$parent.close();
