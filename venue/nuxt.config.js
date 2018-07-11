@@ -70,16 +70,16 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
+  modules: ["@nuxtjs/axios", "bootstrap-vue/nuxt", "@nuxtjs/google-analytics"],
   axios: {
     // FIXME This should be set as an env variable, but I'm not able to get it to work.
     // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
     // in logs), but still axios is going to localhost :(
-    //
+    // Need to figure out how to toggle for local development.
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
     baseURL: "http://venue-service/api",
-    browserBaseURL: "/api"
     // baseURL: "http://localhost:8000/api"
+    browserBaseURL: "/api"
   },
   "google-analytics": {
     id: "UA-119876313-3"

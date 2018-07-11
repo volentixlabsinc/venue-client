@@ -19,3 +19,6 @@ yarn-error.log
 
 # Nuxt generate
 dist
+
+# Generated kubernetes file should not be saved.
+kube/dev.yml
