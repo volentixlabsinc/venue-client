@@ -7,7 +7,8 @@
       </a>
     </header>
     <!-- TODO Determine the limit based on screen size -->
-    <Leaderboard :limit="limit" :paginated="paginated" :per-page="perPage" class="card-content"/>
+    <Leaderboard :limit="limit" :paginated="paginated" :per-page="perPage" 
+                 :detailed="detailed" class="card-content"/>
   </div> 
 </template>
 
@@ -30,6 +31,10 @@ export default {
     perPage: {
       type: Number,
       default: 5
+    },
+    detailed: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

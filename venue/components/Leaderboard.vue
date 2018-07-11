@@ -1,7 +1,6 @@
 <template>
   <b-table :data="rankings" :selected="selected" :detailed="detailed"
            :per-page="perPage" :paginated="paginated" :mobile-cards="false" striped is-narrow>
-    <!-- <template slot-scope="props" slot="header" /> -->
     <template slot-scope="props">
       <b-table-column field="rank" label="Rank" width="5" numeric>
         {{ props.row.rank }}
