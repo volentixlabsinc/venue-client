@@ -69,10 +69,16 @@ export default {
 
 <style>
 .table tr.is-selected td {
+  /* Without this there is an unexpected bottom line on the bottom of the cell */
   border-color: inherit;
+}
+
+td.chevron-cell {
+  padding-left: 12px; /* This seems to be the default; but best to force it here */
 }
 
 tr.is-selected td.chevron-cell {
   border-left: 5px #84429a solid;
+  padding-left: 7px; /* Subtract 5px from the default padding of 12px */
 }
 </style>
