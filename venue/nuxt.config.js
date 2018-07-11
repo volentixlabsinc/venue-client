@@ -35,7 +35,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: "#3B8070" },
+  loading: { color: "#84429a" },
   /*
   ** Build configuration
   */
@@ -62,7 +62,7 @@ module.exports = {
         "postcss-custom-properties": false
       }
     },
-    vendor: ["axios", "vue-js-modal", "moment", "chart.js", "numeral"]
+    vendor: ["axios", "moment", "chart.js", "numeral"]
   },
   css: [
     { src: "~/assets/custom.css", lang: "css" },
@@ -84,14 +84,5 @@ module.exports = {
   "google-analytics": {
     id: "UA-119876313-3"
   },
-  buefy: {
-    materialDesignIcons: false,
-    defaultIconPack: "fad"
-  },
-  plugins: [
-    "~/plugins/vue-clipboard",
-    "~/plugins/buefy",
-    "~/plugins/axios",
-    { src: "~/plugins/vue-js-modal.js", ssr: false }
-  ]
+  plugins: ["~/plugins/vue-clipboard", "~/plugins/buefy", "~/plugins/axios"]
 };
