@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h1 class="title">POINTS / REWARDS DETAILED INFO</h1>
+  <div class="box">
+    <h1 class="title has-text-centered">POINTS / REWARDS DETAILED INFO</h1>
+    <hr >
     <div class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index" >
         {{ bonus_level.num_posts }} posts sitewide X {{ 100 + bonus_level.bonus_percentage }} = 
@@ -10,10 +11,13 @@
       <div class="subtitle"> {{ availableTokens }} available reward / {{ totalPoints }} points =
       <u><span class="has-text-weight-bold">{{ vtxPerPoint }} VTX per point</span></u></div>
             
-      <div class="is-size-5">Your total posts X {{ multiplier }} = <u>{{ myPoints }} points </u></div>
-      <div class="is-size-5">Your total points X {{ vtxPerPoint }} = {{ myTokens }} VTX</div>
+      <div class="box">
+        <div class="is-size-5">Your total posts X {{ multiplier }} = <u>{{ myPoints }} points </u></div>
+        <div class="is-size-5">Your total points X {{ vtxPerPoint }} = {{ myTokens }} VTX</div>
+      </div>
     </div>
-</div></template>
+  </div>
+</template>
 
 <script>
 import numeral from "numeral";
@@ -96,3 +100,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+div.box div.box {
+  background-color: #e0e5e9;
+}
+</style>
