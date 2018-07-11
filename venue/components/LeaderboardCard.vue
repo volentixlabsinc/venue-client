@@ -2,7 +2,7 @@
   <div class="card">
     <header class="card-header">
       <div class="card-header-title">LEADERBOARD</div>
-      <a class="card-header-icon" @click="onClickLeaderboard">
+      <a class="card-header-icon has-text-light" @click="onClickLeaderboard">
         <span class="icon"><i class="fas fa-chevron-right"/></span>
       </a>
     </header>
@@ -44,9 +44,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-a:hover {
-  color: grey;
-}
-</style>
