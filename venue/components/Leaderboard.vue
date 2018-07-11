@@ -2,7 +2,7 @@
   <b-table :data="rankings" :selected="selected" :detailed="detailed"
            :per-page="perPage" :paginated="paginated" :mobile-cards="false" striped is-narrow>
     <template slot-scope="props">
-      <b-table-column field="rank" label="Rank" width="5" numeric>
+      <b-table-column field="rank" label="#" width="5" numeric>
         {{ props.row.rank }}
       </b-table-column>
       <b-table-column field="username" label="Username">
