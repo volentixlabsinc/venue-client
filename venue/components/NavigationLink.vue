@@ -1,6 +1,6 @@
 <template>
   <router-link :to="route" class="navbar-item">
-    <div class="level">
+    <div class="level" @click="$emit('click')">
       <span class="icon is-large"><i :class="icon" class="fas fa-lg prefix"/></span>
       <span class="is-size-6">{{ name }}</span>
     </div>

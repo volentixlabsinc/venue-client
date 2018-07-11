@@ -22,7 +22,7 @@
           </a>    
         </div>
         <div :class="{ 'is-active': showMenu }" class="navbar-menu">
-          <Navigation/>
+          <Navigation @click="toggleMenu()"/>
         </div>
       </nav>
       <nuxt />
