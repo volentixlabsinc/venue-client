@@ -30,7 +30,7 @@
         </div>        
       </form>
     </div>
-    <div slot="right">
+    <div slot="right" class="is-hidden-mobile">
       <campaign-right-panel/>
     </div>
   </TwoColumnLayout>
