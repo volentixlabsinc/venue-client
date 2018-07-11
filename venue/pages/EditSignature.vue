@@ -5,11 +5,14 @@
       <div>
         <h4 class="subtitle is-4">Current Signature</h4>
         <img id="signature" :src="currentSignature">
-        <div>
+        <div class="m-t-lg">
           <h4 class="subtitle is-4">Available signatures</h4>
-          <AvailableSignatures :signatures="signatures"/>
+          <AvailableSignatures :signatures="signatures" @copied="onCopy($event)"/>
         </div>
       </div>
+      <b-modal :active.sync="isVerifySignatureActive" has-modal-card>
+        <VerifySignature />
+      </b-modal>
     </div>
     <div slot="right">
       <CampaignRightPanel />
@@ -21,6 +24,7 @@
 import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
+import VerifySignature from "~/components/VerifySignature.vue";
 
 import { retrieveAvailableSignatures } from "~/assets/utils.js";
 
@@ -28,13 +32,17 @@ export default {
   components: {
     TwoColumnLayout,
     AvailableSignatures,
-    CampaignRightPanel
+    CampaignRightPanel,
+    VerifySignature
   },
   middleware: "authenticated",
   async asyncData({ app, store }) {
     const data = {
       signatures: [],
-      currentSignature: store.state.signature ? store.state.signature.image : ""
+      currentSignature: store.state.signature
+        ? store.state.signature.image
+        : "",
+      isVerifySignatureActive: false
     };
     const hasStats =
       store.state.user.isAuthenticated && store.state.userStats.fresh === false;
@@ -53,6 +61,12 @@ export default {
     }
 
     return data;
+  },
+  methods: {
+    onCopy: function(sig) {
+      this.$store.commit("signatureCopied", sig);
+      this.isVerifySignatureActive = true;
+    }
   }
 };
 </script>

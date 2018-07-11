@@ -7,7 +7,6 @@
     <div class="column">
       <button class="button is-primary" @click="submitUserId">NEXT</button>
     </div>
-              
   </div>
 </template>
 

@@ -2,7 +2,6 @@
   
   <TwoColumnLayout>
     <div slot="left">
-     
       <form class="card" @submit.prevent>
         <header class="card-header">
           <h1 class="card-header-title title"> STEP {{ step }} </h1>
@@ -11,17 +10,22 @@
           <div v-if="step === 1" class="form-group">
             <h4 class="subtitle">Input your Bitcointalk user ID below and click NEXT.</h4>
            
-            <OnboardingInputUserProfileId @userIdConfirmed="confirmedID"/>
+            <OnboardingInputUserProfileId @userIdConfirmed="userConfirmed"/>
 
             <span v-if="error" style="color:red; display:block;">
               <i class="fas fa-times-circle"/> User not found - please try Again
             </span>
-            <a @click="showIdHelp"><u>How do I find my bitcointalk user id?</u></a>
-            <HelpModal v-if="ready" @userIdConfirmed="confirmedID"/>
+            <a @click="isHelpModalActive = true">How do I find my bitcointalk user id?</a>
+            <b-modal :active.sync="isHelpModalActive" has-modal-card @userIdConfirmed="userConfirmed">
+              <HelpModal />
+            </b-modal>
           </div>
           <div v-if="step === 2" class="form-group step-2">
             <label class="directive">Choose your signature</label>
-            <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures"/>
+            <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures" @copied="onCopy($event)"/>
+            <b-modal :active.sync="isVerifySignatureActive" has-modal-card>
+              <VerifySignature />
+            </b-modal>
           </div>
         </div>        
       </form>
@@ -39,6 +43,7 @@ import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
 import HelpModal from "~/components/HelpModal.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
+import VerifySignature from "~/components/VerifySignature.vue";
 import { retrieveAvailableSignatures, loadUserData } from "~/assets/utils";
 
 const BITCOINTALK_FORUM_ID = 1;
@@ -49,7 +54,8 @@ export default {
     OnboardingInputUserProfileId,
     HelpModal,
     AvailableSignatures,
-    CampaignRightPanel
+    CampaignRightPanel,
+    VerifySignature
   },
   data() {
     return {
@@ -67,7 +73,9 @@ export default {
       showMessageError: {
         error: false,
         message: ""
-      }
+      },
+      isHelpModalActive: false,
+      isVerifySignatureActive: false
     };
   },
   middleware: "authenticated",
@@ -93,9 +101,13 @@ export default {
         forumProfile
       );
     },
-    confirmedID(forumProfile) {
+    userConfirmed(forumProfile) {
       this.retrieveSignature(forumProfile);
       this.doNext();
+    },
+    onCopy: function(sig) {
+      this.$store.commit("signatureCopied", sig);
+      this.isVerifySignatureActive = true;
     },
     async verify() {
       var forum_profile_id = this.$store.getters["forums/byForumId"](
@@ -118,12 +130,13 @@ export default {
 
         this.$router.push("/leaderboard");
       }
-    },
-    showIdHelp() {
-      this.$modal.show("HelpModal", {
-        element: "ID"
-      });
     }
   }
 };
 </script>
+
+<style scoped>
+a {
+  text-decoration: underline;
+}
+</style>

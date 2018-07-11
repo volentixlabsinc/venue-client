@@ -44,9 +44,6 @@ export default {
 </script>
 
 <style scoped>
-/* .level {
-} */
-
 .level-item {
   flex-direction: column;
 }
@@ -55,5 +52,9 @@ export default {
   height: 50px;
   transform: rotate(-10deg);
   margin: -50px 100px 0 -25px;
+}
+
+.box {
+  background-color: #e0e5e9;
 }
 </style>
