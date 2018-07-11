@@ -19,8 +19,6 @@
       <a href="#" @click="isForgotPasswordModalActive = true">Forgot password?</a>
     </form>
 
-    <FeedbackModal v-show="ready"/>
-    
     <b-modal :active.sync="isForgotPasswordModalActive">
       <form class="card">
         <header class="card-header">
@@ -46,16 +44,10 @@
 
 <script>
 import { loadUserData } from "~/assets/utils.js";
-import FeedbackModal from "~/components/FeedbackModal.vue";
 
 export default {
-  components: {
-    FeedbackModal
-  },
   data() {
     return {
-      ready: false,
-      logged: false,
       loginError: false,
       username: "",
       password: "",
@@ -69,25 +61,11 @@ export default {
     };
   },
   mounted() {
-    this.checkConfirmation();
+    if (this.$route.query.email_confirmed == 1) {
+      this.$snackbar.open("Email address verified");
+    }
   },
   methods: {
-    checkConfirmation() {
-      const emailConfirmed = this.$route.query.email_confirmed;
-      if (emailConfirmed == 1) {
-        this.showConfirmationMessage();
-        this.ready = true;
-      }
-    },
-    showConfirmationMessage() {
-      this.$modal.show("FeedbackModal", {
-        type: "success",
-        title: "Email Verified!",
-        message: "You can now log in",
-        buttonText: "Close",
-        sendActionToFeedback: false
-      });
-    },
     async authenticateLogin(event) {
       event.preventDefault();
       this.loginError = false;

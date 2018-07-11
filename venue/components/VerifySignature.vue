@@ -25,15 +25,12 @@
 </template>
 
 <script>
-import ConfirmCopy from "./ConfirmCopy.vue";
 import HelpModal from "~/components/HelpModal.vue";
 
 const BITCOINTALK_FORUM_ID = 1;
 
 export default {
-  name: "VerifySignature",
   components: {
-    ConfirmCopy,
     HelpModal
   },
   data() {
@@ -43,19 +40,25 @@ export default {
   },
   methods: {
     async validateSignature() {
-      var forum_profile_id = this.$store.getters["forums/byForumId"](
-        BITCOINTALK_FORUM_ID
-      ).forumProfileId;
-
-      var signature_id = this.$store.state.copiedSignatureId;
+      const params = {
+        forum_id: BITCOINTALK_FORUM_ID,
+        forum_user_id: this.$store.state.userStats.profile_level[0].forumUserId
+      };
+      const forumProfiles = await this.$axios.$get(
+        "/retrieve/forum-profiles/",
+        { params }
+      );
+      if (!forumProfiles.success) {
+        // TODO Handle failure
+      }
 
       const signatureResult = await this.$axios.$post("/create/signature/", {
-        forum_profile_id,
-        signature_id
+        forum_profile_id: forumProfiles.forum_profiles[0].id,
+        signature_id: this.$store.state.copiedSignatureId
       });
 
       if (signatureResult.success === true) {
-        this.$emit("success");
+        this.$snackbar.open("Signature verified");
         this.$parent.close();
       }
     }
