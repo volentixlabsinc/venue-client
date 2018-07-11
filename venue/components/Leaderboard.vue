@@ -13,7 +13,7 @@
         {{ formatVTX(props.row.total_tokens) }}
       </b-table-column>    
     </template>
-    <template v-if="!short" slot="detail" slot-scope="props">
+    <template slot="detail" slot-scope="props">
       <div class="has-text-right">
         <span>{{ props.row.total_posts }} posts</span>
         <span class="p-l-lg">{{ props.row.total_points }} points</span>
