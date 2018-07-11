@@ -10,7 +10,8 @@ export default {
   },
   methods: {
     logout: async function() {
-      await this.$store.dispatch("clearUserState");
+      this.$axios.$get("/logout/");
+      this.$store.dispatch("clearUserState");
       this.$router.push("/");
     }
   }

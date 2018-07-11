@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns is-fullheight is-hidden-mobile">
-      <aside class="navbar column is-one-fifth-desktop">
+      <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
         <!-- <SocialMediaLinks class="level" /> -->
@@ -59,6 +59,8 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
+  padding-right: 0px;
+  border-right: 8px #e0e5e9 solid;
 }
 
 // TODO Understand why $navbar-burger-color isn't working

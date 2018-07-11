@@ -49,7 +49,11 @@ export async function loadUserData(commit, $axios /*, forumProfileId*/) {
       }
     });
 
-  await Promise.all([retrieveStats, retrieveMySignature]);
+  const setUserData = $axios
+    .$get("/retrieve/user/")
+    .then(data => commit("user/setUserData", data));
+
+  await Promise.all([retrieveStats, retrieveMySignature, setUserData]);
 }
 
 export async function retrieveAvailableSignatures($axios, forumProfile) {

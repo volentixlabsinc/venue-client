@@ -1,5 +1,5 @@
 <template>
-  <div class="level box">
+  <div class="level box is-mobile">
     <div v-for="stat in data" :key="stat.id" class="level-item">
       <p class="heading">{{ stat.label }}</p>
       <img v-if="stat.trophy" id="trophy" src="~assets/trophy2.svg">

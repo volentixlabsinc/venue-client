@@ -70,6 +70,7 @@ export default {
       }
     };
   },
+  middleware: "authenticated",
   mounted() {
     this.ready = true;
   },
