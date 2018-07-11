@@ -5,6 +5,7 @@
 
 <script>
 export default {
+  middleware: "authenticated",
   mounted() {
     this.logout();
   },

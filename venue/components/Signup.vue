@@ -2,9 +2,6 @@
   <div>
     <h3 class="title">SIGNUP</h3>
     <form method="POST" @submit.prevent="registerUser">
-      <ul>
-        <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
-      </ul>
       <b-field label="Email">
         <b-input v-model="email" type="email" name="email" required/>
       </b-field>

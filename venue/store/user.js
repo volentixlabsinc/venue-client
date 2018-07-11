@@ -28,6 +28,7 @@ export const mutations = {
     state.language = "en";
     state.isAuthenticated = false;
     state.token = "";
+    state.email = "";
 
     this.$axios.setToken(false);
     Cookies.remove("venue");

@@ -92,7 +92,6 @@ module.exports = {
     "~/plugins/vue-clipboard",
     "~/plugins/buefy",
     "~/plugins/axios",
-    "~/plugins/vee-validate",
     { src: "~/plugins/vue-js-modal.js", ssr: false }
   ]
 };

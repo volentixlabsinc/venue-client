@@ -5,34 +5,21 @@
         <li v-for="sig in signatures" :key="sig.id">
           <div>
             <img :src="sig.image" >
-            <button v-clipboard:copy="sig.code" v-clipboard:success="() => onCopy(sig)" class="button is-primary is-small is-outlined"
-                    type="button">COPY CODE</button>
+            <button v-clipboard:copy="sig.code" v-clipboard:success="() => $emit('copied', sig.id)" 
+                    class="button is-primary is-small is-outlined" type="button">COPY CODE</button>
           </div>
         </li>
       </ul>
     </form>  
-    <VerifySignature />
   </div>
 </template>
 
 <script>
-import VerifySignature from "~/components/VerifySignature.vue";
-
 export default {
-  components: {
-    VerifySignature
-  },
   props: {
     signatures: {
       type: Array,
       default: () => []
-    }
-  },
-
-  methods: {
-    onCopy: function(sig) {
-      this.$store.commit("signatureCopied", sig.id);
-      this.$modal.show("VerifySignature");
     }
   }
 };
