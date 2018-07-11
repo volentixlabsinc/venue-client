@@ -3,9 +3,6 @@
     <h3 class="title">LOGIN</h3>
     <form method="POST" @submit="authenticateLogin($event)">
       <p v-show="showMessageError.error" class="is-size-6 has-text-danger">{{ showMessageError.message }}</p>
-      <ul>
-        <li v-for="error in errors" :key="error.id" class="help is-danger">{{ error[0] ? error[0].msg: '' }}</li>
-      </ul>
       <b-field label="Username">
         <b-input v-model="username" type="text" required/>
       </b-field>
