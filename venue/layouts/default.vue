@@ -4,7 +4,14 @@
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
-        <!-- <SocialMediaLinks class="level" /> -->
+        <div class="navfooter has-text-centered">
+          <SocialMediaLinks />
+          <div class="volentix is-fullwidth p-l-md p-r-md p-t-md p-b-md">
+            <a target="_blank" href="https://www.volentix.io">
+              <img src="~/assets/volentix-logo.png">
+            </a>
+          </div>
+        </div>
       </aside>
       <div class="column">
         <nuxt />
@@ -69,5 +76,21 @@ export default {
 }
 .navbar-burger:hover {
   color: white;
+}
+</style>
+
+<style scoped>
+.navfooter {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 8px);
+}
+
+.volentix {
+  background-color: #374a59;
+}
+
+.volentix img {
+  max-width: 7rem;
 }
 </style>
