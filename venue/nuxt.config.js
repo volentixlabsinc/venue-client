@@ -70,7 +70,7 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios", "bootstrap-vue/nuxt", "@nuxtjs/google-analytics"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
   axios: {
     // FIXME This should be set as an env variable, but I'm not able to get it to work.
     // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
