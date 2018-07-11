@@ -75,7 +75,7 @@ module.exports = {
     // FIXME This should be set as an env variable, but I'm not able to get it to work.
     // Passing -e seems to work ([NUXT:AXIOS] baseURL: http://server.venue.ninja:80/api
     // in logs), but still axios is going to localhost :(
-    //
+    // Need to figure out how to toggle for local development.
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
     baseURL: "http://venue-service/api",
     // baseURL: "http://localhost:8000/api"
