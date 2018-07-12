@@ -33,7 +33,7 @@ export default {
           const profile = await this.$axios.$get("/check/profile/", { params });
           console.log("profile", profile);
           this.loading = false;
-          if (profile.exists && !profile.own) {
+          if (profile.exists && !profile.own && profile.verified) {
             this.type = "is-danger";
             this.message = "This id is already attached to a Venue profile";
           } else if (!profile.position_allowed) {
