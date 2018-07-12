@@ -20,7 +20,7 @@
     <footer class="modal-card-foot">
       <button class="button" type="button" @click="$parent.close()">Cancel</button>
       <button class="button is-primary" @click="validateSignature">Verify now</button>
-      <i v-show="validationFailed" class="fas fa-exclamation-circle"/>
+      <span class="icon has-text-danger is-medium"><i v-show="validationFailed" class="fas fa-exclamation-circle fa-lg"/></span>
     </footer>
   </div>
 </template>
@@ -60,18 +60,27 @@ export default {
         this.$store.commit("setForumProfile", this.forumProfile);
       }
 
-      const signatureResult = await this.$axios.$post("/create/signature/", {
-        forum_profile_id: this.forumProfile.forum_profile_id,
-        signature_id: this.$store.state.copiedSignatureId
-      });
+      try {
+        const signatureResult = await this.$axios.$post("/create/signature/", {
+          forum_profile_id: this.forumProfile.forum_profile_id,
+          signature_id: this.$store.state.copiedSignatureId
+        });
 
-      if (signatureResult.success === true) {
-        this.$snackbar.open("Signature verified");
-        this.validationFailed = false;
-        this.$emit("verified");
-        this.$parent.close();
-      } else {
-        this.validationFailed = true;
+        if (signatureResult.success === true) {
+          this.$snackbar.open("Signature verified");
+          this.validationFailed = false;
+          this.$emit("verified");
+          this.$parent.close();
+        } else {
+          this.validationFailed = true;
+        }
+      } catch (e) {
+        console.log("response", e.response);
+        if (e.response.data.message === "signature_not_found") {
+          this.validationFailed = true;
+        } else {
+          // TODO Handle other errors
+        }
       }
     }
   }
