@@ -6,18 +6,7 @@ export async function loadUserData(commit, $axios /*, forumProfileId*/) {
   });
 
   // Get the user's current signature
-  const retrieveMySignature = $axios
-    .$get("/retrieve/signatures/", {
-      params: {
-        forum_site_id: 1,
-        own_sigs: true
-      }
-    })
-    .then(sigs => {
-      if (sigs.success && sigs.signatures.length > 0) {
-        commit("setSignature", sigs.signatures[0]);
-      }
-    });
+  const retrieveMySignature = refreshMySignature($axios, commit);
 
   const setUserData = $axios
     .$get("/retrieve/user/")
@@ -34,4 +23,19 @@ export async function retrieveAvailableSignatures($axios, forumProfile) {
       forum_profile_id: forumProfile.forum_profile_id
     }
   })).signatures;
+}
+
+export function refreshMySignature($axios, commit) {
+  return $axios
+    .$get("/retrieve/signatures/", {
+      params: {
+        forum_site_id: 1,
+        own_sigs: true
+      }
+    })
+    .then(sigs => {
+      if (sigs.success && sigs.signatures.length > 0) {
+        commit("setSignature", sigs.signatures[0]);
+      }
+    });
 }

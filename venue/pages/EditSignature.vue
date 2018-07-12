@@ -11,7 +11,7 @@
         </div>
       </div>
       <b-modal :active.sync="isVerifySignatureActive" has-modal-card>
-        <VerifySignature />
+        <VerifySignature @verified="refreshSignature"/>
       </b-modal>
     </div>
     <div slot="right">
@@ -79,6 +79,9 @@ export default {
     onCopy: function(sig) {
       this.$store.commit("signatureCopied", sig);
       this.isVerifySignatureActive = true;
+    },
+    refreshSignature() {
+      this.currentSignature = this.$store.state.signature.image;
     }
   }
 };

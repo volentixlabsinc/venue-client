@@ -27,6 +27,7 @@
 
 <script>
 import HelpModal from "~/components/HelpModal.vue";
+import { refreshMySignature } from "~/assets/utils.js";
 
 const BITCOINTALK_FORUM_ID = 1;
 
@@ -68,6 +69,7 @@ export default {
 
         if (signatureResult.success === true) {
           this.$snackbar.open("Signature verified");
+          await refreshMySignature(this.$axios, this.$store.commit);
           this.validationFailed = false;
           this.$emit("verified");
           this.$parent.close();
