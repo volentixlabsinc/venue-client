@@ -15,7 +15,7 @@ $ npm install # Or yarn install
 # serve with hot reload at localhost:3000
 $ npm run dev
 
-# build for production and launch server 
+# build for production and launch server
 $ npm run build
 
 # Start the client server, specifying where the API server is running (see [venue-server](https://github.com/Volentix/venue-server))
