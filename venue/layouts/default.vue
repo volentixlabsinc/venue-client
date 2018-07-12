@@ -4,6 +4,14 @@
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
+        <div class="has-text-centered m-t-md">
+          <a class="button is-danger is-outlined" href="https://t.me/volentix">
+            <span class="icon">
+              <i class="fas fa-bug"/>
+            </span>
+            <span>Report a bug</span>
+          </a>
+        </div>
         <div class="navfooter has-text-centered">
           <SocialMediaLinks />
           <div class="volentix is-fullwidth p-l-md p-r-md p-t-md p-b-md">
