@@ -20,6 +20,7 @@
     <footer class="modal-card-foot">
       <button class="button" type="button" @click="$parent.close()">Cancel</button>
       <button class="button is-primary" @click="validateSignature">Verify now</button>
+      <i v-show="validationFailed" class="fas fa-exclamation-circle"/>
     </footer>
   </div>
 </template>
@@ -36,7 +37,8 @@ export default {
   data() {
     return {
       isHelpModalActive: false,
-      forumProfile: this.$store.state.forum_profile
+      forumProfile: this.$store.state.forum_profile,
+      validationFailed: false
     };
   },
   methods: {
@@ -63,10 +65,13 @@ export default {
         signature_id: this.$store.state.copiedSignatureId
       });
 
-      if (signatureResult.success === false) {
+      if (signatureResult.success === true) {
         this.$snackbar.open("Signature verified");
+        this.validationFailed = false;
         this.$emit("verified");
         this.$parent.close();
+      } else {
+        this.validationFailed = true;
       }
     }
   }
