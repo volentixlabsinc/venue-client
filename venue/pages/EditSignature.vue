@@ -44,20 +44,33 @@ export default {
         : "",
       isVerifySignatureActive: false
     };
-    const hasStats =
-      store.state.user.isAuthenticated && store.state.userStats.fresh === false;
 
-    if (hasStats) {
-      const forumProfiles = await app.$axios.$get("/retrieve/forum-profiles/", {
-        params: {
-          forum_id: 1,
-          forum_user_id: store.state.userStats.profile_level[0].forumUserId
-        }
-      });
+    if (
+      store.forum_profile &&
+      store.forum_profile.forum_profile_id.length > 0
+    ) {
       data.signatures = await retrieveAvailableSignatures(
         app.$axios,
-        forumProfiles.forum_profiles[0]
+        store.forumProfile
       );
+    } else {
+      const hasStats =
+        store.state.user.isAuthenticated &&
+        store.state.userStats.fresh === false;
+
+      if (hasStats) {
+        const forumProfile = await app.$axios.$get("/check/profile/", {
+          params: {
+            forum_id: 1,
+            forum_user_id: store.state.userStats.profile_level[0].forumUserId
+          }
+        });
+        store.commit("setForumProfile", forumProfile);
+        data.signatures = await retrieveAvailableSignatures(
+          app.$axios,
+          forumProfile
+        );
+      }
     }
 
     return data;
