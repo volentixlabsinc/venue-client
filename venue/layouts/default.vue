@@ -5,7 +5,7 @@
         <MainLogo class="p-lg"/>
         <Navigation />
         <div class="has-text-centered m-t-md">
-          <a class="button is-danger is-outlined" href="https://t.me/volentix">
+          <a class="button is-danger is-outlined" target="_blank" href="https://t.me/volentix">
             <span class="icon">
               <i class="fas fa-bug"/>
             </span>
