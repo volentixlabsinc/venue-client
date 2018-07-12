@@ -91,7 +91,7 @@ export default {
 .navfooter {
   position: absolute;
   bottom: 0;
-  width: calc(100% - 8px);
+  width: calc(100% - 12px);
 }
 
 .volentix {
