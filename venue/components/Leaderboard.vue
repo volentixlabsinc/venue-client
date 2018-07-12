@@ -45,7 +45,7 @@ export default {
   },
   data() {
     let rankings = this.$store.state.leaderboard.rankings;
-    if (this.limit) {
+    if (this.limit && this.rankings) {
       rankings = rankings.slice(0, this.limit);
     }
     return {
