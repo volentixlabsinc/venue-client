@@ -1,63 +1,70 @@
 <template>
-  <div class="columns is-multiline">
-    <div class="column">
-      <input id="userid" v-model="forumUserId" type="text" placeholder="Your user id" class="input ">
-      <p v-show="showMessageError.error" class="is-size-7 has-text-danger">{{ showMessageError.message }}</p>
-    </div>
-    <div class="column">
-      <button class="button is-primary" @click="submitUserId">NEXT</button>
-    </div>
-  </div>
+  <form @submit.prevent="checkProfile">
+    <b-field :message="message" :type="type">
+      <b-input v-model="forumUserId" :loading="loading" expanded placeholder="Your user id" required @input="clearWarnings()"/>
+      <div class="control"><button :disabled="forumUserId.length === 0" class="button is-primary" type="submit">Verify</button></div>
+    </b-field>
+  </form>
 </template>
 
 <script>
-import { registerForumUser } from "~/assets/utils";
+const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   data() {
     return {
-      forumUserId: null,
-      forumProfile: null,
-      forumId: 1,
-      showMessageError: {
-        error: true,
-        message: ""
-      }
+      forumUserId: "",
+      forumProfile: "",
+      type: "",
+      message: "",
+      loading: false
     };
   },
   methods: {
-    submitUserId: async function() {
-      try {
-        this.forumProfile = await registerForumUser(
-          this,
-          this.forumId,
-          this.forumUserId
-        );
-        if (this.forumProfile.success || this.forumProfile.verified === false) {
-          this.$emit("userIdConfirmed", this.forumProfile);
-        } else {
-          this.displayError();
-        }
-      } catch (error) {
-        this.showMessageError = {
-          error: true,
-          message:
-            "You must be at least a bitcointalk full member to join this campaign"
+    async checkProfile() {
+      if (this.forumUserId.length > 0) {
+        this.loading = true;
+        const params = {
+          forum_id: BITCOINTALK_FORUM_ID,
+          forum_user_id: this.forumUserId
         };
+
+        try {
+          const profile = await this.$axios.$get("/check/profile/", { params });
+          console.log("profile", profile);
+          this.loading = false;
+          if (profile.exists && !profile.own) {
+            this.type = "is-danger";
+            this.message = "This id is already attached to a Venue profile";
+          } else if (!profile.position_allowed) {
+            this.type = "is-danger";
+            this.message =
+              "You must be at least a bitcointalk full member to join this campaign";
+          } else if (!profile.found) {
+            this.type = "is-danger";
+            this.message =
+              "Profile not found; please verify that you copied the correct userid";
+          } else {
+            this.type = "is-success";
+            this.message = "";
+            this.$emit("verified", this.forumUserId);
+            this.$store.commit("setForumProfile", profile);
+          }
+        } catch (e) {
+          this.loading = false;
+          this.type = "is-danger";
+          this.message = [
+            "Profile not found.",
+            "Please verify that you copied the correct userid"
+          ];
+        }
+      } else {
+        this.type = "is-danger";
       }
     },
-    displayError() {
-      if (this.forumProfile.exists) {
-        this.showMessageError = {
-          error: true,
-          message: "This userid is already attached to a Venue profile"
-        };
-      } else {
-        this.showMessageError = {
-          error: true,
-          message: "Verify that you copied the correct userid"
-        };
-      }
+    clearWarnings() {
+      this.type = "";
+      this.message = "";
     }
   }
 };

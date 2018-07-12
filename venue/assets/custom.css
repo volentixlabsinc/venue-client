@@ -15,3 +15,8 @@
 .card-header-title {
   font-family: "Code Bold", Arial, sans-serif;
 }
+
+/* Workaround for Buefy not properly handliing field add-ons with messages */
+div.has-addons {
+  flex-wrap: wrap;
+}

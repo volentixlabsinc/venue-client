@@ -125,6 +125,12 @@ export const state = () => ({
     //     "total_tokens": 0,
     //     "overall_rank": 2
     //   },
+  },
+  forum_profile: {
+    forum_id: "",
+    forum_user_id: "",
+    forum_profile_id: "",
+    position: ""
   }
 });
 
@@ -201,5 +207,28 @@ export const mutations = {
   },
   setSignature(state, { id, image }) {
     state.signature = { ...state.signature, id, image };
+  },
+  setForumProfile(
+    state,
+    { forum_id, forum_user_id, forum_profile_id, position, id }
+  ) {
+    if (forum_id) {
+      state.forum_profile.forum_id = forum_id;
+    }
+    if (forum_user_id) {
+      state.forum_profile.forum_user_id = forum_user_id;
+    }
+
+    // Yes these map to the same field in the store
+    if (forum_profile_id) {
+      state.forum_profile.forum_profile_id = forum_profile_id;
+    }
+    if (id) {
+      state.forum_profile.forum_profile_id = id;
+    }
+
+    if (position) {
+      state.forum_profile.position = position;
+    }
   }
 };

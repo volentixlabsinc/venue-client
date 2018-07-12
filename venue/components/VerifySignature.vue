@@ -35,30 +35,37 @@ export default {
   },
   data() {
     return {
-      isHelpModalActive: false
+      isHelpModalActive: false,
+      forumProfile: this.$store.state.forum_profile
     };
   },
   methods: {
     async validateSignature() {
-      const params = {
-        forum_id: BITCOINTALK_FORUM_ID,
-        forum_user_id: this.$store.state.userStats.profile_level[0].forumUserId
-      };
-      const forumProfiles = await this.$axios.$get(
-        "/retrieve/forum-profiles/",
-        { params }
-      );
-      if (!forumProfiles.success) {
-        // TODO Handle failure
+      if (!this.forumProfile) {
+        const params = {
+          forum_id: BITCOINTALK_FORUM_ID,
+          forum_user_id: this.$store.state.userStats.profile_level[0]
+            .forumUserId
+        };
+        const forumProfiles = await this.$axios.$get(
+          "/retrieve/forum-profiles/",
+          { params }
+        );
+        if (!forumProfiles.success) {
+          // TODO Handle failure
+        }
+        this.forumProfile = forumProfiles.forum_profiles[0];
+        this.$store.commit("setForumProfile", this.forumProfile);
       }
 
       const signatureResult = await this.$axios.$post("/create/signature/", {
-        forum_profile_id: forumProfiles.forum_profiles[0].id,
+        forum_profile_id: this.forumProfile.forum_profile_id,
         signature_id: this.$store.state.copiedSignatureId
       });
 
-      if (signatureResult.success === true) {
+      if (signatureResult.success === false) {
         this.$snackbar.open("Signature verified");
+        this.$emit("verified");
         this.$parent.close();
       }
     }

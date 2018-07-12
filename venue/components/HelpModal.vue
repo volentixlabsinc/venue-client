@@ -1,10 +1,10 @@
 <template>
-  <div class="modal-card">
+  <div class="modal-card" v-on="$listeners">
     <header class="modal-card-head">
       <div class="modal-card-title">Step {{ imageNumber }} of 3</div>
     </header>
     <section class="modal-card-body">
-      <HelpIdImages v-if="element === 'id'" :image-number="imageNumber" @userIdConfirmed="submitUserId"/>
+      <HelpIdImages v-if="element === 'id'" :image-number="imageNumber" @userIdConfirmed="submitUserId" @verified="$emit('verified', $event)"/>
       <HelpSignatureImages v-if="element === 'signature'" :image-number="imageNumber"/>
     </section>
       
