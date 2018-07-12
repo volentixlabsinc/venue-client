@@ -210,8 +210,14 @@ export const mutations = {
   },
   setForumProfile(
     state,
-    { forum_id, forum_user_id, forum_profile_id, position, id }
+    { exists, forum_id, forum_user_id, forum_profile_id, position, id }
   ) {
+    if (!exists) {
+      // Clear these fields
+      state.forum_profile.forum_user_id = "";
+      state.forum_profile.forum_profile_id = "";
+    }
+
     if (forum_id) {
       state.forum_profile.forum_id = forum_id;
     }

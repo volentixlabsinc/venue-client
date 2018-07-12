@@ -48,6 +48,9 @@ export default {
             this.type = "is-success";
             this.message = "";
             this.$emit("verified", this.forumUserId);
+            if (!profile.own) {
+              profile.forum_profile_id = "";
+            }
             this.$store.commit("setForumProfile", profile);
           }
         } catch (e) {
