@@ -185,6 +185,7 @@ export const actions = {
   clearUserState({ commit }) {
     commit("setUserStats", {});
     commit("setSignature", {});
+    commit("clearForumProfile");
     commit("user/unauthenticated");
   }
 };
@@ -210,14 +211,8 @@ export const mutations = {
   },
   setForumProfile(
     state,
-    { exists, forum_id, forum_user_id, forum_profile_id, position, id }
+    { forum_id, forum_user_id, forum_profile_id, position, id }
   ) {
-    if (!exists) {
-      // Clear these fields
-      state.forum_profile.forum_user_id = "";
-      state.forum_profile.forum_profile_id = "";
-    }
-
     if (forum_id) {
       state.forum_profile.forum_id = forum_id;
     }
@@ -236,5 +231,14 @@ export const mutations = {
     if (position) {
       state.forum_profile.position = position;
     }
+  },
+  clearForumProfile(state) {
+    state.forum_profile = {
+      ...state.forum_profile,
+      forum_id: "",
+      forum_user_id: "",
+      forum_profile_id: "",
+      position: ""
+    };
   }
 };
