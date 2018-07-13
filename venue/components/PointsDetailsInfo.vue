@@ -2,7 +2,7 @@
   <div class="box">
     <h1 class="title has-text-centered">POINTS / REWARDS DETAILED INFO</h1>
     <hr >
-    <div class="has-text-centered">
+    <div v-show="loaded" class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index" >
         {{ bonus_level.num_posts }} posts sitewide X {{ 100 + bonus_level.bonus_percentage }} = 
         <u>{{ bonus_level.num_posts * (100 + bonus_level.bonus_percentage) }} Points</u>
@@ -34,24 +34,19 @@ import numeral from "numeral";
 export default {
   data() {
     const data = {
-      pointsBreakDown: null,
-      showError: {
-        show: false,
-        errorMessage: ""
-      },
-      totalPostPoints: undefined,
-      totalBonusPoints: undefined,
-      totalPoints: undefined,
-      vtxPerPoint: undefined,
-      myPoints: undefined,
-      myVTX: undefined,
-      multiplier: undefined,
-      totalPosts: undefined,
-      myPosts: undefined,
-      position: undefined,
-      bonus: undefined,
+      totalPostPoints: 0,
+      totalBonusPoints: 0,
+      totalPoints: 0,
+      vtxPerPoint: 0,
+      myPoints: 0,
+      myVTX: 0,
+      multiplier: 0,
+      totalPosts: 0,
+      position: "",
+      bonus: 0,
       myTokens: -1,
-      availableTokens: -1
+      availableTokens: -1,
+      loaded: false
     };
     const hasStats =
       this.$store.state.user.isAuthenticated &&
@@ -74,37 +69,24 @@ export default {
   },
   methods: {
     async fetchPointsBreakDown() {
-      const ptsBreakdownFetch = await this.$axios.get(
+      const pointsBreakdown = await this.$axios.$get(
         "/retrieve/points-breakdown/"
       );
-      if (ptsBreakdownFetch.statusText === "OK") {
-        this.pointsBreakDown = ptsBreakdownFetch.data;
-        this.populateData();
-      } else {
-        this.showError = {
-          show: true,
-          errorMessage: "An error has occured"
-        };
-      }
-    },
-    populateData() {
       let availableRewardsNumber = parseFloat(
         this.availableTokens.replace(",", "")
       );
-      this.multiplier = this.pointsBreakDown.settings.post_points_multiplier;
-      this.totalPostPoints = this.pointsBreakDown.sitewide_stats.total_post_points;
-      this.totalBonusPoints = this.pointsBreakDown.sitewide_stats.total_bonus_points;
+      this.multiplier = pointsBreakdown.settings.post_points_multiplier;
+      this.totalPostPoints = pointsBreakdown.sitewide_stats.total_post_points;
+      this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
       this.totalPoints = numeral(this.totalPointsNum).format();
-      this.totalPosts = this.pointsBreakDown.sitewide_stats.total_posts;
+      this.totalPosts = pointsBreakdown.sitewide_stats.total_posts;
       this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
         2
       );
-      this.myPoints = this.pointsBreakDown.user_stats.total_post_points;
-      this.myPosts = this.pointsBreakDown.user_stats.total_posts;
-      this.bonus = this.pointsBreakDown.sitewide_stats.bonus_points;
-      this.upComingPostPoints = this.pointsBreakDown.user_stats.upcoming_post_points;
-      this.upComingPosts = this.pointsBreakDown.user_stats.upcoming_posts;
+      this.myPoints = pointsBreakdown.user_stats.total_post_points;
+      this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
+      this.loaded = true;
     }
   }
 };
