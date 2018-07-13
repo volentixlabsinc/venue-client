@@ -5,12 +5,21 @@
     </header>
     <section class="modal-card-body">
       <div class="columns">
-        <div class="column">
-          <div class="spinner is-pulled-right"/>
+        <div class="column is-hidden-mobile">
+          <div class="spinner m-t-lg m-l-sm"/>
         </div>
-        <div class="column">
-          <div>Now paste the copied code to your Bitcointalk profile.</div>
-          <div><a @click="isHelpModalActive = true">Click for help</a></div>
+        <div class="column is-three-quarters">
+          <div class="p-b-md">Now paste the copied code to your Bitcointalk profile.</div>
+          <div class="box">
+            <span class="icon has-text-warning is-medium">
+              <i class="fas fa-exclamation-triangle fa-lg"/>
+            </span>
+            <span class="is-size-6">Signatures must be maintained for a minimum of 23 of the first 24 hours.
+            Removal of a signature before this time will result in loss of all points for that post.
+              <strong>This may take up to 24 hours</strong> to be reflected in your balance.
+            </span>
+          </div>
+          <div><a @click="isHelpModalActive = true">How do I update my Bitcointalk signature?</a></div>
           <b-modal :active.sync="isHelpModalActive" has-modal-card>
             <HelpModal element="signature"/>
           </b-modal>

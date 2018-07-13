@@ -15,6 +15,15 @@
         <div class="is-size-5">Your total posts X {{ multiplier }} = <u>{{ myPoints }} points </u></div>
         <div class="is-size-5">Your total points X {{ vtxPerPoint }} = {{ myTokens }} VTX</div>
       </div>
+
+      <div class="has-text-left is-size-6">
+        <span class="icon has-text-warning is-medium">
+          <i class="fas fa-exclamation-triangle fa-lg"/>
+        </span>
+        Note that signatures must be maintained for a minimum of 23 of the first 24 hours.
+        Removal of a signature before this time will result in loss of all points for that post.
+        <strong>This may take up to 24 hours</strong> to be reflected in your point balance.
+      </div>
     </div>
   </div>
 </template>
