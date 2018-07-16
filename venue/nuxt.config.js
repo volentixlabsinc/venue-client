@@ -77,9 +77,9 @@ module.exports = {
     // in logs), but still axios is going to localhost :(
     // Need to figure out how to toggle for local development.
     // For a local venue-server, comment out these two lines and uncomment the new baseURL:
-    // baseURL: "http://venue-service/api",
-    baseURL: "http://localhost:8000/api"
-    // browserBaseURL: "/api"
+    baseURL: "http://venue-service/api",
+    // baseURL: "http://localhost:8000/api"
+    browserBaseURL: "/api"
   },
   "google-analytics": {
     id: "UA-119876313-3"

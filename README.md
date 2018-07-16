@@ -27,3 +27,10 @@ $ npm run generate
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 
+## Theme
+
+The corporate colours are:
+Dark Blue: #222C3B
+Grey: #94A8B6
+
+Venue Accent Colour: #85449A
