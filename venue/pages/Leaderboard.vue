@@ -23,6 +23,9 @@ export default {
     Leaderboard,
     LeaderboardStats,
     MyCampaignActivityCard
+  },
+  mounted() {
+    console.log("Leaderboard", this);
   }
 };
 </script>
