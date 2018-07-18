@@ -72,8 +72,8 @@ module.exports = {
   ],
   modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost/api',
-    browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+    baseURL: process.env.BASE_URL || "http://localhost/api",
+    browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
   },
   "google-analytics": {
     id: "UA-119876313-3"
