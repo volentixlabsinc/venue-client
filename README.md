@@ -27,6 +27,7 @@ For deployment, we are using:
   - [Requirements](#requirements)
   - [Venue Client](#venue-client)
 - [Usage](#usage)
+  - [Proxy](#proxy)
   - [Running](#running)
   - [Building](#building)
 - [Maintainers](#maintainers)
@@ -68,15 +69,24 @@ When running locally, the application is available here: http://localhost:3000
 
 Once the project is installed, the following commands are used to run/build the project.
 
-## Proxy
+### Proxy
 
 In order for the client to communicate without the need for CORS, you must first run the nginx reverse proxy. Note that the files to create the nginx proxy can be found in this repository [here](/nginx/README.md).
 
 The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
 
-To run the nginx proxy:
+#### Linux
+
+To run the nginx proxy on linux:
 ```
 docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
+```
+
+#### Mac
+
+To run the nginx proxy on Mac:
+```
+docker run -p 80:80 volentixlabs/venue-local-proxy-mac:v0.1.0
 ```
 
 ### Running
