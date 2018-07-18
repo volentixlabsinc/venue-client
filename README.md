@@ -64,6 +64,8 @@ yarn install
 
 ## Usage
 
+When running locally, the application is available here: http://localhost:3000
+
 Once the project is installed, the following commands are used to run/build the project.
 
 
