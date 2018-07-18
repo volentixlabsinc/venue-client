@@ -68,9 +68,19 @@ When running locally, the application is available here: http://localhost:3000
 
 Once the project is installed, the following commands are used to run/build the project.
 
+## Proxy
+
+In order for the client to communicate without the need for CORS, you must first run the nginx reverse proxy. Note that the files to create the nginx proxy can be found in this repository [here](/nginx/README.md).
+
+The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
+
+To run the nginx proxy:
+```
+docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
+```
 
 ### Running
-Serve with hot reload at localhost:3000
+Serve with hot reload at http://localhost
 ```
 npm run dev
 ```

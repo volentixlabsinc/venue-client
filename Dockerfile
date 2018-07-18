@@ -2,11 +2,11 @@ FROM node:8-alpine
 
 WORKDIR venue/
 
-ARG BASE_URL=http://localhost:8000/api
+ARG BASE_URL=http://localhost/api
 
 ENV BASE_URL=$BASE_URL
 
-ARG BROWSER_BASED_URL=http://localhost:8000/api
+ARG BROWSER_BASED_URL=http://localhost/api
 
 ENV BROWSER_BASED_URL=$BROWSER_BASED_URL
 
