@@ -70,13 +70,23 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics", "nuxt-i18n"],
   axios: {
     baseURL: process.env.BASE_URL || "http://localhost/api",
     browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
   },
   "google-analytics": {
     id: "UA-119876313-3"
+  },
+  "nuxt-i18n": {
+    locales: [
+      { code: "en", iso: "en-CA", file: "~/assets/en_CA.js" },
+      { code: "fr", iso: "fr-CA", file: "~/assets/fr_CA.js" }
+    ],
+    defaultLocale: "en",
+    vueI18n: {
+      fallbackLocale: "en"
+    }
   },
   plugins: ["~/plugins/vue-clipboard", "~/plugins/buefy", "~/plugins/axios"]
 };
