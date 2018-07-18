@@ -2,6 +2,14 @@ FROM node:8-alpine
 
 WORKDIR venue/
 
+ARG BASE_URL=http://localhost:8000/api
+
+ENV BASE_URL=$BASE_URL
+
+ARG BROWSER_BASED_URL=http://localhost:8000/api
+
+ENV BROWSER_BASED_URL=$BROWSER_BASED_URL
+
 COPY venue/package.json venue/yarn.lock ./
 
 RUN yarn install
