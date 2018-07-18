@@ -2,7 +2,7 @@
   "name": "venue-client",
   "description": "A rewards and bounty tracker platform",
   "version": "0.0.1",
-  "author": "Smouska <sandragjacinto@gmail.com>",
+  "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
