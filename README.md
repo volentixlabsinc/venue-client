@@ -16,12 +16,6 @@ This repository houses the artifacts for the UI of the Venue platform. The main 
   * [Nuxt](https://nuxtjs.org/)
   * [Bulma](https://bulma.io)
 
-For deployment, we are using:
-
-  * [Docker](https://www.docker.com/)
-  * [CircleCi](https://circleci.com/)
-  * [Kubernetes](https://kubernetes.io/)
-
 ## Table of Contents
 
 - [Install](#install)
@@ -48,7 +42,6 @@ Before running the Venue client, make sure you have the following installed on y
 ### Venue Client
 
 Open a terminal in the root of this project and then change into the 'venue' directory:
-
 ```
 cd venue
 ```
@@ -69,6 +62,17 @@ Once the project is installed, the following commands are used to run/build the 
 In order for the client to communicate without the need for CORS, you must first run the nginx reverse proxy. Note that the files to create the nginx proxy can be found in this repository [here](/nginx/README.md).
 
 The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
+
+If you don't want to run this proxy for some reason, you can manually modify `nuxt.config.js` to point directly
+to the server:
+
+```
+  axios: {
+    baseURL: 'http://localhost:3000'
+    // baseURL: process.env.BASE_URL || 'http://localhost/api',
+    // browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+  },
+```
 
 #### Linux
 
