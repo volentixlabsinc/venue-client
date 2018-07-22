@@ -1,7 +1,7 @@
 <template>
   <div :class="[column ? leaderboard[0] : '', dashboard[0]]">
     <div :class="[column ? leaderboard[1] : '', dashboard[1]]">{{ availableTokens }} VTX</div>
-    <div :class="[column ? leaderboard[1] : '', dashboard[2]]"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>AVAILABLE REWARDS</div>
+    <div :class="[column ? leaderboard[1] : '', dashboard[2]]"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>{{ $t('labels.available_rewards') }}</div>
   </div>
 </template>
 

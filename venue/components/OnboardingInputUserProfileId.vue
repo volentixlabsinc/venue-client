@@ -2,7 +2,7 @@
   <form @submit.prevent="checkProfile">
     <b-field :message="message" :type="type">
       <b-input v-model="forumUserId" :loading="loading" expanded placeholder="Your user id" required @input="clearWarnings()"/>
-      <div class="control"><button :disabled="forumUserId.length === 0" class="button is-primary" type="submit">Verify</button></div>
+      <div class="control"><button :disabled="forumUserId.length === 0" class="button is-primary" type="submit">{{ $t('buttons.btn_verify') }}</button></div>
     </b-field>
   </form>
 </template>

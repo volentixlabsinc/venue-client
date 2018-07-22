@@ -1,5 +1,5 @@
 <template>
-  <ProfileCard :coming-soon="true" title="VTX Wallet Address" description="VTX address where to send payouts" button="Set VTX Address"/>
+  <ProfileCard :coming-soon="true" :title="$t('settings.vtx_wallet')" :description="$t('settings.desc_vtx_wallet')" :button="$t('settings.btn_vtx_wallet')"/>
 </template>
 
 <script>

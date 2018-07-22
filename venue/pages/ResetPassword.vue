@@ -1,15 +1,15 @@
 <template>
   <OneColumnLayout>
-    <h1 class="title">Reset password</h1>
+    <h1 class="title">{{ $t('auth.title_reset_password') }}</h1>
     <form method="POST" @submit.prevent="resetPassword">
       <b-field label="Enter your new password">
-        <b-input v-model="password" placeholder="Password" minlength="6" type="password" required password-reveal/>
+        <b-input v-model="password" :placeholder="$t('settings.password')" minlength="6" type="password" required password-reveal/>
       </b-field>
       <b-field>
         <div class="control">
           <button 
             type="submit" 
-            class="button is-primary">Reset password</button>
+            class="button is-primary">{{ $t('auth.title_reset_password') }}</button>
         </div>
       </b-field>
     </form>

@@ -2,31 +2,31 @@
 
   <TwoColumnLayout>
     <div slot="left">
-      <h1 class="title">Welcome to the Bitcoin Talk campaign</h1>
-      <h2 class="subtitle">STEP {{ step }}</h2>
+      <h1 class="title">{{ $t('bct_onboarding.bct_welcome') }}</h1>
+      <h2 class="subtitle">{{ stepTitle }}</h2>
       <div class="box">
         <div v-if="step === 1">
           <b-field label="Your profile ID from Bitcoin Talk">
             <OnboardingInputUserProfileId @verified="userIdVerified($event)"/>
           </b-field>
 
-          <a @click="isHelpModalActive = true">How do I find my bitcointalk user id?</a>
+          <a @click="isHelpModalActive = true">{{ $t('bct_onboarding.help_find_bct_id') }}</a>
           <b-modal :active.sync="isHelpModalActive" has-modal-card @close="maybeRegisterForumUser">
             <HelpModal @verified="userIdVerified($event)"/>
           </b-modal>
           <div>
-            <button :disabled="!userVerified" class="button is-primary m-t-md" @click="maybeRegisterForumUser">Next</button>
+            <button :disabled="!userVerified" class="button is-primary m-t-md" @click="maybeRegisterForumUser">{{ $t('buttons.btn_next') }}</button>
           </div>
         </div>
         <div v-if="step === 2">
-          <label class="directive">Choose your signature</label>
+          <label class="directive">{{ $t('bct_onboarding.msg_choose_signature') }}</label>
           <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures" @copied="onCopy($event)"/>
           <b-modal :active.sync="isVerifySignatureActive" has-modal-card>
             <VerifySignature @verified="loadLeaderboardAndGo"/>
           </b-modal>
           <div>
-            <button class="button" @click="doPrevious">Previous</button>
-            <button :disabled="!userVerified" class="button is-primary m-l-md" @click="gotoStep2">Next</button>
+            <button class="button" @click="doPrevious">{{ $t('buttons.btn_previous') }}</button>
+            <button :disabled="!userVerified" class="button is-primary m-l-md" @click="gotoStep2">{{ $t('buttons.btn_next') }}</button>
           </div>
         </div>
       </div>
@@ -78,6 +78,14 @@ export default {
       isHelpModalActive: false,
       isVerifySignatureActive: false
     };
+  },
+  computed: {
+    stepTitle() {
+      return this.$t("bct_onboarding.bct_step_title").replace(
+        "{ step }",
+        this.step
+      );
+    }
   },
   middleware: "authenticated",
   mounted() {

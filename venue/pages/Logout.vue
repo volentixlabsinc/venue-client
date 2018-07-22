@@ -1,5 +1,5 @@
 <template>
-  <h2 style="color:white;">Logging out... </h2>
+  <h2 style="color:white;">{{ $t('auth.msg_logging_out') }}</h2>
 </template>
 
 

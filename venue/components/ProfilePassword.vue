@@ -1,9 +1,9 @@
 <template>
   <div>
     <ProfileCard
-      title="Change Password" 
-      description="Change your password" 
-      button="Change Password"
+      :title="$t('settings.btn_password')" 
+      :description="$t('settings.desc_password')" 
+      :button="$t('settings.btn_password')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
       <ProfilePasswordForm/>

@@ -1,7 +1,7 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <h1 class="title">BITCOINTALK LEADERBOARD</h1>
+      <h1 class="title">{{ $t('titles.bct_leaderboard') }}</h1>
       <LeaderboardStats />
       <Leaderboard />
     </div>

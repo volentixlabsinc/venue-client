@@ -1,12 +1,12 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <h1 class="title">EDIT SIGNATURE</h1>
+      <h1 class="title">{{ $t('buttons.btn_edit_signature') }}</h1>
       <div>
-        <h4 class="subtitle is-4">Current Signature</h4>
+        <h4 class="subtitle is-4">{{ $t('edit_signature.current_signature') }}</h4>
         <img id="signature" :src="currentSignature">
         <div class="m-t-lg">
-          <h4 class="subtitle is-4">Available signatures</h4>
+          <h4 class="subtitle is-4">{{ $t('edit_signature.available_signatures') }}</h4>
           <AvailableSignatures :signatures="signatures" @copied="onCopy($event)"/>
         </div>
       </div>

@@ -11,6 +11,7 @@ module.exports = {
   auth: {
     forgot_password: "Forgot password?",
     title_reset_password: "Reset password",
+    title_new_password: "Enter your new password",
     msg_reset_password:
       "Forgot your password? No problem. Enter your email address and we'll send you a reset code.",
     err_duplicate_email: "This email account already exists",
@@ -23,7 +24,8 @@ module.exports = {
     msg_policies:
       "By signing up, you agree to the Volentix <a href='{0}' target='_blank'>privacy policy</a> and <a href='{1}' target='_blank'>terms of use</a>",
     msg_email_verification:
-      "Please click the email verification link we've just emailed to you to activate your Venue account."
+      "Please click the email verification link we've just emailed to you to activate your Venue account.",
+    msg_logging_out: "Logging out... "
   },
   bct_onboarding: {
     err_duplicate_id: "This id is already attached to a Venue profile",
@@ -36,6 +38,10 @@ module.exports = {
     help_signature_2:
       "2) Scroll down to Signature and paste the code in the Text Area",
     help_signature_3: "3) Scroll down and accept the changes",
+    bct_welcome: "Welcome to the Bitcoin Talk campaign",
+    help_find_bct_id: "How do I find my bitcointalk user id?",
+    msg_choose_signature: "Choose your signature",
+    bct_step_title: "Step { step }",
     bct_signature_paste:
       "Now paste the copied code to your Bitcointalk profile.",
     msg_sig_update_how: "How do I update my Bitcointalk signature?",
@@ -46,9 +52,11 @@ module.exports = {
     title_my_profile: "My profile",
     vtx_wallet: "VTX wallet address",
     desc_vtx_wallet: "VTX address where to send payouts",
+    btn_vtx_wallet: "Set VTX Address",
     title_email: "Email address",
     desc_email: "Change your registred email address",
     label_new_email: "New email address",
+    label_change_email: "Change email address",
     btn_email: "Change email",
     username: "Username",
     desc_username: "Change your username",
@@ -62,7 +70,9 @@ module.exports = {
     language: "Language",
     desc_language: "Set the site language",
     two_factor: "Two-factor authentication",
-    desc_two_factor: "Modify two-factor authentication"
+    desc_two_factor: "Modify two-factor authentication",
+    btn_set_language: "Set Language",
+    btn_enable_2fa: "Enable 2FA"
   },
   labels: {
     my_rank: "My rank",
@@ -78,7 +88,9 @@ module.exports = {
     points: "0 points | 1 point | { count } points",
     username: "Username",
     coming_soon: "Coming soon",
-    num_posts: "Number of Posts"
+    num_posts: "Number of Posts",
+    card_title: "Step { imageNumber } of 3",
+    email: "Email"
   },
   points_details: {
     title: "Points / rewards detailed info",
@@ -98,7 +110,9 @@ module.exports = {
     bct_campaign: "Bitcointalk campaign",
     my_campaign_activity: "My campaign activity",
     bct_leaderboard: "Bitcointalk leaderboard",
-    earn_vtx: "Earn VTX!"
+    earn_vtx: "Earn VTX!",
+    my_rewards: "My rewards",
+    login: "LOGIN"
   },
   edit_signature: {
     current_signature: "Current signature",
@@ -109,8 +123,8 @@ module.exports = {
     join_bitcointalk: "Join the Bitcointalk signature campaign",
     signature_warning_1:
       "Note that signatures must be maintained for a minimum of 23 of the first 24 hours. Removal of a signature before this time will result in loss of all points for that post.",
-    signature_warning_2:
-      "This may take up to 24 hours to be reflected in your point balance.",
+    signature_warning_2: "This may take up to 24 hours",
+    signature_warning_3: " to be reflected in your point balance.",
     steps: "Step {0} of {1}"
   },
   buttons: {
@@ -120,6 +134,10 @@ module.exports = {
     btn_report_bug: "Report a bug",
     btn_join_now: "Join now",
     btn_previous: "Previous",
-    btn_next: "Next"
+    btn_next: "Next",
+    btn_close: "Close",
+    btn_copy_code: "COPY CODE",
+    btn_change: "Change",
+    btn_verify: "Verify"
   }
 };

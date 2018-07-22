@@ -1,7 +1,7 @@
 <template>
   <one-column-layout>
     <div>
-      <h1 class="title is-2">MY PROFILE</h1>
+      <h1 class="title is-2">{{ $t('settings.title_my_profile') }}</h1>
       <div class="columns">
         <div class="column">
           <ProfileWalletAddress/>

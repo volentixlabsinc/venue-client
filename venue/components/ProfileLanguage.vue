@@ -1,5 +1,5 @@
 <template>
-  <ProfileCard :coming-soon="true" title="Language" description="Set the site language" button="Set Language"/>
+  <ProfileCard :coming-soon="true" :description="$t('settings.desc_language')" :button="$t('settings.btn_set_language')" title="Language"/>
   <!-- <b-dropdown class="card-footer-item" >
     <button slot="trigger" class="button is-white">
       <span>Languages</span>

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <h2 class="card-header-title subtitle">MY REWARDS</h2>
+      <h2 class="card-header-title subtitle">{{ $t('titles.my_rewards') }}</h2>
     </header>
     <div class="card-content">
       <div class="level">
