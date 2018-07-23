@@ -20,3 +20,7 @@
 div.has-addons {
   flex-wrap: wrap;
 }
+
+section.language-container {
+  min-height: 200px;
+}

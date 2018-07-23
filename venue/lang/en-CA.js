@@ -68,6 +68,7 @@ module.exports = {
     label_current_password: "Current password",
     label_new_password: "New password",
     language: "Language",
+    btn_language: "Change language",
     desc_language: "Set the site language",
     two_factor: "Two-factor authentication",
     desc_two_factor: "Modify two-factor authentication",
