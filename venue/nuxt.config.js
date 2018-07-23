@@ -80,5 +80,10 @@ module.exports = {
   "google-analytics": {
     id: "UA-119876313-3"
   },
-  plugins: ["~/plugins/vue-clipboard", "~/plugins/buefy", "~/plugins/axios"]
+  plugins: [
+    "~/plugins/vue-clipboard",
+    "~/plugins/buefy",
+    "~/plugins/axios",
+    "~/plugins/mixin"
+  ]
 };

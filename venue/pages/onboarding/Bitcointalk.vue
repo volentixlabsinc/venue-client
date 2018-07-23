@@ -150,7 +150,7 @@ export default {
       console.log(leaderboardData);
       await this.$store.commit("setLeaderboardData", leaderboardData);
 
-      this.$router.push("/leaderboard");
+      this.$router.push(this.localizedRoute("/leaderboard", this.$i18n.locale));
     }
   }
 };

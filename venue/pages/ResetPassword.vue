@@ -35,7 +35,7 @@ export default {
         password: this.password
       });
       if (response.success === true) {
-        this.$router.push("/login");
+        this.$router.push(this.localizedRoute("/login", this.$i18n.locale));
       }
     }
   }

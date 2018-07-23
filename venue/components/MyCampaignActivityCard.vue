@@ -55,10 +55,14 @@ export default {
   },
   methods: {
     onClickDetails() {
-      this.$router.push("/PointsDetails");
+      this.$router.push(
+        this.localizedRoute("/PointsDetails", this.$i18n.locale)
+      );
     },
     onClickSignature() {
-      this.$router.push("/editSignature");
+      this.$router.push(
+        this.localizedRoute("/editSignature", this.$i18n.locale)
+      );
     }
   }
 };

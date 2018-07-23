@@ -23,7 +23,7 @@
 export default {
   methods: {
     onclickJoin() {
-      this.$router.push("/signup");
+      this.$router.push(this.localizedRoute("/signup", this.$i18n.locale));
     }
   }
 };

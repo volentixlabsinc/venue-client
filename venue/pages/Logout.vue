@@ -13,7 +13,7 @@ export default {
     logout: async function() {
       this.$axios.$get("/logout/");
       this.$store.dispatch("clearUserState");
-      this.$router.push("/");
+      this.$router.push(this.localizedRoute("/", this.$i18n.locale));
     }
   }
 };

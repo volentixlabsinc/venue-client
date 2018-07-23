@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     onClickLeaderboard() {
-      this.$router.push("/leaderboard");
+      this.$router.push(this.localizedRoute("/leaderboard", this.$i18n.locale));
     }
   }
 };

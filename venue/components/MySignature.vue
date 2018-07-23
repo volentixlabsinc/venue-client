@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     onClickSignature() {
-      this.$router.push("/editSignature");
+      this.$router.push(this.localizedRoute("/editSignature", this.$i18n.locale));
     }
   }
 };

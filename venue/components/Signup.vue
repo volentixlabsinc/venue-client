@@ -19,13 +19,13 @@
         <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
       </b-field>
     </form>
-    <b-modal :active.sync="isSuccessModalActive" @close="$router.push('/')">
+    <b-modal :active.sync="isSuccessModalActive" @close="$router.push(localizedRoute('/', $i18n.locale))">
       <div class="modal-card">
         <div class="modal-card-body">
           {{ $t('auth.msg_email_verification') }}
         </div>
         <div class="modal-card-foot">
-          <button class="button" type="button" @click="isSuccessModalActive = false; $router.push('/')">{{ $t('buttons.btn_close') }}</button>
+          <button class="button" type="button" @click="isSuccessModalActive = false; $router.push(localizedRoute('/', $i18n.locale))">{{ $t('buttons.btn_close') }}</button>
         </div>
       </div>
     </b-modal>

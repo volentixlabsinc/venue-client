@@ -38,7 +38,7 @@ export default {
   methods: {
     onclickJoin(disabled) {
       if (!disabled) {
-        this.$router.push("/signup");
+        this.$router.push(this.localizedRoute("/signup", this.$i18n.locale));
       }
     }
   }

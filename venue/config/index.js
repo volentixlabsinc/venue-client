@@ -14,6 +14,9 @@ const I18N = {
       name: "Français"
     }
   ],
+  detectBrowserLanguage: {
+    useCookie: false
+  },
   defaultLocale: "en",
   vueI18n: {
     fallbackLocale: "en",
