@@ -7,7 +7,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102)
 
-> The webapp for the Venue, a community engagement platform for the Volentix community    
+> The webapp for Venue, a community engagement platform for the Volentix community    
 
 This repository houses the artifacts for the UI of the Venue platform. The main technologies used for this software are:
 
@@ -16,18 +16,13 @@ This repository houses the artifacts for the UI of the Venue platform. The main 
   * [Nuxt](https://nuxtjs.org/)
   * [Bulma](https://bulma.io)
 
-For deployment, we are using:
-
-  * [Docker](https://www.docker.com/)
-  * [CircleCi](https://circleci.com/)
-  * [Kubernetes](https://kubernetes.io/)
-
 ## Table of Contents
 
 - [Install](#install)
   - [Requirements](#requirements)
   - [Venue Client](#venue-client)
 - [Usage](#usage)
+  - [Proxy](#proxy)
   - [Running](#running)
   - [Building](#building)
 - [Maintainers](#maintainers)
@@ -47,7 +42,6 @@ Before running the Venue client, make sure you have the following installed on y
 ### Venue Client
 
 Open a terminal in the root of this project and then change into the 'venue' directory:
-
 ```
 cd venue
 ```
@@ -63,18 +57,33 @@ When running locally, the application is available here: http://localhost:3000
 
 Once the project is installed, the following commands are used to run/build the project.
 
-## Proxy
+### Proxy
 
 In order for the client to communicate without the need for CORS, you must first run the nginx reverse proxy. Note that the files to create the nginx proxy can be found in this repository [here](/nginx/README.md).
 
 The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
 
-To run the nginx proxy:
+If you don't want to run this proxy for some reason, you can manually modify `nuxt.config.js` to point directly
+to the server:
+
+```
+  axios: {
+    baseURL: 'http://localhost:3000'
+    // baseURL: process.env.BASE_URL || 'http://localhost/api',
+    // browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+  },
+```
+
+#### Linux
+
+To run the nginx proxy on linux:
 ```
 docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
 ```
 
-or if you are on a Mac:
+#### Mac
+
+To run the nginx proxy on Mac:
 ```
 docker run -p 80:80 volentixlabs/venue-local-proxy-mac:v0.1.0
 ```
