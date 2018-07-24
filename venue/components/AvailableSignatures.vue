@@ -6,7 +6,7 @@
           <div>
             <img :src="sig.image" >
             <button v-clipboard:copy="sig.code" v-clipboard:success="() => $emit('copied', sig.id)" 
-                    class="button is-primary is-small is-outlined" type="button">COPY CODE</button>
+                    class="button is-primary is-small is-outlined text-transform-uppercase" type="button">{{ $t('buttons.btn_copy_code') }}</button>
           </div>
         </li>
       </ul>

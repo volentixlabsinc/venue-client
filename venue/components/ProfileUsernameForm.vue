@@ -3,20 +3,20 @@
     <form method="POST" @submit.prevent="changeUsername">
       <div class="modal-card">
         <header class="modal-card-head" >
-          <div class="modal-card-title">Change username</div>
+          <div class="modal-card-title">{{ $t('settings.btn_username') }}</div>
         </header>
         <section class="modal-card-body">
           <b-field>
-            <span class="has-text-weight-bold">Current:&nbsp;</span>
+            <span class="has-text-weight-bold">{{ $t('labels.current') }}:&nbsp;</span>
             <span>{{ value }}</span>
           </b-field>
-          <b-field label="New username">
+          <b-field :label="$t('settings.new_username')">
             <b-input v-model="newValue" :placeholder="value" type="text" required />
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Cancel</button>
-          <button class="button is-primary" type="submit">Change username</button>
+          <button class="button" type="button" @click="$parent.close()">{{ $t('buttons.btn_cancel') }}</button>
+          <button class="button is-primary" type="submit">{{ $t('settings.btn_username') }}</button>
         </footer>
       </div>
     </form>

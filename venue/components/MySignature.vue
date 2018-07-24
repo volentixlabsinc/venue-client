@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="is-size-5">Current Signature</div>
+    <div class="is-size-5">{{ $t('edit_signature.current_signature') }}</div>
     <img id="signature" :src="image">
-    <button v-if="showChangeButton" class="button is-primary is-outlined is-pulled-right" @click="onClickSignature">CHANGE</button>
+    <button v-if="showChangeButton" class="button is-primary is-outlined is-pulled-right text-transform-uppercase" @click="onClickSignature">{{ $t('buttons.btn_change') }}</button>
   </div>  
 </template>
 
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     onClickSignature() {
-      this.$router.push("/editSignature");
+      this.$router.push(this.localizedRoute("/editSignature", this.$i18n.locale));
     }
   }
 };

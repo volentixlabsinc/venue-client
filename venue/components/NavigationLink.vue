@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="route" class="navbar-item">
+  <router-link :to="localizedRoute(route, $i18n.locale)" class="navbar-item">
     <div class="level" @click="$emit('click')">
       <span class="icon is-large"><i :class="icon" class="fas fa-lg prefix"/></span>
       <span class="nav-text is-size-6">{{ name }}</span>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">LOGIN</h3>
+    <h3 class="title text-transform-uppercase">{{ $t('titles.login') }}</h3>
     <form method="POST" @submit="authenticateLogin($event)">
       <p v-show="showMessageError.error" class="is-size-6 has-text-danger">{{ showMessageError.message }}</p>
       <b-field label="Username">
@@ -13,28 +13,28 @@
         <div class="control">
           <button 
             type="submit" 
-            class="button is-primary">Log In</button>
+            class="button is-primary">{{ $t('nav.log_in') }}</button>
         </div>
       </b-field>
-      <a href="#" @click="isForgotPasswordModalActive = true">Forgot password?</a>
+      <a href="#" @click="isForgotPasswordModalActive = true">{{ $t('auth.forgot_password') }}</a>
     </form>
 
     <b-modal :active.sync="isForgotPasswordModalActive">
       <form class="card">
         <header class="card-header">
-          <div class="card-header-title">Reset password</div>
+          <div class="card-header-title">{{ $t('auth.title_reset_password') }}</div>
         </header>
         <div class="card-content">
           <div class="content">
-            <div>Forgot your password? No problem. Enter your email address and we'll send you a reset code.</div>
+            <div>{{ $t('auth.msg_reset_password') }}</div>
             <b-field label="Email">
               <b-input v-model="email" type="email" required/>
             </b-field>
           </div> 
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" @click="isForgotPasswordModalActive = false">Cancel</a>
-          <a class="card-footer-item" type="submit" @click="resetPassword">Reset password</a>
+          <a class="card-footer-item" @click="isForgotPasswordModalActive = false">{{ $t('buttons.btn_cancel') }}</a>
+          <a class="card-footer-item" type="submit" @click="resetPassword">{{ $t('auth.msg_reset_password') }}</a>
         </footer>
       </form>
     </b-modal>
@@ -86,8 +86,8 @@ export default {
 
         this.$router.push(
           this.$store.state.userStats.hasCampaignData
-            ? "/dashboard"
-            : "/onboarding/bitcointalk"
+            ? this.localizedRoute("/dashboard", this.$i18n.locale)
+            : this.localizedRoute("/onboarding/bitcointalk", this.$i18n.locale)
         );
       } catch (error) {
         const errorCode = error.response.data.error_code;

@@ -14,7 +14,7 @@
         <span class="icon p-l-sm"><i class="fas fa-edit"/></span>
       </a>
       <div v-else class="card-footer-item" >
-        <span v-if="comingSoon" class="tag">Coming Soon</span>
+        <span v-if="comingSoon" class="tag">{{ $t('labels.coming_soon') }}</span>
       </div>
     </footer> 
   </div>

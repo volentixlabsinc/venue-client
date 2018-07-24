@@ -1,33 +1,31 @@
 <template>
   <div>
-    <h3 class="title">SIGN UP</h3>
+    <h3 class="title text-transform-uppercase">{{ $t('nav.sign_up') }}</h3>
     <form method="POST" @submit.prevent="registerUser">
-      <b-field :type="emailFieldType" :message="emailMessage" label="Email">
+      <b-field :type="emailFieldType" :message="emailMessage" :label="$t('labels.email')">
         <b-input v-model="email" type="email" name="email" required @blur="checkEmail()"/>
       </b-field>
-      <b-field :type="usernameFieldType" :message="usernameMessage" label="Username">
+      <b-field :type="usernameFieldType" :message="usernameMessage" :label="$t('labels.username')">
         <b-input v-model="username" name="username" maxlength="25" required @blur="checkUsername()" />
       </b-field>
-      <b-field label="Password">
+      <b-field :label="$t('settings.password')">
         <b-input v-model="password" minlength="6" type="password" name="password" required password-reveal/>
       </b-field>
       <div class="field">
-        <b-checkbox v-model="newsletter">Also add me to your newsletter distribution list</b-checkbox>
+        <b-checkbox v-model="newsletter">{{ $t('auth.msg_newsletter') }}</b-checkbox>
       </div>
-      <div class="field">
-        By signing up, you agree to the Volentix <a href="https://www.volentix.io/privacy.html" target="_blank">privacy policy</a> and <a href="https://www.volentix.io/terms.html" target="_blank">terms of use</a>.
-      </div>
+      <div class="field" v-html="$t('auth.msg_policies')"/>
       <b-field>
-        <button class="button is-primary" type="submit">Sign Up</button>
+        <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
       </b-field>
     </form>
-    <b-modal :active.sync="isSuccessModalActive" @close="$router.push('/')">
+    <b-modal :active.sync="isSuccessModalActive" @close="$router.push(localizedRoute('/', $i18n.locale))">
       <div class="modal-card">
         <div class="modal-card-body">
-          Please click the email verification link we've just emailed to you to activate your Venue account.
+          {{ $t('auth.msg_email_verification') }}
         </div>
         <div class="modal-card-foot">
-          <button class="button" type="button" @click="isSuccessModalActive = false; $router.push('/')">Close</button>
+          <button class="button" type="button" @click="isSuccessModalActive = false; $router.push(localizedRoute('/', $i18n.locale))">{{ $t('buttons.btn_close') }}</button>
         </div>
       </div>
     </b-modal>

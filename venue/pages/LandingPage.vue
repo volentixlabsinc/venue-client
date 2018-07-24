@@ -12,28 +12,28 @@
         <LandingPageMyRewardsCard v-else/>
       </div>
     </div>
-    <h2 class="title">Campaigns</h2>
+    <h2 class="title">{{ $t('titles.campaigns') }}</h2>
     <div class="tile is-ancestor">
-      <LandingPageItem name="Bitcoin Talk" info="Join now" link="/signup"/>
-      <LandingPageItem name="Facebook" info="Coming soon" />
-      <LandingPageItem name="Telegram" info="Coming soon" />
-      <LandingPageItem name="Twitter" info="Coming soon" />
+      <LandingPageItem :info="$t('buttons.btn_join_now')" name="Bitcoin Talk" link="/signup"/>
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Facebook" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Telegram" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Twitter" />
     </div>
 
-    <h2 class="title">Bounties</h2>
+    <h2 class="title">{{ $t('titles.bounties') }}</h2>
     <div class="tile is-ancestor">
-      <LandingPageItem name="Venue" info="Coming soon"/>
-      <LandingPageItem name="Vespucci" info="Coming soon" />
-      <LandingPageItem name="Verto" info="Coming soon" />
-      <LandingPageItem name="VDex" info="Coming soon" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Venue"/>
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Vespucci" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Verto" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="VDex" />
     </div>
 
-    <h2 class="title">Proposals</h2>
+    <h2 class="title">{{ $t('titles.proposals') }}</h2>
     <div class="tile is-ancestor">
-      <LandingPageItem name="VLabs" info="Coming soon"/>
-      <LandingPageItem name="Public" info="Coming soon" />
-      <LandingPageItem name="Accepted" info="Coming soon" />
-      <LandingPageItem name="Complete" info="Coming soon" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="VLabs"/>
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Public" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Accepted" />
+      <LandingPageItem :info="$t('labels.coming_soon')" name="Complete" />
     </div>
   </div>
 </template>

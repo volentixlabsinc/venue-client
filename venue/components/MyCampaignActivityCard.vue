@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <div class="card-header-title">MY CAMPAIGN ACTIVITY</div>
+      <div class="card-header-title">{{ $t('labels.my_campaign_activity') }}</div>
     </header>
     <div class="card-content">
       <UserStats :show-rank="showRank" />
@@ -10,10 +10,10 @@
     </div>
     <div class="card-footer">
       <a v-if="(showDetailsButton && hasCampaignData)" class="card-footer-item" @click="onClickDetails">
-        <span>View details</span><span class="icon p-l-sm"><i class="fas fa-info-circle"/></span>
+        <span>{{ $t('buttons.btn_view_details') }}</span><span class="icon p-l-sm"><i class="fas fa-info-circle"/></span>
       </a>
       <a v-if="hasCampaignData" class="card-footer-item" @click="onClickSignature">
-        <span>Edit signature</span><span class="icon p-l-sm"><i class="fas fa-edit"/></span>
+        <span>{{ $t('buttons.btn_edit_signature') }}</span><span class="icon p-l-sm"><i class="fas fa-edit"/></span>
       </a>
     </div>
 </div></template> 
@@ -55,10 +55,14 @@ export default {
   },
   methods: {
     onClickDetails() {
-      this.$router.push("/PointsDetails");
+      this.$router.push(
+        this.localizedRoute("/PointsDetails", this.$i18n.locale)
+      );
     },
     onClickSignature() {
-      this.$router.push("/editSignature");
+      this.$router.push(
+        this.localizedRoute("/editSignature", this.$i18n.locale)
+      );
     }
   }
 };

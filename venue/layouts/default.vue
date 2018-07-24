@@ -9,7 +9,7 @@
             <span class="icon">
               <i class="fas fa-bug"/>
             </span>
-            <span>Report a bug</span>
+            <span>{{ $t('buttons.btn_report_bug') }}</span>
           </a>
         </div>
         <div class="navfooter has-text-centered">

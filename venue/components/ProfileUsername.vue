@@ -1,9 +1,9 @@
 <template>
   <div>
     <ProfileCard 
-      title="Username" 
-      description="Change your username" 
-      button="Change Username"
+      :title="$t('settings.username')" 
+      :description="$t('settings.desc_username')" 
+      :button="$t('settings.btn_username')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
       <ProfileUsernameForm :value="$store.state.user.username"/>

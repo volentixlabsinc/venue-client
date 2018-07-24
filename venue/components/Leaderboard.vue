@@ -14,8 +14,8 @@
     </template>
     <template slot="detail" slot-scope="props">
       <div class="has-text-right">
-        <span>{{ props.row.total_posts }} posts</span>
-        <span class="p-l-lg">{{ props.row.total_points }} points</span>
+        <span>{{ getDetailedPosts($t("labels.posts"), props.row.total_posts) }}</span>
+        <span class="p-l-lg">{{ getDetailedPoints($t("labels.points"), props.row.total_points) }}</span>
       </div>
     </template>
   </b-table>    
@@ -62,7 +62,11 @@ export default {
     };
   },
   methods: {
-    formatVTX: tokens => numeral(tokens).format()
+    formatVTX: tokens => numeral(tokens).format(),
+    getDetailedPosts: (text, total_posts) =>
+      text.split(" | ")[2].replace("{ count }", total_posts),
+    getDetailedPoints: (text, total_points) =>
+      text.split(" | ")[2].replace("{ count }", total_points)
   }
 };
 </script>

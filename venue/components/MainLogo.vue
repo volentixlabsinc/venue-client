@@ -10,7 +10,7 @@
 export default {
   methods: {
     onClickLogo() {
-      this.$router.push("/");
+      this.$router.push(this.localizedRoute("/", this.$i18n.locale));
     }
   }
 };
