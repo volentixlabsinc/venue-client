@@ -2,7 +2,7 @@
   <div>
     <div class="is-size-5">{{ $t('edit_signature.current_signature') }}</div>
     <img id="signature" :src="image">
-    <button v-if="showChangeButton" class="button is-primary is-outlined is-pulled-right" @click="onClickSignature">{{ $t('buttons.btn_change') }}</button>
+    <button v-if="showChangeButton" class="button is-primary is-outlined is-pulled-right text-transform-uppercase" @click="onClickSignature">{{ $t('buttons.btn_change') }}</button>
   </div>  
 </template>
 

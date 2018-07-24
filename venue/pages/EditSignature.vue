@@ -1,7 +1,7 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <h1 class="title">{{ $t('buttons.btn_edit_signature') }}</h1>
+      <h1 class="title text-transform-uppercase">{{ $t('buttons.btn_edit_signature') }}</h1>
       <div>
         <h4 class="subtitle is-4">{{ $t('edit_signature.current_signature') }}</h4>
         <img id="signature" :src="currentSignature">

@@ -5,7 +5,7 @@
       <span v-else>N/A</span> VTX
     </div>
     <span v-if="bonus > 0" style="width:100%; margin:5px">{{ forumUserRank }} Bonus: {{ bonus }} (included)</span>
-    <div class="is-size-5 has-text-centered"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>{{ $t('labels.my_current_rewards') }}</div>
+    <div class="is-size-5 has-text-centered text-transform-uppercase"><span class="icon"><i class="fas fa-star" style="color:#fbc02d"/></span>{{ $t('labels.my_current_rewards') }}</div>
   </div>
 </template>
 

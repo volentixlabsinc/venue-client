@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">{{ $t('titles.login') }}</h3>
+    <h3 class="title text-transform-uppercase">{{ $t('titles.login') }}</h3>
     <form method="POST" @submit="authenticateLogin($event)">
       <p v-show="showMessageError.error" class="is-size-6 has-text-danger">{{ showMessageError.message }}</p>
       <b-field label="Username">

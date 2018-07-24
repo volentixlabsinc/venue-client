@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-content">
       <div class="level">
-        <div class="is-size-3">{{ $t('titles.earn_vtx') }}</div>
+        <div class="is-size-3 text-transform-uppercase">{{ $t('titles.earn_vtx') }}</div>
         <figure class="image is-64x64">
           <img src="~/assets/VTX-Token-icon-new.png">
         </figure>
@@ -13,7 +13,7 @@
     </div>
     <div class="card-footer">
       <div class="card-footer-item">
-        <a @click="onclickJoin">{{ $t('nav.sign_up') }}</a>
+        <a class="text-transform-uppercase" @click="onclickJoin">{{ $t('nav.sign_up') }}</a>
       </div>
     </div>
   </div>
@@ -28,9 +28,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.card-footer-item > a {
-  text-transform: uppercase;
-}
-</style>
