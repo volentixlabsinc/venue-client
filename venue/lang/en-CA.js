@@ -111,7 +111,7 @@ module.exports = {
     bct_campaign: "Bitcointalk campaign",
     my_campaign_activity: "My campaign activity",
     bct_leaderboard: "Bitcointalk leaderboard",
-    earn_vtx: "Earn Vtx!",
+    earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
     login: "Login"
   },
