@@ -39,7 +39,7 @@ export default {
           } else if (!profile.position_allowed) {
             this.type = "is-danger";
             this.message =
-              "You must be at least a bitcointalk full member to join this campaign";
+              "You have a bitcointalk rank of Member to join this campaign";
           } else if (!profile.found) {
             this.type = "is-danger";
             this.message =
