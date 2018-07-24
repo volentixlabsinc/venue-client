@@ -1,9 +1,9 @@
 <template>
   <div>
     <ProfileCard 
-      title="Email Address" 
-      description="Change your registered email address" 
-      button="Change Email"
+      :title="$t('settings.title_email')" 
+      :description="$t('settings.desc_email')" 
+      :button="$t('settings.btn_email')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
       <ProfileEmailAddressForm :value="$store.state.user.email"/>

@@ -22,7 +22,9 @@ export default {
   },
   mounted() {
     if (this.$store.state.userStats.fresh) {
-      this.$router.push("/onboarding/bitcointalk/");
+      this.$router.push(
+        this.localizedRoute("/onboarding/bitcointalk/", this.$i18n.locale)
+      );
     }
   }
 };

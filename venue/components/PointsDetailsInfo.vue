@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1 class="title has-text-centered">POINTS / REWARDS DETAILED INFO</h1>
+    <h1 class="title has-text-centered text-transform-uppercase">{{ $t('points_details.title') }}</h1>
     <hr >
     <div v-show="loaded" class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index" >
@@ -20,9 +20,8 @@
         <span class="icon has-text-warning is-medium">
           <i class="fas fa-exclamation-triangle fa-lg"/>
         </span>
-        Note that signatures must be maintained for a minimum of 23 of the first 24 hours.
-        Removal of a signature before this time will result in loss of all points for that post.
-        <strong>This may take up to 24 hours</strong> to be reflected in your point balance.
+        {{ $t('messages.signature_warning_1') }}
+        <strong>{{ $t('messages.signature_warning_2') }}</strong>{{ $t('messages.signature_warning_3') }}
       </div>
     </div>
   </div>

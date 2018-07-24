@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="level is-marginless">
-      <span class="level-left is-size-5">MY CURRENT REWARDS</span>
+      <span class="level-left is-size-5 text-transform-uppercase">{{ $t('labels.my_current_rewards') }}</span>
       <div class="level-right">
         <span class="is-size-3">{{ myTokens }} VTX</span>
         <a class="button is-info is-outlined" @click="onClickDetails">
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     onClickDetails() {
-      this.$router.push("/PointsDetails");
+      this.$router.push(this.localizedRoute("/PointsDetails", this.$i18n.locale));
     }
   }
 };

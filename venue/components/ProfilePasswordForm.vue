@@ -3,19 +3,19 @@
     <form method="POST" @submit.prevent="changePassword">
       <div class="modal-card">
         <header class="modal-card-head" >
-          <div class="modal-card-title">Change password</div>
+          <div class="modal-card-title">{{ $t('settings.btn_password') }}</div>
         </header>
         <section class="modal-card-body">
-          <b-field label="Current password">
-            <b-input v-model="currentValue" placeholder="Current password" type="password" required password-reveal/>
+          <b-field :label="$t('settings.label_current_password')">
+            <b-input v-model="currentValue" :placeholder="$t('settings.label_current_password')" type="password" required password-reveal/>
           </b-field>
-          <b-field label="New password">
-            <b-input v-model="newValue" placeholder="New password" type="password" required password-reveal/>
+          <b-field :label="$t('settings.label_new_password')">
+            <b-input v-model="newValue" :placeholder="$t('settings.label_new_password')" type="password" required password-reveal/>
           </b-field>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">Cancel</button>
-          <button class="button is-primary" type="submit">Change password</button>
+          <button class="button" type="button" @click="$parent.close()">{{ $t('buttons.btn_cancel') }}</button>
+          <button class="button is-primary" type="submit">{{ $t('settings.btn_password') }}</button>
         </footer>
       </div>
     </form>

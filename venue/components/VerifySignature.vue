@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head" >
-      <div class="modal-card-title">Signature copied</div>
+      <div class="modal-card-title">{{ $t('edit_signature.verify_title') }}</div>
     </header>
     <section class="modal-card-body">
       <div class="columns">
@@ -9,17 +9,16 @@
           <div class="spinner m-t-lg m-l-sm"/>
         </div>
         <div class="column is-three-quarters">
-          <div class="p-b-md">Now paste the copied code to your Bitcointalk profile.</div>
+          <div class="p-b-md">{{ $t('bct_onboarding.bct_signature_paste') }}</div>
           <div class="box">
             <span class="icon has-text-warning is-medium">
               <i class="fas fa-exclamation-triangle fa-lg"/>
             </span>
-            <span class="is-size-6">Signatures must be maintained for a minimum of 23 of the first 24 hours.
-            Removal of a signature before this time will result in loss of all points for that post.
-              <strong>This may take up to 24 hours</strong> to be reflected in your balance.
+            <span class="is-size-6">{{ $t('messages.signature_warning_1') }}
+              <strong>{{ $t('messages.signature_warning_2') }}</strong>{{ $t('messages.signature_warning_3') }}
             </span>
           </div>
-          <div><a @click="isHelpModalActive = true">How do I update my Bitcointalk signature?</a></div>
+          <div><a @click="isHelpModalActive = true">{{ $t('bct_onboarding.msg_sig_update_how') }}</a></div>
           <b-modal :active.sync="isHelpModalActive" has-modal-card>
             <HelpModal element="signature"/>
           </b-modal>
@@ -27,8 +26,8 @@
       </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button" type="button" @click="$parent.close()">Cancel</button>
-      <button class="button is-primary" @click="validateSignature">Verify now</button>
+      <button class="button" type="button" @click="$parent.close()">{{ $t('buttons.btn_cancel') }}</button>
+      <button class="button is-primary" @click="validateSignature">{{ $t('bct_onboarding.btn_verify_now') }}</button>
       <span class="icon has-text-danger is-medium"><i v-show="validationFailed" class="fas fa-exclamation-circle fa-lg"/></span>
     </footer>
   </div>

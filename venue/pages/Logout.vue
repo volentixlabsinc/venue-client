@@ -1,5 +1,5 @@
 <template>
-  <h2 style="color:white;">Logging out... </h2>
+  <h2 style="color:white;">{{ $t('auth.msg_logging_out') }}</h2>
 </template>
 
 
@@ -13,7 +13,7 @@ export default {
     logout: async function() {
       this.$axios.$get("/logout/");
       this.$store.dispatch("clearUserState");
-      this.$router.push("/");
+      this.$router.push(this.localizedRoute("/", this.$i18n.locale));
     }
   }
 };

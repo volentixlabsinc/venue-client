@@ -1,9 +1,9 @@
 <template>
   <ProfileCard
     :coming-soon="true"
-    title="Two-Factor Authentication"
-    description="Modify two-factor authentication"
-    button="Enable 2FA"/>
+    :title="$t('settings.two_factor')"
+    :description="$t('settings.desc_two_factor')"
+    :button="$t('settings.btn_enable_2fa')"/>
 </template>
 
 <script>

@@ -1,3 +1,5 @@
+const { I18N } = require("./config");
+
 module.exports = {
   /*
   ** Headers of the page
@@ -70,13 +72,18 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics", ["nuxt-i18n", I18N]],
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost/api',
-    browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+    baseURL: process.env.BASE_URL || "http://localhost/api",
+    browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
   },
   "google-analytics": {
     id: "UA-119876313-3"
   },
-  plugins: ["~/plugins/vue-clipboard", "~/plugins/buefy", "~/plugins/axios"]
+  plugins: [
+    "~/plugins/vue-clipboard",
+    "~/plugins/buefy",
+    "~/plugins/axios",
+    "~/plugins/mixin"
+  ]
 };
