@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">{{ $t('nav.sign_up') }}</h3>
+    <h3 class="title text-transform-uppercase">{{ $t('nav.sign_up') }}</h3>
     <form method="POST" @submit.prevent="registerUser">
       <b-field :type="emailFieldType" :message="emailMessage" :label="$t('labels.email')">
         <b-input v-model="email" type="email" name="email" required @blur="checkEmail()"/>

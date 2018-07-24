@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1 class="title has-text-centered">{{ $t('points_details.title') }}</h1>
+    <h1 class="title has-text-centered text-transform-uppercase">{{ $t('points_details.title') }}</h1>
     <hr >
     <div v-show="loaded" class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index" >

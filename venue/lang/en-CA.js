@@ -113,7 +113,7 @@ module.exports = {
     bct_leaderboard: "Bitcointalk leaderboard",
     earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
-    login: "LOGIN"
+    login: "Login"
   },
   edit_signature: {
     current_signature: "Current signature",
@@ -137,7 +137,7 @@ module.exports = {
     btn_previous: "Previous",
     btn_next: "Next",
     btn_close: "Close",
-    btn_copy_code: "COPY CODE",
+    btn_copy_code: "Copy code",
     btn_change: "Change",
     btn_verify: "Verify"
   }

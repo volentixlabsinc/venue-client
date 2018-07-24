@@ -6,7 +6,7 @@
 @font-face {
   font-family: "Code Bold";
   src: url("~/assets/CODE Bold.otf") format("opentype");
-  }
+}
 
 .title {
   font-family: "Code Bold", Arial, sans-serif;
