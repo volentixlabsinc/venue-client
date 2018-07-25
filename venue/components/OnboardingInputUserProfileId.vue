@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="checkProfile">
     <b-field :message="message" :type="type">
-      <b-input v-model="forumUserId" :loading="loading" expanded placeholder="Your user id" required @input="clearWarnings()"/>
+      <b-input v-model="forumUserId" :loading="loading" :placeholder="$t('bct_onboarding.your_user_id')" expanded required @input="clearWarnings()"/>
       <div class="control"><button :disabled="forumUserId.length === 0" class="button is-primary" type="submit">{{ $t('buttons.btn_verify') }}</button></div>
     </b-field>
   </form>
@@ -35,15 +35,13 @@ export default {
           this.loading = false;
           if (profile.exists && !profile.own && profile.verified) {
             this.type = "is-danger";
-            this.message = "This id is already attached to a Venue profile";
+            this.message = this.$t("bct_onboarding.err_duplicate_id");
           } else if (!profile.position_allowed) {
             this.type = "is-danger";
-            this.message =
-              "You must be at least a bitcointalk full member to join this campaign";
+            this.message = this.$t("bct_onboarding.err_min_forum_level");
           } else if (!profile.found) {
             this.type = "is-danger";
-            this.message =
-              "Profile not found; please verify that you copied the correct userid";
+            this.message = this.$t("bct_onboarding.err_profile_not_found");
           } else {
             this.type = "is-success";
             this.message = "";
@@ -57,8 +55,8 @@ export default {
           this.loading = false;
           this.type = "is-danger";
           this.message = [
-            "Profile not found.",
-            "Please verify that you copied the correct userid"
+            this.$t("bct_onboarding.err_profile_not_found"),
+            this.$t("bct_onboarding.err_profile_check_user_id")
           ];
         }
       } else {

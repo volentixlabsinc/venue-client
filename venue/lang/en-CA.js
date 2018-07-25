@@ -31,8 +31,9 @@ module.exports = {
     err_duplicate_id: "This id is already attached to a Venue profile",
     err_min_forum_level:
       "You must be at least a bitcointalk full member to join this campaign",
-    err_profile_not_found:
-      "Profile not found; please verify that you copied the correct userid",
+    err_profile_not_found: "Profile not found.",
+    err_profile_check_user_id:
+      "Please verify that you copied the correct userid",
     help_signature_1:
       "1) Click on Forum Profile Information inside the Profile Tab",
     help_signature_2:
@@ -46,7 +47,8 @@ module.exports = {
       "Now paste the copied code to your Bitcointalk profile.",
     msg_sig_update_how: "How do I update my Bitcointalk signature?",
     btn_verify_now: "Verify now",
-    paste_id: "Paste your forum ID from the URL below:"
+    paste_id: "Paste your forum ID from the URL below:",
+    your_user_id: "Your user id"
   },
   settings: {
     title_my_profile: "My profile",
@@ -81,6 +83,7 @@ module.exports = {
     my_points: "My points",
     participants: "Participants",
     total_posts: "Total posts",
+    total_points: "Total points",
     current: "Current",
     available_rewards: "Available rewards",
     my_current_rewards: "My current rewards",
@@ -97,8 +100,14 @@ module.exports = {
     title: "Points / rewards detailed info",
     posts_sitewide:
       "0 posts sitewide | 1 post sitewide | { count } posts sitewide",
-    points_sitewide:
-      "0 points sitewide | 1 points sitewide | { count } points sitewide",
+    posts_sitewide_text:
+      "{ num_posts } posts sitewide X { bonus_percentage } = <u>{ total_points } Points</u>",
+    points_sitewide: "{ count } points sitewide",
+    vtx_per_point_text:
+      " { availableTokens } available reward / { totalPoints } points = <u><span class='has-text-weight-bold'>{ vtxPerPoint } VTX per point</span></u>",
+    total_posts_text:
+      "Your total posts X { multiplier } = <u>{ myPoints } points </u>",
+    total_points_text: "Your total points X { vtxPerPoint } = { myTokens } VTX",
     your_total_posts: "Your total posts",
     your_total_points: "Your total points",
     vtx_per_points: "VTX per point"
