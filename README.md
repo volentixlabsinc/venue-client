@@ -1,61 +1,50 @@
 # venue-client
 
+[![CircleCI](https://circleci.com/gh/Volentix/venue-client.svg?style=shield&circle-token=476a91629295ad83bd8b0c90a1dbc2712803b5d5)](https://circleci.com/gh/Volentix/venue-client)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![Semver](http://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
-[![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![MIT](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102)
 
-> The client side for the Venue rewards and bounty tracker platform.
+> The webapp for Venue, a community engagement platform for the Volentix community    
 
 This repository houses the artifacts for the UI of the Venue platform. The main technologies used for this software are:
 
-  * [Nuxt](https://nuxtjs.org/)
+  * [Javascript](https://www.javascript.com/)
   * [Vue](https://vuejs.org/)
-  * [Node](https://nodejs.org/)
-
-For deployment, we are using:
-
-  * [Docker](https://www.docker.com/)
-  * [CircleCi](https://circleci.com/)
-  * [Kubernetes](https://kubernetes.io/)
+  * [Nuxt](https://nuxtjs.org/)
+  * [Bulma](https://bulma.io)
 
 ## Table of Contents
 
-- [Background](#background)
 - [Install](#install)
   - [Requirements](#requirements)
   - [Venue Client](#venue-client)
 - [Usage](#usage)
+  - [Proxy](#proxy)
   - [Running](#running)
   - [Building](#building)
 - [Maintainers](#maintainers)
 - [Contribute](#contribute)
 - [License](#license)
 
-## Background
-
-DO WE NEED THIS SECTION?????????????????????????????????????????
-
 ## Install
 
 ### Requirements
 
-Before running Venue, make sure you have the following installed on your machine.
+Before running the Venue client, make sure you have the following installed on your machine.
 
   * [Venue Server](https://github.com/volentix/venue-server).
-  * [Yarn](https://yarnpkg.com/lang/en/)
-  * [Node and NPM](https://nodejs.org/)
+  * [Yarn](https://yarnpkg.com/lang/en/) or [NPM](https://www.npmjs.com) (we recommend yarn)
+  * [Node](https://nodejs.org/)
 
 ### Venue Client
 
 Open a terminal in the root of this project and then change into the 'venue' directory:
-
 ```
 cd venue
 ```
-
-Note that some versions of NPM break the build, as a result, yarn is recommended instead.
 
 Install dependancies.
 ```
@@ -68,15 +57,35 @@ When running locally, the application is available here: http://localhost:3000
 
 Once the project is installed, the following commands are used to run/build the project.
 
-## Proxy
+### Proxy
 
 In order for the client to communicate without the need for CORS, you must first run the nginx reverse proxy. Note that the files to create the nginx proxy can be found in this repository [here](/nginx/README.md).
 
 The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
 
-To run the nginx proxy:
+If you don't want to run this proxy for some reason, you can manually modify `nuxt.config.js` to point directly
+to the server:
+
+```
+  axios: {
+    baseURL: 'http://localhost:3000'
+    // baseURL: process.env.BASE_URL || 'http://localhost/api',
+    // browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+  },
+```
+
+#### Linux
+
+To run the nginx proxy on linux:
 ```
 docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
+```
+
+#### Mac
+
+To run the nginx proxy on Mac:
+```
+docker run -p 80:80 volentixlabs/venue-local-proxy-mac:v0.1.0
 ```
 
 ### Running
@@ -96,20 +105,17 @@ Build for production and launch server
 yarn run build
 ```
 
-To generate the project:
-```
-yarn run generate
-```
-
 ## Maintainers
 
 [@shawnlauzon](https://github.com/shawnlauzon)
 
 ## Contribute
 
-See [the contribute file](contribute.md)!
+Venue is a project which was originally created by Volentix Labs, but is owned and
+maintained by the Volentix community. We actively support and appreciate anyone
+who wants to improve this or any project within the community.
 
-PRs accepted.
+See [CONTRIBUTING.md](https://www.github.com/Volentix/venue/CONTRIBUTING.md)
 
 Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 

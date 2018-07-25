@@ -30,7 +30,7 @@ module.exports = {
   bct_onboarding: {
     err_duplicate_id: "This id is already attached to a Venue profile",
     err_min_forum_level:
-      "You must be at least a bitcointalk full member to join this campaign",
+      "You have a bitcointalk rank of Member to join this campaign",
     err_profile_not_found: "Profile not found.",
     err_profile_check_user_id:
       "Please verify that you copied the correct userid",
