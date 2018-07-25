@@ -21,6 +21,15 @@ docker build -t venue-local-proxy .
 ```
 
 You can then run the proxy as such (keeping in mind the port mapping if you changed it):
+
+On Linux:
+
 ```
 docker run -p 80:80 --net="host" venue-local-proxy
+```
+
+On Mac:
+
+```
+docker run -p 80:80 venue-local-proxy
 ```
