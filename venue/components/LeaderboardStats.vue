@@ -18,20 +18,20 @@ export default {
     return {
       stats: [
         {
-          label: "MY RANK",
+          label: this.$t("labels.my_rank"),
           value: this.$store.state.userStats.hasCampaignData
             ? this.$store.state.userStats.user_level.overall_rank
             : undefined,
           trophy: true
         },
         {
-          label: "PARTICIPANTS",
+          label: this.$t("labels.participants"),
           value: this.$store.state.leaderboard.sitewide
             ? this.$store.state.leaderboard.sitewide.total_users
             : 0
         },
         {
-          label: "TOTAL POINTS",
+          label: this.$t("labels.total_points"),
           value: this.$store.state.leaderboard.sitewide
             ? this.$store.state.leaderboard.sitewide.total_points
             : 0
