@@ -4,13 +4,15 @@
     <hr >
     <div v-show="loaded" class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index">
-        {{ compare(bonus_level.num_posts, 2) ? $tc('points_details.posts_sitewide', bonus_level.num_posts) : $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }} X {{ 100 + bonus_level.bonus_percentage }} = 
-        <u>{{ $t('points_details.points', { count: bonus_level.num_posts * (100 + bonus_level.bonus_percentage) }) }}</u>
+        {{ $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }} 
+        X {{ 100 + bonus_level.bonus_percentage }} =
+        <u>{{ $tc('points_details.points', calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage),
+                  { count: calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage) }) }}</u>
       </h1>
-      <div v-if="totalPoints<2" class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints) }}</div>
-      <div v-else class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
+      <div class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
       <div class="subtitle">
-        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
+        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = 
+        <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
       </div>
             
       <div class="box">
@@ -93,8 +95,8 @@ export default {
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
-    compare(num_1, num_2) {
-      return num_1 < num_2;
+    calcPoints(numPosts, bonus) {
+      numPosts * (100 + bonus);
     }
   }
 };
