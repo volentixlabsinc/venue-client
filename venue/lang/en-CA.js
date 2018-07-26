@@ -94,7 +94,8 @@ module.exports = {
     coming_soon: "Coming soon",
     num_posts: "Number of Posts",
     card_title: "Step {imageNumber} of 3",
-    email: "Email"
+    email: "Email",
+    bonus_percent: "{rank} bonus: {bonus}% (included)"
   },
   points_details: {
     title: "Points / rewards detailed info",
