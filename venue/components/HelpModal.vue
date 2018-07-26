@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card" v-on="$listeners">
     <header class="modal-card-head">
-      <div class="modal-card-title">{{ cardTitle }}</div>
+      <div class="modal-card-title">{{ $t("labels.card_title", { imageNumber: imageNumber }) }}</div>
     </header>
     <section class="modal-card-body">
       <HelpIdImages v-if="element === 'id'" :image-number="imageNumber" @userIdConfirmed="submitUserId" @verified="$emit('verified', $event)"/>
@@ -41,14 +41,6 @@ export default {
     return {
       imageNumber: 1
     };
-  },
-  computed: {
-    cardTitle() {
-      return this.$t("labels.card_title").replace(
-        "{ imageNumber }",
-        this.imageNumber
-      );
-    }
   },
   mounted() {
     // setInterval(this.swap, 4000);

@@ -62,7 +62,7 @@ export default {
   },
   mounted() {
     if (this.$route.query.email_confirmed == 1) {
-      this.$snackbar.open("Email address verified");
+      this.$snackbar.open(this.$t("auth.msg_verified"));
     }
   },
   methods: {
@@ -97,10 +97,9 @@ export default {
     displayErrorMessage(error) {
       this.showMessageError.error = true;
       if (error === "wrong_credentials") {
-        this.showMessageError.message = "Incorrect username or password.";
+        this.showMessageError.message = this.$t("auth.err_password");
       } else if (error === "email_verification_required") {
-        this.showMessageError.message =
-          "Your email address has not been verified. Please check your email account.";
+        this.showMessageError.message = this.$t("auth.msg_not_verified");
       }
     },
     async resetPassword() {

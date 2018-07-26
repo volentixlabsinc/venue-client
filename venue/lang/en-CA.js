@@ -30,9 +30,10 @@ module.exports = {
   bct_onboarding: {
     err_duplicate_id: "This id is already attached to a Venue profile",
     err_min_forum_level:
-      "You must be at least a bitcointalk full member to join this campaign",
-    err_profile_not_found:
-      "Profile not found; please verify that you copied the correct userid",
+      "You have a bitcointalk rank of Member to join this campaign",
+    err_profile_not_found: "Profile not found.",
+    err_profile_check_user_id:
+      "Please verify that you copied the correct userid",
     help_signature_1:
       "1) Click on Forum Profile Information inside the Profile Tab",
     help_signature_2:
@@ -41,12 +42,13 @@ module.exports = {
     bct_welcome: "Welcome to the Bitcoin Talk campaign",
     help_find_bct_id: "How do I find my bitcointalk user id?",
     msg_choose_signature: "Choose your signature",
-    bct_step_title: "Step { step }",
+    bct_step_title: "Step {step}",
     bct_signature_paste:
       "Now paste the copied code to your Bitcointalk profile.",
     msg_sig_update_how: "How do I update my Bitcointalk signature?",
     btn_verify_now: "Verify now",
-    paste_id: "Paste your forum ID from the URL below:"
+    paste_id: "Paste your forum ID from the URL below:",
+    your_user_id: "Your user id"
   },
   settings: {
     title_my_profile: "My profile",
@@ -81,27 +83,30 @@ module.exports = {
     my_points: "My points",
     participants: "Participants",
     total_posts: "Total posts",
+    total_points: "Total points",
     current: "Current",
     available_rewards: "Available rewards",
     my_current_rewards: "My current rewards",
     my_campaign_activity: "My campaign activity",
-    posts: "0 posts | 1 post | { count } posts",
-    points: "0 points | 1 point | { count } points",
+    posts: "0 posts | 1 post | {count} posts",
+    points: "0 points | 1 point | {count} points",
     username: "Username",
     coming_soon: "Coming soon",
     num_posts: "Number of Posts",
-    card_title: "Step { imageNumber } of 3",
+    card_title: "Step {imageNumber} of 3",
     email: "Email"
   },
   points_details: {
     title: "Points / rewards detailed info",
     posts_sitewide:
-      "0 posts sitewide | 1 post sitewide | { count } posts sitewide",
+      "0 posts sitewide | 1 post sitewide | {count} posts sitewide",
+    points: "{count} points",
     points_sitewide:
-      "0 points sitewide | 1 points sitewide | { count } points sitewide",
+      "0 points sitewide | 1 points sitewide | {count} points sitewide",
+    available_reward: " {count} available reward",
     your_total_posts: "Your total posts",
     your_total_points: "Your total points",
-    vtx_per_points: "VTX per point"
+    vtx_per_points: "{count} VTX per point"
   },
   titles: {
     campaigns: "Campaigns",

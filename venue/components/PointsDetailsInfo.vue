@@ -3,17 +3,25 @@
     <h1 class="title has-text-centered text-transform-uppercase">{{ $t('points_details.title') }}</h1>
     <hr >
     <div v-show="loaded" class="has-text-centered">
-      <h1 v-for="(bonus_level, index) in bonus" :key="index" >
-        {{ bonus_level.num_posts }} posts sitewide X {{ 100 + bonus_level.bonus_percentage }} = 
-        <u>{{ bonus_level.num_posts * (100 + bonus_level.bonus_percentage) }} Points</u>
+      <h1 v-for="(bonus_level, index) in bonus" :key="index">
+        {{ $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }} 
+        X {{ 100 + bonus_level.bonus_percentage }} =
+        <u>{{ $tc('points_details.points', calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage),
+                  { count: calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage) }) }}</u>
       </h1>
-      <div class="is-size-3 m-md">{{ totalPoints }} POINTS SITEWIDE</div>
-      <div class="subtitle"> {{ availableTokens }} available reward / {{ totalPoints }} points =
-      <u><span class="has-text-weight-bold">{{ vtxPerPoint }} VTX per point</span></u></div>
+      <div class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
+      <div class="subtitle">
+        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = 
+        <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
+      </div>
             
       <div class="box">
-        <div class="is-size-5">Your total posts X {{ multiplier }} = <u>{{ myPoints }} points </u></div>
-        <div class="is-size-5">Your total points X {{ vtxPerPoint }} = {{ myTokens }} VTX</div>
+        <div class="is-size-5">
+          {{ $t('points_details.your_total_posts') }} X {{ multiplier }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
+        </div>
+        <div class="is-size-5">
+          {{ $t('points_details.your_total_points') }} X {{ vtxPerPoint }} = {{ myTokens }} VTX
+        </div>
       </div>
 
       <div class="has-text-left is-size-6">
@@ -86,6 +94,9 @@ export default {
       this.myPoints = pointsBreakdown.user_stats.total_post_points;
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
+    },
+    calcPoints(numPosts, bonus) {
+      numPosts * (100 + bonus);
     }
   }
 };
