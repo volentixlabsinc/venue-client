@@ -3,7 +3,7 @@
   <TwoColumnLayout>
     <div slot="left">
       <h1 class="title">{{ $t('bct_onboarding.bct_welcome') }}</h1>
-      <h2 class="subtitle">{{ stepTitle }}</h2>
+      <h2 class="subtitle">{{ $t("bct_onboarding.bct_step_title", { step: step }) }}</h2>
       <div class="box">
         <div v-if="step === 1">
           <b-field label="Your profile ID from Bitcoin Talk">
@@ -78,14 +78,6 @@ export default {
       isHelpModalActive: false,
       isVerifySignatureActive: false
     };
-  },
-  computed: {
-    stepTitle() {
-      return this.$t("bct_onboarding.bct_step_title").replace(
-        "{ step }",
-        this.step
-      );
-    }
   },
   middleware: "authenticated",
   mounted() {

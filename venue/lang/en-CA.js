@@ -42,7 +42,7 @@ module.exports = {
     bct_welcome: "Welcome to the Bitcoin Talk campaign",
     help_find_bct_id: "How do I find my bitcointalk user id?",
     msg_choose_signature: "Choose your signature",
-    bct_step_title: "Step { step }",
+    bct_step_title: "Step {step}",
     bct_signature_paste:
       "Now paste the copied code to your Bitcointalk profile.",
     msg_sig_update_how: "How do I update my Bitcointalk signature?",
@@ -88,29 +88,25 @@ module.exports = {
     available_rewards: "Available rewards",
     my_current_rewards: "My current rewards",
     my_campaign_activity: "My campaign activity",
-    posts: "0 posts | 1 post | { count } posts",
-    points: "0 points | 1 point | { count } points",
+    posts: "0 posts | 1 post | {count} posts",
+    points: "0 points | 1 point | {count} points",
     username: "Username",
     coming_soon: "Coming soon",
     num_posts: "Number of Posts",
-    card_title: "Step { imageNumber } of 3",
+    card_title: "Step {imageNumber} of 3",
     email: "Email"
   },
   points_details: {
     title: "Points / rewards detailed info",
     posts_sitewide:
-      "0 posts sitewide | 1 post sitewide | { count } posts sitewide",
-    posts_sitewide_text:
-      "{ num_posts } posts sitewide X { bonus_percentage } = <u>{ total_points } Points</u>",
-    points_sitewide: "{ count } points sitewide",
-    vtx_per_point_text:
-      " { availableTokens } available reward / { totalPoints } points = <u><span class='has-text-weight-bold'>{ vtxPerPoint } VTX per point</span></u>",
-    total_posts_text:
-      "Your total posts X { multiplier } = <u>{ myPoints } points </u>",
-    total_points_text: "Your total points X { vtxPerPoint } = { myTokens } VTX",
+      "0 posts sitewide | 1 post sitewide | {count} posts sitewide",
+    points: "{count} points",
+    points_sitewide:
+      "0 points sitewide | 1 points sitewide | {count} points sitewide",
+    available_reward: " {count} available reward",
     your_total_posts: "Your total posts",
     your_total_points: "Your total points",
-    vtx_per_points: "VTX per point"
+    vtx_per_points: "{count} VTX per point"
   },
   titles: {
     campaigns: "Campaigns",

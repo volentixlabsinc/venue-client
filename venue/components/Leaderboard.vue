@@ -14,8 +14,10 @@
     </template>
     <template slot="detail" slot-scope="props">
       <div class="has-text-right">
-        <span>{{ getDetailedPosts($t("labels.posts"), props.row.total_posts) }}</span>
-        <span class="p-l-lg">{{ getDetailedPoints($t("labels.points"), props.row.total_points) }}</span>
+        <span v-if="props.row.total_posts < 2">{{ $tc("labels.posts", props.row.total_posts) }}</span>
+        <span v-else>{{ $tc("labels.posts", props.row.total_posts, { count: props.row.total_posts }) }}</span>
+        <span v-if="props.row.total_points < 2" class="p-l-lg">{{ $tc("labels.posts", props.row.total_points) }}</span>
+        <span v-else class="p-l-lg">{{ $tc("labels.points", props.row.total_points, { count: props.row.total_points }) }}</span>
       </div>
     </template>
   </b-table>    
@@ -62,11 +64,7 @@ export default {
     };
   },
   methods: {
-    formatVTX: tokens => numeral(tokens).format(),
-    getDetailedPosts: (text, total_posts) =>
-      text.split(" | ")[2].replace("{ count }", total_posts),
-    getDetailedPoints: (text, total_points) =>
-      text.split(" | ")[2].replace("{ count }", total_points)
+    formatVTX: tokens => numeral(tokens).format()
   }
 };
 </script>

@@ -3,13 +3,23 @@
     <h1 class="title has-text-centered text-transform-uppercase">{{ $t('points_details.title') }}</h1>
     <hr >
     <div v-show="loaded" class="has-text-centered">
-      <h1 v-for="(bonus_level, index) in bonus" :key="index" v-html="postsSitewideText(bonus_level)" />
-      <div class="is-size-3 m-md">{{ $t('points_details.points_sitewide').replace("{ count }", totalPoints) }}</div>
-      <div class="subtitle" v-html="vtxPerPointText()"/>
+      <h1 v-for="(bonus_level, index) in bonus" :key="index">
+        {{ compare(bonus_level.num_posts, 2) ? $tc('points_details.posts_sitewide', bonus_level.num_posts) : $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }} X {{ 100 + bonus_level.bonus_percentage }} = 
+        <u>{{ $t('points_details.points', { count: bonus_level.num_posts * (100 + bonus_level.bonus_percentage) }) }}</u>
+      </h1>
+      <div v-if="totalPoints<2" class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints) }}</div>
+      <div v-else class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
+      <div class="subtitle">
+        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
+      </div>
             
       <div class="box">
-        <div class="is-size-5" v-html="totalPostsText()"/>
-        <div class="is-size-5" v-html="totalPointsText()"/>
+        <div class="is-size-5">
+          {{ $t('points_details.your_total_posts') }} X {{ multiplier }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
+        </div>
+        <div class="is-size-5">
+          {{ $t('points_details.your_total_points') }} X {{ vtxPerPoint }} = {{ myTokens }} VTX
+        </div>
       </div>
 
       <div class="has-text-left is-size-6">
@@ -83,30 +93,8 @@ export default {
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
-    postsSitewideText(bonus_level) {
-      return this.$t("points_details.posts_sitewide_text")
-        .replace("{ num_posts }", bonus_level.num_posts)
-        .replace("{ bonus_percentage }", 100 + bonus_level.bonus_percentage)
-        .replace(
-          "{ total_points }",
-          bonus_level.num_posts * (100 + bonus_level.bonus_percentage)
-        );
-    },
-    vtxPerPointText() {
-      return this.$t("points_details.vtx_per_point_text")
-        .replace("{ availableTokens }", this.availableTokens)
-        .replace("{ totalPoints }", 100 + this.totalPoints)
-        .replace("{ vtxPerPoint }", 100 + this.vtxPerPoint);
-    },
-    totalPostsText() {
-      return this.$t("points_details.total_posts_text")
-        .replace("{ multiplier }", this.multiplier)
-        .replace("{ myPoints }", this.myPoints);
-    },
-    totalPointsText() {
-      return this.$t("points_details.total_points_text")
-        .replace("{ vtxPerPoint }", this.vtxPerPoint)
-        .replace("{ myTokens }", this.myTokens);
+    compare(num_1, num_2) {
+      return num_1 < num_2;
     }
   }
 };
