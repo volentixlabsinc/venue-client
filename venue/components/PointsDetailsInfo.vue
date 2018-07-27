@@ -66,7 +66,8 @@ export default {
         ).format(),
         availableTokens: numeral(
           this.$store.state.leaderboard.sitewide.available_tokens
-        ).format()
+        ).format(),
+        myPoints: this.$store.state.userStats.profile_level[0].totalPoints
       });
     }
     return data;
@@ -91,7 +92,7 @@ export default {
       this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
         2
       );
-      this.myPoints = pointsBreakdown.user_stats.total_post_points;
+      //this.myPoints = pointsBreakdown.user_stats.total_post_points;
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
