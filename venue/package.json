@@ -9,8 +9,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue,.css --ignore-path .gitignore .",
-    "lintfix": "eslint --fix --ext .js,.vue,.css --ignore-path .gitignore ."
+    "lint": "eslint --ext .js,.vue .",
+    "lintfix": "eslint --fix --ext .js,.vue .",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,vue,css}": [
@@ -49,6 +50,7 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.5.0",
     "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
     "node-sass": "^4.9.0",
     "prettier": "^1.13.5",
     "sass-loader": "^7.0.3",

@@ -39,7 +39,9 @@ export default {
   },
   methods: {
     onClickDetails() {
-      this.$router.push(this.localizedRoute("/PointsDetails", this.$i18n.locale));
+      this.$router.push(
+        this.localizedRoute("/PointsDetails", this.$i18n.locale)
+      );
     }
   }
 };
