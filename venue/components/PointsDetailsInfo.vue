@@ -17,7 +17,7 @@
             
       <div class="box">
         <div class="is-size-5">
-          {{ $t('points_details.your_total_posts') }} X {{ multiplier }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
+          {{ $t('points_details.your_total_posts') }} X {{ calcMultiplier(bonusPercentage) }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
         </div>
         <div class="is-size-5">
           {{ $t('points_details.your_total_points') }} X {{ vtxPerPoint }} = {{ myTokens }} VTX
@@ -67,7 +67,9 @@ export default {
         availableTokens: numeral(
           this.$store.state.leaderboard.sitewide.available_tokens
         ).format(),
-        myPoints: this.$store.state.userStats.profile_level[0].totalPoints
+        myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+        mybonusPercentage: this.$store.state.userStats.profile_level[0]
+          .rankBonusPercentage
       });
     }
     return data;
@@ -83,7 +85,8 @@ export default {
       let availableRewardsNumber = parseFloat(
         this.availableTokens.replace(",", "")
       );
-      this.multiplier = pointsBreakdown.settings.post_points_multiplier;
+      console.log(pointsBreakdown);
+      //this.multiplier = pointsBreakdown.settings.post_points_multiplier;
       this.totalPostPoints = pointsBreakdown.sitewide_stats.total_post_points;
       this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
@@ -98,6 +101,9 @@ export default {
     },
     calcPoints(numPosts, bonus) {
       numPosts * (100 + bonus);
+    },
+    calcMultiplier(bonus) {
+      return 100 + bonus;
     }
   }
 };
