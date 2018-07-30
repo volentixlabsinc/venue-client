@@ -17,7 +17,7 @@
             
       <div class="box">
         <div class="is-size-5">
-          {{ $t('points_details.your_total_posts') }} X {{ calcMultiplier(bonusPercentage) }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
+          {{ $t('points_details.your_total_posts') }} X {{ calcMultiplier(mybonusPercentage) }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
         </div>
         <div class="is-size-5">
           {{ $t('points_details.your_total_points') }} X {{ vtxPerPoint }} = {{ myTokens }} VTX
@@ -85,8 +85,6 @@ export default {
       let availableRewardsNumber = parseFloat(
         this.availableTokens.replace(",", "")
       );
-      console.log(pointsBreakdown);
-      //this.multiplier = pointsBreakdown.settings.post_points_multiplier;
       this.totalPostPoints = pointsBreakdown.sitewide_stats.total_post_points;
       this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
@@ -95,15 +93,14 @@ export default {
       this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
         2
       );
-      //this.myPoints = pointsBreakdown.user_stats.total_post_points;
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
     calcPoints(numPosts, bonus) {
       numPosts * (100 + bonus);
     },
-    calcMultiplier(bonus) {
-      return 100 + bonus;
+    calcMultiplier(bonusPercentage) {
+      return 100 * (1 + bonusPercentage / 100);
     }
   }
 };
