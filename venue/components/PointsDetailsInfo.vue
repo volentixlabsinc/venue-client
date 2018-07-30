@@ -9,7 +9,9 @@
         <u>{{ $tc('points_details.points', calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage),
                   { count: calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage) }) }}</u>
       </h1>
-      <div class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
+      <div class="is-size-3 m-md">
+        {{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}
+      </div>
       <div class="subtitle">
         {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = 
         <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
@@ -88,7 +90,7 @@ export default {
       this.totalPostPoints = pointsBreakdown.sitewide_stats.total_post_points;
       this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
-      this.totalPoints = numeral(this.totalPointsNum).format();
+      this.totalPoints = this.totalPointsNum;
       this.totalPosts = pointsBreakdown.sitewide_stats.total_posts;
       this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
         2
@@ -97,7 +99,7 @@ export default {
       this.loaded = true;
     },
     calcPoints(numPosts, bonus) {
-      numPosts * (100 + bonus);
+      return numPosts * (100 + bonus);
     },
     calcMultiplier(bonusPercentage) {
       return 100 * (1 + bonusPercentage / 100);
