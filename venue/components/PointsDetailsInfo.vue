@@ -9,7 +9,9 @@
         <u>{{ $tc('points_details.points', calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage),
                   { count: calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage) }) }}</u>
       </h1>
-      <div class="is-size-3 m-md">{{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}</div>
+      <div class="is-size-3 m-md">
+        {{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}
+      </div>
       <div class="subtitle">
         {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = 
         <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
@@ -17,7 +19,7 @@
             
       <div class="box">
         <div class="is-size-5">
-          {{ $t('points_details.your_total_posts') }} X {{ multiplier }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
+          {{ $t('points_details.your_total_posts') }} X {{ calcMultiplier(mybonusPercentage) }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
         </div>
         <div class="is-size-5">
           {{ $t('points_details.your_total_points') }} X {{ vtxPerPoint }} = {{ myTokens }} VTX
@@ -66,7 +68,10 @@ export default {
         ).format(),
         availableTokens: numeral(
           this.$store.state.leaderboard.sitewide.available_tokens
-        ).format()
+        ).format(),
+        myPoints: this.$store.state.userStats.profile_level[0].totalPoints,
+        mybonusPercentage: this.$store.state.userStats.profile_level[0]
+          .rankBonusPercentage
       });
     }
     return data;
@@ -82,21 +87,22 @@ export default {
       let availableRewardsNumber = parseFloat(
         this.availableTokens.replace(",", "")
       );
-      this.multiplier = pointsBreakdown.settings.post_points_multiplier;
       this.totalPostPoints = pointsBreakdown.sitewide_stats.total_post_points;
       this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
-      this.totalPoints = numeral(this.totalPointsNum).format();
+      this.totalPoints = this.totalPointsNum;
       this.totalPosts = pointsBreakdown.sitewide_stats.total_posts;
       this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
         2
       );
-      this.myPoints = pointsBreakdown.user_stats.total_post_points;
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
     calcPoints(numPosts, bonus) {
-      numPosts * (100 + bonus);
+      return numPosts * (100 + bonus);
+    },
+    calcMultiplier(bonusPercentage) {
+      return 100 * (1 + bonusPercentage / 100);
     }
   }
 };
