@@ -1,0 +1,26 @@
+.is-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@font-face {
+  font-family: "Code Bold";
+  src: url("~/assets/CODE Bold.otf") format("opentype");
+}
+
+.title {
+  font-family: "Code Bold", Arial, sans-serif;
+}
+
+.card-header-title {
+  font-family: "Code Bold", Arial, sans-serif;
+}
+
+/* Workaround for Buefy not properly handliing field add-ons with messages */
+div.has-addons {
+  flex-wrap: wrap;
+}
+
+section.language-container {
+  min-height: 200px;
+}
