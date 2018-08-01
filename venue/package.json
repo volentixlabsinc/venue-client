@@ -1,7 +1,7 @@
 {
   "name": "venue-client",
   "description": "A rewards and bounty tracker platform",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
