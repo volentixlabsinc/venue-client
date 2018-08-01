@@ -6,6 +6,7 @@ module.exports = {
     my_profile: "Mon profil",
     sign_up: "Sign up",
     log_in: "Log in",
-    log_out: "Log out"
+    log_out: "Log out",
+    invite_friend: "Invite a friend"
   }
 };
