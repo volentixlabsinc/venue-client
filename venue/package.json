@@ -28,7 +28,7 @@
     "countup.js": "^1.9.3",
     "js-cookie": "^2.2.0",
     "numeral": "^2.0.6",
-    "nuxt": "^1.4.0",
+    "nuxt": "^1.4.2",
     "nuxt-i18n": "^4.1.0",
     "vue": "^2.5.16",
     "vue-chartjs": "^3.3.1",
@@ -51,7 +51,7 @@
     "eslint-plugin-vue": "^4.5.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "prettier": "1.13.5",
     "sass-loader": "^7.0.3",
     "webpack": "^4.12.1"
