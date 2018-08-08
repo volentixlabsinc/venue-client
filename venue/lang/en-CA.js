@@ -6,7 +6,8 @@ module.exports = {
     my_profile: "My profile",
     sign_up: "Sign up",
     log_in: "Log in",
-    log_out: "Log out"
+    log_out: "Log out",
+    invite_friend: "Invite a friend"
   },
   auth: {
     forgot_password: "Forgot password?",
@@ -75,7 +76,8 @@ module.exports = {
     two_factor: "Two-factor authentication",
     desc_two_factor: "Modify two-factor authentication",
     btn_set_language: "Set Language",
-    btn_enable_2fa: "Enable 2FA"
+    btn_enable_2fa: "Enable 2FA",
+    emails_input: "Your friend's email"
   },
   labels: {
     my_rank: "My rank",
@@ -95,7 +97,14 @@ module.exports = {
     num_posts: "Number of Posts",
     card_title: "Step {imageNumber} of 3",
     email: "Email",
-    bonus_percent: "{rank} bonus: {bonus}% (included)"
+    bonus_percent: "{rank} bonus: {bonus}% (included)",
+    earned_vtx: "{count} VTX",
+    invite_form_header: "Invite a friend",
+    status_verified: "Bitcointalk Verified",
+    status_pending: "Pending",
+    refferals_friends: "Friends",
+    referrals_status: "Status",
+    registered_friends: "0 friends | 1 friend | {count} friends"
   },
   points_details: {
     title: "Points / rewards detailed info",
@@ -119,7 +128,8 @@ module.exports = {
     bct_leaderboard: "Bitcointalk leaderboard",
     earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
-    login: "Login"
+    login: "Login",
+    invite_a_friend: "Invite your friend and earn VTX"
   },
   edit_signature: {
     current_signature: "Current signature",
@@ -132,7 +142,9 @@ module.exports = {
       "Note that signatures must be maintained for a minimum of 23 of the first 24 hours. Removal of a signature before this time will result in loss of all points for that post.",
     signature_warning_2: "This may take up to 24 hours",
     signature_warning_3: " to be reflected in your point balance.",
-    steps: "Step {0} of {1}"
+    steps: "Step {0} of {1}",
+    invite_friend_note: "Use comma ' , ' to separate different people",
+    email_is_sent: "Your invitation has been sent"
   },
   buttons: {
     btn_view_details: "View details",
@@ -145,6 +157,8 @@ module.exports = {
     btn_close: "Close",
     btn_copy_code: "Copy code",
     btn_change: "Change",
-    btn_verify: "Verify"
+    btn_verify: "Verify",
+    btn_send_email: "Send",
+    btn_copy_link: "Copy link"
   }
 };
