@@ -19,6 +19,9 @@
       <NavigationLink :name="$t('nav.sign_up')" route="/signup" icon="fa-user-plus" @click="$emit('click')" />
     </span>
     <span v-if="isAuthenticated()">
+      <NavigationLink :name="$t('nav.invite_friend')" route="/invitefriend" icon="fa-gift" @click="$emit('click')" />
+    </span>
+    <span v-if="isAuthenticated()">
       <NavigationLink :name="$t('nav.log_out')" route="/logout" icon="fa-sign-out-alt" @click="$emit('click')" />
     </span>
   </div>
