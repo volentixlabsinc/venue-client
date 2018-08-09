@@ -1,6 +1,6 @@
 <template>
   <b-table :data="rankings" :selected="selected" :detailed="detailed"
-           :per-page="perPage" :paginated="paginated" :mobile-cards="false" striped is-narrow>
+           :per-page="perPage" :current-page="startingPage" :paginated="paginated" :mobile-cards="false" striped is-narrow>
     <template slot-scope="props">
       <b-table-column field="rank" label="#" width="5" numeric>
         {{ props.row.rank }}
@@ -46,11 +46,21 @@ export default {
     }
   },
   data() {
+    let startingPage = 1;
+    if (
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.hasCampaignData
+    ) {
+      startingPage = Math.ceil(
+        this.$store.state.userStats.user_level.overall_rank / this.perPage
+      );
+    }
     let rankings = this.$store.state.leaderboard.rankings;
     if (this.limit && rankings) {
       rankings = rankings.slice(0, this.limit);
     }
     return {
+      startingPage,
       rankings,
       selected:
         this.$store.state.user.isAuthenticated &&
