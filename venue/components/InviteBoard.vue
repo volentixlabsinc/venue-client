@@ -18,7 +18,7 @@
         <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
       <div class="level-item">
-        {{ $t('labels.registered_friends', countReferrals(referrals), { count: countReferrals(referrals) }) }}
+        {{ $tc('labels.registered_friends', countReferrals(referrals), { count: countReferrals(referrals) }) }}
       </div>
       <div class="level-item">
         <img class="bottomPic" src="~assets/VTX-earned.png">
