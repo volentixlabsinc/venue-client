@@ -63,17 +63,6 @@ In order for the client to communicate without the need for CORS, you must first
 
 The result of running this proxy is that all the traffic will be sent through localhost. As a result, you can reach the venue server with http://localhost/api or the client with http://localhost.
 
-If you don't want to run this proxy for some reason, you can manually modify `nuxt.config.js` to point directly
-to the server:
-
-```
-  axios: {
-    baseURL: 'http://localhost:3000'
-    // baseURL: process.env.BASE_URL || 'http://localhost/api',
-    // browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
-  },
-```
-
 #### Linux
 
 To run the nginx proxy on linux:
@@ -87,6 +76,21 @@ To run the nginx proxy on Mac:
 ```
 docker run -p 80:80 volentixlabs/venue-local-proxy-mac:v0.1.0
 ```
+
+#### No proxy
+
+If you don't want to run this proxy for some reason, you can manually modify `nuxt.config.js` to point directly
+to the server:
+
+```
+  axios: {
+    baseURL: 'http://localhost:3000'
+    // baseURL: process.env.BASE_URL || 'http://localhost/api',
+    // browserBaseURL: process.env.BROWSER_BASED_URL || 'http://localhost/api'
+  },
+```
+
+
 
 ### Running
 Serve with hot reload at http://localhost
