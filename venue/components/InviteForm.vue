@@ -13,7 +13,7 @@
             </p>
           </b-field>
           <span class="is-size-7 has-text-grey"> {{ $t("messages.invite_friend_note") }} </span>
-          <p v-show="message" class="is-size-6 has-text-success">{{ message }}</p>
+          <p v-show="message" :class="{ 'has-text-success' : isSuccess, 'has-text-danger' : hasError }">{{ message }}</p>
         </form>
         <hr>
         <b-field>
@@ -31,9 +31,11 @@ export default {
   data() {
     let data = {
       referralCode: "",
-      referralLink: "",
+      referralLink: "https://venue.volentix.io/signup?referer=",
       emails: "",
-      message: ""
+      message: "",
+      isSuccess: true,
+      hasError: false
     };
     const hasStats =
       this.$store.state.user.isAuthenticated &&
@@ -44,30 +46,34 @@ export default {
         referralCode: this.$store.state.user.referral_code
       });
     }
+    data.referralLink += data.referralCode;
     return data;
-  },
-  mounted() {
-    this.addReferralLink();
   },
   methods: {
     async sendReferralEmail() {
       let emailsList = this.emails.replace(" ", "");
       let referralEmails = emailsList.split(",");
-      const result = await this.$axios.$post("/manage/send-referrals/", {
-        emails: referralEmails
-      });
-      console.log(result);
-      if (result.result === true) {
-        this.displaySuccessMessage();
+      try {
+        const result = await this.$axios.$post("/manage/send-referrals/", {
+          emails: referralEmails
+        });
+        if (result.result === true) {
+          this.displaySuccessMessage();
+        }
+      } catch (error) {
+        this.displayErrorMessage();
       }
       this.emails = "";
     },
     displaySuccessMessage() {
       this.message = this.$t("messages.email_is_sent");
+      this.isSuccess = true;
+      this.hasError = false;
     },
-    async addReferralLink() {
-      this.referralLink =
-        "https://venue.volentix.io/signup?referer=" + this.referralCode;
+    displayErrorMessage() {
+      this.message = this.$t("messages.incorrect_email_input");
+      this.hasError = true;
+      this.isSuccess = false;
     }
   }
 };

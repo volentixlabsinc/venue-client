@@ -2,7 +2,7 @@
   <div class="column is-6 has-text-centered">
     <div class="is-size-4 has-text-centered text-transform-uppercase level is-mobile">
       <div class="level-item">
-        <img id="invitePic" src="~assets/01.png">
+        <img id="invitePic" src="~assets/invite-a-friend-pic.png">
       </div>
       <div class="level-item is-size-5">
         {{ $t("titles.invite_a_friend") }}

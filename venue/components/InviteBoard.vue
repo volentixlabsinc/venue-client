@@ -3,7 +3,7 @@
     <div v-if="referrals.length > 0" >
       <b-table :data="referrals" :paginated="paginated" :per-page="perPage" :mobile-cards="false" striped is-narrow>
         <template slot-scope="props">
-          <b-table-column :label="$t('labels.refferals_friends')" field="UserFriends">
+          <b-table-column :label="$t('labels.referrals_friends')" field="UserFriends">
             {{ props.row.username }}
           </b-table-column>
           <b-table-column :label="$t('labels.referrals_status')" field="status">
@@ -15,13 +15,13 @@
     <br>
     <div class="is-size-6 has-text-centered level is-mobile">
       <div class="level-item">
-        <img class="bottomPic" src="~assets/02.png">
+        <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
       <div class="level-item">
         {{ $t('labels.registered_friends', countReferrals(referrals), { count: countReferrals(referrals) }) }}
       </div>
       <div class="level-item">
-        <img class="bottomPic" src="~assets/03.png">
+        <img class="bottomPic" src="~assets/VTX-earned.png">
       </div>
       <div class="level-item">
         {{ $t('labels.earned_vtx', { count: countVTX(referrals) }) }}
@@ -48,7 +48,7 @@ export default {
     }
   },
   data() {
-    let data = {
+    const data = {
       referrals: [
         {
           user_id: "",
@@ -69,22 +69,28 @@ export default {
       this.referrals = userReferrals.referrals;
     },
     setStatus(amount) {
-      var status = "";
-      if (amount > 0) status = this.$t("labels.status_verified");
-      else status = this.$t("labels.status_pending");
+      const status =
+        amount > 0
+          ? this.$t("labels.status_verified")
+          : this.$t("labels.status_pending");
       return status;
     },
     countReferrals(referrals) {
-      var refNumber = 0;
-      for (var i = 0; i < referrals.length; i++)
-        if (referrals[i].amount > 0) refNumber++;
+      let refNumber = 0;
+      for (let i = 0; i < referrals.length; i++) {
+        if (referrals[i].amount > 0) {
+          refNumber++;
+        }
+      }
       return refNumber;
     },
     countVTX(referrals) {
-      var refferralVTX = 0;
-      for (var i = 0; i < referrals.length; i++)
-        if (referrals[i].amount > 0)
+      let refferralVTX = 0;
+      for (let i = 0; i < referrals.length; i++) {
+        if (referrals[i].amount > 0) {
           refferralVTX = refferralVTX + referrals[i].amount;
+        }
+      }
       return refferralVTX;
     }
   }
@@ -92,20 +98,6 @@ export default {
 </script>
 
 <style>
-.table tr.is-selected td {
-  /* Without this there is an unexpected bottom line on the bottom of the cell */
-  border-color: inherit;
-}
-
-td.chevron-cell {
-  padding-left: 12px; /* This seems to be the default; but best to force it here */
-}
-
-tr.is-selected td.chevron-cell {
-  border-left: 5px #84429a solid;
-  padding-left: 7px; /* Subtract 5px from the default padding of 12px */
-}
-
 .bottomPic {
   height: 4rem;
 }

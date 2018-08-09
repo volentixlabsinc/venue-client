@@ -102,7 +102,7 @@ module.exports = {
     invite_form_header: "Invite a friend",
     status_verified: "Bitcointalk Verified",
     status_pending: "Pending",
-    refferals_friends: "Friends",
+    referrals_friends: "Friends",
     referrals_status: "Status",
     registered_friends: "0 friends | 1 friend | {count} friends"
   },
@@ -129,7 +129,7 @@ module.exports = {
     earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
     login: "Login",
-    invite_a_friend: "Invite your friend and earn VTX"
+    invite_a_friend: "Invite your friends and earn VTX"
   },
   edit_signature: {
     current_signature: "Current signature",
@@ -144,7 +144,8 @@ module.exports = {
     signature_warning_3: " to be reflected in your point balance.",
     steps: "Step {0} of {1}",
     invite_friend_note: "Use comma ' , ' to separate different people",
-    email_is_sent: "Your invitation has been sent"
+    email_is_sent: "Your invitation has been sent",
+    incorrect_email_input: "Invalid email"
   },
   buttons: {
     btn_view_details: "View details",
