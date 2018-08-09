@@ -45,7 +45,8 @@ export default {
       usernameMessage: "",
       password: "",
       newsletter: false,
-      isSuccessModalActive: false
+      isSuccessModalActive: false,
+      referral_code: ""
     };
   },
   mounted() {
@@ -90,9 +91,9 @@ export default {
         username: this.username,
         password: this.password,
         language: "en",
-        receive_emails: this.newsletter
+        receive_emails: this.newsletter,
+        referral_code: this.$route.query.referer
       });
-
       if (result.success) {
         this.isSuccessModalActive = true;
       }
