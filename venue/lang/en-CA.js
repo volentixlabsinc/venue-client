@@ -104,7 +104,8 @@ module.exports = {
     status_pending: "Pending",
     referrals_friends: "Friends",
     referrals_status: "Status",
-    registered_friends: "0 friends | 1 friend | {count} friends"
+    registered_friends:
+      "0 Registered friends | 1 Registered friend | {count} Registered friends"
   },
   points_details: {
     title: "Points / rewards detailed info",
