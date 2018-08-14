@@ -36,7 +36,7 @@ export default {
   props: {
     perPage: {
       type: Number,
-      default: 2
+      default: 5
     },
     limit: {
       type: Number,
@@ -103,10 +103,6 @@ export default {
 <style>
 .bottomPic {
   height: 6rem;
-}
-.bottom-info {
-  padding-right: 2rem;
-  padding-left: 2rem;
 }
 .table-invite th .th-wrap {
   display: block !important;
