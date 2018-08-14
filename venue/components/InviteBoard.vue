@@ -1,12 +1,12 @@
 <template>
   <div class="card-content has-text-centered">
     <div v-if="referrals.length > 0" class="p-r-lg p-l-lg">
-      <b-table :data="referrals" :paginated="isPaginated(referrals)" :per-page="perPage" :mobile-cards="false" striped is-narrow>
+      <b-table :data="referrals" :paginated="isPaginated(referrals)" :per-page="perPage" :mobile-cards="false" class="table-invite" striped is-narrow>
         <template slot-scope="props">
-          <b-table-column :label="$t('labels.referrals_friends')" field="UserFriends">
+          <b-table-column :label="$t('labels.referrals_friends')" class="has-text-centered" field="UserFriends">
             {{ props.row.username }}
           </b-table-column>
-          <b-table-column :label="$t('labels.referrals_status')" field="status">
+          <b-table-column :label="$t('labels.referrals_status')" class="has-text-centered" field="status">
             {{ setStatus(props.row.amount) }}
           </b-table-column>    
         </template>
@@ -36,7 +36,7 @@ export default {
   props: {
     perPage: {
       type: Number,
-      default: 5
+      default: 2
     },
     limit: {
       type: Number,
@@ -103,5 +103,22 @@ export default {
 <style>
 .bottomPic {
   height: 6rem;
+}
+.bottom-info {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+.table-invite th .th-wrap {
+  display: block !important;
+  text-align: center !important;
+}
+.table-invite .level {
+  display: block !important;
+}
+.table-invite .level-left {
+  display: block !important;
+}
+.table-invite .level-right {
+  display: block !important;
 }
 </style>
