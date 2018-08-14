@@ -20,6 +20,7 @@ export default {
     MyCampaignActivityCard,
     CampaignRightPanel
   },
+  middleware: "authenticated",
   mounted() {
     if (this.$store.state.userStats.fresh) {
       this.$router.push(
