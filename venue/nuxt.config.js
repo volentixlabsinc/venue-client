@@ -84,6 +84,7 @@ module.exports = {
     "~/plugins/vue-clipboard",
     "~/plugins/buefy",
     "~/plugins/axios",
-    "~/plugins/mixin"
+    "~/plugins/mixin",
+    "~/plugins/vue-social-sharing"
   ]
 };

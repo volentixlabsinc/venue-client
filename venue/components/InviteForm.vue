@@ -4,8 +4,8 @@
       <header class="card-header">
         <h2 class="card-header-title">{{ $t("labels.invite_form_header") }}</h2>
       </header>
-      <div class="card-content has-text-left">
-        <form method="POST" @submit.prevent="sendReferralEmail">
+      <div class="card-content has-text-left p-t-xl p-r-xl p-l-xl p-b-lg">
+        <form method="POST" class="invite_form" @submit.prevent="sendReferralEmail">
           <b-field>
             <b-input v-model="emails" :placeholder="$t('settings.emails_input')" expanded type="text"/>
             <p class="control">
@@ -19,12 +19,31 @@
         <b-field>
           <b-input v-model="referralLink" expanded type="text"/>
           <button v-clipboard:copy="referralLink" class="button is-venue-purple">{{ $t("buttons.btn_copy_link") }}</button>
-        </b-field> 
+        </b-field>
+        <social-sharing :url="referralLink"
+                        :quote="$t('messages.social_sharing_text') + referralLink"
+                        :title="$t('messages.social_sharing_twitter')"
+                        :description="$t('messages.social_sharing_text')"
+                        inline-template>
+          <div class="has-text-centered p-t-md">
+            <network network="facebook">
+              <i class="facebook-color fab fa-facebook-square fa-2x p-r-sm social-icon"/>
+            </network>
+            <network network="linkedin">
+              <i class="linkedin-color fab fa-linkedin fa-2x p-r-sm social-icon"/>
+            </network>
+            <network network="twitter">
+              <i class="twitter-color fab fa-twitter fa-2x p-r-sm social-icon"/>
+            </network>
+            <network network="telegram">
+              <i class="telegram-color fab fa-telegram fa-2x p-r-sm social-icon"/>
+            </network>
+          </div>
+        </social-sharing> 
       </div>
     </div>
   </section>
 </template>
-
 
 <script>
 export default {
@@ -80,11 +99,22 @@ export default {
 </script>
 
 <style>
-.card-content {
-  padding: 3.5rem;
-  padding-bottom: 4rem;
-}
-form {
+.invite_form {
   max-width: none;
+}
+.twitter-color {
+  color: #1da1f2;
+}
+.facebook-color {
+  color: #3b5998;
+}
+.linkedin-color {
+  color: #0077b5;
+}
+.telegram-color {
+  color: #0088cc;
+}
+.social-icon:hover {
+  cursor: pointer;
 }
 </style>

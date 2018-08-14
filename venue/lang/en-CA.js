@@ -148,7 +148,11 @@ module.exports = {
     steps: "Step {0} of {1}",
     invite_friend_note: "Use comma ' , ' to separate different people",
     email_is_sent: "Your invitation has been sent",
-    incorrect_email_input: "Invalid email"
+    incorrect_email_input: "Invalid email",
+    social_sharing_text:
+      "Use this referral link to sign up to earn VTX bounties on venue.volentix.io. The Volentix Project is a collaborative effort, building software to enhance the utility and security of cryptocurrency. Have you heard of VDEX? It is a decentralized exchange built on EOS. Maybe it’s time to get involved? ",
+    social_sharing_twitter:
+      "Use the referral link to sign up to earn VTX bounties on venue.volentix.io. Volentix is building software to enhance the security of cryptocurrency. Have you heard of VDEX? It is a decentralized exchange built on EOS. It’s time to get involved. "
   },
   buttons: {
     btn_view_details: "View details",
