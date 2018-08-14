@@ -143,8 +143,6 @@ module.exports = {
     join_bitcointalk: "Join the Bitcointalk signature campaign",
     signature_warning_1:
       "Note that signatures must be maintained for a minimum of 23 of the first 24 hours. Removal of a signature before this time will result in loss of all points for that post.",
-    signature_warning_2: "This may take up to 24 hours",
-    signature_warning_3: " to be reflected in your point balance.",
     steps: "Step {0} of {1}",
     invite_friend_note: "Use comma ' , ' to separate different people",
     email_is_sent: "Your invitation has been sent",
