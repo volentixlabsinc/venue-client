@@ -1,9 +1,9 @@
 <template>
   <div class="card-content has-text-centered">
-    <div v-if="referrals.length > 0" id="invite_table">
-      <b-table :data="referrals" :paginated="setPages(referrals)" :per-page="perPage" :mobile-cards="false" striped is-narrow>
+    <div v-if="referrals.length > 0" class="p-r-lg p-l-lg">
+      <b-table :data="referrals" :paginated="isPaginated(referrals)" :per-page="perPage" :mobile-cards="false" striped is-narrow>
         <template slot-scope="props">
-          <b-table-column :label="$t('labels.referrals_friends')" placement="center" field="UserFriends">
+          <b-table-column :label="$t('labels.referrals_friends')" field="UserFriends">
             {{ props.row.username }}
           </b-table-column>
           <b-table-column :label="$t('labels.referrals_status')" field="status">
@@ -13,7 +13,7 @@
       </b-table>
     </div>
     <br>
-    <div class="is-size-6 has-text-centered level is-mobile bottom-info">
+    <div class="is-size-6 has-text-centered level is-mobile p-r-lg p-l-lg">
       <div class="level-item">
         <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
@@ -89,7 +89,7 @@ export default {
       }
       return refferralVTX;
     },
-    setPages(referrals) {
+    isPaginated(referrals) {
       if (referrals.length > this.perPage) {
         return true;
       } else {
@@ -103,13 +103,5 @@ export default {
 <style>
 .bottomPic {
   height: 6rem;
-}
-#invite_table {
-  padding-right: 2rem;
-  padding-left: 2rem;
-}
-.bottom-info {
-  padding-right: 2rem;
-  padding-left: 2rem;
 }
 </style>
