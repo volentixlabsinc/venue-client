@@ -64,7 +64,7 @@ module.exports = {
         "postcss-custom-properties": false
       }
     },
-    vendor: ["axios", "moment", "chart.js", "numeral", "vue-social-sharing"]
+    vendor: ["axios", "moment", "chart.js", "numeral"]
   },
   css: [
     { src: "~/assets/custom.css", lang: "css" },
