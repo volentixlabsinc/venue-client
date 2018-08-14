@@ -64,7 +64,7 @@ module.exports = {
         "postcss-custom-properties": false
       }
     },
-    vendor: ["axios", "moment", "chart.js", "numeral"]
+    vendor: ["axios", "moment", "chart.js", "numeral", "vue-social-sharing"]
   },
   css: [
     { src: "~/assets/custom.css", lang: "css" },
@@ -85,6 +85,6 @@ module.exports = {
     "~/plugins/buefy",
     "~/plugins/axios",
     "~/plugins/mixin",
-    "~/plugins/social"
+    "~/plugins/vue-social-sharing"
   ]
 };
