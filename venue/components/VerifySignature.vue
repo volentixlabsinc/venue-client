@@ -14,9 +14,7 @@
             <span class="icon has-text-warning is-medium">
               <i class="fas fa-exclamation-triangle fa-lg"/>
             </span>
-            <span class="is-size-6">{{ $t('messages.signature_warning_1') }}
-              <strong>{{ $t('messages.signature_warning_2') }}</strong>{{ $t('messages.signature_warning_3') }}
-            </span>
+            <span class="is-size-6">{{ $t('messages.signature_warning_1') }}</span>
           </div>
           <div><a @click="isHelpModalActive = true">{{ $t('bct_onboarding.msg_sig_update_how') }}</a></div>
           <b-modal :active.sync="isHelpModalActive" has-modal-card>

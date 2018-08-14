@@ -132,7 +132,7 @@ module.exports = {
     login: "Login",
     invite_a_friend: "Invite your friends and earn VTX",
     invite_a_friend_subt:
-      "Earn {count} VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature"
+      "Earn {count} VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature."
   },
   edit_signature: {
     current_signature: "Current signature",
@@ -143,8 +143,6 @@ module.exports = {
     join_bitcointalk: "Join the Bitcointalk signature campaign",
     signature_warning_1:
       "Note that signatures must be maintained for a minimum of 23 of the first 24 hours. Removal of a signature before this time will result in loss of all points for that post.",
-    signature_warning_2: "This may take up to 24 hours",
-    signature_warning_3: " to be reflected in your point balance.",
     steps: "Step {0} of {1}",
     invite_friend_note: "Use comma ' , ' to separate different people",
     email_is_sent: "Your invitation has been sent",

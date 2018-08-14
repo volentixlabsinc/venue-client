@@ -31,7 +31,6 @@
           <i class="fas fa-exclamation-triangle fa-lg"/>
         </span>
         {{ $t('messages.signature_warning_1') }}
-        <strong>{{ $t('messages.signature_warning_2') }}</strong>{{ $t('messages.signature_warning_3') }}
       </div>
     </div>
   </div>
