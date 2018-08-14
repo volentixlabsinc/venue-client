@@ -10,7 +10,7 @@
             <span>{{ $t("titles.invite_a_friend") }}</span>
           </div>
           <div class="level-item is-size-6 has-text-weight-normal">
-            <span>{{ $t("titles.invite_a_friend_subt", {count: "10"}) }}</span>
+            <span>{{ $t("titles.invite_a_friend_subt", {count: "100"}) }}</span>
           </div>
         </div>
       </div>
