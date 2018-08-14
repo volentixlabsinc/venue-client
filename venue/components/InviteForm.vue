@@ -7,19 +7,19 @@
       <div class="card-content has-text-left">
         <form method="POST" @submit.prevent="sendReferralEmail">
           <b-field>
-            <b-input v-model="emails" :placeholder="$t('settings.emails_input')" expanded type="input"/>
+            <b-input v-model="emails" :placeholder="$t('settings.emails_input')" expanded type="text"/>
             <p class="control">
               <button class="button is-venue-purple">{{ $t("buttons.btn_send_email") }}</button>
             </p>
           </b-field>
-          <span class="is-size-7 has-text-grey"> {{ $t("messages.invite_friend_note") }} </span>
+          <span class="is-size-6 has-text-grey"> {{ $t("messages.invite_friend_note") }} </span>
           <p v-show="message" :class="{ 'has-text-success' : isSuccess, 'has-text-danger' : hasError }">{{ message }}</p>
         </form>
         <hr>
         <b-field>
-          <b-input v-model="referralLink" expanded type="input"/>
-          <button v-clipboard:copy="referralLink" class="button is-primary">{{ $t("buttons.btn_copy_link") }}</button>
-        </b-field>
+          <b-input v-model="referralLink" expanded type="text"/>
+          <button v-clipboard:copy="referralLink" class="button is-venue-purple">{{ $t("buttons.btn_copy_link") }}</button>
+        </b-field> 
       </div>
     </div>
   </section>
@@ -78,3 +78,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.card-content {
+  padding: 3.5rem;
+  padding-bottom: 4rem;
+}
+form {
+  max-width: none;
+}
+</style>

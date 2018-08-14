@@ -104,7 +104,8 @@ module.exports = {
     status_pending: "Pending",
     referrals_friends: "Friends",
     referrals_status: "Status",
-    registered_friends: "0 friends | 1 friend | {count} friends"
+    registered_friends:
+      "0 Registered friends | 1 Registered friend | {count} Registered friends"
   },
   points_details: {
     title: "Points / rewards detailed info",
@@ -129,7 +130,9 @@ module.exports = {
     earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
     login: "Login",
-    invite_a_friend: "Invite your friends and earn VTX"
+    invite_a_friend: "Invite your friends and earn VTX",
+    invite_a_friend_subt:
+      "Earn {count} VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature"
   },
   edit_signature: {
     current_signature: "Current signature",

@@ -1,7 +1,7 @@
 <template>
   <div class="card-content has-text-centered">
-    <div v-if="referrals.length > 0" >
-      <b-table :data="referrals" :paginated="paginated" :per-page="perPage" :mobile-cards="false" striped is-narrow>
+    <div v-if="referrals.length > 0" class="p-r-lg p-l-lg">
+      <b-table :data="referrals" :paginated="isPaginated(referrals)" :per-page="perPage" :mobile-cards="false" striped is-narrow>
         <template slot-scope="props">
           <b-table-column :label="$t('labels.referrals_friends')" field="UserFriends">
             {{ props.row.username }}
@@ -13,17 +13,17 @@
       </b-table>
     </div>
     <br>
-    <div class="is-size-6 has-text-centered level is-mobile">
+    <div class="is-size-6 has-text-centered level is-mobile p-r-lg p-l-lg">
       <div class="level-item">
         <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
-      <div class="level-item">
-        {{ $t('labels.registered_friends', countReferrals(referrals), { count: countReferrals(referrals) }) }}
+      <div class="level-item has-text-weight-bold">
+        {{ $tc('labels.registered_friends', countReferrals(referrals), { count: countReferrals(referrals) }) }}
       </div>
       <div class="level-item">
         <img class="bottomPic" src="~assets/VTX-earned.png">
       </div>
-      <div class="level-item">
+      <div class="level-item has-text-weight-bold">
         {{ $t('labels.earned_vtx', { count: countVTX(referrals) }) }}
       </div>
     </div>
@@ -36,11 +36,7 @@ export default {
   props: {
     perPage: {
       type: Number,
-      default: 3
-    },
-    paginated: {
-      type: Boolean,
-      default: true
+      default: 5
     },
     limit: {
       type: Number,
@@ -92,6 +88,13 @@ export default {
         }
       }
       return refferralVTX;
+    },
+    isPaginated(referrals) {
+      if (referrals.length > this.perPage) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };
@@ -99,6 +102,6 @@ export default {
 
 <style>
 .bottomPic {
-  height: 4rem;
+  height: 6rem;
 }
 </style>
