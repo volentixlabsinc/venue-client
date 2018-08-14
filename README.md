@@ -7,7 +7,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![Open Source Love](https://badges.frapsoft.com/os/v3/open-source.svg?v=102)
 
-> The webapp for Venue, a community engagement platform for the Volentix community    
+> The webapp for Venue, a community engagement platform for the Volentix community
 
 This repository houses the artifacts for the UI of the Venue platform. The main technologies used for this software are:
 
