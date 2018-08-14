@@ -1,6 +1,6 @@
 <template>
   <div class="card-content has-text-centered">
-    <div v-if="referrals.length > 0" >
+    <div v-if="referrals.length > 0" id="invite_table">
       <b-table :data="referrals" :paginated="setPages(referrals)" :per-page="perPage" :mobile-cards="false" striped is-narrow>
         <template slot-scope="props">
           <b-table-column :label="$t('labels.referrals_friends')" placement="center" field="UserFriends">
@@ -13,7 +13,7 @@
       </b-table>
     </div>
     <br>
-    <div class="is-size-6 has-text-centered level is-mobile">
+    <div class="is-size-6 has-text-centered level is-mobile bottom-info">
       <div class="level-item">
         <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
@@ -102,6 +102,14 @@ export default {
 
 <style>
 .bottomPic {
-  height: 5rem;
+  height: 6rem;
+}
+#invite_table {
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+.bottom-info {
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 </style>

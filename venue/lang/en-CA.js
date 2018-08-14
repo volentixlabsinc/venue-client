@@ -130,7 +130,9 @@ module.exports = {
     earn_vtx: "Earn VTX!",
     my_rewards: "My rewards",
     login: "Login",
-    invite_a_friend: "Invite your friends and earn VTX"
+    invite_a_friend: "Invite your friends and earn VTX",
+    invite_a_friend_subt:
+      "Earn 10 VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature"
   },
   edit_signature: {
     current_signature: "Current signature",

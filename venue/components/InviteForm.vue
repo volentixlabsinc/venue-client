@@ -19,7 +19,7 @@
         <b-field>
           <b-input v-model="referralLink" expanded type="text"/>
           <button v-clipboard:copy="referralLink" class="button is-venue-purple">{{ $t("buttons.btn_copy_link") }}</button>
-        </b-field>
+        </b-field> 
       </div>
     </div>
   </section>
@@ -83,5 +83,8 @@ export default {
 .card-content {
   padding: 3.5rem;
   padding-bottom: 4rem;
+}
+form {
+  max-width: none;
 }
 </style>
