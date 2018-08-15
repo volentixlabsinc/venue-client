@@ -1,4 +1,5 @@
 const en = require("../lang/en-CA.js");
+const tr = require("../lang/tr-TR.js");
 
 const I18N = {
   locales: [
@@ -6,6 +7,11 @@ const I18N = {
       code: "en",
       iso: "en-CA",
       name: "English"
+    },
+    {
+      code: "tr",
+      iso: "tr-TR",
+      name: "Türk"
     }
   ],
   detectBrowserLanguage: {
@@ -14,7 +20,7 @@ const I18N = {
   defaultLocale: "en",
   vueI18n: {
     fallbackLocale: "en",
-    messages: { en }
+    messages: { en, tr }
   }
 };
 
