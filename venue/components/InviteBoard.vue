@@ -108,13 +108,4 @@ export default {
   display: block !important;
   text-align: center !important;
 }
-.table-invite .level {
-  display: block !important;
-}
-.table-invite .level-left {
-  display: block !important;
-}
-.table-invite .level-right {
-  display: block !important;
-}
 </style>
