@@ -13,7 +13,7 @@
       </b-table>
     </div>
     <br>
-    <div class="is-size-6 has-text-centered level is-mobile p-r-lg p-l-lg">
+    <div class="is-size-6 has-text-centered level p-r-lg p-l-lg">
       <div class="level-item">
         <img class="bottomPic" src="~assets/registered-friends.png">
       </div>
