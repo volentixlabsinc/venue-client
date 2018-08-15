@@ -1,5 +1,5 @@
 const en = require("../lang/en-CA.js");
-const fr = require("../lang/fr-CA.js");
+const tr = require("../lang/tr-TR.js");
 
 const I18N = {
   locales: [
@@ -9,9 +9,9 @@ const I18N = {
       name: "English"
     },
     {
-      code: "fr",
-      iso: "fr-CA",
-      name: "Français"
+      code: "tr",
+      iso: "tr-TR",
+      name: "Türk"
     }
   ],
   detectBrowserLanguage: {
@@ -20,7 +20,7 @@ const I18N = {
   defaultLocale: "en",
   vueI18n: {
     fallbackLocale: "en",
-    messages: { en, fr }
+    messages: { en, tr }
   }
 };
 
