@@ -6,7 +6,8 @@ module.exports = {
     my_profile: "Profilim",
     sign_up: "Kaydol",
     log_in: "Giriþ",
-    log_out: "Çýkýþ"
+    log_out: "Çýkýþ",
+    invite_friend: "Invite a friend"
   },
   auth: {
     forgot_password: "Þirenizi mi unuttunuz?",
@@ -33,6 +34,8 @@ module.exports = {
       "Bu kampanyaya katýlmak için, en az tam yetkili bir Bitcointalk üyesi olmalýsýnýz",
     err_profile_not_found:
       "Profil bulunamadý; lütfen doðru kullanýcý kimliðini kopyaladýðýnýzdan emin olun",
+    err_profile_check_user_id:
+      "Please verify that you copied the correct userid",
     help_signature_1:
       "1) Profil Sekmesinin içindeki Forum Profil Bilgilerine týklayýn",
     help_signature_2:
@@ -73,7 +76,8 @@ module.exports = {
     two_factor: "Ýki-aþamalý doðrulama",
     desc_two_factor: "Ýki aþamalý doðrulamayý deðiþtir",
     btn_set_language: "Dili Belirle",
-    btn_enable_2fa: "Ýki aþamalý doðrulamayý etkinleþtir"
+    btn_enable_2fa: "Ýki aþamalý doðrulamayý etkinleþtir",
+    emails_input: "Your friend's email"
   },
   labels: {
     my_rank: "Sýralamam",
@@ -91,7 +95,16 @@ module.exports = {
     coming_soon: "Çok yakýnda",
     num_posts: "Gönderi Sayýsý",
     card_title: "Adým { imageNumber } - 3",
-    email: "Eposta"
+    email: "Eposta",
+    bonus_percent: "{rank} bonus: {bonus}% (included)",
+    earned_vtx: "{count} VTX",
+    invite_form_header: "Invite a friend",
+    status_verified: "Bitcointalk Verified",
+    status_pending: "Pending",
+    referrals_friends: "Friends",
+    referrals_status: "Status",
+    registered_friends:
+      "0 Registered friends | 1 Registered friend | {count} Registered friends"
   },
   points_details: {
     title: "Puanlar / ödüller detaylý bilgi",
@@ -113,7 +126,10 @@ module.exports = {
     bct_leaderboard: "Bitcointalk skor tablosu",
     earn_vtx: "VTX Kazan!",
     my_rewards: "Ödüllerim",
-    login: "Giriþ"
+    login: "Giriþ",
+    invite_a_friend: "Invite your friends and earn VTX",
+    invite_a_friend_subt:
+      "Earn {count} VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature."
   },
   edit_signature: {
     current_signature: "Þu anki imza",
@@ -126,7 +142,14 @@ module.exports = {
       "Ýmzalarýn ilk 24 saat içinde en az 23 saat boyunca kullanýlmasý gerektiðini unutmayýn. Bu süre sona ermeden imzayý deðiþtirirseniz, o gönderi için tüm puanlarý kaybedersiniz.",
     signature_warning_2: "Bu iþlemin puan bakiyenize yansýmasý",
     signature_warning_3: " 24 saate kadar sürebilir.",
-    steps: "Step {0} of {1}"
+    steps: "Step {0} of {1}",
+    invite_friend_note: "Use comma ' , ' to separate different people",
+    email_is_sent: "Your invitation has been sent",
+    incorrect_email_input: "Invalid email",
+    social_sharing_text:
+      "Use this referral link to sign up to earn VTX bounties on venue.volentix.io. The Volentix Project is a collaborative effort, building software to enhance the utility and security of cryptocurrency. Have you heard of VDEX? It is a decentralized exchange built on EOS. Maybe it’s time to get involved? ",
+    social_sharing_twitter:
+      "Use the referral link to sign up to earn VTX bounties on venue.volentix.io. Volentix is building software to enhance the security of cryptocurrency. Have you heard of VDEX? It is a decentralized exchange built on EOS. It’s time to get involved. "
   },
   buttons: {
     btn_view_details: "Detaylarý görüntüle",
@@ -139,6 +162,8 @@ module.exports = {
     btn_close: "Kapat",
     btn_copy_code: "Kodu kopyala",
     btn_change: "Deðiþtir",
-    btn_verify: "Kopyala"
+    btn_verify: "Kopyala",
+    btn_send_email: "Send",
+    btn_copy_link: "Copy link"
   }
 };
