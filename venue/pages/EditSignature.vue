@@ -51,7 +51,8 @@ export default {
     ) {
       data.signatures = await retrieveAvailableSignatures(
         app.$axios,
-        store.forumProfile
+        store.forumProfile.position,
+        store.forumProfile.forum_profile_id
       );
     } else {
       const hasStats =
@@ -68,7 +69,8 @@ export default {
         store.commit("setForumProfile", forumProfile);
         data.signatures = await retrieveAvailableSignatures(
           app.$axios,
-          forumProfile
+          store.state.userStats.profile_level[0].forumUserRank,
+          forumProfile.forum_profile_id
         );
       }
     }

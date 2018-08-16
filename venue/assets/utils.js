@@ -15,12 +15,16 @@ export async function loadUserData(commit, $axios /*, forumProfileId*/) {
   await Promise.all([retrieveStats, retrieveMySignature, setUserData]);
 }
 
-export async function retrieveAvailableSignatures($axios, forumProfile) {
+export async function retrieveAvailableSignatures(
+  $axios,
+  forumUserRank,
+  forumProfileId
+) {
   return (await $axios.$get("/retrieve/signatures/", {
     params: {
       forum_site_id: 1,
-      forum_user_rank: forumProfile.position,
-      forum_profile_id: forumProfile.forum_profile_id
+      forum_user_rank: forumUserRank,
+      forum_profile_id: forumProfileId
     }
   })).signatures;
 }
