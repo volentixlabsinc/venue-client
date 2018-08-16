@@ -14,7 +14,7 @@
       <div class="field">
         <b-checkbox v-model="newsletter">{{ $t('auth.msg_newsletter') }}</b-checkbox>
       </div>
-      <div class="field" v-html="$t('auth.msg_policies')"/>
+      <div class="field" v-html="$t('auth.msg_policies', ['https://volentix.io/privacy.html', 'https://volentix.io/terms.html'])"/>
       <b-field>
         <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
       </b-field>
