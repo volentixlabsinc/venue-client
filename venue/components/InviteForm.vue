@@ -39,7 +39,7 @@
               <i class="telegram-color fab fa-telegram fa-2x p-r-sm social-icon"/>
             </network>
           </div>
-        </social-sharing> 
+        </social-sharing>
       </div>
     </div>
   </section>
@@ -56,10 +56,7 @@ export default {
       isSuccess: true,
       hasError: false
     };
-    const hasStats =
-      this.$store.state.user.isAuthenticated &&
-      this.$store.state.userStats.fresh === false;
-
+    const hasStats = this.$store.state.user.isAuthenticated;
     if (hasStats) {
       Object.assign(data, {
         referralCode: this.$store.state.user.referral_code
