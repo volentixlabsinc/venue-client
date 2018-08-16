@@ -90,10 +90,11 @@ export default {
       this.totalBonusPoints = pointsBreakdown.sitewide_stats.total_bonus_points;
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
       this.totalPoints = this.totalPointsNum;
+      this.vtxPerPoint =
+        this.totalPointsNum == 0
+          ? 0
+          : (availableRewardsNumber / this.totalPointsNum).toFixed(2);
       this.totalPosts = pointsBreakdown.sitewide_stats.total_posts;
-      this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
-        2
-      );
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
