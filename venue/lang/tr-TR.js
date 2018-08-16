@@ -1,4 +1,4 @@
-module.exports = {
+﻿module.exports = {
   nav: {
     leaderboard: "Skor tablosu",
     dashboard: "Kontrol paneli",

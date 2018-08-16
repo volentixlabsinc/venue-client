@@ -121,7 +121,8 @@ export default {
     async retrieveSignature() {
       this.signatures = await retrieveAvailableSignatures(
         this.$axios,
-        this.$store.state.forum_profile
+        this.$store.state.forum_profile.position,
+        this.$store.state.forum_profile.forum_profile_id
       );
     },
     userIdVerified(forumUserId) {
