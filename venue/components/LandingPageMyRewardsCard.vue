@@ -27,7 +27,7 @@ export default {
     if (hasStats) {
       Object.assign(data, {
         myTokens: numeral(
-          this.$store.state.userStats.profile_level[0].VTX_Tokens
+          this.$store.state.userStats.user_level.total_tokens
         ).format()
       });
     }
