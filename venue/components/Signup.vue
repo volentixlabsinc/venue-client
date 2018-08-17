@@ -92,7 +92,7 @@ export default {
         password: this.password,
         language: "en",
         receive_emails: this.newsletter,
-        referral_code: this.$route.query.referer
+        referral_code: this.$route.query.code
       });
       if (result.success) {
         this.isSuccessModalActive = true;
