@@ -50,7 +50,7 @@ export default {
   data() {
     let data = {
       referralCode: "",
-      referralLink: "https://venue-dev.volentix.io/signup?referer=",
+      referralLink: "https://venue.volentix.io/signup?referer=",
       emails: "",
       message: "",
       isSuccess: true,
