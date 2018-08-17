@@ -143,7 +143,8 @@
     signature_warning_2: "Bu iþlemin puan bakiyenize yansýmasý",
     signature_warning_3: " 24 saate kadar sürebilir.",
     steps: "Adým {0} kalan {1}",
-    invite_friend_note: "Birden çok kiþiyi ayýrt etmek için virgül ' , ' kullanýn",
+    invite_friend_note:
+      "Birden çok kiþiyi ayýrt etmek için virgül ' , ' kullanýn",
     email_is_sent: "Davetiniz gönderildi",
     incorrect_email_input: "Geçersiz eposta",
     social_sharing_text:
