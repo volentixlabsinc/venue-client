@@ -39,7 +39,7 @@
               <i class="telegram-color fab fa-telegram fa-2x p-r-sm social-icon"/>
             </network>
           </div>
-        </social-sharing> 
+        </social-sharing>
       </div>
     </div>
   </section>
@@ -50,7 +50,7 @@ export default {
   data() {
     let data = {
       referralCode: "",
-      referralLink: "https://venue.volentix.io/signup?referer=",
+      referralLink: "https://venue-dev.volentix.io/signup?referer=",
       emails: "",
       message: "",
       isSuccess: true,

@@ -9,6 +9,7 @@ module.exports = {
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { property: "og:image", content: "https://goo.gl/YtSxXC" },
       {
         hid: "description",
         name: "description",
