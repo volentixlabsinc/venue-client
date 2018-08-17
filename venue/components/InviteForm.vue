@@ -56,11 +56,8 @@ export default {
       isSuccess: true,
       hasError: false
     };
-    const hasStats =
-      this.$store.state.user.isAuthenticated &&
-      this.$store.state.userStats.fresh === false;
-
-    if (hasStats) {
+    const isAuthenticated = this.$store.state.user.isAuthenticated;
+    if (isAuthenticated) {
       Object.assign(data, {
         referralCode: this.$store.state.user.referral_code
       });
