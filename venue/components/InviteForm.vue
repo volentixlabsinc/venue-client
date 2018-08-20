@@ -47,7 +47,7 @@ export default {
   data() {
     let data = {
       referralCode: "",
-      referralLink: "https://venue.volentix.io/signup?code=",
+      referralLink: "",
       emails: "",
       message: "",
       isSuccess: true,
@@ -59,8 +59,15 @@ export default {
         referralCode: this.$store.state.user.referral_code
       });
     }
-    data.referralLink += data.referralCode;
     return data;
+  },
+  mounted() {
+    this.referralLink =
+      location.protocol +
+      "//" +
+      location.host +
+      "/signup?code=" +
+      this.referralCode;
   },
   methods: {
     async sendReferralEmail() {
