@@ -29,9 +29,6 @@
             <network network="facebook">
               <i class="facebook-color fab fa-facebook-square fa-2x p-r-sm social-icon"/>
             </network>
-            <network network="linkedin">
-              <i class="linkedin-color fab fa-linkedin fa-2x p-r-sm social-icon"/>
-            </network>
             <network network="twitter">
               <i class="twitter-color fab fa-twitter fa-2x p-r-sm social-icon"/>
             </network>
@@ -104,9 +101,6 @@ export default {
 }
 .facebook-color {
   color: #3b5998;
-}
-.linkedin-color {
-  color: #0077b5;
 }
 .telegram-color {
   color: #0088cc;
