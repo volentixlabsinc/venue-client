@@ -63,7 +63,7 @@ export default {
   },
   mounted() {
     this.referralLink =
-      window.location.protocol +
+      location.protocol +
       "//" +
       location.host +
       "/signup?code=" +
