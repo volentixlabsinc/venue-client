@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-centered">
-    <div class="column is-half p-t-xl">
+    <div class="column is-half">
       <TurkishEmail/>
     </div>
   </div>
