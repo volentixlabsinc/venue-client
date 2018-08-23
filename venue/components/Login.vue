@@ -11,8 +11,8 @@
       </b-field>
       <b-field>
         <div class="control">
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             class="button is-primary">{{ $t('nav.log_in') }}</button>
         </div>
       </b-field>
@@ -30,11 +30,11 @@
             <b-field label="Email">
               <b-input v-model="email" type="email" required/>
             </b-field>
-          </div> 
+          </div>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" @click="isForgotPasswordModalActive = false">{{ $t('buttons.btn_cancel') }}</a>
-          <a class="card-footer-item" type="submit" @click="resetPassword">{{ $t('auth.msg_reset_password') }}</a>
+          <a class="card-footer-item" type="submit" @click="resetPassword">{{ $t('auth.title_reset_password') }}</a>
         </footer>
       </form>
     </b-modal>
