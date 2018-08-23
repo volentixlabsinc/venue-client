@@ -26,6 +26,8 @@ module.exports = {
       "By signing up, you agree to the Volentix <a href='{0}' target='_blank'>privacy policy</a> and <a href='{1}' target='_blank'>terms of use</a>",
     msg_email_verification:
       "Please click the email verification link we've just emailed to you to activate your Venue account.",
+    msg_email_check_spam_folder:
+      "In rare cases the verification email may be marked as spam. If you have not received an email, please check your spam folder to see if it is there. Thank you.",
     msg_logging_out: "Logging out... "
   },
   bct_onboarding: {

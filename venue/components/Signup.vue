@@ -22,7 +22,12 @@
     <b-modal :active.sync="isSuccessModalActive" @close="$router.push(localizedRoute('/', $i18n.locale))">
       <div class="modal-card">
         <div class="modal-card-body">
-          {{ $t('auth.msg_email_verification') }}
+          <p>
+            {{ $t('auth.msg_email_verification') }}
+          </p>
+          <p>
+            {{ $t('auth.msg_email_check_spam_folder') }}
+          </p>
         </div>
         <div class="modal-card-foot">
           <button class="button" type="button" @click="isSuccessModalActive = false; $router.push(localizedRoute('/', $i18n.locale))">{{ $t('buttons.btn_close') }}</button>
