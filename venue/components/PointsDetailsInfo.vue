@@ -4,7 +4,7 @@
     <hr >
     <div v-show="loaded" class="has-text-centered">
       <h1 v-for="(bonus_level, index) in bonus" :key="index">
-        {{ $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }} 
+        {{ $tc('points_details.posts_sitewide', bonus_level.num_posts, { count: bonus_level.num_posts }) }}
         X {{ 100 + bonus_level.bonus_percentage }} =
         <u>{{ $tc('points_details.points', calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage),
                   { count: calcPoints(bonus_level.num_posts, bonus_level.bonus_percentage) }) }}</u>
@@ -13,10 +13,10 @@
         {{ $tc('points_details.points_sitewide', totalPoints, { count: totalPoints }) }}
       </div>
       <div class="subtitle">
-        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} = 
+        {{ $t('points_details.vtx_per_points', { count: availableTokens }) }} / {{ $t('points_details.points', { count: totalPoints }) }} =
         <u><span class="has-text-weight-bold">{{ $t('points_details.vtx_per_points', { count: vtxPerPoint }) }}</span></u>
       </div>
-            
+
       <div class="box">
         <div class="is-size-5">
           {{ $t('points_details.your_total_posts') }} X {{ calcMultiplier(mybonusPercentage) }} = <u>{{ $t('points_details.points', { count: myPoints }) }}</u>
@@ -91,9 +91,10 @@ export default {
       this.totalPointsNum = this.totalPostPoints + this.totalBonusPoints;
       this.totalPoints = this.totalPointsNum;
       this.totalPosts = pointsBreakdown.sitewide_stats.total_posts;
-      this.vtxPerPoint = (availableRewardsNumber / this.totalPointsNum).toFixed(
-        2
-      );
+      this.vtxPerPoint =
+        this.totalPointsNum === 0
+          ? 0
+          : (availableRewardsNumber / this.totalPointsNum).toFixed(2);
       this.bonus = pointsBreakdown.sitewide_stats.bonus_points;
       this.loaded = true;
     },
