@@ -25,6 +25,7 @@
           <p>
             {{ $t('auth.msg_email_verification') }}
           </p>
+          <br>
           <p>
             {{ $t('auth.msg_email_check_spam_folder') }}
           </p>
