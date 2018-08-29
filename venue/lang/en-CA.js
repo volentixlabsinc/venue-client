@@ -37,6 +37,7 @@ module.exports = {
     err_profile_not_found: "Profile not found.",
     err_profile_check_user_id:
       "Please verify that you copied the correct userid",
+    err_error_is_receieved: "HTTP error received",
     help_signature_1:
       "1) Click on Forum Profile Information inside the Profile Tab",
     help_signature_2:

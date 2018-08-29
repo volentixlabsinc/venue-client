@@ -54,10 +54,7 @@ export default {
         } catch (e) {
           this.loading = false;
           this.type = "is-danger";
-          this.message = [
-            this.$t("bct_onboarding.err_profile_not_found"),
-            this.$t("bct_onboarding.err_profile_check_user_id")
-          ];
+          this.message = this.$t("bct_onboarding.err_error_is_received");
         }
       } else {
         this.type = "is-danger";
