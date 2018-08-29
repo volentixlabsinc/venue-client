@@ -57,6 +57,7 @@ export default {
           this.message = this.$t("bct_onboarding.err_error_is_received", {
             code: e.response.status
           });
+          //console.log(e.response.status);
         }
       } else {
         this.type = "is-danger";
