@@ -11,9 +11,6 @@
       <b-field :label="$t('settings.password')">
         <b-input v-model="password" minlength="6" type="password" name="password" required password-reveal/>
       </b-field>
-      <div class="field">
-        <b-checkbox v-model="newsletter">{{ $t('auth.msg_newsletter') }}</b-checkbox>
-      </div>
       <div class="field" v-html="$t('auth.msg_policies', ['https://volentix.io/privacy.html', 'https://volentix.io/terms.html'])"/>
       <b-field>
         <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
@@ -50,7 +47,7 @@ export default {
       usernameFieldType: "",
       usernameMessage: "",
       password: "",
-      newsletter: false,
+      newsletter: true,
       isSuccessModalActive: false,
       referral_code: ""
     };

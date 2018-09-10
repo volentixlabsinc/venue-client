@@ -23,7 +23,8 @@ module.exports = {
       "Your email address has not been verified. Please check your email account.",
     msg_newsletter: "Also add me to your newsletter distribution list",
     msg_policies:
-      "By signing up, you agree to the Volentix <a href='{0}' target='_blank'>privacy policy</a> and <a href='{1}' target='_blank'>terms of use</a>",
+      "By signing up, you agree to the Volentix <a href='{0}' target='_blank'>privacy policy</a> and <a href='{1}' target='_blank'>terms of use</a> and will be added to the Volentix newsletter.",
+    msg_email: "You also agree to be added to the Volentix newsletter.",
     msg_email_verification:
       "Please click the email verification link we've just emailed to you to activate your Venue account.",
     msg_email_check_spam_folder:
