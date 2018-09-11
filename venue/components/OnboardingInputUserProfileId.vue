@@ -1,9 +1,10 @@
 <template>
   <form @submit.prevent="checkProfile">
-    <b-field :message="message" :type="type">
+    <b-field :type="type">
       <b-input v-model="forumUserId" :loading="loading" :placeholder="$t('bct_onboarding.your_user_id')" expanded required @input="clearWarnings()"/>
       <div class="control"><button :disabled="forumUserId.length === 0" class="button is-primary" type="submit">{{ $t('buttons.btn_verify') }}</button></div>
     </b-field>
+    <p class="has-text-danger is-size-7"> {{ message }} </p>
   </form>
 </template>
 
