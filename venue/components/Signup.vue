@@ -11,7 +11,7 @@
       <b-field :label="$t('settings.password')">
         <b-input v-model="password" minlength="6" type="password" name="password" required password-reveal/>
       </b-field>
-      <div class="field" v-html="$t('auth.msg_policies', ['https://volentix.io/privacy.html', 'https://volentix.io/terms.html'])"/>
+      <div class="field" v-html="$t('auth.msg_policies', ['https://volentix.io/privacy.html', '/terms'])"/>
       <b-field>
         <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
       </b-field>
