@@ -158,3 +158,9 @@
     <p>END OF AGREEMENT</p>
   </div>
 </template>
+
+<script>
+export default {
+  layout: "email"
+};
+</script>
