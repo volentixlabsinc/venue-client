@@ -45,6 +45,9 @@ $table-row-active-color: $grey-darker;
 $navbar-item-hover-color: white;
 $navbar-item-hover-background-color: #374a59;
 
+$message-background-color: white;
+$message-header-background-color: $bluegrey;
+
 // 4. Setup your Custom Colors
 // $linkedin: #0077b5;
 // $linkedin-invert: findColorInvert($linkedin);
@@ -52,12 +55,17 @@ $navbar-item-hover-background-color: #374a59;
 // $twitter-invert: findColorInvert($twitter);
 // $github: #333;
 // $github-invert: findColorInvert($github);
-
 // 5. Add new color variables to the color map.
 @import "~bulma/sass/utilities/derived-variables";
 $addColors: (
-  "venue-purple":($venue-purple, $venue-purple-invert),
-  "bluegrey-light":($bluegrey-light, findColorInvert($bluegrey-light))
+  "venue-purple": (
+    $venue-purple,
+    $venue-purple-invert
+  ),
+  "bluegrey-light": (
+    $bluegrey-light,
+    findColorInvert($bluegrey-light)
+  )
 );
 $colors: map-merge($colors, $addColors);
 
