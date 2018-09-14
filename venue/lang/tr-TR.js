@@ -1,4 +1,4 @@
-﻿module.exports = {
+module.exports = {
   nav: {
     leaderboard: "Skor tablosu",
     dashboard: "Kontrol paneli",
@@ -23,19 +23,28 @@
       "Eposta adresiniz doðrulanmadý. Lütfen eposta hesabýnýzý kontrol edin.",
     msg_newsletter: "Beni ayrýca haber bülteni daðýtým listesine de ekle",
     msg_policies:
-      "Kaydolarak, Volentix <a href='{0}' target='_blank'>gizlilik politikasý</a> ve <a href='{1}' target='_blank'>kullaným þartlarýný</a> kabul etmiþ sayýlýrsýnýz",
+      "Kaydolarak, Volentix <a href='{0}' target='_blank'>gizlilik politikası</a> ve <a href='{1}' target='_blank'>kullanım şartlarını</a> kabul etmiş sayılırsınız. Ayrıca, Volentix haber bültenine eklenmeyi de kabul etmiş sayılırsınız.",
+    msg_email:
+      "Ayrýca, Volentix haber bültenine eklenmeyi de kabul etmiþ sayýlýrsýnýz.",
     msg_email_verification:
       "Venue hesabýnýzý aktive etmek için, lütfen size gönderdiðimiz epostadaki doðrulama baðlantýsýna týklayýn.",
-    msg_logging_out: "Çýkýþ yapýlýyor... "
+    msg_email_check_spam_folder:
+      "Nadiren, doðrulama epostasý spam olarak iþaretlenebilir. Eðer bizden bir eposta almadýysanýz, lütfen spam klasörünüzü kontrol etmeyi unutmayýn. Teþekkürler.",
+    msg_logging_out: "Çýkýþ yapýlýyor... ",
+    no_us_header: "ABD VATANDAÞLARI KABUL EDÝLMEZ",
+    no_us_1:
+      "VTX, ABD vatandaþlarýna sunulmamaktadýr. Eðer eyaletleri ve Columbia dahil olmak üzere bölgeleri içinde yaþýyorsanýz veya ABD vatandaþýysanýz, VENUE'yi kullanmayýn, VERTO'yu yüklemeyin ve kullanmayýn, VTX satýn almayýn. ABD vatandaþý veya ABD içinde yaþayan tanýmýna hiçbir sýnýrlama olmaksýzýn gerçek ve tüzel kiþilikler, dernekler ve diðer her türlü resmi/gayriresmi kuruluþ dahildir.",
+    no_us_2:
+      "VENUE veya VERTO'yu kullanarak, bu hükmü ve diðer kurallar ile þartlarý kabul etmiþ sayýlýrsýnýz."
   },
   bct_onboarding: {
     err_duplicate_id: "Bu kimlik zaten bir Venue profiline baðlanmýþ",
     err_min_forum_level:
       "Bu kampanyaya katýlmak için, en az tam yetkili bir Bitcointalk üyesi olmalýsýnýz",
-    err_profile_not_found:
-      "Profil bulunamadý; lütfen doðru kullanýcý kimliðini kopyaladýðýnýzdan emin olun",
+    err_profile_not_found: "Profil bulunamadý.",
     err_profile_check_user_id:
       "Lütfen doðru kullanýcý kimliðini kopyaladýðýnýzý doðrulayýn",
+    err_error_is_received: "HTTP {code} alýndý",
     help_signature_1:
       "1) Profil Sekmesinin içindeki Forum Profil Bilgilerine týklayýn",
     help_signature_2:
@@ -49,7 +58,8 @@
       "Þimdi de kopyaladýðýnýz kodu Bitcointalk profilinize yapýþtýrýn.",
     msg_sig_update_how: "Bitcointalk imzamý nasýl güncellerim?",
     btn_verify_now: "Þimdi doðrula",
-    paste_id: "Aþaðýdaki URL'den forum kimliðinizi yapýþtýrýn:"
+    paste_id: "Aþaðýdaki URL'den forum kimliðinizi yapýþtýrýn:",
+    your_user_id: "Kullanýcý kimliðiniz"
   },
   settings: {
     title_my_profile: "Profilim",
@@ -110,8 +120,10 @@
     title: "Puanlar / ödüller detaylý bilgi",
     posts_sitewide:
       "Site çapýnda 0 gönderi | Site çapýnda 1 gönderi | Site çapýnda { count } gönderi",
+    points: "{count} puan",
     points_sitewide:
       "Site çapýnda 0 puan | Site çapýnda 1 puan | Site çapýnda { count } puan",
+    available_reward: " {count} adet ödül alabilirsiniz",
     your_total_posts: "Toplam gönderi sayýnýz",
     your_total_points: "Toplam puanýnýz",
     vtx_per_points: "Puan baþýna VTX"
@@ -140,8 +152,6 @@
     join_bitcointalk: "Bitcointalk imza kampanyasýna katýlýn",
     signature_warning_1:
       "Ýmzalarýn ilk 24 saat içinde en az 23 saat boyunca kullanýlmasý gerektiðini unutmayýn. Bu süre sona ermeden imzayý deðiþtirirseniz, o gönderi için tüm puanlarý kaybedersiniz.",
-    signature_warning_2: "Bu iþlemin puan bakiyenize yansýmasý",
-    signature_warning_3: " 24 saate kadar sürebilir.",
     steps: "Adým {0} kalan {1}",
     invite_friend_note:
       "Birden çok kiþiyi ayýrt etmek için virgül ' , ' kullanýn",
