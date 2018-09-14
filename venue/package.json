@@ -11,13 +11,21 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue .",
     "lintfix": "eslint --fix --ext .js,.vue .",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "jest"
   },
   "lint-staged": {
     "*.{js,vue,css}": [
       "npm run lintfix",
       "git add"
     ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.vue$": "vue-jest"
+    }
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.1",
@@ -30,7 +38,7 @@
     "numeral": "^2.0.6",
     "nuxt": "^1.4.2",
     "nuxt-i18n": "^4.1.0",
-    "vue": "^2.5.16",
+    "vue": "^2.5.17",
     "vue-chartjs": "^3.3.1",
     "vue-clipboard2": "^0.1.0",
     "vue-countup-v2": "^1.0.3",
@@ -43,7 +51,12 @@
     "not ie <= 8"
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^7.0.0",
+    "@vue/test-utils": "^1.0.0-beta.25",
+    "ajv": "^6.5.3",
     "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.6.0",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-friendly-formatter": "^3.0.0",
@@ -51,11 +64,14 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.5.0",
     "husky": "^0.14.3",
+    "jest": "^23.6.0",
     "lint-staged": "^7.2.0",
     "node-sass": "^4.9.2",
     "prettier": "1.13.5",
+    "rollup": "^0.65.2",
     "sass-loader": "^7.0.3",
-    "webpack": "^4.12.1"
+    "vue-jest": "^2.6.0",
+    "webpack": "^4.19.0"
   },
   "husky": {
     "hooks": {
