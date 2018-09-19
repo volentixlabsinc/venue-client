@@ -71,7 +71,7 @@
     "rollup": "^0.65.2",
     "sass-loader": "^7.0.3",
     "vue-jest": "^2.6.0",
-    "webpack": "^4.19.0"
+    "webpack": "^3.11.0"
   },
   "husky": {
     "hooks": {
