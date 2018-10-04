@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="navheader is-size-6 m-l-md">App</div>
     <span v-if="(isAuthenticated() && hasCampaignData())">
       <NavigationLink :name="$t('nav.dashboard')" route="/dashboard" icon="fa-tachometer-alt" @click="$emit('click')"/>
     </span>
@@ -44,3 +45,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.navheader {
+  color: #98a5ae;
+}
+</style>

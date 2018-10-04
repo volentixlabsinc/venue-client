@@ -1,9 +1,9 @@
 <template>
   <a :href="link" target="_blank">
     <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
-      <img v-if="image" :src="image" width="64" height="64" class="p-b-sm">
+      <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
       <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
-      <div class="info is-size-7 p-b-lg">{{ info }}</div>
+      <div class="info is-size-7">{{ info }}</div>
     </div>
   </a>
 </template>
@@ -30,6 +30,14 @@ export default {
     highlight: {
       type: String,
       default: "#ffffff00"
+    },
+    height: {
+      type: Number,
+      default: 64
+    },
+    width: {
+      type: Number,
+      default: 64
     }
   },
   data: function() {
@@ -52,9 +60,11 @@ div.box {
 div.box div.name {
   height: 3em;
   padding-top: 0.6em;
-  position: sticky;
-  z-index: 1;
   border-radius: 500px;
+}
+
+div.box div.info {
+  height: 4rem;
 }
 
 div.box:hover div.name {

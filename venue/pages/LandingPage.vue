@@ -35,6 +35,17 @@
         <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" link="https://venue.ninja/claiming-vtx-section/" highlight="#232C3B"/>
       </div>
     </div>
+    <div class="columns p-l-xl p-r-xl">
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-community.png')" :name="$t('campaigns.title_community')" :info="$t('campaigns.community')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#51b675"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-valoro.png')" :name="$t('campaigns.title_valoro')" :info="$t('campaigns.valoro')" link="https://valoro.io/" highlight="#ffae00"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-comingsoon.png')" :name="$t('campaigns.title_comingsoon')" :info="$t('campaigns.comingsoon')" :height="64" :width="85" highlight="#bd090c"/>
+      </div>
+    </div>
   </div>
 </template>
 

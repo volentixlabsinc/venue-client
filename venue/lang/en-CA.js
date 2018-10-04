@@ -174,16 +174,24 @@ module.exports = {
   },
   campaigns: {
     title_youtube: "Join YouTube / Blog Campaign",
-    youtube: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    youtube: "Earn VTX by writing articles or publishing videos.",
     title_rules: "General Bounty Rules",
-    rules: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    rules: "Review the rules for the Volentix Bounty.",
     title_bitcointalk: "Bitcointalk Signature Campaign",
-    bitcointalk: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    bitcointalk: "Earn VTX in a Bitcointalk signature campaign.",
     title_telegram: "Telegram Bounty Campaign",
-    telegram: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    telegram:
+      "Earn VTX simply by joining the community and engaging with the team.",
     title_twitter: "Twitter Bounty Campaign",
-    twitter: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    twitter: "Earn VTX by sharing Volentix tweets on Twitter.",
     title_claiming: "Claiming VTX Tokens",
-    claiming: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+    claiming: "Learn how to claim your VTX tokens.",
+    title_community: "Community Manager Campaign",
+    community:
+      "Earn VTX by being a Volentix ambassador, sharing and translating material.",
+    title_valoro: "Valoro",
+    valoro: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_comingsoon: "Coming Soon",
+    comingsoon: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
   }
 };
