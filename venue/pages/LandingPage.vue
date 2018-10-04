@@ -15,24 +15,24 @@
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
     <div class="columns p-l-xl p-r-xl">
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-youtube-blog.png')" :name="$t('campaigns.title_youtube')" :info="$t('campaigns.youtube')" highlight="#fc0514"/>
+        <CampaignButton :image="require('@/assets/socialMedia-youtube-blog.png')" :name="$t('campaigns.title_youtube')" :info="$t('campaigns.youtube')" link="https://venue.ninja/youtube-blog-article-campaign/" highlight="#fc0514"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-rules.png')" :name="$t('campaigns.title_rules')" :info="$t('campaigns.rules')" highlight="#ff6d00"/>
+        <CampaignButton :image="require('@/assets/socialMedia-rules.png')" :name="$t('campaigns.title_rules')" :info="$t('campaigns.rules')" link="https://venue.ninja/rules/" highlight="#ff6d00"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" highlight="#ffd302" />
+        <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" link="https://venue.ninja/bitcointalk-signature-bounty/" highlight="#ffd302" />
       </div>
     </div>
     <div class="columns p-l-xl p-r-xl">
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-telegram.png')" :name="$t('campaigns.title_telegram')" :info="$t('campaigns.telegram')" highlight="#36acdd"/>
+        <CampaignButton :image="require('@/assets/socialMedia-telegram.png')" :name="$t('campaigns.title_telegram')" :info="$t('campaigns.telegram')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#36acdd"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-twitter.png')" :name="$t('campaigns.title_twitter')" :info="$t('campaigns.twitter')" highlight="#36acdd"/>
+        <CampaignButton :image="require('@/assets/socialMedia-twitter.png')" :name="$t('campaigns.title_twitter')" :info="$t('campaigns.twitter')" link="https://venue.ninja/twitter-campaign-rules/" highlight="#36acdd"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" highlight="#232C3B"/>
+        <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" link="https://venue.ninja/claiming-vtx-section/" highlight="#232C3B"/>
       </div>
     </div>
   </div>
