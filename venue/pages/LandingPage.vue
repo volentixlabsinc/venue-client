@@ -13,28 +13,6 @@
       </div>
     </div>
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
-    <div class="tile is-ancestor">
-      <LandingPageItem :info="$t('buttons.btn_join_now')" name="Bitcoin Talk" link="/signup"/>
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Facebook" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Telegram" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Twitter" />
-    </div>
-
-    <h2 class="title">{{ $t('titles.bounties') }}</h2>
-    <div class="tile is-ancestor">
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Venue"/>
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Vespucci" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Verto" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="VDex" />
-    </div>
-
-    <h2 class="title">{{ $t('titles.proposals') }}</h2>
-    <div class="tile is-ancestor">
-      <LandingPageItem :info="$t('labels.coming_soon')" name="VLabs"/>
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Public" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Accepted" />
-      <LandingPageItem :info="$t('labels.coming_soon')" name="Complete" />
-    </div>
   </div>
 </template>
 
@@ -43,15 +21,13 @@ import LeaderboardCard from "~/components/LeaderboardCard.vue";
 import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
 import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
-import LandingPageItem from "~/components/LandingPageItem.vue";
 
 export default {
   components: {
     LeaderboardCard,
     CampaignInfoCard,
     LandingPageJoinCampaign,
-    LandingPageMyRewardsCard,
-    LandingPageItem
+    LandingPageMyRewardsCard
   },
   data() {
     return {
