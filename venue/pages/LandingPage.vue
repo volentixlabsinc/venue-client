@@ -13,6 +13,28 @@
       </div>
     </div>
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
+    <div class="columns p-l-xl p-r-xl">
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-youtube-blog.png')" :name="$t('campaigns.title_youtube')" :info="$t('campaigns.youtube')" highlight="#fc0514"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-rules.png')" :name="$t('campaigns.title_rules')" :info="$t('campaigns.rules')" highlight="#ff6d00"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" highlight="#ffd302" />
+      </div>
+    </div>
+    <div class="columns p-l-xl p-r-xl">
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-telegram.png')" :name="$t('campaigns.title_telegram')" :info="$t('campaigns.telegram')" highlight="#36acdd"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-twitter.png')" :name="$t('campaigns.title_twitter')" :info="$t('campaigns.twitter')" highlight="#36acdd"/>
+      </div>
+      <div class="column">
+        <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" highlight="#232C3B"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,70 +43,20 @@ import LeaderboardCard from "~/components/LeaderboardCard.vue";
 import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
 import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
+import CampaignButton from "~/components/CampaignButton.vue";
 
 export default {
   components: {
     LeaderboardCard,
     CampaignInfoCard,
     LandingPageJoinCampaign,
-    LandingPageMyRewardsCard
+    LandingPageMyRewardsCard,
+    CampaignButton
   },
   data() {
     return {
       ready: false,
-      isAuthenticated: this.$store.state.user.isAuthenticated,
-      contents: [
-        {
-          title: "Bounties",
-          content: [
-            {
-              text: "Volentix",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Venue",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "VDX",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Vespucci",
-              linkText: "Coming Soon",
-              disabled: true
-            }
-          ]
-        },
-        {
-          title: "Proposals",
-          content: [
-            {
-              text: "VLabs",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Public",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Accepted",
-              linkText: "Coming Soon",
-              disabled: true
-            },
-            {
-              text: "Completed",
-              linkText: "Coming Soon",
-              disabled: true
-            }
-          ]
-        }
-      ]
+      isAuthenticated: this.$store.state.user.isAuthenticated
     };
   }
 };

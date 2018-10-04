@@ -171,5 +171,19 @@ module.exports = {
     btn_verify: "Verify",
     btn_send_email: "Send",
     btn_copy_link: "Copy link"
+  },
+  campaigns: {
+    title_youtube: "Join YouTube / Blog Campaign",
+    youtube: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_rules: "General Bounty Rules",
+    rules: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_bitcointalk: "Bitcointalk Signature Campaign",
+    bitcointalk: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_telegram: "Telegram Bounty Campaign",
+    telegram: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_twitter: "Twitter Bounty Campaign",
+    twitter: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    title_claiming: "Claiming VTX Tokens",
+    claiming: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
   }
 };
