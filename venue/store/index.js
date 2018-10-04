@@ -157,11 +157,8 @@ export const actions = {
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader);
       if (cookies.venue) {
-        app.$axios.setToken(cookies.venue.token, "Token");
         // This call also sets the token into $axios
-        await commit("user/authenticated", {
-          token: cookies.venue
-        });
+        this.$auth.setToken("local", cookies.venue.token);
 
         try {
           await loadUserData(commit, app.$axios);
@@ -169,10 +166,10 @@ export const actions = {
           // TODO Clear the cookie so we don't keep receiving old tokens
           console.warn("Caught exception in nuxtServerInit", exc);
           // FIXME Only clear token when the token is bad
-          if (exc.response.status === 401) {
-            // HTTP 401 Unauthorized means the token is bad
-            commit("user/unauthenticated");
-          }
+          // if (exc.response.status === 401) {
+          //   // HTTP 401 Unauthorized means the token is bad
+          //   commit("user/unauthenticated");
+          // }
         }
       }
     }
@@ -186,7 +183,7 @@ export const actions = {
     commit("setUserStats", {});
     commit("setSignature", {});
     commit("clearForumProfile");
-    commit("user/unauthenticated");
+    // commit("user/unauthenticated");
   }
 };
 

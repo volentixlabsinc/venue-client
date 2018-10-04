@@ -8,11 +8,7 @@ export async function loadUserData(commit, $axios /*, forumProfileId*/) {
   // Get the user's current signature
   const retrieveMySignature = refreshMySignature($axios, commit);
 
-  const setUserData = $axios
-    .$get("/retrieve/user/")
-    .then(data => commit("user/setUserData", data));
-
-  await Promise.all([retrieveStats, retrieveMySignature, setUserData]);
+  await Promise.all([retrieveStats, retrieveMySignature]);
 }
 
 export async function retrieveAvailableSignatures(

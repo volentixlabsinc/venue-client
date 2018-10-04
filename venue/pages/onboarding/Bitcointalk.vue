@@ -107,7 +107,7 @@ export default {
       isDownloadClicked: false
     };
   },
-  middleware: "authenticated",
+  middleware: "auth",
   mounted() {
     this.ready = true;
   },

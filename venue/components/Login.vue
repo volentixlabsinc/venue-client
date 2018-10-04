@@ -71,16 +71,25 @@ export default {
       this.loginError = false;
 
       try {
-        this.authResponse = await this.$axios.$post("/authenticate/", {
-          username: this.username,
-          password: this.password
+        // this.authResponse = await this.$axios.$post("/authenticate/", {
+        //   username: this.username,
+        //   password: this.password
+        // });
+
+        await this.$auth.loginWith("local", {
+          data: {
+            username: this.username,
+            password: this.password
+          }
         });
 
-        await this.$store.commit("user/authenticated", {
-          userId: this.authResponse.user_profile_id,
-          language: this.authResponse.language,
-          token: this.authResponse.token
-        });
+        console.log("user", this.$auth.user);
+
+        // await this.$store.commit("user/authenticated", {
+        //   userId: this.authResponse.user_profile_id,
+        //   language: this.authResponse.language,
+        //   token: this.authResponse.token
+        // });
 
         await loadUserData(this.$store.commit, this.$axios);
 
@@ -90,6 +99,7 @@ export default {
             : this.localizedRoute("/", this.$i18n.locale)
         );
       } catch (error) {
+        console.log("error", error);
         const errorCode = error.response.data.error_code;
         this.displayErrorMessage(errorCode);
       }

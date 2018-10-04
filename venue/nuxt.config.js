@@ -73,10 +73,42 @@ module.exports = {
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
-  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics", ["nuxt-i18n", I18N]],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/auth",
+    "@nuxtjs/google-analytics",
+    ["nuxt-i18n", I18N]
+  ],
   axios: {
     baseURL: process.env.BASE_URL || "http://localhost/api",
     browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
+  },
+  auth: {
+    redirect: {
+      callback: "/dashboard"
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/authenticate/",
+            method: "post",
+            propertyName: "token"
+          },
+          logout: { url: "/logout/", method: "post" },
+          user: {
+            url: "/retrieve/user/",
+            method: "get",
+            propertyName: false
+          }
+        },
+        // tokenRequired: true,
+        tokenType: "Token"
+      },
+      facebook: {
+        client_id: "..."
+      }
+    }
   },
   "google-analytics": {
     id: "UA-119876313-3"
