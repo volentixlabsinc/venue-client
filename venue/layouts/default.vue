@@ -4,6 +4,7 @@
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
+        <hr>
         <div class="navfooter">
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="has-text-centered" />
@@ -95,5 +96,13 @@ export default {
 
 .volentix img {
   max-width: 7rem;
+}
+
+/* TODO understand why it is ignored if I add to main.scss  */
+hr {
+  background-color: #98a5ae;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 1px;
 }
 </style>
