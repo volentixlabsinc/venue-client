@@ -4,9 +4,10 @@
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <Navigation />
-        <div class="navfooter has-text-centered">
-          <SocialMediaLinks />
-          <div class="volentix is-fullwidth p-l-md p-r-md p-t-md p-b-md">
+        <div class="navfooter">
+          <VolentixLinks class="m-b-md"/>
+          <SocialMediaLinks class="has-text-centered" />
+          <div class="volentix is-fullwidth has-text-centered p-l-md p-r-md p-t-md p-b-md">
             <a target="_blank" href="https://www.volentix.io">
               <img src="~/assets/volentix-logo.png">
             </a>
@@ -40,6 +41,7 @@
 <script>
 import Navigation from "~/components/Navigation.vue";
 import MainLogo from "~/components/MainLogo.vue";
+import VolentixLinks from "~/components/VolentixLinks";
 import SocialMediaLinks from "~/components/SocialMediaLinks.vue";
 import NavigationLink from "~/components/NavigationLink.vue";
 
@@ -48,7 +50,8 @@ export default {
     Navigation,
     MainLogo,
     NavigationLink,
-    SocialMediaLinks
+    SocialMediaLinks,
+    VolentixLinks
   },
   data() {
     return {

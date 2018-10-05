@@ -7,7 +7,14 @@ module.exports = {
     sign_up: "Sign up",
     log_in: "Log in",
     log_out: "Log out",
-    invite_friend: "Invite a friend"
+    invite_friend: "Invite a friend",
+    app: "App",
+    volentix_pages: "Volentix Pages",
+    rules: "General Bounty Rules",
+    valoro: "Valoro - A Volentix News Platform",
+    telegram: "Telegram for Volentix Bounty",
+    whitepaper: "VDEX-whitepaper",
+    whitelist: "VTX-Whitelist"
   },
   auth: {
     forgot_password: "Forgot password?",
