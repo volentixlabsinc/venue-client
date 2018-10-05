@@ -2,6 +2,7 @@
   <div>
     <div class="navheader is-size-6 m-l-md m-b-sm">{{ $t("nav.volentix_pages") }}</div>
     <ul class="m-l-lg">
+      <li><a target="_blank" href="https://volentix.io/">Volentix.io</a></li>
       <li><a target="_blank" href="https://venue.ninja/rules/">{{ $t("nav.rules") }}</a></li>
       <li><a target="_blank" href="https://valoro.io/">{{ $t("nav.valoro") }}</a></li>
       <li><a target="_blank" href="https://venue.ninja/telegram-campaign-rules/">{{ $t("nav.telegram") }}</a></li>

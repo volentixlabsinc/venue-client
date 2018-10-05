@@ -8,6 +8,11 @@
         <div class="navfooter">
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="m-l-md"/>
+          <div class="volentix is-fullwidth has-text-centered">
+            <a target="_blank" href="https://www.volentix.io">        
+              <img src="~/assets/spinning-volentix-logo.gif">
+            </a>            
+          </div>
         </div>
       </aside>
       <div class="column">
@@ -83,6 +88,10 @@ export default {
   position: absolute;
   bottom: 0;
   width: calc(100% - 12px);
+}
+
+.volentix img {
+  max-width: 5rem;
 }
 
 /* TODO understand why it is ignored if I add to main.scss  */
