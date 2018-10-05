@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="columns is-fullheight is-hidden-mobile">
+    <div class="columns is-gapless is-fullheight is-hidden-mobile">
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
         <div class="navheader is-size-6 m-l-md">{{ $t("nav.app") }}</div>
@@ -18,11 +18,26 @@
         </div>
       </aside>
       <div class="column">
+        <nav class="navbar desktop-navbar is-transparent">
+          <div class="navbar-brand">
+            <a target="_blank" href="https://www.volentix.io">
+              <img :height="64" :width="64" src="~/assets/spinning-volentix-logo.gif">
+            </a>
+          </div>  
+          <div class="navbar-menu is-active">
+            <div class="navbar-end m-r-xl">
+              <PillarLink class="navbar-item" name="Venue" highlight="#8f05ac" />
+              <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
+              <PillarLink class="navbar-item" name="VDex" link="https://vdex.io" highlight="#2fa268" />
+              <PillarLink class="navbar-item" name="Vespucci" link="https://vespucci.app" highlight="#fad100" />
+            </div>
+          </div>
+        </nav>
         <nuxt />
       </div>
     </div>
     <div class="is-hidden-tablet">
-      <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+      <nav class="navbar mobile-navbar" role="navigation" aria-label="dropdown navigation">
         <div class="navbar-brand">
           <MainLogo class="navbar-item" />
           <a :class="{ 'is-active': showMenu }" role="button" class="navbar-burger" 
@@ -61,6 +76,7 @@ import MainLogo from "~/components/MainLogo.vue";
 import VolentixLinks from "~/components/VolentixLinks";
 import SocialMediaLinks from "~/components/SocialMediaLinks.vue";
 import NavigationLink from "~/components/NavigationLink.vue";
+import PillarLink from "~/components/PillarLink.vue";
 
 export default {
   components: {
@@ -68,7 +84,8 @@ export default {
     MainLogo,
     NavigationLink,
     SocialMediaLinks,
-    VolentixLinks
+    VolentixLinks,
+    PillarLink
   },
   data() {
     return {
@@ -88,7 +105,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.navbar {
+div.is-hidden-tablet nav.navbar {
   background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
   padding-right: 0px;
   border-right: 8px #e0e5e9 solid;
@@ -118,6 +135,15 @@ export default {
 
 .volentix img {
   max-width: 5rem;
+}
+
+.desktop-navbar {
+  background-color: hsl(0, 0%, 96%); /* Same as background colour */
+  border-bottom: 1px solid #98a5ae;
+}
+
+.desktop-navbar .navbar-item:hover {
+  color: inherit;
 }
 
 /* TODO understand why it is ignored if I add to main.scss  */
