@@ -29,7 +29,7 @@
         <CampaignButton :image="require('@/assets/socialMedia-telegram.png')" :name="$t('campaigns.title_telegram')" :info="$t('campaigns.telegram')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#36acdd"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-twitter.png')" :name="$t('campaigns.title_twitter')" :info="$t('campaigns.twitter')" link="https://venue.ninja/twitter-campaign-rules/" highlight="#36acdd"/>
+        <CampaignButton :image="require('@/assets/socialMedia-twitter.png')" :name="$t('campaigns.title_twitter')" :info="$t('campaigns.twitter')" link="https://venue.ninja/twitter-campaign-rules/" highlight="#687987"/>
       </div>
       <div class="column">
         <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" link="https://venue.ninja/claiming-vtx-section/" highlight="#232C3B"/>
