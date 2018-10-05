@@ -1,7 +1,7 @@
 <template>
   <router-link :to="localizedRoute(route, $i18n.locale)" class="navbar-item">
     <div class="level" @click="$emit('click')">
-      <span class="icon is-large"><i :class="icon" class="fas fa-lg prefix"/></span>
+      <span class="icon is-medium m-r-sm"><i :class="icon" class="fas fa-lg prefix"/></span>
       <span class="nav-text is-size-5">{{ name }}</span>
     </div>
   </router-link>
@@ -29,6 +29,8 @@ export default {
 <style scoped>
 .navbar-item {
   padding-left: 12px;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 
 .nuxt-link-exact-active {

@@ -97,8 +97,7 @@ export default {
 /* TODO understand why it is ignored if I add to main.scss  */
 hr {
   background-color: #98a5ae;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0.3rem 1rem;
   height: 1px;
 }
 </style>
