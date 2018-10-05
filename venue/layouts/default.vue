@@ -3,9 +3,11 @@
     <div class="columns is-fullheight is-hidden-mobile">
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
+        <div class="navheader is-size-6 m-l-md">{{ $t("nav.app") }}</div>
         <Navigation />
         <hr>
         <div class="navfooter">
+          <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_pages") }}</div>
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="m-l-md"/>
           <div class="volentix is-fullwidth has-text-centered">
@@ -20,7 +22,7 @@
       </div>
     </div>
     <div class="is-hidden-tablet">
-      <nav class="navbar" role="navigation">
+      <nav class="navbar" role="navigation" aria-label="dropdown navigation">
         <div class="navbar-brand">
           <MainLogo class="navbar-item" />
           <a :class="{ 'is-active': showMenu }" role="button" class="navbar-burger" 
@@ -32,6 +34,20 @@
         </div>
         <div :class="{ 'is-active': showMenu }" class="navbar-menu">
           <Navigation @click="toggleMenu()"/>
+          <hr>
+          <div class="navbar-item has-dropdown">
+            <a class="navbar-link" @click="togglePageLinks">
+              <span>{{ $t("nav.volentix_pages") }}</span>
+              <span class="icon is-pulled-right">
+                <i v-if="showPageLinks" class="fas fa-chevron-up"/>
+                <i v-else class="fas fa-chevron-down"/>
+              </span>
+            </a>
+            <div v-if="showPageLinks" class="navbar-dropdown">
+              <VolentixLinks class="m-b-md"/>
+              <SocialMediaLinks class="m-l-md"/>
+            </div>
+          </div>
         </div>
       </nav>
       <nuxt />
@@ -56,12 +72,16 @@ export default {
   },
   data() {
     return {
-      showMenu: false
+      showMenu: false,
+      showPageLinks: false
     };
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    togglePageLinks() {
+      this.showPageLinks = !this.showPageLinks;
     }
   }
 };
@@ -74,6 +94,10 @@ export default {
   border-right: 8px #e0e5e9 solid;
 }
 
+.navheader {
+  color: #98a5ae;
+}
+
 // TODO Understand why $navbar-burger-color isn't working
 .navbar-burger {
   color: #98a5ae;
@@ -81,13 +105,15 @@ export default {
 .navbar-burger:hover {
   color: white;
 }
-</style>
 
-<style scoped>
 .navfooter {
   position: absolute;
   bottom: 0;
   width: calc(100% - 12px);
+}
+
+.navbar-link {
+  background-color: inherit;
 }
 
 .volentix img {

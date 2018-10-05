@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="navheader is-size-6 m-l-md">{{ $t("nav.app") }}</div>
     <span v-if="(isAuthenticated() && hasCampaignData())">
       <NavigationLink :name="$t('nav.dashboard')" route="/dashboard" icon="fa-tachometer-alt" @click="$emit('click')"/>
     </span>
