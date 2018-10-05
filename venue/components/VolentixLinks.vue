@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navheader is-size-6 m-l-md m-b-sm">{{ $t("nav.volentix_pages") }}</div>
-    <ul>
+    <ul class="m-l-lg">
       <li><a target="_blank" href="https://venue.ninja/rules/">{{ $t("nav.rules") }}</a></li>
       <li><a target="_blank" href="https://valoro.io/">{{ $t("nav.valoro") }}</a></li>
       <li><a target="_blank" href="https://venue.ninja/telegram-campaign-rules/">{{ $t("nav.telegram") }}</a></li>
@@ -32,10 +32,6 @@ export default {
 <style scoped>
 .navheader {
   color: #98a5ae;
-}
-
-li {
-  padding-left: 2rem;
 }
 
 li a {
