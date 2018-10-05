@@ -102,6 +102,7 @@
     posts: "0 gönderi | 1 gönderi | { count } gönderi",
     points: "0 puan | 1 puan | { count } puan",
     username: "Kullanıcı adı",
+    coming_soon: "Çok yakında",
     num_posts: "Gönderi Sayısı",
     card_title: "Adım { imageNumber } - 3",
     email: "Eposta",

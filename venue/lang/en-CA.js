@@ -109,6 +109,7 @@ module.exports = {
     posts: "0 posts | 1 post | {count} posts",
     points: "0 points | 1 point | {count} points",
     username: "Username",
+    coming_soon: "Coming soon",
     num_posts: "Number of Posts",
     card_title: "Step {imageNumber} of 3",
     email: "Email",
@@ -198,7 +199,7 @@ module.exports = {
       "Earn VTX by being a Volentix ambassador, sharing and translating material.",
     title_valoro: "Valoro",
     valoro: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-    title_comingsoon: "Coming Soon",
-    comingsoon: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+    title_coming_soon: "Coming Soon",
+    coming_soon: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
   }
 };
