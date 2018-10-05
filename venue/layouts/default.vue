@@ -7,12 +7,7 @@
         <hr>
         <div class="navfooter">
           <VolentixLinks class="m-b-md"/>
-          <SocialMediaLinks class="has-text-centered" />
-          <div class="volentix is-fullwidth has-text-centered p-l-md p-r-md p-t-md p-b-md">
-            <a target="_blank" href="https://www.volentix.io">
-              <img src="~/assets/volentix-logo.png">
-            </a>
-          </div>
+          <SocialMediaLinks class="m-l-md"/>
         </div>
       </aside>
       <div class="column">
@@ -88,14 +83,6 @@ export default {
   position: absolute;
   bottom: 0;
   width: calc(100% - 12px);
-}
-
-.volentix {
-  background-color: #374a59;
-}
-
-.volentix img {
-  max-width: 7rem;
 }
 
 /* TODO understand why it is ignored if I add to main.scss  */

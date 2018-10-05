@@ -1,14 +1,24 @@
 <template>
   <div>
-    <a target="_blank" href="https://twitter.com/Volentix">
-      <span class="icon has-text-dark is-large">
-        <i class="fab fa-twitter fa-lg"/>
-      </span>
-    </a>
-    <a target="_blank" href="https://t.me/volentix">
-      <span class="icon has-text-dark is-large">
-        <i class="fab fa-telegram fa-lg"/>
-      </span>
-    </a>
+    <div>
+      <a target="_blank" href="https://twitter.com/Volentix">
+        <span class="icon has-text-dark is-large">
+          <i class="fab fa-twitter fa-2x"/>
+        </span>
+      </a>
+    </div>
+    <div>
+      <a target="_blank" href="https://t.me/volentix">
+        <span class="icon has-text-dark is-large">
+          <i class="fab fa-telegram fa-2x"/>
+        </span>
+      </a>
+    </div>
   </div>
 </template>
+
+<style scoped>
+i:hover {
+  color: white;
+}
+</style>
