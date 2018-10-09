@@ -26,7 +26,6 @@
           </div>  
           <div class="navbar-menu is-active">
             <div class="navbar-end m-r-xl">
-              <PillarLink class="navbar-item" name="Venue" highlight="#8f05ac" />
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
               <PillarLink class="navbar-item" name="VDex" link="https://vdex.io" highlight="#2fa268" />
               <PillarLink class="navbar-item" name="Vespucci" link="https://vespucci.app" highlight="#fad100" />
