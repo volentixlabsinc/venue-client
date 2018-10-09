@@ -21,13 +21,13 @@ export default {
       this.$store.state.userStats.fresh === false;
     const data = [
       {
-        label: "MY POSTS",
+        label: this.$t("labels.my_posts"),
         value: hasStats
           ? this.$store.state.userStats.profile_level[0].numPosts
           : undefined
       },
       {
-        label: "MY POINTS",
+        label: this.$t("labels.my_points"),
         value: hasStats
           ? this.$store.state.userStats.profile_level[0].totalPoints
           : undefined
@@ -36,7 +36,7 @@ export default {
 
     if (this.showRank) {
       data.unshift({
-        label: "MY RANK",
+        label: this.$t("labels.my_rank"),
         value: hasStats
           ? this.$store.state.userStats.user_level.overall_rank
           : undefined
