@@ -1,8 +1,9 @@
 <template>
   <span class="is-paddingless">
-    <a :href="link" :style="{ borderBottom: '5px solid ' + highlight, borderTop: '5px solid ' + highlight }" 
+    <a :href="link" :style="name ? { borderBottom: '5px solid ' + highlight, borderTop: '5px solid ' + highlight } : {}" 
        class="p-l-md p-r-md" target="_blank">
-      <span class="title is-size-6 is-paddingless">{{ name }}</span>
+      <span v-if="name" class="title is-size-6 is-paddingless">{{ name }}</span>
+      <img v-if="image" :src="image">
     </a>
   </span>
 </template>
@@ -12,7 +13,11 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      default: undefined
+    },
+    image: {
+      type: String,
+      default: undefined
     },
     link: {
       type: String,

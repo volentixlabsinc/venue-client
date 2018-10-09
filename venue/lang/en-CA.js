@@ -14,7 +14,8 @@ module.exports = {
     valoro: "Valoro - A Volentix News Platform",
     telegram: "Telegram for Volentix Bounty",
     whitepaper: "VDEX-whitepaper",
-    whitelist: "VTX-Whitelist"
+    whitelist: "VTX-Whitelist",
+    volentix_pillars: "Volentix Pillars"
   },
   auth: {
     forgot_password: "Forgot password?",

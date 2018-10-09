@@ -62,6 +62,20 @@
               <SocialMediaLinks class="m-l-md"/>
             </div>
           </div>
+          <div class="navbar-item has-dropdown">
+            <a class="navbar-link" @click="togglePillarLinks">
+              <span>{{ $t("nav.volentix_pillars") }}</span>
+              <span class="icon is-pulled-right">
+                <i v-if="showPillarLinks" class="fas fa-chevron-up"/>
+                <i v-else class="fas fa-chevron-down"/>
+              </span>
+            </a>
+            <div v-if="showPillarLinks" class="navbar-dropdown">
+              <PillarLink :image="require('@/assets/logo-verto.png')" class="navbar-item" link="https://verto.vdex.io" highlight="#08959f" />
+              <PillarLink :image="require('@/assets/logo-vdex.png')" class="navbar-item" link="https://vdex.io" highlight="#2fa268" />
+              <PillarLink :image="require('@/assets/logo-vespucci.png')" class="navbar-item" link="https://vespucci.app" highlight="#fad100" />
+            </div>
+          </div>
         </div>
       </nav>
       <nuxt />
@@ -89,7 +103,8 @@ export default {
   data() {
     return {
       showMenu: false,
-      showPageLinks: false
+      showPageLinks: false,
+      showPillarLinks: false
     };
   },
   methods: {
@@ -98,6 +113,9 @@ export default {
     },
     togglePageLinks() {
       this.showPageLinks = !this.showPageLinks;
+    },
+    togglePillarLinks() {
+      this.showPillarLinks = !this.showPillarLinks;
     }
   }
 };
