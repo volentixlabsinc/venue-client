@@ -12,7 +12,7 @@
           <SocialMediaLinks class="m-l-md"/>
           <div class="volentix is-fullwidth has-text-centered">
             <a target="_blank" href="https://www.volentix.io">        
-              <img src="~/assets/spinning-volentix-logo.gif">
+              <img :height="50" :width="50" src="~/assets/spinning-volentix-logo-white.gif" class="p-b-md">
             </a>            
           </div>
         </div>
