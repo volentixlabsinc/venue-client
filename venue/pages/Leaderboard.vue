@@ -1,8 +1,10 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <h1 class="title">{{ $t("titles.vtx_earned") }}</h1>
-      <VtxEarned />
+      <div v-if="$store.state.user.isAuthenticated" class="p-b-lg">
+        <h1 class="title">{{ $t("titles.vtx_earned") }}</h1>
+        <VtxEarned />
+      </div>
       <h1 class="title">{{ $t("titles.bct_leaderboard") }}</h1>
       <LeaderboardStats />
       <Leaderboard />
