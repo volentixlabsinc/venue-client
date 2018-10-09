@@ -29,10 +29,10 @@
               <a v-if="!isAuthenticated()" href="/login" class="navbar-item">
                 <span class="button is-rounded is-outlined is-info">Log in</span>
               </a>
-              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item">
+              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item is-paddingless">
                 <span class="button is-rounded is-outlined is-info m-r-xxl">Sign up</span>
               </a>
-              <a v-if="isAuthenticated()" href="/logout" class="navbar-item">
+              <a v-if="isAuthenticated()" href="/logout" class="navbar-item is-paddingless">
                 <span class="button is-rounded is-outlined is-info m-r-xxl">Log out</span>
               </a>
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
@@ -156,7 +156,6 @@ div.is-hidden-tablet nav.navbar {
 .navbar-item.button {
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 0.25rem;
 }
 
 a.navbar-item:hover {
