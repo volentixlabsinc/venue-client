@@ -10,9 +10,9 @@
           <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_pages") }}</div>
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="m-l-md"/>
-          <div class="volentix is-fullwidth has-text-centered">
+          <div class="volentix is-fullwidth">
             <a target="_blank" href="https://www.volentix.io">        
-              <img :height="50" :width="50" src="~/assets/spinning-volentix-logo-white.gif" class="p-b-md">
+              <img :height="35" :width="35" src="~/assets/spinning-volentix-logo-white.gif" class="p-b-md m-l-md">
             </a>            
           </div>
         </div>
