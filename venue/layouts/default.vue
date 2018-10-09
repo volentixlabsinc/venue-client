@@ -26,6 +26,15 @@
           </div>  
           <div class="navbar-menu is-active">
             <div class="navbar-end m-r-xl">
+              <a v-if="!isAuthenticated()" href="/login" class="navbar-item">
+                <span class="button is-rounded is-outlined is-info">Log in</span>
+              </a>
+              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item">
+                <span class="button is-rounded is-outlined is-info m-r-xxl">Sign up</span>
+              </a>
+              <a v-if="isAuthenticated()" href="/logout" class="navbar-item">
+                <span class="button is-rounded is-outlined is-info m-r-xxl">Log out</span>
+              </a>
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
               <PillarLink class="navbar-item" name="VDex" link="https://vdex.io" highlight="#2fa268" />
               <PillarLink class="navbar-item" name="Vespucci" link="https://vespucci.app" highlight="#fad100" />
@@ -116,6 +125,9 @@ export default {
     },
     togglePillarLinks() {
       this.showPillarLinks = !this.showPillarLinks;
+    },
+    isAuthenticated() {
+      return this.$store.state.user.isAuthenticated;
     }
   }
 };
@@ -136,8 +148,19 @@ div.is-hidden-tablet nav.navbar {
 .navbar-burger {
   color: #98a5ae;
 }
+
 .navbar-burger:hover {
   color: white;
+}
+
+.navbar-item.button {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.25rem;
+}
+
+a.navbar-item:hover {
+  background-color: transparent;
 }
 
 .navfooter {
