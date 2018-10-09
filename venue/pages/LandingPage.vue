@@ -13,7 +13,7 @@
       </div>
     </div>
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
-    <div class="columns p-l-xl p-r-xl">
+    <div class="columns">
       <div class="column">
         <CampaignButton :image="require('@/assets/socialMedia-youtube-blog.png')" :name="$t('campaigns.title_youtube')" :info="$t('campaigns.youtube')" link="https://venue.ninja/youtube-blog-article-campaign/" highlight="#fc0514"/>
       </div>
@@ -24,7 +24,7 @@
         <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" link="https://venue.ninja/bitcointalk-signature-bounty/" highlight="#ffd302" />
       </div>
     </div>
-    <div class="columns p-l-xl p-r-xl">
+    <div class="columns">
       <div class="column">
         <CampaignButton :image="require('@/assets/socialMedia-telegram.png')" :name="$t('campaigns.title_telegram')" :info="$t('campaigns.telegram')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#36acdd"/>
       </div>
@@ -35,7 +35,7 @@
         <CampaignButton :image="require('@/assets/socialMedia-token.png')" :name="$t('campaigns.title_claiming')" :info="$t('campaigns.claiming')" link="https://venue.ninja/claiming-vtx-section/" highlight="#232C3B"/>
       </div>
     </div>
-    <div class="columns p-l-xl p-r-xl">
+    <div class="columns">
       <div class="column">
         <CampaignButton :image="require('@/assets/socialMedia-community.png')" :name="$t('campaigns.title_community')" :info="$t('campaigns.community')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#51b675"/>
       </div>
