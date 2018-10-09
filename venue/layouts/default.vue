@@ -18,7 +18,7 @@
         </div>
       </aside>
       <div class="column">
-        <nav class="navbar desktop-navbar is-transparent">
+        <nav class="navbar desktop-navbar is-transparent is-fixed-top">
           <div class="navbar-brand">
             <a target="_blank" href="https://www.volentix.io">
               <img :height="64" :width="64" src="~/assets/spinning-volentix-logo.gif">
@@ -41,7 +41,7 @@
             </div>
           </div>
         </nav>
-        <nuxt />
+        <nuxt class="p-t-xl"/>
       </div>
     </div>
     <div class="is-hidden-tablet">
@@ -138,6 +138,10 @@ div.is-hidden-tablet nav.navbar {
   background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
   padding-right: 0px;
   border-right: 8px #e0e5e9 solid;
+}
+
+.navbar.is-fixed-top {
+  left: 20vw; // one-fifth of the screen (i.e. the column size)
 }
 
 .navheader {
