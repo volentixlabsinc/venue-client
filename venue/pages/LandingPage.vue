@@ -1,15 +1,8 @@
 <template>
   <div class="m-lg">
     <div class="columns">
-      <div class="column">
+      <div class="column is-two-fifths">
         <LeaderboardCard :paginated="false" :limit="5" :detailed="false"/>
-      </div>
-      <div class="column">
-        <CampaignInfoCard />
-      </div>
-      <div class="column is-one-quarter">
-        <LandingPageJoinCampaign v-if="(!isAuthenticated)"/>
-        <LandingPageMyRewardsCard v-else/>
       </div>
     </div>
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
@@ -51,17 +44,11 @@
 
 <script>
 import LeaderboardCard from "~/components/LeaderboardCard.vue";
-import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
-import LandingPageJoinCampaign from "~/components/LandingPageJoinCampaign.vue";
-import LandingPageMyRewardsCard from "~/components/LandingPageMyRewardsCard.vue";
 import CampaignButton from "~/components/CampaignButton.vue";
 
 export default {
   components: {
     LeaderboardCard,
-    CampaignInfoCard,
-    LandingPageJoinCampaign,
-    LandingPageMyRewardsCard,
     CampaignButton
   },
   data() {
