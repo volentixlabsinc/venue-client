@@ -5,8 +5,7 @@
         <LeaderboardCard :paginated="false" :limit="5" :detailed="false"/>
       </div>
       <div class="column">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/UWBtZQk3wzU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen/>
-      </div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/CUSy7bVnnVg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen/></div>
     </div>
     <h2 class="title">{{ $t('titles.campaigns') }}</h2>
     <div class="columns">
