@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <div class="card-header-title">{{ $t('titles.leaderboard') }}</div>
+      <div class="card-header-title">{{ $t('titles.bitcointalk_signature_campaign') }}</div>
       <a class="card-header-icon has-text-light" @click="onClickLeaderboard">
         <span class="icon"><i class="fas fa-chevron-right"/></span>
       </a>

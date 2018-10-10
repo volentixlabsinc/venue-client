@@ -151,7 +151,8 @@ module.exports = {
     invite_a_friend: "Invite your friends and earn VTX",
     invite_a_friend_subt:
       "Earn {count} VTX for each person you invite who joins the Bitcointalk campaign and sets a Volentix signature.",
-    vtx_earned: "VTX earned"
+    vtx_earned: "VTX earned",
+    bitcointalk_signature_campaign: "Bitcointalk Signature Campaign"
   },
   edit_signature: {
     current_signature: "Current signature",
