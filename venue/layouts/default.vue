@@ -41,7 +41,7 @@
             </div>
           </div>
         </nav>
-        <nuxt class="p-t-lg"/>
+        <nuxt class="p-xl"/>
       </div>
     </div>
     <div class="is-hidden-tablet">
