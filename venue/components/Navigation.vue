@@ -1,13 +1,10 @@
 <template>
   <div>
-    <span v-if="(isAuthenticated() && hasCampaignData())">
+    <span>
       <NavigationLink :name="$t('nav.dashboard')" route="/dashboard" icon="fa-tachometer-alt" @click="$emit('click')"/>
     </span>
     <span v-if="(isAuthenticated() && !hasCampaignData())">
       <NavigationLink :name="$t('nav.join_campaign')" route="/onboarding/bitcointalk" icon="fa-signature" @click="$emit('click')"/>
-    </span>
-    <span>
-      <NavigationLink :name="$t('nav.leaderboard')" route="/leaderboard" icon="fa-rocket" @click="$emit('click')"/>
     </span>
     <span v-if="isAuthenticated()">
       <NavigationLink :name="$t('nav.my_profile')" route="/profile" icon="fa-user" @click="$emit('click')"/>
