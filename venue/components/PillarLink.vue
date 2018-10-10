@@ -1,6 +1,6 @@
 <template>
   <span class="is-paddingless">
-    <a :href="link" :style="name ? { borderBottom: '5px solid ' + highlight, borderTop: '5px solid ' + highlight } : {}" 
+    <a :href="link" :style="name ? { borderTop: '5px solid ' + highlight } : {}" 
        class="p-l-md p-r-md" target="_blank">
       <span v-if="name" class="title is-size-6 is-paddingless">{{ name }}</span>
       <img v-if="image" :src="image">
