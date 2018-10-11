@@ -68,4 +68,9 @@ export default {
 .border-column {
   border: 1px solid grey;
 }
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
 </style>
