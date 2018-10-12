@@ -5,7 +5,7 @@
       <li><a class="is-size-6" target="_blank" href="https://venue.ninja/rules/">{{ $t("nav.rules") }}</a></li>
       <li><a class="is-size-6" target="_blank" href="https://valoro.io/">{{ $t("nav.valoro") }}</a></li>
       <li><a class="is-size-6" target="_blank" href="https://venue.ninja/telegram-campaign-rules/">{{ $t("nav.telegram") }}</a></li>
-      <li><a class="is-size-6" target="_blank" href="">{{ $t("nav.whitepaper") }}</a></li>
+      <li><a class="is-size-6" target="_blank" href="https://s3.ca-central-1.amazonaws.com/volentix/VDexWhitePaper.pdf">{{ $t("nav.whitepaper") }}</a></li>
       <li><a class="is-size-6" target="_blank" href="">{{ $t("nav.whitelist") }}</a></li>
     </ul>
   </div>

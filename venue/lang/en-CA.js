@@ -70,9 +70,6 @@ module.exports = {
   },
   settings: {
     title_my_profile: "My profile",
-    vtx_wallet: "VTX wallet address",
-    desc_vtx_wallet: "VTX address where to send payouts",
-    btn_vtx_wallet: "Set VTX Address",
     title_email: "Email address",
     desc_email: "Change your registred email address",
     label_new_email: "New email address",
@@ -94,7 +91,11 @@ module.exports = {
     desc_two_factor: "Modify two-factor authentication",
     btn_set_language: "Set Language",
     btn_enable_2fa: "Enable 2FA",
-    emails_input: "Your friend's email"
+    emails_input: "Your friend's email",
+    verto_wallet: "Verto wallet",
+    desc_verto_wallet: "Set public key of wallet to send payouts",
+    btn_verto_wallet: "Set Verto Wallet",
+    label_verto_wallet: "Verto wallet public key"
   },
   labels: {
     my_rank: "My rank",
@@ -204,8 +205,8 @@ module.exports = {
     community:
       "Earn VTX by being a Volentix ambassador, sharing and translating material.",
     title_valoro: "Valoro",
-    valoro: "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+    valoro: "Volentix news platform.",
     title_coming_soon: "Coming Soon",
-    coming_soon: "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+    coming_soon: "New campaigns will be added soon."
   }
 };
