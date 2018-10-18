@@ -38,7 +38,7 @@
         <CampaignButton :image="require('@/assets/socialMedia-valoro.png')" :name="$t('campaigns.title_valoro')" :info="$t('campaigns.valoro')" link="https://valoro.io/" highlight="#ffae00"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-comingsoon.png')" :name="$t('campaigns.title_coming_soon')" :info="$t('campaigns.coming_soon')" :height="64" :width="85" highlight="#bd090c"/>
+        <CampaignButton :image="require('@/assets/socialMedia-comingsoon.png')" :name="$t('campaigns.title_coming_soon')" :info="$t('campaigns.coming_soon')" :height="64" :width="85" link="https://volentix.io/#roadmap " highlight="#bd090c"/>
       </div>
     </div>
   </div>
