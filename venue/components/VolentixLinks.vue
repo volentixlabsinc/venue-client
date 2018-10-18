@@ -6,7 +6,7 @@
       <li><a class="is-size-6" target="_blank" href="https://valoro.io/">{{ $t("nav.valoro") }}</a></li>
       <li><a class="is-size-6" target="_blank" href="https://venue.ninja/telegram-campaign-rules/">{{ $t("nav.telegram") }}</a></li>
       <li><a class="is-size-6" target="_blank" href="https://github.com/Volentix/documentation/blob/master/VDexWhitePaper-v0.1.3.pdf">{{ $t("nav.whitepaper") }}</a></li>
-      <li><a class="is-size-6" target="_blank" href="">{{ $t("nav.whitelist") }}</a></li>
+      <li><a class="is-size-6" target="_blank" href="https://volentix.io/vtx-whitelist/">{{ $t("nav.whitelist") }}</a></li>
     </ul>
   </div>
 </template>
