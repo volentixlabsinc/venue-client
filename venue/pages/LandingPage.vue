@@ -32,7 +32,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-community.png')" :name="$t('campaigns.title_community')" :info="$t('campaigns.community')" link="https://venue.ninja/telegram-campaign-rules/" highlight="#51b675"/>
+        <CampaignButton :image="require('@/assets/socialMedia-community.png')" :name="$t('campaigns.title_community')" :info="$t('campaigns.community')" link="https://bitcointalk.org/index.php?topic=5048604.0" highlight="#51b675"/>
       </div>
       <div class="column">
         <CampaignButton :image="require('@/assets/socialMedia-valoro.png')" :name="$t('campaigns.title_valoro')" :info="$t('campaigns.valoro')" link="https://valoro.io/" highlight="#ffae00"/>
