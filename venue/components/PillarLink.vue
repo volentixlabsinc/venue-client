@@ -1,7 +1,7 @@
 <template>
   <span class="is-paddingless">
     <a :href="link" :style="name ? { borderTop: '5px solid ' + highlight } : {}" 
-       class="p-l-md p-r-md" target="_blank">
+       :target="newTab ? '_blank': ''" class="p-l-md p-r-md">
       <span v-if="name" class="title is-size-6 is-paddingless">{{ name }}</span>
       <img v-if="image" :src="image">
     </a>
@@ -26,6 +26,10 @@ export default {
     highlight: {
       type: String,
       required: true
+    },
+    newTab: {
+      type: Boolean,
+      default: true
     }
   }
 };

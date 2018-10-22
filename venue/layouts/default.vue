@@ -35,6 +35,7 @@
               <a v-if="isAuthenticated()" href="/logout" class="navbar-item is-paddingless">
                 <span class="button is-rounded is-outlined is-info m-r-xxl">Log out</span>
               </a>
+              <PillarLink :new-tab="false" class="navbar-item" name="Venue" link="" highlight="#84429a" />
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
               <PillarLink class="navbar-item" name="VDex" link="https://vdex.io" highlight="#2fa268" />
               <PillarLink class="navbar-item" name="Vespucci" link="https://vespucci.app" highlight="#fad100" />
