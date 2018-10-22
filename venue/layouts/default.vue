@@ -6,7 +6,7 @@
         <Navigation />
         <hr>
         <div class="navfooter">
-          <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_pages") }}</div>
+          <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_project_links") }}</div>
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="m-l-md"/>
           <div class="volentix is-fullwidth">
@@ -60,7 +60,7 @@
           <hr>
           <div class="navbar-item has-dropdown">
             <a class="navbar-link" @click="togglePageLinks">
-              <span>{{ $t("nav.volentix_pages") }}</span>
+              <span>{{ $t("nav.volentix_project_links") }}</span>
               <span class="icon is-pulled-right">
                 <i v-if="showPageLinks" class="fas fa-chevron-up"/>
                 <i v-else class="fas fa-chevron-down"/>
