@@ -3,7 +3,6 @@
     <div class="columns is-gapless is-fullheight is-hidden-mobile">
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <MainLogo class="p-lg"/>
-        <div class="navheader is-size-6 m-l-md">{{ $t("nav.app") }}</div>
         <Navigation />
         <hr>
         <div class="navfooter">

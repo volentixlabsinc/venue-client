@@ -8,7 +8,6 @@ module.exports = {
     log_in: "Log in",
     log_out: "Log out",
     invite_friend: "Invite a friend",
-    app: "App",
     volentix_pages: "Volentix Pages",
     rules: "General Bounty Rules",
     valoro: "Valoro - A Volentix News Platform",
