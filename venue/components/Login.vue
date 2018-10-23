@@ -87,7 +87,7 @@ export default {
         this.$router.push(
           this.$store.state.userStats.hasCampaignData
             ? this.localizedRoute("/dashboard", this.$i18n.locale)
-            : this.localizedRoute("/onboarding/bitcointalk", this.$i18n.locale)
+            : this.localizedRoute("/", this.$i18n.locale)
         );
       } catch (error) {
         const errorCode = error.response.data.error_code;
