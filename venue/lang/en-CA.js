@@ -67,7 +67,10 @@ module.exports = {
     msg_sig_update_how: "How do I update my Bitcointalk signature?",
     btn_verify_now: "Verify now",
     paste_id: "Paste your forum ID from the URL below:",
-    your_user_id: "Your user id"
+    your_user_id: "Your user id",
+    msg_choose_profile_image:
+      "Choose an image to download and set it in your avatar:",
+    profile_image_how: "How do I update my profile image?"
   },
   settings: {
     title_my_profile: "My profile",

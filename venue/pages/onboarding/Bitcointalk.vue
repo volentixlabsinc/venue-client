@@ -19,6 +19,34 @@
           </div>
         </div>
         <div v-if="step === 2">
+          <span>
+            {{ $t('bct_onboarding.msg_choose_profile_image') }}
+          </span>
+          <div>
+            <div>
+              <a :href="require('~/assets/volentix-profile-1.jpg')" class="button is-xlarge"
+                 download="volentix-profile-1.jpg" @click="downloadClicked">
+                <img src="~/assets/volentix-profile-1.jpg">
+              </a>
+              <a :href="require('~/assets/volentix-profile-2.jpg')" class="button is-xlarge m-l-lg" 
+                 download="volentix-profile-2.jpg" @click="downloadClicked">
+                <img src="~/assets/volentix-profile-2.jpg">
+              </a>
+              <!-- <div class="m-t-sm">
+                <a href="">{{ $t("bct_onboarding.profile_image_how") }}</a>
+              </div> -->
+            </div>
+            <div class="m-t-lg">
+              <button class="button" @click="doPrevious">
+                {{ $t('buttons.btn_previous') }}
+              </button>
+              <button :disabled="!isDownloadClicked" class="button is-primary m-l-md" @click="gotoStep3">
+                {{ $t('buttons.btn_next') }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div v-if="step === 3">
           <label class="directive">{{ $t('bct_onboarding.msg_choose_signature') }}</label>
           <AvailableSignatures v-if="signatures.length > 0" :signatures="signatures" @copied="onCopy($event)"/>
           <b-modal :active.sync="isVerifySignatureActive" has-modal-card>
@@ -76,7 +104,8 @@ export default {
         message: ""
       },
       isHelpModalActive: false,
-      isVerifySignatureActive: false
+      isVerifySignatureActive: false,
+      isDownloadClicked: false
     };
   },
   middleware: "authenticated",
@@ -84,9 +113,9 @@ export default {
     this.ready = true;
   },
   methods: {
-    gotoStep2() {
+    gotoStep3() {
       this.retrieveSignature();
-      this.step = 2;
+      this.step = 3;
     },
     doNext() {
       this.step = this.step + 1;
@@ -99,7 +128,7 @@ export default {
         if (!this.$store.state.forum_profile.forum_profile_id) {
           this.registerForumUser();
         } else {
-          this.gotoStep2();
+          this.doNext();
         }
       }
     },
@@ -117,6 +146,13 @@ export default {
       } else {
         // TODO show error
       }
+    },
+    downloadClicked() {
+      this.isDownloadClicked = true;
+      window.open(
+        "https://bitcointalk.org/index.php?action=avatar;u=" + this.forumUserId,
+        "_blank"
+      );
     },
     async retrieveSignature() {
       this.signatures = await retrieveAvailableSignatures(
@@ -152,5 +188,9 @@ export default {
 <style scoped>
 a {
   text-decoration: underline;
+}
+
+.button.is-xlarge {
+  font-size: 3rem;
 }
 </style>
