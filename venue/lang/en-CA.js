@@ -7,7 +7,6 @@ module.exports = {
     sign_up: "Sign up",
     log_in: "Log in",
     log_out: "Log out",
-    hello_you: "Hello {you}",
     invite_friend: "Invite a friend",
     volentix_project_links: "Volentix Project Links",
     rules: "General Bounty Rules",
@@ -15,7 +14,9 @@ module.exports = {
     telegram: "Telegram for Volentix Bounty",
     whitepaper: "VDEX-whitepaper",
     whitelist: "VTX-Whitelist",
-    volentix_pillars: "Volentix Pillars"
+    volentix_pillars: "Volentix Pillars",
+    hello_you: "Hello {you}",
+    campaigns: "Campaigns"
   },
   auth: {
     forgot_password: "Forgot password?",

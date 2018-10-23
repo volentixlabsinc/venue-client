@@ -1,6 +1,9 @@
 <template>
   <div>
     <span>
+      <NavigationLink :name="$t('nav.campaigns')" route="/" icon="fa-th"/>
+    </span>
+    <span>
       <NavigationLink :name="$t('nav.dashboard')" route="/dashboard" icon="fa-tachometer-alt" @click="$emit('click')"/>
     </span>
     <span v-if="(isAuthenticated() && !hasCampaignData())">
