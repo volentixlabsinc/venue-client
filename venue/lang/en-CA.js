@@ -71,6 +71,9 @@ module.exports = {
   },
   settings: {
     title_my_profile: "My profile",
+    vtx_wallet: "VTX wallet address",
+    desc_vtx_wallet: "VTX address where to send payouts",
+    btn_vtx_wallet: "Set VTX Address",
     title_email: "Email address",
     desc_email: "Change your registred email address",
     label_new_email: "New email address",
