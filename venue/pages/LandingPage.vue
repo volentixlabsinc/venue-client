@@ -16,7 +16,7 @@
         <CampaignButton :image="require('@/assets/socialMedia-youtube-blog.png')" :name="$t('campaigns.title_youtube')" :info="$t('campaigns.youtube')" link="https://venue.ninja/youtube-blog-article-campaign/" highlight="#fc0514"/>
       </div>
       <div class="column">
-        <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" link="https://venue.ninja/bitcointalk-signature-bounty/" highlight="#ffd302" />
+        <CampaignButton :image="require('@/assets/socialMedia-bitcointalk.png')" :name="$t('campaigns.title_bitcointalk')" :info="$t('campaigns.bitcointalk')" :new-tab="false" link="/onboarding/bitcointalk" highlight="#ffd302" />
       </div>
     </div>
     <div class="columns">

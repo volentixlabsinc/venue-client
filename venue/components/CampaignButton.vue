@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" target="_blank">
+  <a :href="link" :target="newTab ? '_blank': ''">
     <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
       <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
       <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
@@ -38,6 +38,10 @@ export default {
     width: {
       type: Number,
       default: 64
+    },
+    newTab: {
+      type: Boolean,
+      default: true
     }
   },
   data: function() {
