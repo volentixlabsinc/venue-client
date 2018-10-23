@@ -69,7 +69,7 @@ module.exports = {
     paste_id: "Paste your forum ID from the URL below:",
     your_user_id: "Your user id",
     msg_choose_profile_image:
-      "Choose an image to download and set it in your avatar:",
+      "Choose an image to download and set as your avatar:",
     profile_image_how: "How do I update my profile image?"
   },
   settings: {
