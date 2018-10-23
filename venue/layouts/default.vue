@@ -24,15 +24,18 @@
             </a>
           </div>  
           <div class="navbar-menu is-active">
-            <div class="navbar-end m-r-xl">
-              <a v-if="!isAuthenticated()" href="/login" class="navbar-item">
-                <span class="button is-rounded is-outlined is-info">Log in</span>
+            <div class="navbar-end level m-r-xl">
+              <div v-if="isAuthenticated()" class="has-text-info m-r-md is-size-5 level-item">
+                {{ $t("nav.hello_you", { you: this.$store.state.user.username }) }}
+              </div>
+              <a v-if="!isAuthenticated()" href="/login" class="navbar-item level-item">
+                <span class="button is-rounded is-outlined is-info">{{ $t("nav.log_in") }}</span>
               </a>
-              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item is-paddingless">
-                <span class="button is-rounded is-outlined is-info m-r-xxl">Sign up</span>
+              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item level-item is-paddingless">
+                <span class="button is-rounded is-outlined is-info m-r-xxl">{{ $t("nav.sign_up") }}</span>
               </a>
-              <a v-if="isAuthenticated()" href="/logout" class="navbar-item is-paddingless">
-                <span class="button is-rounded is-outlined is-info m-r-xxl">Log out</span>
+              <a v-if="isAuthenticated()" href="/logout" class="navbar-item level-item is-paddingless">
+                <span class="button is-rounded is-outlined is-info m-r-xxl">{{ $t("nav.log_out") }}</span>
               </a>
               <PillarLink :new-tab="false" class="navbar-item" name="Venue" link="" highlight="#84429a" />
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
