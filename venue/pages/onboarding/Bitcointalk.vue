@@ -54,7 +54,6 @@
           </b-modal>
           <div>
             <button class="button" @click="doPrevious">{{ $t('buttons.btn_previous') }}</button>
-            <button :disabled="!userVerified" class="button is-primary m-l-md" @click="gotoStep2">{{ $t('buttons.btn_next') }}</button>
           </div>
         </div>
       </div>
