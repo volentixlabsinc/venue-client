@@ -32,13 +32,6 @@ export default {
     LeaderboardStats,
     MyCampaignActivityCard,
     CampaignInfoCard
-  },
-  mounted() {
-    if (this.$store.state.userStats.fresh) {
-      this.$router.push(
-        this.localizedRoute("/onboarding/bitcointalk/", this.$i18n.locale)
-      );
-    }
   }
 };
 </script>
