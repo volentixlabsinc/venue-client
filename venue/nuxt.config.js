@@ -1,5 +1,8 @@
 const { I18N } = require("./config");
 
+// Workaround for https://github.com/buefy/nuxt-buefy/issues/32
+global.File = typeof window === "undefined" ? Object : window.File;
+
 module.exports = {
   /*
   ** Headers of the page
