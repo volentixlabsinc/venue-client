@@ -10,10 +10,16 @@ export default {
     Stats
   },
   data() {
+    const hasStats =
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
+    const totalTokens = hasStats
+      ? this.$store.state.userStats.user_level.total_tokens
+      : 0;
     const data = [
       {
         label: this.$t("labels.my_earned_vtx"),
-        value: this.$store.state.userStats.user_level.total_tokens
+        value: totalTokens
       },
       {
         label: this.$t("labels.paid"),
@@ -21,7 +27,7 @@ export default {
       },
       {
         label: this.$t("labels.payable"),
-        value: this.$store.state.userStats.user_level.total_tokens
+        value: totalTokens
       }
     ];
 
