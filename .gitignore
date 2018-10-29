@@ -28,3 +28,6 @@ kube/dev.yml
 
 # Local environment variables
 .env
+
+# Amplify local files
+**/amplify/.config
