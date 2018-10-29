@@ -140,6 +140,7 @@ module.exports = {
     { src: "~/plugins/vue-clipboard", ssr: false },
     "~/plugins/buefy",
     "~/plugins/mixin",
-    "~/plugins/vue-social-sharing"
+    "~/plugins/vue-social-sharing",
+    "~/plugins/amplify"
   ]
 };
