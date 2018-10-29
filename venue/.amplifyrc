@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "venue-20181028210503-authRole",
+            "UnauthRoleArn": "arn:aws:iam::854376586701:role/venue-20181028210503-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::854376586701:role/venue-20181028210503-authRole",
+            "Region": "ca-central-1",
+            "DeploymentBucketName": "venue-20181028210503-deployment",
+            "UnauthRoleName": "venue-20181028210503-unauthRole",
+            "StackName": "venue-20181028210503",
+            "StackId": "arn:aws:cloudformation:ca-central-1:854376586701:stack/venue-20181028210503/aaaba820-db16-11e8-ba18-0272569dc0a6"
+        }
+    }
+}
