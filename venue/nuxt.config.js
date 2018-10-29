@@ -90,6 +90,6 @@ module.exports = {
     "~/plugins/axios",
     "~/plugins/mixin",
     "~/plugins/vue-social-sharing",
-    "~/plugins/amplify"
+    { src: "~/plugins/amplify", ssr: false }
   ]
 };
