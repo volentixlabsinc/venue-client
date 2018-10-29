@@ -89,6 +89,7 @@ module.exports = {
     "~/plugins/buefy",
     "~/plugins/axios",
     "~/plugins/mixin",
-    "~/plugins/vue-social-sharing"
+    "~/plugins/vue-social-sharing",
+    "~/plugins/amplify"
   ]
 };
