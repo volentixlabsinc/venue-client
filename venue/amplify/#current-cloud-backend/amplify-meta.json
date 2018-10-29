@@ -12,24 +12,24 @@
 		}
 	},
 	"auth": {
-		"cognitoef5a7b87": {
+		"cognitoebad0390": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/venue-20181028210503-deployment/amplify-cfn-templates/auth/cognitoef5a7b87-cloudformation-template.yml",
-				"logicalId": "authcognitoef5a7b87"
+				"s3TemplateURL": "https://s3.amazonaws.com/venue-20181028210503-deployment/amplify-cfn-templates/auth/cognitoebad0390-cloudformation-template.yml",
+				"logicalId": "authcognitoebad0390"
 			},
-			"lastPushTimeStamp": "2018-10-29T01:09:08.696Z",
+			"lastPushTimeStamp": "2018-10-29T03:42:05.595Z",
 			"output": {
-				"AppClientSecret": "1kb1f9ffqavmtdk8a6u11ofae739qgb00g00172c9mdkj5prt5i4",
-				"UserPoolId": "ca-central-1_JPi2Vd7NX",
-				"AppClientIDWeb": "15n0ml80vbi68j09s31be6atgn",
-				"AppClientID": "55j76ksicflenske2a38pq1jls",
-				"IdentityPoolId": "ca-central-1:4e467a94-3aac-4030-baef-18f06bad101e",
-				"IdentityPoolName": "cognitoef5a7b87_identitypool_ef5a7b87",
-				"UserPoolName": "cognitoef5a7b87_userpool_ef5a7b87"
+				"AppClientSecret": "1sk5559tkka3fdpocf5njp8eand9n4t0tu2s5upnr2ap68e97qpr",
+				"UserPoolId": "ca-central-1_tgqR7HQQE",
+				"AppClientIDWeb": "6ctbd6640gq3tn6vmkhiguhi02",
+				"AppClientID": "br420kbdnifkv60qgadv9oegb",
+				"IdentityPoolId": "ca-central-1:ee665173-6f45-47cf-86e7-5257cb9430d4",
+				"IdentityPoolName": "cognitoebad0390_identitypool_ebad0390",
+				"UserPoolName": "cognitoebad0390_userpool_ebad0390"
 			},
-			"lastPushDirHash": "W2UAphi6Hs6MN4Hgy0QzBxJkK1M="
+			"lastPushDirHash": "yIb6ow1ZOkD2LpghaUby4LunFIE="
 		}
 	}
 }
