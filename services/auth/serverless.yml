@@ -30,23 +30,14 @@ provider:
     - Effect: "Allow"
       Action:
         - "cognito-idp:*"
-      # TODO Get this from reference!
-      Resource:
-        Fn::Join:
-          - ""
-          - - "arn:aws:cognito-idp:"
-            - Ref: AWS::Region
-            - ":"
-            - Ref: AWS::AccountId
-            - ":userpool/"
-            - Ref: venueUserPool
+      Resource: "arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/#{VenueUserPool}"
 
   # you can define service wide environment variables here
   environment:
     USER_POOL_ID:
-      Ref: venueUserPool
+      Ref: VenueUserPool
     USER_POOL_CLIENT_ID:
-      Ref: venueUserPoolClient
+      Ref: VenueUserPoolClient
 
 # you can add packaging information here
 #package:
@@ -60,6 +51,7 @@ provider:
 functions:
   migrateVenueUserToCognito:
     handler: migrateVenueUserToCognito.handler
+    cors: true
     events:
       - http: POST users/migrate
 
@@ -99,7 +91,7 @@ functions:
 # you can add CloudFormation resource templates here
 resources:
   Resources:
-    venueUserPool:
+    VenueUserPool:
       Type: AWS::Cognito::UserPool
       Properties:
         # Note that this needed to be set manually BEFORE pushing to cloud because it cannot be changed;
@@ -128,7 +120,7 @@ resources:
             RequireNumbers: false
             RequireSymbols: false
             RequireUppercase: false
-    venueUserPoolClient:
+    VenueUserPoolClient:
       # Created provide application access to user pool
       # Depends on UserPool for ID reference
       Type: "AWS::Cognito::UserPoolClient"
@@ -138,11 +130,21 @@ resources:
         ExplicitAuthFlows:
           - ADMIN_NO_SRP_AUTH
         UserPoolId:
-          Ref: venueUserPool
-      DependsOn: venueUserPool
+          Ref: VenueUserPool
+      DependsOn: VenueUserPool
   Outputs:
-    venueUserPoolId:
-      Value:
-        Ref: venueUserPool
-      Export:
-        Name: ${self:service}:${self:provider.stage}:venueUserPoolId
+    VenueUserPoolId:
+      Value: "#{VenueUserPool}"
+    VenueUserPoolClientId:
+      Value: "#{VenueUserPoolClient}"
+    AWSRegion:
+      Value: "#{AWS::Region}"
+
+plugins:
+  - serverless-stack-output
+  - serverless-pseudo-parameters
+
+custom:
+  output:
+    handler: scripts/output.handler # Same syntax as you already know
+    file: stack.json # toml, yaml, yml, and json format is available

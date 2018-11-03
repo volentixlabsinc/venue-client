@@ -47,7 +47,11 @@ module.exports.handler = async function(event, context) {
         body: JSON.stringify({
           message: "NO_RETRY",
           input: event
-        })
+        }),
+        headers: {
+          "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+          "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+        }
       };
     }
   } catch (lookup_err) {
@@ -78,7 +82,11 @@ module.exports.handler = async function(event, context) {
           body: JSON.stringify({
             message: "NO_RETRY",
             input: event
-          })
+          }),
+          headers: {
+            "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+            "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+          }
         };
       } else {
         throw err;
@@ -167,7 +175,11 @@ module.exports.handler = async function(event, context) {
       body: JSON.stringify({
         message: "RETRY",
         input: event
-      })
+      }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+      }
     };
   }
 };

@@ -6,7 +6,10 @@
   "dependencies": {
     "axios": "^0.18.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless-pseudo-parameters": "^2.2.0",
+    "serverless-stack-output": "^0.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -44,6 +44,7 @@
 
 <script>
 import { loadUserData } from "~/assets/utils.js";
+import { Auth, API } from "aws-amplify";
 
 export default {
   data() {
@@ -70,7 +71,46 @@ export default {
       event.preventDefault();
       this.loginError = false;
 
+      let user;
       try {
+        // Authenticate with Cognito
+        user = await Auth.signIn(this.username, this.password);
+        console.log("user", user);
+      } catch (err) {
+        if (err.code === "UserNotFoundException") {
+          // TODO Put a dialog telling users that we are migrating
+          const resp = await API.post("MigrateUser", "", {
+            body: {
+              // If the BASE_URL isn't set, I believe it is localhost (need to validate)
+              authServerUrl:
+                process.env.BASE_URL || "https://venue-dev.volentix.io",
+              username: this.username,
+              password: this.password
+            }
+          });
+          console.log("Response from MigrateUser", resp);
+          if (resp.message === "RETRY") {
+            user = await Auth.signIn(this.username, this.password);
+          } else {
+            // user was not found
+            this.showMessageError.message = this.$t("auth.err_password");
+            return;
+          }
+        } else {
+          this.showMessageError.error = true;
+          if (err.code === "NotAuthorizedException") {
+            this.showMessageError.message = this.$t("auth.err_password");
+          }
+        }
+        // FIXME Where does this go again?
+        // } else if (error === "email_verification_required") {
+        //   this.showMessageError.message = this.$t("auth.msg_not_verified");
+        // }
+        // console.log("exc", exc);
+      }
+
+      try {
+        // We still need to authenticate with Django while we have the username & password
         await this.$auth.loginWith("local", {
           data: {
             username: this.username,
@@ -78,9 +118,13 @@ export default {
           }
         });
 
-        console.log("user", this.$auth.user);
-
         await loadUserData(this.$store.commit, this.$axios);
+
+        this.$router.push(
+          this.$store.state.userStats.hasCampaignData
+            ? this.localizedRoute("/dashboard", this.$i18n.locale)
+            : this.localizedRoute("/", this.$i18n.locale)
+        );
       } catch (error) {
         console.log("error", error);
         if (error.response) {
