@@ -87,14 +87,14 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-        requires:
-          - checkout
+          requires:
+            - checkout
       - deploy:
           requires:
             - build
       - deploy-auth
-        requires:
-          - checkout
+          requires:
+            - checkout
       - deploy-constantcontact
-        requires:
-          - checkout
+          requires:
+            - checkout
