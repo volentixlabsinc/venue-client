@@ -1,9 +1,11 @@
 version: 2
 jobs:
+  checkout:
+    steps:
+      - checkout
   build:
     machine: true
     steps:
-      - checkout
       - run: |
           TAG=v0.1.$CIRCLE_BUILD_NUM
           docker build --build-arg BASE_URL=$BASE_URL --build-arg BROWSER_BASED_URL=$BROWSER_BASED_URL -t volentixlabs/venueui:$TAG .
@@ -27,9 +29,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.10
-
-    steps:
-      - checkout
 
       # Download and cache dependencies
       - restore_cache:
@@ -61,8 +60,6 @@ jobs:
       - image: circleci/node:8.10
 
     steps:
-      - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -90,8 +87,14 @@ workflows:
   build_and_deploy:
     jobs:
       - build
+        requires:
+          - checkout
       - deploy:
           requires:
             - build
       - deploy-auth
+        requires:
+          - checkout
       - deploy-constantcontact
+        requires:
+          - checkout
