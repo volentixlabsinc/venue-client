@@ -24,9 +24,6 @@
     <span v-if="isAuthenticated()">
       <NavigationLink :name="$t('nav.log_out')" route="/logout" icon="fa-sign-out-alt" @click="$emit('click')" />
     </span>
-    <span v-if="!isAuthenticated()">
-      <NavigationLink name="New sign in" route="/newsignin" icon="fa-sign-in-alt" @click="$emit('click')" />
-    </span>
   </div>
 </template>
 
