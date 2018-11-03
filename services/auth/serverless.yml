@@ -1,0 +1,148 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service:
+  name: venue-auth # NOTE: update this with your service name
+  # TODO Create the key at deploy
+  awsKmsKeyArn: ${env:AWS_KMS_KEY}
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "=1.32.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
+
+  # you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "cognito-idp:*"
+      # TODO Get this from reference!
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:cognito-idp:"
+            - Ref: AWS::Region
+            - ":"
+            - Ref: AWS::AccountId
+            - ":userpool/"
+            - Ref: venueUserPool
+
+  # you can define service wide environment variables here
+  environment:
+    USER_POOL_ID:
+      Ref: venueUserPool
+    USER_POOL_CLIENT_ID:
+      Ref: venueUserPoolClient
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  migrateVenueUserToCognito:
+    handler: migrateVenueUserToCognito.handler
+    events:
+      - http: POST users/migrate
+
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - http:
+#          path: users/create
+#          method: get
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+# you can add CloudFormation resource templates here
+resources:
+  Resources:
+    venueUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        # Note that this needed to be set manually BEFORE pushing to cloud because it cannot be changed;
+        # Also, changing it in any way requires recreating the user pool
+        AliasAttributes:
+          - preferred_username
+        UserPoolName: venue-userPool-${self:provider.stage}
+        Schema:
+          - Name: email
+            Required: true
+            Mutable: true
+          - Name: legacy_id
+            AttributeDataType: String
+            Required: false
+            Mutable: false
+
+        AutoVerifiedAttributes:
+          - email
+
+        Policies:
+          PasswordPolicy:
+            # These policies are very low, but current passwords don't have any minimum, so
+            # to migrate passwords over, need to keep these for the moment
+            MinimumLength: 6
+            RequireLowercase: true
+            RequireNumbers: false
+            RequireSymbols: false
+            RequireUppercase: false
+    venueUserPoolClient:
+      # Created provide application access to user pool
+      # Depends on UserPool for ID reference
+      Type: "AWS::Cognito::UserPoolClient"
+      Properties:
+        ClientName: venue-userPoolclient-${self:provider.stage}
+        # Need to support copyVenueToCognito authFlow
+        ExplicitAuthFlows:
+          - ADMIN_NO_SRP_AUTH
+        UserPoolId:
+          Ref: venueUserPool
+      DependsOn: venueUserPool
+  Outputs:
+    venueUserPoolId:
+      Value:
+        Ref: venueUserPool
+      Export:
+        Name: ${self:service}:${self:provider.stage}:venueUserPoolId
