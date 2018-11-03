@@ -9,6 +9,7 @@ jobs:
           docker build --build-arg BASE_URL=$BASE_URL --build-arg BROWSER_BASED_URL=$BROWSER_BASED_URL -t volentixlabs/venueui:$TAG .
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker push volentixlabs/venueui:$TAG
+
   deploy:
     docker:
       - image: volentixlabs/aws-kube-deploy:v0.1.2
@@ -20,6 +21,70 @@ jobs:
           TAG=v0.1.$CIRCLE_PREVIOUS_BUILD_NUM
           sed 's/IMAGE_TAG/'$TAG'/' kube/dev.yml.template > kube/dev.yml
           kubectl apply -f kube/dev.yml
+  deploy-auth:
+    working_directory: ~/services/auth
+
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-cache
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+            npm install
+      - run:
+          name: Deploy application
+          # Ideally we would pickup the region from an environment variable
+          command: sls deploy -v --region eu-central-1
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
+
+  deploy-constantcontact:
+    working_directory: ~/services/constantcontact
+
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-cache
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+            npm install
+      - run:
+          name: Deploy application
+          # Ideally we would pickup the region from an environment variable
+          command: sls deploy -v --region eu-central-1
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
+
 workflows:
   version: 2
   build_and_deploy:
@@ -28,3 +93,5 @@ workflows:
       - deploy:
           requires:
             - build
+      - deploy-auth
+      - deploy-constantcontact

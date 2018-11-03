@@ -23,5 +23,4 @@ dist
 # Generated kubernetes file should not be saved.
 kube/dev.yml
 
-# Amplify local files
-**/amplify/.config
+.env

@@ -1,0 +1,24 @@
+{
+  "version": "1",
+  "region": "eu-central-1",
+  "userPoolId": "eu-central-1_aofvOarVr",
+  "userName": "stingray",
+  "callerContext": {
+    "awsSdkVersion": "aws-sdk-nodejs-2.290.0",
+    "clientId": "b8mb3l0lfj3ueajhcd9p37sc7"
+  },
+  "triggerSource": "PostAuthentication_Authentication",
+  "request": {
+    "userAttributes": {
+      "sub": "15cb6fd4-20d8-41b4-8a14-869ce8d1df80",
+      "email_verified": "true",
+      "cognito:user_status": "FORCE_CHANGE_PASSWORD",
+      "preferred_username": "stingray",
+      "locale": "en",
+      "custom:legacy_id": "f533d772-d6ed-4879-8acc-f2d2fba05928",
+      "email": "joemar.ct+stingray@gmail.com"
+    },
+    "newDeviceUsed": false
+  },
+  "response": {}
+}
