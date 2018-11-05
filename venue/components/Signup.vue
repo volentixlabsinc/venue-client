@@ -12,8 +12,18 @@
         <b-input v-model="password" minlength="6" type="password" name="password" required password-reveal/>
       </b-field>
       <div class="field" v-html="$t('auth.msg_policies', ['https://volentix.io/privacy.html', '/terms'])"/>
+      <div>
+        <label class="checkbox">
+          <input v-model="stmt1Agreed" type="checkbox">
+          {{ $t("auth.msg_accept_1") }}
+        </label>
+        <label class="checkbox">
+          <input v-model="stmt2Agreed" type="checkbox">
+          {{ $t("auth.msg_accept_2") }}
+        </label>
+      </div>
       <b-field>
-        <button class="button is-primary" type="submit">{{ $t('nav.sign_up') }}</button>
+        <button :disabled="!(stmt1Agreed && stmt2Agreed)" class="button is-primary m-t-md" type="submit">{{ $t('nav.sign_up') }}</button>
       </b-field>
     </form>
     <b-modal :active.sync="isSuccessModalActive" @close="$router.push(localizedRoute('/', $i18n.locale))">
@@ -49,7 +59,9 @@ export default {
       password: "",
       newsletter: true,
       isSuccessModalActive: false,
-      referral_code: ""
+      referral_code: "",
+      stmt1Agreed: false,
+      stmt2Agreed: false
     };
   },
   mounted() {
