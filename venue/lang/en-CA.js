@@ -39,11 +39,11 @@ module.exports = {
     msg_email_check_spam_folder:
       "In rare cases the verification email may be marked as spam. If you have not received an email, please check your spam folder to see if it is there. Thank you.",
     msg_logging_out: "Logging out... ",
-    no_us_header: "NO U.S. PERSONS",
-    no_us_1:
-      "VTX is not being offered to U.S. persons (as defined below). If you are a citizen, resident of, or person located or domiciled in the United States of America, including its states, territories, or the District of Columbia or any entity, including, without limitation, any corporation or partnership created or organized in or under the laws of the United States of America, any state or territory thereof, or the District of Columbia (a “U.S. person”), do not use VENUE, do not download or use VERTO, and do not purchase or attempt to purchase VTX.",
     no_us_2:
       "By using VENUE or downloading VERTO, you agree to the above, and to the terms and conditions.",
+    no_china_or_us_header: "NO CHINA OR U.S. PERSONS",
+    no_china_or_us_1:
+      "VTX is not being offered to China or U.S. persons (as defined below). If you are a citizen, resident of, or person located or domiciled in the United States of America, including its states, territories, or the District of Columbia or any entity, including, without limitation, any corporation or partnership created or organized in or under the laws of the United States of America, any state or territory thereof, or the District of Columbia (a “U.S. person”), or China, do not use VENUE, do not download or use VERTO, and do not purchase or attempt to purchase VTX.",
     msg_accept_1:
       "I accept the KYC and AML checks before I claim VTX into my VERTO Wallet.",
     msg_accept_2: "I accept I'm not a resident of the United States or China."
