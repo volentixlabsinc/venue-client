@@ -11,17 +11,24 @@
             <hr>
             <b-collapse :open="showRules">
               <div class="content">
-                <ol>
-                  <li>You must register on venue.volentix.io as a user and subscribe to Volentix Mailing list.</li>
+                <h4 class="title-4">General Rules</h4>
+                <ul>
                   <li>ONLY DISCUSS BOUNTY-CAMPAIGNS IN VENUE TELEGRAM.</li>
-                  <li>Join Volentix telegram and stay unl the day of distribuon (30 days after crowd sale is finished) – 1 stake.</li>
-                  <li>Do not discuss bounes in official Volentix telegram channel</li>
-                  <li>EXTRA STAKES &#8211; Ask a queson (NOT ABOUT BOUNTY) in the Volenx<br >
-                    telegramt.me/volentix which creates discussion or invite lots of your friends to the Volentix telegram.
-                    Moderators may give you extra stakes. READ WHITE PAPER FOR DISCUSSION TOPICS.</li>
-                  <li>Change your telegram username to include: &#8211; Volentix.io &#8211; or &#8211; Venue.ninja &#8211; then you
-                  can earn extra stakes.</li>
-                </ol>
+                  <li>First week of the bounty campaign started on the 4th of September 2018.</li>
+                  <li>Follower/Friend number cannot negatively/significantly change while campaign is running.</li>
+                  <li>Volentix reserves the right to eliminate you if it is thought that you have not been honest with your work.</li>
+                  <li>Volentix reserves the right to change bounty campaign rules at any time.</li>
+                  <li>Reward system may change based on the number of users participating in the campaign.</li>
+                </ul>
+                <h4 class="title-4">DO NOT:</h4>
+                <ul>
+                  <li>Use multiple accounts.</li>
+                  <li>Cheat in any way.</li>
+                  <li>Use someone else to manage your participation.</li>
+                  <li>Use spamming or other mass marketing.</li>
+                  <li>Do any kind of unethical behavior when participating in any one of the campaigns, you will be disqualified from all bonuses.</li>
+                </ul>
+                
                 <!-- TODO Load HTML from separate file; I couldn't find how to do it this way -->
                 <!-- {{ require("~/static/telegram-rules.html") }} -->
               </div>
