@@ -16,7 +16,8 @@ module.exports = {
     whitelist: "VTX-Whitelist",
     volentix_pillars: "Volentix Pillars",
     hello_you: "Hello {you}",
-    campaigns: "Campaigns"
+    campaigns: "Campaigns",
+    official_updates: "Official Updates and Announcements"
   },
   auth: {
     forgot_password: "Forgot password?",

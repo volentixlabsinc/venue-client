@@ -8,12 +8,7 @@
         <div class="navfooter">
           <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_project_links") }}</div>
           <VolentixLinks class="m-b-md"/>
-          <SocialMediaLinks class="m-l-md"/>
-          <div class="volentix is-fullwidth">
-            <a target="_blank" href="https://www.volentix.io">        
-              <img :height="35" :width="35" src="~/assets/spinning-volentix-logo-white.gif" class="p-b-md m-l-md">
-            </a>            
-          </div>
+          <SocialMediaLinks class="m-b-md"/>
         </div>
       </aside>
       <div class="column">
