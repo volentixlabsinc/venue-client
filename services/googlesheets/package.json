@@ -1,0 +1,15 @@
+{
+  "name": "venue-services-googlesheets",
+  "version": "0.0.1",
+  "description": "",
+  "main": "handler.js",
+  "dependencies": {
+    "googleapis": "^34.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shawn Lauzon <shawn@volentixlabs.com>",
+  "license": "MIT"
+}
