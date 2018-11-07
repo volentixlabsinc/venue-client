@@ -2,7 +2,7 @@
   <li class="m-sm">
     <a :href="href" target="_blank">
       <span class="icon is-small m-r-sm"><i :class="icon" class="fas prefix"/></span>
-      <span class="is-size-7">{{ name }}</span>
+      <span class="is-size-6">{{ name }}</span>
     </a>
   </li>
 </template>
