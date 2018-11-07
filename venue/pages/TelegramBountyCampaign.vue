@@ -55,7 +55,7 @@
             <hr>
             <div class="field m-l-none m-r-none ">
               <div class="control has-text-centered">
-                <input class="input is-success" type="text" placeholder="Telegram username">
+                <input v-model="telegramUsername" class="input is-success" type="text" placeholder="Telegram username">
               </div>
             </div>
           </section>
@@ -63,7 +63,7 @@
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">4</span> Submit the data</div>
             <hr>
             <div class="has-text-centered">
-              <a class="button is-success is-outlined is-rounded">Submit</a>
+              <a class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
             </div>
           </section>
         </div>
@@ -76,8 +76,34 @@
 export default {
   data() {
     return {
+      telegramUsername: "",
       showRules: false
     };
+  },
+  methods: {
+    async submit() {
+      const data = {
+        // Will be different for each environment
+        // TODO Make this a public spreadsheet; right now it's a copy in My Drive
+        spreadsheetId: "11vZ0s8j1LR5hs-e-9gH54-fifgo9CPeGLI60ydExOBg",
+        sheetName: "Telegram",
+        row: [
+          this.$store.state.user.username,
+          this.telegramUsername,
+          this.$store.state.user.email,
+          "No"
+        ]
+      };
+
+      try {
+        await this.$axios.post(
+          "https://4vbcm08f4k.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          data
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    }
   }
 };
 </script>
