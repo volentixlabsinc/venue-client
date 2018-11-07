@@ -66,18 +66,20 @@
               <a class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
             </div>
           </section>
+          <div>{{ submitResponse }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</template>
+</div></template>
 
 <script>
 export default {
   data() {
     return {
-      telegramUsername: "",
-      showRules: false
+      telegramUsername: "@",
+      showRules: false,
+      submitResponse: ""
     };
   },
   methods: {
@@ -96,10 +98,19 @@ export default {
       };
 
       try {
-        await this.$axios.post(
+        // TODO Show spinner
+        const res = await this.$axios.post(
           "https://4vbcm08f4k.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
           data
         );
+        if (res.status === 200) {
+          this.submitResponse =
+            "You have been registered for the Telegram bounty campaign.";
+        } else {
+          this.submitResponse =
+            "A failure occurred attempting to register; please send us a message on Telegram for support";
+        }
+        // TODO Handle error
       } catch (err) {
         console.error(err);
       }
