@@ -29,8 +29,6 @@ provider:
     # TODO Make it encrypted in transit
     GOOGLE_SHEETS_SERVICE_ACCOUNT_EDITOR: ${ssm:venue-googlesheets-serviceaccount-editor~true}
 functions:
-  hello:
-    handler: handler.hello
   append:
     handler: handler.append
     events:
