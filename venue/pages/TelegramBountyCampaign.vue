@@ -10,7 +10,10 @@
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">1</span> Read the rules</div>
             <hr>
             <b-collapse :open="showRules">
-              <div class="content">
+              <div class="content">                
+                <!-- TODO Load HTML from separate file; I couldn't find how to do it this way -->
+                <!-- {{ require("~/static/telegram-rules.html") }} -->
+                
                 <h4 class="title-4">General Rules</h4>
                 <ul>
                   <li>ONLY DISCUSS BOUNTY-CAMPAIGNS IN VENUE TELEGRAM.</li>
@@ -28,9 +31,6 @@
                   <li>Use spamming or other mass marketing.</li>
                   <li>Do any kind of unethical behavior when participating in any one of the campaigns, you will be disqualified from all bonuses.</li>
                 </ul>
-                
-                <!-- TODO Load HTML from separate file; I couldn't find how to do it this way -->
-                <!-- {{ require("~/static/telegram-rules.html") }} -->
               </div>
             </b-collapse>
             <div class="has-text-centered">
@@ -100,7 +100,10 @@ export default {
       try {
         // TODO Show spinner
         const res = await this.$axios.post(
-          "https://4vbcm08f4k.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          // TODO Pull this from stack.json
+          // Uncomment for dev stage
+          // "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append",
           data
         );
         if (res.status === 200) {
