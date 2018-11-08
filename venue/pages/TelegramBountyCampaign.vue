@@ -102,7 +102,6 @@ export default {
 
       try {
         // TODO Show spinner
-        console.log("location: " + window.location.href);
         const res = await this.$axios.post(
           // TODO Pull this from stack.json
           window.location.href.startsWith("https://venue.volentix.io")
