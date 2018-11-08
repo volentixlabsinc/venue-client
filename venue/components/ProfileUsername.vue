@@ -6,7 +6,7 @@
       :button="$t('settings.btn_username')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
-      <ProfileUsernameForm :value="$store.state.user.username"/>
+      <ProfileUsernameForm :value="this.$auth.user.username"/>
     </b-modal>
   </div>
 </template>

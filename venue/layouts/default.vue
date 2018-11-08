@@ -21,7 +21,7 @@
           <div class="navbar-menu is-active">
             <div class="navbar-end level m-r-xl">
               <div v-if="isAuthenticated()" class="has-text-info m-r-md is-size-5 level-item">
-                {{ $t("nav.hello_you", { you: this.$store.state.user.username }) }}
+                {{ $t("nav.hello_you", { you: this.$auth.user.username }) }}
               </div>
               <a v-if="!isAuthenticated()" href="/login" class="navbar-item level-item">
                 <span class="button is-rounded is-outlined is-info">{{ $t("nav.log_in") }}</span>
@@ -125,7 +125,7 @@ export default {
       this.showPillarLinks = !this.showPillarLinks;
     },
     isAuthenticated() {
-      return this.$store.state.user.isAuthenticated;
+      return this.$auth.loggedIn;
     }
   }
 };

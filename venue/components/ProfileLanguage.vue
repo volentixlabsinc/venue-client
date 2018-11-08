@@ -6,7 +6,7 @@
       :button="$t('settings.btn_set_language')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
-      <ProfileLanguageForm :value="$store.state.user.email"/>
+      <ProfileLanguageForm :value="this.$auth.user.email"/>
     </b-modal>
   </div>
 </template>

@@ -79,7 +79,7 @@
 
 <script>
 export default {
-  middleware: "authenticated",
+  middleware: "auth",
   data() {
     return {
       telegramUsername: "@",
@@ -93,9 +93,9 @@ export default {
       const data = {
         sheetName: "Telegram",
         row: [
-          this.$store.state.user.username,
+          this.$auth.user.username,
           this.telegramUsername,
-          this.$store.state.user.email,
+          this.$auth.user.email,
           this.isVolentixNameAdded ? "Yes" : "No"
         ]
       };

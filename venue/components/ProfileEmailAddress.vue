@@ -6,7 +6,7 @@
       :button="$t('settings.btn_email')"
       @clicked="isModalActive = true"/>
     <b-modal :active.sync="isModalActive" has-modal-card>
-      <ProfileEmailAddressForm :value="$store.state.user.email"/>
+      <ProfileEmailAddressForm :value="this.$auth.user.email"/>
     </b-modal>
   </div>
 </template>

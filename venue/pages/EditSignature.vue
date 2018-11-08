@@ -56,8 +56,7 @@ export default {
       );
     } else {
       const hasStats =
-        store.state.user.isAuthenticated &&
-        store.state.userStats.fresh === false;
+        this.$auth.loggedIn && store.state.userStats.fresh === false;
 
       if (hasStats) {
         const forumProfile = await app.$axios.$get("/check/profile/", {

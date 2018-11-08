@@ -11,8 +11,7 @@ export default {
   },
   data() {
     const hasStats =
-      this.$store.state.user.isAuthenticated &&
-      this.$store.state.userStats.fresh === false;
+      this.$auth.loggedIn && this.$store.state.userStats.fresh === false;
     const totalTokens = hasStats
       ? this.$store.state.userStats.user_level.total_tokens
       : 0;

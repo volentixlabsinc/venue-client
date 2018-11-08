@@ -87,9 +87,8 @@ module.exports = {
     browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
   },
   auth: {
-    redirect: {
-      callback: "/dashboard"
-    },
+    plugins: ["~/plugins/auth"],
+    resetOnError: true,
     strategies: {
       local: {
         endpoints: {
@@ -107,10 +106,10 @@ module.exports = {
         },
         // tokenRequired: true,
         tokenType: "Token"
-      },
-      facebook: {
-        client_id: "..."
       }
+      // facebook: {
+      //   client_id: "..."
+      // }
     }
   },
   "google-analytics": {
@@ -119,7 +118,6 @@ module.exports = {
   plugins: [
     "~/plugins/vue-clipboard",
     "~/plugins/buefy",
-    "~/plugins/axios",
     "~/plugins/mixin",
     "~/plugins/vue-social-sharing"
   ]
