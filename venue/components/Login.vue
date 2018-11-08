@@ -71,11 +71,6 @@ export default {
       this.loginError = false;
 
       try {
-        // this.authResponse = await this.$axios.$post("/authenticate/", {
-        //   username: this.username,
-        //   password: this.password
-        // });
-
         await this.$auth.loginWith("local", {
           data: {
             username: this.username,
@@ -85,23 +80,13 @@ export default {
 
         console.log("user", this.$auth.user);
 
-        // await this.$store.commit("user/authenticated", {
-        //   userId: this.authResponse.user_profile_id,
-        //   language: this.authResponse.language,
-        //   token: this.authResponse.token
-        // });
-
         await loadUserData(this.$store.commit, this.$axios);
-
-        this.$router.push(
-          this.$store.state.userStats.hasCampaignData
-            ? this.localizedRoute("/dashboard", this.$i18n.locale)
-            : this.localizedRoute("/", this.$i18n.locale)
-        );
       } catch (error) {
         console.log("error", error);
-        const errorCode = error.response.data.error_code;
-        this.displayErrorMessage(errorCode);
+        if (error.response) {
+          const errorCode = error.response.data.error_code;
+          this.displayErrorMessage(errorCode);
+        }
       }
     },
     displayErrorMessage(error) {
