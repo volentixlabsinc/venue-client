@@ -32,8 +32,7 @@ export default {
       forumUserRank: ""
     };
     const hasStats =
-      this.$store.state.user.isAuthenticated &&
-      this.$store.state.userStats.fresh === false;
+      this.$auth.loggedIn && this.$store.state.userStats.fresh === false;
 
     if (hasCampaignData && hasStats) {
       Object.assign(data, {

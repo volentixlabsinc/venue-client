@@ -5,13 +5,13 @@
 
 <script>
 export default {
-  middleware: "authenticated",
+  middleware: "auth",
   mounted() {
     this.logout();
   },
   methods: {
     logout: async function() {
-      this.$axios.$get("/logout/");
+      await this.$auth.logout();
       this.$store.dispatch("clearUserState");
       this.$router.push(this.localizedRoute("/", this.$i18n.locale));
     }

@@ -24,7 +24,7 @@
 import InviteForm from "~/components/InviteForm.vue";
 import InviteBoard from "~/components/InviteBoard.vue";
 export default {
-  middleware: "authenticated",
+  middleware: "auth",
   components: {
     InviteForm,
     InviteBoard

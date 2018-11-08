@@ -18,13 +18,12 @@ import numeral from "numeral";
 export default {
   data() {
     const data = {
-      isAuthenticated: this.$store.state.user.isAuthenticated,
+      isAuthenticated: this.$auth.loggedIn,
       bonus: 0
     };
 
     const hasStats =
-      this.$store.state.user.isAuthenticated &&
-      this.$store.state.userStats.fresh === false;
+      this.$auth.loggedIn && this.$store.state.userStats.fresh === false;
 
     if (hasStats) {
       Object.assign(data, {

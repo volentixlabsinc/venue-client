@@ -35,7 +35,7 @@ export default {
     CampaignRightPanel,
     VerifySignature
   },
-  middleware: "authenticated",
+  middleware: "auth",
   async asyncData({ app, store }) {
     const data = {
       signatures: [],

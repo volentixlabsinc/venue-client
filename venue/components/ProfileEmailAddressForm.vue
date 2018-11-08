@@ -44,7 +44,9 @@ export default {
           email: this.newValue
         });
         if (result.success === true) {
-          this.$store.commit("user/updateEmail", this.newValue);
+          this.$auth.setUser(
+            Object.assign(this.$auth.user, { email: this.newValue })
+          );
           this.$parent.close();
         }
       }

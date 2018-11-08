@@ -44,7 +44,9 @@ export default {
           username: this.newValue
         });
         if (result.success === true) {
-          this.$store.commit("user/updateUsername", this.newValue);
+          this.$auth.setUser(
+            Object.assign(this.$auth.user, { username: this.newValue })
+          );
 
           // Since this username has changed, need to refresh the leaderboard data
           this.$axios

@@ -31,7 +31,7 @@ import ProfileLanguage from "~/components/ProfileLanguage.vue";
 import ProfileTwoFactor from "~/components/ProfileTwoFactor.vue";
 
 export default {
-  middleware: "authenticated",
+  middleware: "auth",
   components: {
     OneColumnLayout,
     ProfileWalletAddress,
