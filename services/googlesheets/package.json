@@ -6,7 +6,9 @@
   "dependencies": {
     "googleapis": "^34.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless-stack-output": "^0.2.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
