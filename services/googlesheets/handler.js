@@ -2,10 +2,6 @@
 
 const { google } = require("googleapis");
 
-// const { JWT } = require("google-auth-library");
-
-// TODO Load this from elsewhere
-// const keys = require("./jwt.keys.json");
 const keysEnvVar = process.env["GOOGLE_SHEETS_SERVICE_ACCOUNT_EDITOR"];
 if (!keysEnvVar) {
   throw new Error(
@@ -20,8 +16,13 @@ const client = new google.auth.JWT({
   scopes: ["https://www.googleapis.com/auth/spreadsheets"]
 });
 
+// Get this as an environment variable rather than the caller so that we don't store the
+// ID in Github, which seems like a good idea because it is publicly readable. Unfortunately
+// this makes this service only usable for this specific spreadsheet :(
+const GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID =
+  process.env["GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID"];
+
 // {
-//   "spreadsheetId": "from-url",
 //   "sheetName": "telegram",
 //   "row": ["my-venue-name", "my-telegram-name", "my-email", "added-volentix-io"]
 // }
@@ -59,8 +60,8 @@ module.exports.append = async (event, context) => {
     });
 
     const res = await sheets.spreadsheets.values.append({
-      spreadsheetId: input.spreadsheetId,
-      range: input.sheetName + "!3:4",
+      spreadsheetId: GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID,
+      range: input.sheetName + "!3:4", // start at the 3rd row so the formatting doesn't get copied
       valueInputOption: "USER_ENTERED",
       insertDataOption: "INSERT_ROWS",
       requestBody: {
@@ -70,9 +71,14 @@ module.exports.append = async (event, context) => {
     });
     console.log("Result from append", res.data);
 
+    // Return the update data but hide the spreadsheetId
+    const dataToReturn = Object.assign(res.data.updates, {
+      spreadsheetId: "<hidden>"
+    });
+
     return {
       statusCode: 200,
-      body: event.httpMethod ? JSON.stringify(res.data) : res.data,
+      body: event.httpMethod ? JSON.stringify(dataToReturn) : dataToReturn,
       headers: {
         // TODO On production, only allow from Venue
         "Access-Control-Allow-Origin": "*", // Required for CORS support to work
@@ -83,7 +89,8 @@ module.exports.append = async (event, context) => {
     // This seems like a pretty good bit of error handling for most applications
     if (err.errors) {
       console.error(
-        "Failed to update spreadsheet " + input.spreadsheetId,
+        "Failed to update spreadsheet " +
+          GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID,
         "(HTTP " + err.code + ")",
         err.errors
       );

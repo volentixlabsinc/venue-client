@@ -85,9 +85,6 @@ export default {
   methods: {
     async submit() {
       const data = {
-        // Will be different for each environment
-        // TODO Make this a public spreadsheet; right now it's a copy in My Drive
-        spreadsheetId: "11vZ0s8j1LR5hs-e-9gH54-fifgo9CPeGLI60ydExOBg",
         sheetName: "Telegram",
         row: [
           this.$store.state.user.username,
