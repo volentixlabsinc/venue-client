@@ -12,7 +12,7 @@
 # Happy Coding!
 
 service:
-  name: googlesheets
+  name: venue-googlesheets
   # TODO Create the key at deploy
   awsKmsKeyArn: ${ssm:venue-kms-key-arn}
 
@@ -32,7 +32,10 @@ functions:
   append:
     handler: handler.append
     events:
-      - http: POST googlesheets/append
+      - http:
+          path: googlesheets/append
+          method: POST
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

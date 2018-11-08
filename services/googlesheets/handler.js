@@ -72,7 +72,12 @@ module.exports.append = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: event.httpMethod ? JSON.stringify(res.data) : res.data
+      body: event.httpMethod ? JSON.stringify(res.data) : res.data,
+      headers: {
+        // TODO On production, only allow from Venue
+        "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+        "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
+      }
     };
   } catch (err) {
     // This seems like a pretty good bit of error handling for most applications
