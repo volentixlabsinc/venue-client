@@ -103,7 +103,7 @@ export default {
       try {
         // TODO Show spinner
         const res = await this.$axios.post(
-          // TODO Pull this from stack.json
+          // TODO Make better
           window.location.href.startsWith("https://venue.volentix.io")
             ? "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append"
             : "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
