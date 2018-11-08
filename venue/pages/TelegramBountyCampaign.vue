@@ -90,6 +90,9 @@ export default {
   },
   methods: {
     async submit() {
+      console.log("URL: ", process.env.BASE_URL);
+      console.log("Browser URL: ", process.env.BROWSER_BASED_URL);
+
       const data = {
         sheetName: "Telegram",
         row: [
