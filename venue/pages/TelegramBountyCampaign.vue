@@ -49,6 +49,10 @@
             <div class="has-text-centered">
               <a target="_blank" href="https://t.me/Volentix" class="button is-success is-outlined is-rounded">Join Volentix Telegram</a>
             </div>
+            <label class="checkbox m-t-sm">
+              <input v-model="isVolentixNameAdded" type="checkbox">
+              For extra VTX, I added "volentix.io" to my name on Telegram
+            </label>
           </section>
           <section class="m-t-lg m-b-lg">
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">3</span> Enter your Telegram username</div>
@@ -78,6 +82,7 @@ export default {
   data() {
     return {
       telegramUsername: "@",
+      isVolentixNameAdded: false,
       showRules: false,
       submitResponse: ""
     };
@@ -90,7 +95,7 @@ export default {
           this.$store.state.user.username,
           this.telegramUsername,
           this.$store.state.user.email,
-          "No"
+          this.isVolentixNameAdded ? "Yes" : "No"
         ]
       };
 
@@ -99,8 +104,8 @@ export default {
         const res = await this.$axios.post(
           // TODO Pull this from stack.json
           // Uncomment for dev stage
-          // "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
-          "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append",
+          "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          // "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append",
           data
         );
         if (res.status === 200) {
