@@ -28,6 +28,7 @@ provider:
     # TODO Make it encrypted in transit
     GOOGLE_SHEETS_SERVICE_ACCOUNT_EDITOR: ${ssm:venue-googlesheets-serviceaccount-editor~true}
     GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID: ${ssm:venue-googlesheets-bountycampaign-spreadsheetid-${self:provider.stage}~true}
+    STAGE: ${opt:stage, 'dev'}
 
 functions:
   append:

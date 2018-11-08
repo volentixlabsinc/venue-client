@@ -22,12 +22,16 @@ const client = new google.auth.JWT({
 const GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID =
   process.env["GOOGLE_SHEETS_BOUNTYCAMPAIGN_SPREADSHEET_ID"];
 
+// In production, only allow calls from this URL
+const PRODUCTION_ALLOWED_URL = "https://venue.volentix.io";
+
 // {
 //   "sheetName": "telegram",
 //   "row": ["my-venue-name", "my-telegram-name", "my-email", "added-volentix-io"]
 // }
 module.exports.append = async (event, context) => {
   // TODO Verify all parameters
+  console.log(process.env);
 
   // API Gateway puts stringified input into body
   const input = event.httpMethod ? JSON.parse(event.body) : event;
@@ -80,8 +84,8 @@ module.exports.append = async (event, context) => {
       statusCode: 200,
       body: event.httpMethod ? JSON.stringify(dataToReturn) : dataToReturn,
       headers: {
-        // TODO On production, only allow from Venue
-        "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+        "Access-Control-Allow-Origin":
+          process.env.STAGE === "production" ? PRODUCTION_ALLOWED_URL : "*", // Required for CORS support to work
         "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers with HTTPS
       }
     };
