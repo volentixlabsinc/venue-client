@@ -48,11 +48,11 @@
             <hr>
             <div class="has-text-centered">
               <a target="_blank" href="https://t.me/Volentix" class="button is-success is-outlined is-rounded">Join Volentix Telegram</a>
+              <label class="checkbox m-t-md">
+                <input v-model="isVolentixNameAdded" type="checkbox">
+                For extra VTX, I added "volentix.io" to my name on Telegram
+              </label>
             </div>
-            <label class="checkbox m-t-sm">
-              <input v-model="isVolentixNameAdded" type="checkbox">
-              For extra VTX, I added "volentix.io" to my name on Telegram
-            </label>
           </section>
           <section class="m-t-lg m-b-lg">
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">3</span> Enter your Telegram username</div>
