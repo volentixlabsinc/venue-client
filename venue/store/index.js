@@ -156,10 +156,7 @@ export const actions = {
 
     if (cookieHeader) {
       const cookies = cookie.parse(cookieHeader);
-      if (cookies.venue) {
-        // This call also sets the token into $axios
-        this.$auth.setToken("local", cookies.venue.token);
-
+      if (cookies["auth._token.local"]) {
         try {
           await loadUserData(commit, app.$axios);
         } catch (exc) {
