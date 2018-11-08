@@ -13,7 +13,6 @@
 
 service:
   name: venue-googlesheets
-  # TODO Create the key at deploy
   awsKmsKeyArn: ${ssm:venue-kms-key-arn}
 
 # You can pin your service to only deploy with a specific Serverless version
@@ -28,6 +27,7 @@ provider:
   environment:
     # TODO Make it encrypted in transit
     GOOGLE_SHEETS_SERVICE_ACCOUNT_EDITOR: ${ssm:venue-googlesheets-serviceaccount-editor~true}
+
 functions:
   append:
     handler: handler.append
