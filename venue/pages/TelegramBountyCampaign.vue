@@ -88,9 +88,6 @@ export default {
       submitResponse: ""
     };
   },
-  asyncData(context) {
-    console.log("context.isDev", context.isDev);
-  },
   methods: {
     async submit() {
       const data = {
@@ -105,11 +102,12 @@ export default {
 
       try {
         // TODO Show spinner
+        console.log("location: " + window.location.href);
         const res = await this.$axios.post(
           // TODO Pull this from stack.json
-          // Uncomment for dev stage
-          "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
-          // "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append",
+          window.location.href.startsWith("https://venue.volentix.io")
+            ? "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append"
+            : "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
           data
         );
         if (res.status === 200) {
