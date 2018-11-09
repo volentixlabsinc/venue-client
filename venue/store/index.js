@@ -136,45 +136,41 @@ export const state = () => ({
 
 export const actions = {
   // This is executed on the server
-  async nuxtServerInit({ commit }, { app, req }) {
-    // TODO Move token into to token plugin
-
-    // TODO We should be able to do these calls in parallel, but be aware that
-    // a bad token might be passed to the leaderboard which will cause it to
-    // fail
-
+  async nuxtServerInit({ commit }, { req, app }) {
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
+
     if (!req) {
       return;
     }
 
+    const strategy = app.$auth.$storage.getUniversal("strategy");
+
+    // Pull the token from the cookie in the request header, if it is set
     const cookieHeader = req.headers.cookie;
+    const cookies = cookie.parse(cookieHeader);
+    const token = cookies["auth._token." + strategy];
 
-    console.log("cookie", cookieHeader);
+    if (token) {
+      app.$auth.setToken(strategy, token);
 
-    if (cookieHeader) {
-      const cookies = cookie.parse(cookieHeader);
-      if (cookies["auth._token.local"]) {
-        try {
-          await loadUserData(commit, app.$axios);
-        } catch (exc) {
-          // TODO Clear the cookie so we don't keep receiving old tokens
-          console.warn("Caught exception in nuxtServerInit", exc);
-          // FIXME Only clear token when the token is bad
-          // if (exc.response.status === 401) {
-          //   // HTTP 401 Unauthorized means the token is bad
-          //   commit("user/unauthenticated");
-          // }
-        }
+      try {
+        await loadUserData(commit, app.$axios);
+      } catch (exc) {
+        console.log("Could not load data from server; removing old token");
+        app.$axios.setToken(false);
       }
+    } else {
+      app.$axios.setToken(false);
     }
 
-    commit(
-      "setLeaderboardData",
-      await app.$axios.$get("/retrieve/leaderboard-data/")
+    const leaderboardData = await app.$axios.$get(
+      "/retrieve/leaderboard-data/"
     );
+    if (leaderboardData) {
+      commit("setLeaderboardData", leaderboardData);
+    }
   },
   clearUserState({ commit }) {
     commit("setUserStats", {});
