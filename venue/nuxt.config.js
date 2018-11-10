@@ -87,6 +87,9 @@ module.exports = {
     browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
   },
   auth: {
+    redirect: {
+      home: "/dashboard"
+    },
     plugins: ["~/plugins/auth", "~plugins/axios"],
 
     // This is broken right now, so I've enabled it manuallyt in axios.js
