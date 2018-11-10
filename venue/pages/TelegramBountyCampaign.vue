@@ -67,7 +67,8 @@
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">4</span> Submit the data</div>
             <hr>
             <div class="has-text-centered">
-              <a class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
+              <a :class="{ 'is-loading': isLoading }" :disabled="!isReadyToSubmit" 
+                 class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
             </div>
           </section>
           <div>{{ submitResponse }}
@@ -85,8 +86,14 @@ export default {
       telegramUsername: "@",
       isVolentixNameAdded: false,
       showRules: false,
-      submitResponse: ""
+      submitResponse: "",
+      isLoading: false
     };
+  },
+  computed: {
+    // FIXME Not working
+    isReadyToSubmit: () =>
+      !(this.telegramUsername === "" || this.telegramUserName === "@")
   },
   methods: {
     async submit() {
@@ -101,7 +108,8 @@ export default {
       };
 
       try {
-        // TODO Show spinner
+        this.isLoading = true;
+
         const res = await this.$axios.post(
           // TODO Make better
           window.location.href.startsWith("https://venue.volentix.io")
@@ -112,10 +120,12 @@ export default {
         if (res.status === 200) {
           this.submitResponse =
             "You have been registered for the Telegram bounty campaign.";
+          this.telegramUsername = "@";
         } else {
           this.submitResponse =
             "A failure occurred attempting to register; please send us a message on Telegram for support";
         }
+        this.isLoading = false;
         // TODO Handle error
       } catch (err) {
         console.error(err);
