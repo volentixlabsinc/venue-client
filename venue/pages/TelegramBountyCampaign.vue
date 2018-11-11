@@ -81,22 +81,22 @@
 <script>
 export default {
   middleware: "auth",
-  data() {
-    return {
-      telegramUsername: "@",
-      isVolentixNameAdded: false,
-      showRules: false,
-      submitResponse: "",
-      isLoading: false
-    };
-  },
+  data: () => ({
+    telegramUsername: "@",
+    isVolentixNameAdded: false,
+    showRules: false,
+    submitResponse: "",
+    isLoading: false
+  }),
   computed: {
-    // FIXME Not working
-    isReadyToSubmit: () =>
-      !(this.telegramUsername === "" || this.telegramUserName === "@")
+    isReadyToSubmit() {
+      return !(this.telegramUsername === "" || this.telegramUsername === "@");
+    }
   },
   methods: {
     async submit() {
+      console.log("submit telegramUsername: " + this.telegramUsername);
+      console.log("isready: " + this.isReadyToSubmit);
       const data = {
         sheetName: "Telegram",
         row: [

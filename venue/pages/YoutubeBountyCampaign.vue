@@ -56,7 +56,8 @@
             <div class="is-4 has-text-weight-bold">Step <span class="step-num">4</span> Submit the data</div>
             <hr>
             <div class="has-text-centered">
-              <a class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
+              <a :class="{ 'is-loading': isLoading }" :disabled="!isReadyToSubmit" 
+                 class="button is-success is-outlined is-rounded" @click="submit">Submit</a>
             </div>
           </section>
           <div>{{ submitResponse }}
@@ -73,8 +74,14 @@ export default {
     return {
       youtubeUrl: "",
       showRules: false,
-      submitResponse: ""
+      submitResponse: "",
+      isLoading: false
     };
+  },
+  computed: {
+    isReadyToSubmit() {
+      return this.youtubeUrl !== "";
+    }
   },
   methods: {
     async submit() {
