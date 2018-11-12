@@ -10,7 +10,7 @@ ARG BROWSER_BASED_URL=http://localhost/api
 
 ENV BROWSER_BASED_URL=$BROWSER_BASED_URL
 
-COPY venue/package.json venue/yarn.lock ./
+COPY venue/package.json venue/package-lock.json ./
 
 RUN yarn install
 
