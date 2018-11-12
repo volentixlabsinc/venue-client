@@ -2,11 +2,13 @@
   <div>
     <div class="columns is-gapless is-fullheight is-hidden-mobile">
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
-        <MainLogo class="p-lg"/>
-        <Navigation />
-        <hr>
+        <div class="navheader">
+          <MainLogo class="p-lg"/>
+          <Navigation />
+          <hr>
+        </div>
         <div class="navfooter">
-          <div class="navheader is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_project_links") }}</div>
+          <div class="is-size-6 m-l-md m-b-xs">{{ $t("nav.volentix_project_links") }}</div>
           <VolentixLinks class="m-b-md"/>
           <SocialMediaLinks class="m-b-md"/>
         </div>
@@ -23,15 +25,15 @@
               <div v-if="isAuthenticated()" class="has-text-info m-r-md is-size-5 level-item">
                 {{ $t("nav.hello_you", { you: this.$auth.user.username }) }}
               </div>
-              <a v-if="!isAuthenticated()" href="/login" class="navbar-item level-item">
+              <router-link v-if="!isAuthenticated()" to="/login" class="navbar-item level-item">
                 <span class="button is-rounded is-outlined is-info">{{ $t("nav.log_in") }}</span>
-              </a>
-              <a v-if="!isAuthenticated()" href="/signup" class="navbar-item level-item is-paddingless">
+              </router-link>
+              <router-link v-if="!isAuthenticated()" to="/signup" class="navbar-item level-item is-paddingless">
                 <span class="button is-rounded is-outlined is-info m-r-xxl">{{ $t("nav.sign_up") }}</span>
-              </a>
-              <a v-if="isAuthenticated()" href="/logout" class="navbar-item level-item is-paddingless">
+              </router-link>
+              <router-link v-if="isAuthenticated()" to="/logout" class="navbar-item level-item is-paddingless">
                 <span class="button is-rounded is-outlined is-info m-r-xxl">{{ $t("nav.log_out") }}</span>
-              </a>
+              </router-link>
               <PillarLink :new-tab="false" class="navbar-item" name="Venue" link="" highlight="#84429a" />
               <PillarLink class="navbar-item" name="Verto" link="https://verto.vdex.io" highlight="#08959f" />
               <PillarLink class="navbar-item" name="VDex" link="https://vdex.io" highlight="#2fa268" />
@@ -164,7 +166,15 @@ a.navbar-item:hover {
   background-color: transparent;
 }
 
+.navheader {
+  height: 60%;
+  display: block;
+}
+
 .navfooter {
+  color: #98a5ae;
+  height: 40%;
+  display: block;
   position: absolute;
   bottom: 0;
   width: calc(100% - 12px);
