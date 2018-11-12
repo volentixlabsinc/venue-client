@@ -102,7 +102,7 @@ module.exports = {
             method: "post",
             propertyName: "token"
           },
-          logout: { url: "/logout/", method: "post" },
+          logout: { url: "/logout/", method: "get" },
           user: {
             url: "/retrieve/user/",
             method: "get",
