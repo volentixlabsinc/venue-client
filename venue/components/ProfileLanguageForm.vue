@@ -8,14 +8,18 @@
         <section class="modal-card-body language-container">
           <b-dropdown class="card-footer-item">
             <div slot="trigger" class="button is-white">
-              <span>{{ $t('settings.language') }}</span>
+              <span>{{ currentLocale }}</span>
               <i class="fas fa-caret-down" style="padding-left: 5px"/>
             </div>
-            <b-dropdown-item v-for="(ln, index) in $i18n.locales" :key="index" @click="onSelectLanguage(ln)">{{ ln.name }}</b-dropdown-item>
+            <b-dropdown-item v-for="(ln, index) in $i18n.locales" :key="index" @click="onSelectLanguage(ln)">
+              {{ ln.name }}
+            </b-dropdown-item>
           </b-dropdown>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" type="button" @click="$parent.close()">{{ $t('buttons.btn_cancel') }}</button>
+          <button class="button" type="button" @click="$parent.close()">
+            {{ $t('buttons.btn_cancel') }}
+          </button>
           <button class="button is-primary" type="submit">{{ $t('settings.btn_language') }}</button>
         </footer>
       </div>
@@ -30,6 +34,13 @@ export default {
       language: this.$i18n.locale
     };
   },
+  computed: {
+    currentLocale() {
+      return this.$i18n.locales.filter(
+        locale => locale.code === this.language
+      )[0].name;
+    }
+  },
   methods: {
     async changeLanguage() {
       if (this.language !== "") {
@@ -38,6 +49,7 @@ export default {
           language: this.language
         });
         if (result.success === true) {
+          console.log("switching path to " + this.language);
           this.$parent.close();
           this.$router.push(this.switchLocalePath(this.language));
         }
