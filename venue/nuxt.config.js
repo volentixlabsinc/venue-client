@@ -1,4 +1,4 @@
-const { I18N } = require("./config");
+import { I18N } from "./config";
 
 // Workaround for https://github.com/buefy/nuxt-buefy/issues/32
 global.File = typeof window === "undefined" ? Object : window.File;
@@ -46,10 +46,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    analyze: {
-      analyzerMode: "static",
-      excludeAssets: /^vendor.*/
-    },
+    // Notice: Please do not deploy bundles built with analyze mode, it's only for analyzing purpose.
+    // analyze: {
+    //   analyzerMode: "static",
+    //   excludeAssets: /^vendor.*/
+    // },
     /*
     ** Run ESLint on save
     */
@@ -67,8 +68,7 @@ module.exports = {
       plugins: {
         "postcss-custom-properties": false
       }
-    },
-    vendor: ["axios", "moment", "chart.js", "numeral"]
+    }
   },
   css: [
     { src: "~/assets/custom.css", lang: "css" },
@@ -121,7 +121,7 @@ module.exports = {
     id: "UA-119876313-3"
   },
   plugins: [
-    "~/plugins/vue-clipboard",
+    { src: "~/plugins/vue-clipboard", ssr: false },
     "~/plugins/buefy",
     "~/plugins/mixin",
     "~/plugins/vue-social-sharing"

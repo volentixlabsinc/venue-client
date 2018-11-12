@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: "Code Bold";
-  src: url("~/assets/CODE Bold.otf") format("opentype");
+  src: url("~assets/CODE_Bold.otf") format("opentype");
 }
 
 .title {
@@ -17,6 +17,7 @@
 }
 
 /* Workaround for Buefy not properly handliing field add-ons with messages */
+
 div.has-addons {
   flex-wrap: wrap;
 }
