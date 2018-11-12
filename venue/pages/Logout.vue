@@ -11,9 +11,11 @@ export default {
   },
   methods: {
     logout: async function() {
+      // locale gets wiped on logout; save it so that it doesn't get reset to English
+      const savedLocale = this.$i18n.locale;
       await this.$auth.logout();
       this.$store.dispatch("clearUserState");
-      this.$router.push(this.localizedRoute("/", this.$i18n.locale));
+      this.$router.push(this.localizedRoute("/", savedLocale));
     }
   }
 };
