@@ -51,7 +51,13 @@ jobs:
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
+            - venue/lang
             - venue/package.json
+            - venue/serverless.yml
+            - venue/nuxt.config.js
+            - venue/handler.js
+            - venue/tsconfig.json
+            - venue/tslint.json
             - venue/.nuxt/dist
   # The deploy job
   deploy:
