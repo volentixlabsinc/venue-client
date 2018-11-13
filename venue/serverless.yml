@@ -1,0 +1,102 @@
+service: venue
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
+  region: eu-central-1
+  environment:
+    NODE_ENV: production
+    BUCKET_NAMESPACE: volentix-venue
+    ASSETS_BUCKET_NAME: ${self:provider.environment.BUCKET_NAMESPACE}-assets-${opt:stage, 'dev'}
+    STATIC_BUCKET_NAME: ${self:provider.environment.BUCKET_NAMESPACE}-static-${opt:stage, 'dev'}
+    ASSETS_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.ASSETS_BUCKET_NAME}
+    STATIC_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.STATIC_BUCKET_NAME}
+
+custom:
+  domains:
+    production: venue.volentix.io
+    qa: qa-venue.volentix.io
+    dev: dev-venue.volentix.io
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    stage: ${self:provider.stage}
+    createRoute53Record: false
+  serverless-offline:
+    port: 4000
+  s3Sync:
+    - bucketName: ${self:provider.environment.ASSETS_BUCKET_NAME}
+      localDir: .nuxt/dist/client
+    - bucketName: ${self:provider.environment.STATIC_BUCKET_NAME}
+      localDir: static
+
+package:
+  exclude:
+    - src/**
+  include:
+    - serverless.yml
+
+functions:
+  nuxt-renderer:
+    handler: handler.render
+    memorySize: 512
+    timeout: 30
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+resources:
+  Resources:
+    AssetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.ASSETS_BUCKET_NAME}
+    AssetsBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: AssetsBucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement: [
+            {
+              Action: ['s3:GetObject'],
+              Effect: 'Allow',
+              Resource: {
+                Fn::Join: ['', ['arn:aws:s3:::', { Ref: 'AssetsBucket' }, '/*']],
+              },
+              Principal: '*'
+            },
+          ]
+    StaticBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.STATIC_BUCKET_NAME}
+    StaticBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: StaticBucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement: [
+            {
+              Action: ['s3:GetObject'],
+              Effect: 'Allow',
+              Resource: {
+                Fn::Join: ['', ['arn:aws:s3:::', { Ref: 'StaticBucket' }, '/*']],
+              },
+              Principal: '*'
+            },
+          ]
+
+plugins:
+  - serverless-offline
+  - serverless-s3-sync
+  - serverless-domain-manager

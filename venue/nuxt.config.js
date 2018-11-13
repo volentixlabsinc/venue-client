@@ -1,4 +1,6 @@
-import { I18N } from "./config";
+const { I18N } = require("./config");
+const express = require("express");
+const cookieParser = require("cookie-parser");
 
 // Workaround for https://github.com/buefy/nuxt-buefy/issues/32
 global.File = typeof window === "undefined" ? Object : window.File;
@@ -46,6 +48,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     // Notice: Please do not deploy bundles built with analyze mode, it's only for analyzing purpose.
     // analyze: {
     //   analyzerMode: "static",
@@ -70,12 +73,18 @@ module.exports = {
       }
     }
   },
+  serverMiddleware: [express.json(), cookieParser()],
   css: [
     { src: "~/assets/custom.css", lang: "css" },
     { src: "~/assets/custom.sass", lang: "sass" },
     { src: "~/assets/main.scss", lang: "scss" },
     { src: "~/assets/spacing.scss", lang: "scss" }
   ],
+  render: {
+    etag: false,
+    // Disabled compression
+    compressor: { threshold: Infinity }
+  },
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/auth",
