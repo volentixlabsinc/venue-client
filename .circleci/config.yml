@@ -59,6 +59,7 @@ jobs:
             - venue/tsconfig.json
             - venue/tslint.json
             - venue/.nuxt/dist
+            - venue/static
   # The deploy job
   deploy:
     working_directory: ~/venue
