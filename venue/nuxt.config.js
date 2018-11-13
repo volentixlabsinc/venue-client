@@ -8,8 +8,8 @@ global.File = typeof window === "undefined" ? Object : window.File;
 module.exports = {
   srcDir: "src",
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: "venue",
     meta: [
@@ -42,12 +42,12 @@ module.exports = {
     ]
   },
   /*
-  ** Customize the progress bar color
-  */
+   ** Customize the progress bar color
+   */
   loading: { color: "#84429a" },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     extractCSS: true,
     // Notice: Please do not deploy bundles built with analyze mode, it's only for analyzing purpose.
@@ -56,8 +56,8 @@ module.exports = {
     //   excludeAssets: /^vendor.*/
     // },
     /*
-    ** Run ESLint on save
-    */
+     ** Run ESLint on save
+     */
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -102,7 +102,7 @@ module.exports = {
     },
     plugins: ["~/plugins/auth", "~plugins/axios"],
 
-    // This is broken right now, so I've enabled it manuallyt in axios.js
+    // This is broken right now, so I've enabled it manually in axios.js
     // resetOnError: true,
     strategies: {
       local: {
