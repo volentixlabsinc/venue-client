@@ -66,10 +66,11 @@ jobs:
       # dist folder that needs to be deployed
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-      # Install AWS cli
+      # Install Serverless
       - run:
-          name: Install aws cli
-          command: sudo apt-get -y -qq install awscli
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm install -g serverless
       # Deploy with the script corresponding to the current branch
       - run:
           name: Deploy to Lambda with Serverless
