@@ -12,10 +12,13 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Change to venue directory
+          command: cd venue
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "venue/package.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       # Install project dependencies
       - run:
@@ -23,7 +26,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "venue/package.json" }}
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
       # Lint the source code
