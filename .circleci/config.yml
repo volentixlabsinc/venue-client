@@ -2,7 +2,7 @@ version: 2
 jobs:
   # The build job
   build:
-    working_directory: ~/venue
+    working_directory: ~/project
     docker:
       - image: circleci/node:8.10-browsers
     steps:
@@ -53,7 +53,7 @@ jobs:
             - .nuxt/dist
     # The deploy job
     deploy:
-      working_directory: ~/venue
+      working_directory: ~/project
       docker:
         - image: circleci/node:8.10-browsers
       steps:
