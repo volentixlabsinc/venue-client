@@ -70,7 +70,7 @@ jobs:
       - run:
           name: Install Serverless CLI and dependencies
           command: |
-            sudo npm install -g serverless
+            cd venue && sudo npm install -g serverless
       # Deploy with the script corresponding to the current branch
       - run:
           name: Deploy to Lambda with Serverless
