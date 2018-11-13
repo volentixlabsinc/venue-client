@@ -1,4 +1,4 @@
-const { I18N } = require("./src/config");
+const { I18N } = require("./lang");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 

@@ -1,5 +1,5 @@
-const en = require("../lang/en-CA.js");
-const tr = require("../lang/tr-TR.js");
+const en = require("./en-CA.js");
+const tr = require("./tr-TR.js");
 
 const I18N = {
   locales: [
