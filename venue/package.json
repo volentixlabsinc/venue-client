@@ -20,9 +20,9 @@
     "sls:create-qa": "npm run build-qa && sls create_domain --stage qa && sls deploy --stage qa",
     "sls:create-production": "npm run build-production && sls create_domain --stage production && sls deploy --production",
     "sls:delete": "sls remove && sls delete_domain",
-    "sls:deploy": "npm run build && sls deploy",
-    "sls:deploy-qa": "npm run build-qa && sls deploy --stage qa",
-    "sls:deploy-production": "npm run build-production && sls deploy --stage production"
+    "sls:deploy": "sls deploy",
+    "sls:deploy-qa": "sls deploy --stage qa",
+    "sls:deploy-production": "sls deploy --stage production"
   },
   "lint-staged": {
     "*.{js,vue}": [
