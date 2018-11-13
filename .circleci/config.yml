@@ -18,25 +18,25 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "venue/package.json" }}
             - v1-dependencies-
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: npm install
+          command: cd venue && npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "venue/package.json" }}
           paths:
-            - node_modules
+            - venue/node_modules
       # Lint the source code
       - run:
           name: Linting
-          command: npm run lint
+          command: cd venue && npm run lint
       # Test the source code
       - run:
           name: Testing
-          command: npm run test
+          command: cd venue && npm run test
       # Build project with different configuration based on
       # the current branch
       - run:
@@ -45,11 +45,11 @@ jobs:
           # just in case we want to build differently in the future
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                npm run build
+                cd venue && npm run build
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                npm run build
+                cd venue && npm run build
             else
-                npm run build
+                cd venue && npm run build
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
