@@ -13,8 +13,7 @@
 
 service:
   name: venue-auth # NOTE: update this with your service name
-  # TODO Create the key at deploy
-  awsKmsKeyArn: ${env:AWS_KMS_KEY}
+  awsKmsKeyArn: ${ssm:venue-kms-key-arn}
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -141,10 +140,20 @@ resources:
       Value: "#{AWS::Region}"
 
 plugins:
-  - serverless-stack-output
+  - serverless-domain-manager
   - serverless-pseudo-parameters
+  - serverless-stack-output
 
 custom:
+  domains:
+    production: api.volentix.io
+    staging: staging-api.volentix.io
+    dev: dev-api.volentix.io
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    basePath: "auth" # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: false
   output:
     handler: scripts/output.handler # Same syntax as you already know
     file: stack.json # toml, yaml, yml, and json format is available

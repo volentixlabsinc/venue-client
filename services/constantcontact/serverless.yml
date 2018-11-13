@@ -13,8 +13,7 @@
 
 service:
   name: venue-constantcontact # NOTE: update this with your service name
-  # TODO Create the key at deploy
-  awsKmsKeyArn: ${env:AWS_KMS_KEY}
+  awsKmsKeyArn: ${ssm:venue-kms-key-arn}
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -23,6 +22,7 @@ frameworkVersion: "=1.32.0"
 provider:
   name: aws
   runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
 
   # you can define service wide environment variables here
   # ~true is added at the end to decrypt the SecureString parameter
@@ -51,8 +51,21 @@ functions:
   modify:
     handler: handler.modify
     memorySize: 128
-
 # resources:
 #   Resources:
 #     CognitoUserPoolCfvenueauthdevvenueUserPool:
 #       Type: AWS::Cognito::UserPool
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  domains:
+    production: api.volentix.io
+    staging: staging-api.volentix.io
+    dev: dev-api.volentix.io
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    basePath: "constantcontact" # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: false
