@@ -51,6 +51,7 @@ jobs:
       - save_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
+            - venue/package.json
             - venue/.nuxt/dist
   # The deploy job
   deploy:
