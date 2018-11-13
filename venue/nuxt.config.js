@@ -93,8 +93,8 @@ module.exports = {
     ["nuxt-i18n", I18N]
   ],
   axios: {
-    baseURL: process.env.BASE_URL || "http://localhost/api",
-    browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
+    // Set in the various build-${env} scripts
+    baseURL: process.env.BASE_URL + "/api"
   },
   auth: {
     redirect: {

@@ -5,8 +5,10 @@
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
+    "dev": "BASE_URL=http://localhost:8000 nuxt",
+    "build": "BASE_URL=http://venue-dev.volentix.io nuxt build",
+    "build-qa": "BASE_URL=http://venue-uat.volentix.io nuxt build",
+    "build-production": "BASE_URL=http://venue.volentix.io nuxt build",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue .",
     "lintfix": "eslint --fix --ext .js,.vue .",
@@ -15,10 +17,12 @@
     "test:unit": "jest",
     "sls:local": "sls offline",
     "sls:create": "npm run build && sls create_domain && sls deploy",
-    "sls:create-dev": "npm run build && sls create_domain --stage dev && sls deploy --stage dev",
-    "sls:create-qa": "npm run build && sls create_domain --stage qa && sls deploy --stage qa",
+    "sls:create-qa": "npm run build-qa && sls create_domain --stage qa && sls deploy --stage qa",
+    "sls:create-production": "npm run build-production && sls create_domain --stage production && sls deploy --production",
     "sls:delete": "sls remove && sls delete_domain",
-    "sls:deploy": "npm run build && sls deploy"
+    "sls:deploy": "sls deploy",
+    "sls:deploy-qa": "sls deploy --stage qa",
+    "sls:deploy-production": "sls deploy --stage production"
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -46,6 +50,7 @@
     "numeral": "^2.0.6",
     "nuxt": "^2.2.0",
     "nuxt-i18n": "^5.4.4",
+    "serverless-http": "^1.8.0",
     "vue-chartjs": "^3.3.1",
     "vue-clipboard2": "^0.1.0",
     "vue-countup-v2": "^1.0.3",
@@ -80,7 +85,6 @@
     "sass-loader": "^7.0.3",
     "serverless": "^1.32.0",
     "serverless-domain-manager": "^2.6.6",
-    "serverless-http": "^1.8.0",
     "serverless-offline": "^3.31.3",
     "serverless-s3-sync": "^1.7.1",
     "vue-jest": "^2.6.0"

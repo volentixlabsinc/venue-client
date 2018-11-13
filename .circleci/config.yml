@@ -39,13 +39,11 @@ jobs:
       # the current branch
       - run:
           name: Building
-          # The ifs are clearly not needed here, but I'm keeping them
-          # just in case we want to build differently in the future
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                cd venue && npm run build
+                cd venue && npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd venue && npm run build
+                cd venue && npm run build-production
             else
                 cd venue && npm run build
             fi
@@ -72,20 +70,16 @@ jobs:
       - run:
           name: Install aws cli
           command: sudo apt-get -y -qq install awscli
-      # Set the signature version for the S3 auth
+      # Deploy with the script corresponding to the current branch
       - run:
-          name: Setting Signature Version 4 for S3 Request Authentication
-          command: aws configure set default.s3.signature_version s3v4
-      # Deploy to the S3 bucket corresponding to the current branch
-      - run:
-          name: Deploy to S3
+          name: Deploy to Lambda with Serverless
           command: |
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-dev/ --delete
-            elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-uat/ --delete
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+                cd venue && npm run sls:deploy-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-production/ --delete
+                cd venue && npm run sls:deploy-production
+            else
+                cd venue && npm run sls:deploy
             fi
 workflows:
   version: 2
