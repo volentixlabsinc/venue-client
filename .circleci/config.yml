@@ -81,11 +81,11 @@ jobs:
           name: Deploy to S3
           command: |
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://venue-dev/ --delete
+                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-dev/ --delete
             elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://venue-uat/ --delete
+                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-uat/ --delete
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://venue-production/ --delete
+                aws --region eu-central-1 s3 sync venue/.nuxt/dist s3://volentix-venue-production/ --delete
             fi
 workflows:
   version: 2
