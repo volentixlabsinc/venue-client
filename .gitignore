@@ -22,3 +22,6 @@ dist
 
 # Generated kubernetes file should not be saved.
 kube/dev.yml
+
+# Generated files from serverless framework
+.serverless
