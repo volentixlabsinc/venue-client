@@ -96,6 +96,6 @@ resources:
           ]
 
 plugins:
-  # - serverless-offline
+  - serverless-offline
   - serverless-s3-sync
   - serverless-domain-manager

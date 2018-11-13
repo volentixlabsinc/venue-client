@@ -75,9 +75,10 @@ jobs:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
       # Install Serverless
       - run:
-          name: Install Serverless CLI
+          name: Install Serverless CLI and dependencies
           command: |
             cd venue && sudo npm install -g serverless
+            cd venue && npm install serverless-offline serverless-s3-sync serverless-domain-manager
       # Install Nuxt
       - run:
           name: Install Nuxt
