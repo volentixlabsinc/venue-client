@@ -31,9 +31,10 @@ jobs:
           name: Linting
           command: cd venue && npm run lint
       # Test the source code
-      - run:
-          name: Testing
-          command: cd venue && npm run test
+      # TODO Get tests to do anything useful
+      # - run:
+      #     name: Testing
+      #     command: cd venue && npm run test
       # Build project with different configuration based on
       # the current branch
       - run:
