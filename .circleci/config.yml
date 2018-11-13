@@ -2,7 +2,7 @@ version: 2
 jobs:
   # The build job
   build:
-    working_directory: ~/project/venue
+    working_directory: ~/project
     docker:
       - image: circleci/node:8.10-browsers
     steps:
@@ -18,7 +18,7 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "venue/package.json" }}
             - v1-dependencies-
       # Install project dependencies
       - run:
@@ -26,7 +26,7 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "venue/package.json" }}
           paths:
             - node_modules
       # Lint the source code
@@ -56,7 +56,7 @@ jobs:
             - .nuxt/dist
     # The deploy job
     deploy:
-      working_directory: ~/project/venue
+      working_directory: ~/project
       docker:
         - image: circleci/node:8.10-browsers
       steps:
