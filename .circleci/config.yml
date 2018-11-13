@@ -2,7 +2,7 @@ version: 2
 jobs:
   # The build job
   build:
-    working_directory: ~/project
+    working_directory: ~/venue
     docker:
       - image: circleci/node:8.10
     steps:
@@ -56,7 +56,7 @@ jobs:
             - venue/.nuxt/dist
   # The deploy job
   deploy:
-    working_directory: ~/project
+    working_directory: ~/venue
     docker:
       - image: circleci/node:8.10
     steps:
@@ -81,11 +81,11 @@ jobs:
           name: Deploy to S3
           command: |
             if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                aws --region eu-west-2 s3 sync dist s3://project-dev/ --delete
+                aws --region eu-central-1 s3 sync dist s3://venue-dev/ --delete
             elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                aws --region eu-west-2 s3 sync dist s3://project-qa/ --delete
+                aws --region eu-central-1 s3 sync dist s3://venue-uat/ --delete
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                aws --region eu-west-2 s3 sync dist s3://project/ --delete
+                aws --region eu-central-1 s3 sync dist s3://venue-production/ --delete
             fi
 workflows:
   version: 2
