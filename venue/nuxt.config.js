@@ -76,10 +76,10 @@ module.exports = {
   },
   serverMiddleware: [express.json(), cookieParser()],
   css: [
-    { src: "~/assets/custom.css", lang: "css" },
-    { src: "~/assets/custom.sass", lang: "sass" },
-    { src: "~/assets/main.scss", lang: "scss" },
-    { src: "~/assets/spacing.scss", lang: "scss" }
+    { src: "~/styles/custom.css", lang: "css" },
+    { src: "~/styles/custom.sass", lang: "sass" },
+    { src: "~/styles/main.scss", lang: "scss" },
+    { src: "~/styles/spacing.scss", lang: "scss" }
   ],
   render: {
     etag: false,
@@ -94,7 +94,10 @@ module.exports = {
   ],
   axios: {
     // Set in the various build-${env} scripts
-    baseURL: process.env.BASE_URL + "/api"
+    // baseURL: process.env.NUXT_ENV_BTT_URL
+    //   ? process.env.NUXT_ENV_BTT_URL + "/api"
+    //   : "http://localhost:8000/api"
+    baseURL: "https://venue-dev.volentix.io/api"
   },
   auth: {
     redirect: {
