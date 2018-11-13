@@ -1,4 +1,4 @@
-const { I18N } = require("./config");
+const { I18N } = require("./src/config");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 global.File = typeof window === "undefined" ? Object : window.File;
 
 module.exports = {
+  srcDir: "src",
   /*
   ** Headers of the page
   */
@@ -25,7 +26,7 @@ module.exports = {
       {
         rel: "icon",
         type: "image/png",
-        href: "/favicon.png"
+        href: "/static/favicon.png"
       },
       {
         rel: "stylesheet",
