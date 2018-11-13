@@ -5,10 +5,10 @@
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
-    "dev": "BASE_URL=http://localhost:8000 nuxt",
-    "build": "BASE_URL=http://venue-dev.volentix.io nuxt build",
-    "build-qa": "BASE_URL=http://venue-uat.volentix.io nuxt build",
-    "build-production": "BASE_URL=http://venue.volentix.io nuxt build",
+    "dev": "NUXT_ENV_BTT_URL=http://localhost:8000 nuxt",
+    "build": "NUXT_ENV_BTT_URL=https://venue-dev.volentix.io nuxt build",
+    "build-qa": "NUXT_ENV_BTT_URL=https://venue-uat.volentix.io nuxt build",
+    "build-production": "NUXT_ENV_BTT_URL=https://venue.volentix.io nuxt build",
     "start": "nuxt start",
     "lint": "eslint --ext .js,.vue .",
     "lintfix": "eslint --fix --ext .js,.vue .",
@@ -20,9 +20,9 @@
     "sls:create-qa": "npm run build-qa && sls create_domain --stage qa && sls deploy --stage qa",
     "sls:create-production": "npm run build-production && sls create_domain --stage production && sls deploy --production",
     "sls:delete": "sls remove && sls delete_domain",
-    "sls:deploy": "sls deploy",
-    "sls:deploy-qa": "sls deploy --stage qa",
-    "sls:deploy-production": "sls deploy --stage production"
+    "sls:deploy": "npm run build && sls deploy",
+    "sls:deploy-qa": "npm run build-qa && sls deploy --stage qa",
+    "sls:deploy-production": "npm run build-production && sls deploy --stage production"
   },
   "lint-staged": {
     "*.{js,vue}": [
