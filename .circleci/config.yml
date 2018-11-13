@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/project
     docker:
-      - image: circleci/node:8.10-browsers
+      - image: circleci/node:8.10
     steps:
       # Checkout the code from the branch into the working_directory
       - checkout
@@ -58,7 +58,7 @@ jobs:
     deploy:
       working_directory: ~/project
       docker:
-        - image: circleci/node:8.10-browsers
+        - image: circleci/node:8.10
       steps:
         # Log the current branch
         - run:
