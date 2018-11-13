@@ -115,7 +115,7 @@ resources:
             # These policies are very low, but current passwords don't have any minimum, so
             # to migrate passwords over, need to keep these for the moment
             MinimumLength: 6
-            RequireLowercase: true
+            RequireLowercase: false
             RequireNumbers: false
             RequireSymbols: false
             RequireUppercase: false
@@ -156,4 +156,4 @@ custom:
     createRoute53Record: false
   output:
     handler: scripts/output.handler # Same syntax as you already know
-    file: stack.json # toml, yaml, yml, and json format is available
+    file: stack-${self:provider.stage}.json # toml, yaml, yml, and json format is available
