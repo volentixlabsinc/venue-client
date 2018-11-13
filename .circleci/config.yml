@@ -41,13 +41,15 @@ jobs:
       # the current branch
       - run:
           name: Building
+          # The ifs are clearly not needed here, but I'm keeping them
+          # just in case we want to build differently in the future
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                npm run build-qa
+                npm run build
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                npm run build-prod
+                npm run build
             else
-                npm run build-dev
+                npm run build
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
