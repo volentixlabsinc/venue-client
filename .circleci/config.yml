@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Building
           command: |
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
                 cd webapp && npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
                 cd webapp && npm run build-production
@@ -96,7 +96,7 @@ jobs:
       - run:
           name: Deploy to Lambda with Serverless
           command: |
-            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
                 cd webapp && npm run sls:deploy-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
                 cd webapp && npm run sls:deploy-production
@@ -118,5 +118,5 @@ workflows:
             branches:
               only:
                 - develop
-                - staging
+                - qa
                 - master
