@@ -2,7 +2,7 @@ version: 2
 jobs:
   # The build job
   build:
-    working_directory: ~/venue
+    working_directory: ~/project
     docker:
       - image: circleci/node:8.10
     steps:
@@ -15,17 +15,27 @@ jobs:
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "venue/package.json" }}
-            - v1-dependencies-
+            # when lock file changes, use increasingly general patterns to restore cache
+            - npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+            - npm-cache-v1-{{ .Branch }}-
+            - npm-cache-v1-
+      # - restore_cache:
+      #     keys:
+      #       - v1-dependencies-{{ checksum "venue/package.json" }}
+      #       - v1-dependencies-
       # Install project dependencies
       - run:
           name: Install local dependencies
           command: cd venue && npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "venue/package.json" }}
           paths:
-            - venue/node_modules
+            - ~/project/venue/node_modules # location depends on npm version
+          key: npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+      # - save_cache:
+      #     key: v1-dependencies-{{ checksum "venue/package.json" }}
+      #     paths:
+      #       - venue/node_modules
       # Lint the source code
       - run:
           name: Linting
@@ -49,7 +59,7 @@ jobs:
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-dist-{{ .Branch }}-{{ .Revision }}
           paths:
             - venue/lang
             - venue/package.json
@@ -62,7 +72,7 @@ jobs:
             - venue/static
   # The deploy job
   deploy:
-    working_directory: ~/venue
+    working_directory: ~/project
     docker:
       - image: circleci/node:8.10
     steps:
@@ -73,7 +83,9 @@ jobs:
       # Restore cache from the build job which contains the
       # dist folder that needs to be deployed
       - restore_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-dist-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          key: npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
       # Install Serverless
       - run:
           name: Install Serverless CLI and dependencies
