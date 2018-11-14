@@ -5,7 +5,7 @@
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
-    "dev": "NUXT_ENV_BTT_URL=https://venue.volentix.io/api/ nuxt",
+    "dev": "NUXT_ENV_BTT_URL=http://localhost:8000/api/ nuxt",
     "build": "NUXT_ENV_BTT_URL=https://venue-dev.volentix.io/api/ nuxt build",
     "build-qa": "NUXT_ENV_BTT_URL=https://venue-uat.volentix.io/api/ nuxt build",
     "build-production": "NUXT_ENV_BTT_URL=https://venue.volentix.io/api/ nuxt build",
