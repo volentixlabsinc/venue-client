@@ -65,24 +65,24 @@
 </template>
 
 <script>
+import AvailableSignatures from "~/components/AvailableSignatures.vue";
+import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
+import VerifySignature from "~/components/VerifySignature.vue";
+import HelpModal from "~/components/HelpModal.vue";
 import OnboardingInputUserProfileId from "~/components/OnboardingInputUserProfileId.vue";
 
-import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
-import HelpModal from "~/components/HelpModal.vue";
-import AvailableSignatures from "~/components/AvailableSignatures.vue";
-import VerifySignature from "~/components/VerifySignature.vue";
 import { retrieveAvailableSignatures, loadUserData } from "~/assets/utils";
 
 const BITCOINTALK_FORUM_ID = 1;
 
 export default {
   components: {
-    TwoColumnLayout,
-    OnboardingInputUserProfileId,
-    HelpModal,
     AvailableSignatures,
     CampaignRightPanel,
+    HelpModal,
+    OnboardingInputUserProfileId,
+    TwoColumnLayout,
     VerifySignature
   },
   data() {

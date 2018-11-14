@@ -17,21 +17,21 @@
 </template>
 
 <script>
-import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import VtxEarned from "~/components/VtxEarned.vue";
+import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import Leaderboard from "~/components/Leaderboard.vue";
 import LeaderboardStats from "~/components/LeaderboardStats.vue";
 import MyCampaignActivityCard from "~/components/MyCampaignActivityCard.vue";
-import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
+import VtxEarned from "~/components/VtxEarned.vue";
 
 export default {
   components: {
-    TwoColumnLayout,
-    VtxEarned,
+    CampaignInfoCard,
     Leaderboard,
     LeaderboardStats,
     MyCampaignActivityCard,
-    CampaignInfoCard
+    TwoColumnLayout,
+    VtxEarned
   }
 };
 </script>

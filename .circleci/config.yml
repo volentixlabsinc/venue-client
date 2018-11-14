@@ -1,30 +1,122 @@
 version: 2
 jobs:
+  # The build job
   build:
-    machine: true
-    steps:
-      - checkout
-      - run: |
-          TAG=v0.1.$CIRCLE_BUILD_NUM
-          docker build --build-arg BASE_URL=$BASE_URL --build-arg BROWSER_BASED_URL=$BROWSER_BASED_URL -t volentixlabs/venueui:$TAG .
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-          docker push volentixlabs/venueui:$TAG
-  deploy:
+    working_directory: ~/venue
     docker:
-      - image: volentixlabs/aws-kube-deploy:v0.1.2
-    working_directory: ~/repo
+      - image: circleci/node:8.10
     steps:
+      # Checkout the code from the branch into the working_directory
       - checkout
-      - run: kops export kubecfg
-      - run: |
-          TAG=v0.1.$CIRCLE_PREVIOUS_BUILD_NUM
-          sed 's/IMAGE_TAG/'$TAG'/' kube/dev.yml.template > kube/dev.yml
-          kubectl apply -f kube/dev.yml
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore local dependencies from cache
+      - restore_cache:
+          name: Restore node module dependencies
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+            - v2-npm-cache-{{ .Branch }}-
+            - v2-npm-cache-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: cd webapp && npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          paths:
+            - ~/venue/webapp/node_modules # location depends on npm version
+          key: v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+      # Lint the source code
+      - run:
+          name: Linting
+          command: cd webapp && npm run lint
+      # Test the source code
+      # TODO Get tests to do anything useful
+      # - run:
+      #     name: Testing
+      #     command: cd webapp && npm run test
+      # Build project with different configuration based on
+      # the current branch
+      - run:
+          name: Building
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd webapp && npm run build-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd webapp && npm run build-production
+            else
+                cd webapp && npm run build
+            fi
+      # Cache the .nuxt/dist folder for the deploy job
+      - save_cache:
+          key: v2-dist-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - webapp/lang
+            - webapp/package.json
+            - webapp/package-lock.json
+            - webapp/serverless.yml
+            - webapp/nuxt.config.js
+            - webapp/handler.js
+            - webapp/tsconfig.json
+            - webapp/tslint.json
+            - webapp/.nuxt/dist
+            - webapp/static
+  # The deploy job
+  deploy:
+    working_directory: ~/venue
+    docker:
+      - image: circleci/node:8.10
+    steps:
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore cache from the build job which contains the
+      # dist folder that needs to be deployed
+      - restore_cache:
+          name: Restore built project
+          key: v2-dist-{{ .Branch }}-{{ .Revision }}
+      - restore_cache:
+          name: Restore node module dependencies
+          key: v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+      # Install Serverless
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            cd webapp && sudo npm install -g serverless
+      # Install Nuxt
+      - run:
+          name: Install Nuxt
+          command: |
+            cd webapp && sudo npm install -g nuxt
+      # Deploy with the script corresponding to the current branch
+      - run:
+          name: Deploy to Lambda with Serverless
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd webapp && npm run sls:deploy-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd webapp && npm run sls:deploy-production
+            else
+                cd webapp && npm run sls:deploy
+            fi
 workflows:
   version: 2
+  # The build and deploy workflow
   build_and_deploy:
     jobs:
       - build
+      # The deploy job will only run on the filtered branches and
+      # require the build job to be successful before it starts
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - develop
+                - qa
+                - master

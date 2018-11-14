@@ -3,20 +3,21 @@
   margin-right: auto;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Code Bold";
   src: url("~assets/CODE_Bold.otf") format("opentype");
 }
+*/
 
 .title {
-  font-family: "Code Bold", Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
 }
 
 .card-header-title {
-  font-family: "Code Bold", Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
 }
 
-/* Workaround for Buefy not properly handliing field add-ons with messages */
+/* Workaround for Buefy not properly handling field add-ons with messages */
 
 div.has-addons {
   flex-wrap: wrap;
