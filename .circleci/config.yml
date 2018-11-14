@@ -14,6 +14,7 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
       # Restore local dependencies from cache
       - restore_cache:
+          name: Restore node module dependencies
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
             - v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
@@ -76,8 +77,10 @@ jobs:
       # Restore cache from the build job which contains the
       # dist folder that needs to be deployed
       - restore_cache:
+          name: Restore built project
           key: v1-dist-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
+          name: Restore node module dependencies
           key: v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
       # Install Serverless
       - run:
