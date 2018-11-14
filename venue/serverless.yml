@@ -39,7 +39,7 @@ package:
 functions:
   nuxt-renderer:
     handler: handler.render
-    memorySize: 4096
+    memorySize: 2048
     timeout: 30
     events:
       - http:
