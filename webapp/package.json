@@ -15,14 +15,14 @@
     "precommit": "lint-staged",
     "test": "npm run lint && npm run test:unit",
     "test:unit": "jest",
-    "sls:local": "node_modules/serverless/bin/serverless offline",
-    "sls:create": "npm run build && node_modules/serverless/bin/serverless create_domain && node_modules/serverless/bin/serverless deploy",
-    "sls:create-qa": "npm run build-qa && node_modules/serverless/bin/serverless create_domain --stage qa && node_modules/serverless/bin/serverless deploy --stage qa",
-    "sls:create-production": "npm run build-production && node_modules/serverless/bin/serverless create_domain --stage production && node_modules/serverless/bin/serverless deploy --production",
-    "sls:delete": "node_modules/serverless/bin/serverless remove && node_modules/serverless/bin/serverless delete_domain",
-    "sls:deploy": "node_modules/serverless/bin/serverless deploy",
-    "sls:deploy-qa": "node_modules/serverless/bin/serverless deploy --stage qa",
-    "sls:deploy-production": "node_modules/serverless/bin/serverless deploy --stage production"
+    "sls:local": "serverless offline",
+    "sls:create": "npm run build && serverless create_domain && serverless deploy",
+    "sls:create-qa": "npm run build-qa && serverless create_domain --stage qa && serverless deploy --stage qa",
+    "sls:create-production": "npm run build-production && serverless create_domain --stage production && serverless deploy --production",
+    "sls:delete": "serverless remove && serverless delete_domain",
+    "sls:deploy": "serverless deploy",
+    "sls:deploy-qa": "serverless deploy --stage qa",
+    "sls:deploy-production": "serverless deploy --stage production"
   },
   "lint-staged": {
     "*.{js,vue}": [
