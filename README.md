@@ -1,6 +1,6 @@
 # venue-client
 
-[![CircleCI](https://circleci.com/gh/Volentix/venue-client.svg?style=shield&circle-token=476a91629295ad83bd8b0c90a1dbc2712803b5d5)](https://circleci.com/gh/Volentix/venue-client)
+[![CircleCI](https://circleci.com/gh/Volentix/venue-client/tree/master.svg?style=svg)](https://circleci.com/gh/Volentix/venue-client/tree/master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)
@@ -11,10 +11,10 @@
 
 This repository houses the artifacts for the UI of the Venue platform. The main technologies used for this software are:
 
-  * [Javascript](https://www.javascript.com/)
-  * [Vue](https://vuejs.org/)
-  * [Nuxt](https://nuxtjs.org/)
-  * [Bulma](https://bulma.io)
+- [Javascript](https://www.javascript.com/)
+- [Vue](https://vuejs.org/)
+- [Nuxt](https://nuxtjs.org/)
+- [Bulma](https://bulma.io)
 
 ## Table of Contents
 
@@ -35,18 +35,20 @@ This repository houses the artifacts for the UI of the Venue platform. The main 
 
 Before running the Venue client, make sure you have the following installed on your machine.
 
-  * [Venue Server](https://github.com/volentix/venue-server).
-  * [Yarn](https://yarnpkg.com/lang/en/) or [NPM](https://www.npmjs.com) (we recommend yarn)
-  * [Node](https://nodejs.org/)
+- [Venue Server](https://github.com/volentix/venue-server).
+- [Yarn](https://yarnpkg.com/lang/en/) or [NPM](https://www.npmjs.com) (we recommend yarn)
+- [Node](https://nodejs.org/)
 
 ### Venue Client
 
 Open a terminal in the root of this project and then change into the 'venue' directory:
+
 ```
 cd venue
 ```
 
 Install dependancies.
+
 ```
 yarn install
 ```
@@ -66,6 +68,7 @@ The result of running this proxy is that all the traffic will be sent through lo
 #### Linux
 
 To run the nginx proxy on linux:
+
 ```
 docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
 ```
@@ -73,6 +76,7 @@ docker run -p 80:80 --net="host" volentixlabs/venue-local-proxy:v0.1.0
 #### Mac
 
 To run the nginx proxy on Mac:
+
 ```
 docker run -p 80:80 volentixlabs/venue-local-proxy-mac:v0.1.0
 ```
@@ -91,18 +95,23 @@ to the server:
 ```
 
 ### Running
+
 Serve with hot reload at http://localhost
+
 ```
 npm run dev
 ```
+
 Start the server:
+
 ```
 npm start
 ```
 
 ### Building
- 
+
 Build for production and launch server
+
 ```
 yarn run build
 ```

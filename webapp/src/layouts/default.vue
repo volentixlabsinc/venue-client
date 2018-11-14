@@ -134,6 +134,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+nav.mobile-navbar {
+  border: 0 !important;
+}
+
 div.is-hidden-tablet nav.navbar {
   background: linear-gradient(rgb(74, 91, 107), rgb(60, 78, 92));
   padding-right: 0px;

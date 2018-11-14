@@ -1,12 +1,18 @@
-import { I18N } from "./config";
+const { I18N } = require("./lang");
+const express = require("express");
+const cookieParser = require("cookie-parser");
+
+require("dotenv").config();
+console.log("Axios baseURL: ", process.env.BTT_URL);
 
 // Workaround for https://github.com/buefy/nuxt-buefy/issues/32
 global.File = typeof window === "undefined" ? Object : window.File;
 
 module.exports = {
+  srcDir: "src",
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: "venue",
     meta: [
@@ -23,7 +29,7 @@ module.exports = {
       {
         rel: "icon",
         type: "image/png",
-        href: "/favicon.png"
+        href: "/static/favicon.png"
       },
       {
         rel: "stylesheet",
@@ -35,25 +41,30 @@ module.exports = {
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Titillium+Web"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Open+Sans"
       }
     ]
   },
   /*
-  ** Customize the progress bar color
-  */
+   ** Customize the progress bar color
+   */
   loading: { color: "#84429a" },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
+    extractCSS: true,
     // Notice: Please do not deploy bundles built with analyze mode, it's only for analyzing purpose.
     // analyze: {
     //   analyzerMode: "static",
     //   excludeAssets: /^vendor.*/
     // },
     /*
-    ** Run ESLint on save
-    */
+     ** Run ESLint on save
+     */
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -70,12 +81,18 @@ module.exports = {
       }
     }
   },
+  serverMiddleware: [express.json(), cookieParser()],
   css: [
-    { src: "~/assets/custom.css", lang: "css" },
-    { src: "~/assets/custom.sass", lang: "sass" },
-    { src: "~/assets/main.scss", lang: "scss" },
-    { src: "~/assets/spacing.scss", lang: "scss" }
+    { src: "~/styles/custom.css", lang: "css" },
+    { src: "~/styles/custom.sass", lang: "sass" },
+    { src: "~/styles/main.scss", lang: "scss" },
+    { src: "~/styles/spacing.scss", lang: "scss" }
   ],
+  render: {
+    etag: false,
+    // Disabled compression
+    compressor: { threshold: Infinity }
+  },
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/auth",
@@ -83,16 +100,15 @@ module.exports = {
     ["nuxt-i18n", I18N]
   ],
   axios: {
-    baseURL: process.env.BASE_URL || "http://localhost/api",
-    browserBaseURL: process.env.BROWSER_BASED_URL || "http://localhost/api"
+    baseURL: process.env.BTT_URL
   },
   auth: {
     redirect: {
       home: "/dashboard"
     },
-    plugins: ["~/plugins/auth", "~plugins/axios"],
+    plugins: ["~/plugins/auth", "~/plugins/axios"],
 
-    // This is broken right now, so I've enabled it manuallyt in axios.js
+    // This is broken right now, so I've enabled it manually in axios.js
     // resetOnError: true,
     strategies: {
       local: {

@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import Signup from "~/components/Signup.vue";
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 
 export default {
   components: {
-    TwoColumnLayout,
-    Signup
+    Signup,
+    TwoColumnLayout
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="box m-l-xxl m-r-xxl m-t-lg p-l-none p-r-none">
-      <img src="~/assets/youtube-campaign-banner.jpg">
+      <img src="~/assets/telegram-campaign-banner.png">
       <div>
         <div class="has-text-centered">Welcome, please follow the steps</div>
 
@@ -44,11 +44,22 @@
             </div>
           </section>
           <section class="m-t-lg m-b-lg">
-            <div class="is-4 has-text-weight-bold">Step <span class="step-num">2</span> Enter URL of user-generated content</div>
+            <div class="is-4 has-text-weight-bold">Step <span class="step-num">2</span> Join Volentix Telegram</div>
+            <hr>
+            <div class="has-text-centered">
+              <a target="_blank" href="https://t.me/Volentix" class="button is-success is-outlined is-rounded">Join Volentix Telegram</a>
+              <label class="checkbox m-t-md">
+                <input v-model="isVolentixNameAdded" type="checkbox">
+                For extra VTX, I added "volentix.io" to my name on Telegram
+              </label>
+            </div>
+          </section>
+          <section class="m-t-lg m-b-lg">
+            <div class="is-4 has-text-weight-bold">Step <span class="step-num">3</span> Enter your Telegram username</div>
             <hr>
             <div class="field m-l-none m-r-none ">
               <div class="control has-text-centered">
-                <input v-model="youtubeUrl" class="input is-success" type="url" placeholder="https://youtu.be/my-content">
+                <input v-model="telegramUsername" class="input is-success" type="text" placeholder="Telegram username">
               </div>
             </div>
           </section>
@@ -69,36 +80,35 @@
 
 <script>
 export default {
-  middleware: "auth",
-  data() {
-    return {
-      youtubeUrl: "",
-      showRules: false,
-      submitResponse: "",
-      isLoading: false
-    };
-  },
+  data: () => ({
+    telegramUsername: "@",
+    isVolentixNameAdded: false,
+    showRules: false,
+    submitResponse: "",
+    isLoading: false
+  }),
   computed: {
     isReadyToSubmit() {
-      return this.youtubeUrl !== "";
+      return !(this.telegramUsername === "" || this.telegramUsername === "@");
     }
   },
   methods: {
     async submit() {
+      console.log("submit telegramUsername: " + this.telegramUsername);
+      console.log("isready: " + this.isReadyToSubmit);
       const data = {
-        sheetName: "Youtube/Article",
+        sheetName: "Telegram",
         row: [
           this.$auth.user.username,
-          this.$store.state.userStats.hasCampaignData
-            ? this.$store.state.userStats.profile_level[0].forumUserId
-            : "",
-          this.youtubeUrl,
-          this.$auth.user.email
+          this.telegramUsername,
+          this.$auth.user.email,
+          this.isVolentixNameAdded ? "Yes" : "No"
         ]
       };
 
       try {
-        // TODO Show spinner
+        this.isLoading = true;
+
         const res = await this.$axios.post(
           // TODO Make better
           window.location.href.startsWith("https://venue.volentix.io")
@@ -108,11 +118,13 @@ export default {
         );
         if (res.status === 200) {
           this.submitResponse =
-            "You have been registered for the YouTube bounty campaign.";
+            "You have been registered for the Telegram bounty campaign.";
+          this.telegramUsername = "@";
         } else {
           this.submitResponse =
             "A failure occurred attempting to register; please send us a message on Telegram for support";
         }
+        this.isLoading = false;
         // TODO Handle error
       } catch (err) {
         console.error(err);
@@ -142,6 +154,6 @@ hr {
 }
 
 input.input {
-  max-width: 20rem;
+  max-width: 12rem;
 }
 </style>

@@ -13,18 +13,18 @@
 </template>
 
 <script>
-import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
-import PointsDetailsInfo from "~/components/PointsDetailsInfo.vue";
 import CampaignInfoCard from "~/components/CampaignInfoCard.vue";
 import MyCampaignActivityCard from "~/components/MyCampaignActivityCard.vue";
+import PointsDetailsInfo from "~/components/PointsDetailsInfo.vue";
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 
 export default {
   middleware: "auth",
   components: {
-    TwoColumnLayout,
-    PointsDetailsInfo,
     CampaignInfoCard,
-    MyCampaignActivityCard
+    MyCampaignActivityCard,
+    PointsDetailsInfo,
+    TwoColumnLayout
   }
 };
 </script>

@@ -1,0 +1,22 @@
+.is-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-family: "Titillium Web", sans-serif;
+}
+
+.card-header-title {
+  font-family: "Titillium Web", sans-serif;
+}
+
+/* Workaround for Buefy not properly handling field add-ons with messages */
+
+div.has-addons {
+  flex-wrap: wrap;
+}
+
+section.language-container {
+  min-height: 200px;
+}

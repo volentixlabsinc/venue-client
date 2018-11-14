@@ -21,18 +21,18 @@
 </template>
 
 <script>
-import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import AvailableSignatures from "~/components/AvailableSignatures.vue";
 import CampaignRightPanel from "~/components/CampaignRightPanel.vue";
+import TwoColumnLayout from "~/components/TwoColumnLayout.vue";
 import VerifySignature from "~/components/VerifySignature.vue";
 
 import { retrieveAvailableSignatures } from "~/assets/utils.js";
 
 export default {
   components: {
-    TwoColumnLayout,
     AvailableSignatures,
     CampaignRightPanel,
+    TwoColumnLayout,
     VerifySignature
   },
   middleware: "auth",
