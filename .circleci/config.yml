@@ -17,9 +17,9 @@ jobs:
           name: Restore node module dependencies
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
-            - v1-npm-cache-{{ .Branch }}-
-            - v1-npm-cache-
+            - v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+            - v2-npm-cache-{{ .Branch }}-
+            - v2-npm-cache-
       # Install project dependencies
       - run:
           name: Install local dependencies
@@ -28,7 +28,7 @@ jobs:
       - save_cache:
           paths:
             - ~/venue/webapp/node_modules # location depends on npm version
-          key: v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+          key: v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
       # Lint the source code
       - run:
           name: Linting
@@ -52,7 +52,7 @@ jobs:
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
-          key: v1-dist-{{ .Branch }}-{{ .Revision }}
+          key: v2-dist-{{ .Branch }}-{{ .Revision }}
           paths:
             - webapp/lang
             - webapp/package.json
@@ -78,10 +78,10 @@ jobs:
       # dist folder that needs to be deployed
       - restore_cache:
           name: Restore built project
-          key: v1-dist-{{ .Branch }}-{{ .Revision }}
+          key: v2-dist-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           name: Restore node module dependencies
-          key: v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+          key: v2-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
       # Install Serverless
       - run:
           name: Install Serverless CLI and dependencies
