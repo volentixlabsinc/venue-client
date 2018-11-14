@@ -2,7 +2,7 @@ version: 2
 jobs:
   # The build job
   build:
-    working_directory: ~/project
+    working_directory: ~/venue
     docker:
       - image: circleci/node:8.10
     steps:
@@ -17,56 +17,56 @@ jobs:
           name: Restore node module dependencies
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+            - v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
             - v1-npm-cache-{{ .Branch }}-
             - v1-npm-cache-
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: cd venue && npm install
+          command: cd webapp && npm install
       # Cache local dependencies if they don't exist
       - save_cache:
           paths:
-            - ~/project/venue/node_modules # location depends on npm version
-          key: v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+            - ~/venue/webapp/node_modules # location depends on npm version
+          key: v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
       # Lint the source code
       - run:
           name: Linting
-          command: cd venue && npm run lint
+          command: cd webapp && npm run lint
       # Test the source code
       # TODO Get tests to do anything useful
       # - run:
       #     name: Testing
-      #     command: cd venue && npm run test
+      #     command: cd webapp && npm run test
       # Build project with different configuration based on
       # the current branch
       - run:
           name: Building
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                cd venue && npm run build-qa
+                cd webapp && npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd venue && npm run build-production
+                cd webapp && npm run build-production
             else
-                cd venue && npm run build
+                cd webapp && npm run build
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
           key: v1-dist-{{ .Branch }}-{{ .Revision }}
           paths:
-            - venue/lang
-            - venue/package.json
-            - venue/package-lock.json
-            - venue/serverless.yml
-            - venue/nuxt.config.js
-            - venue/handler.js
-            - venue/tsconfig.json
-            - venue/tslint.json
-            - venue/.nuxt/dist
-            - venue/static
+            - webapp/lang
+            - webapp/package.json
+            - webapp/package-lock.json
+            - webapp/serverless.yml
+            - webapp/nuxt.config.js
+            - webapp/handler.js
+            - webapp/tsconfig.json
+            - webapp/tslint.json
+            - webapp/.nuxt/dist
+            - webapp/static
   # The deploy job
   deploy:
-    working_directory: ~/project
+    working_directory: ~/venue
     docker:
       - image: circleci/node:8.10
     steps:
@@ -81,27 +81,27 @@ jobs:
           key: v1-dist-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
           name: Restore node module dependencies
-          key: v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+          key: v1-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
       # Install Serverless
       - run:
           name: Install Serverless CLI and dependencies
           command: |
-            cd venue && sudo npm install -g serverless
+            cd webapp && sudo npm install -g serverless
       # Install Nuxt
       - run:
           name: Install Nuxt
           command: |
-            cd venue && sudo npm install -g nuxt
+            cd webapp && sudo npm install -g nuxt
       # Deploy with the script corresponding to the current branch
       - run:
           name: Deploy to Lambda with Serverless
           command: |
             if [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                cd venue && npm run sls:deploy-qa
+                cd webapp && npm run sls:deploy-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd venue && npm run sls:deploy-production
+                cd webapp && npm run sls:deploy-production
             else
-                cd venue && npm run sls:deploy
+                cd webapp && npm run sls:deploy
             fi
 workflows:
   version: 2
