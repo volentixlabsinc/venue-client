@@ -38,6 +38,10 @@ module.exports = {
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css?family=Titillium+Web"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Open+Sans"
       }
     ]
   },

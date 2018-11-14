@@ -5,7 +5,7 @@
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
-    "dev": "NUXT_ENV_BTT_URL=https://venue.volentix.io/api/ nuxt",
+    "dev": "NUXT_ENV_BTT_URL=http://localhost:8000/api/ nuxt",
     "build": "NUXT_ENV_BTT_URL=https://venue-dev.volentix.io/api/ nuxt build",
     "build-qa": "NUXT_ENV_BTT_URL=https://venue-uat.volentix.io/api/ nuxt build",
     "build-production": "NUXT_ENV_BTT_URL=https://venue.volentix.io/api/ nuxt build",
@@ -76,7 +76,7 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.5.0",
-    "husky": "^0.14.3",
+    "husky": "^1.1.4",
     "jest": "^23.6.0",
     "lint-staged": "^7.2.0",
     "node-sass": "^4.9.2",

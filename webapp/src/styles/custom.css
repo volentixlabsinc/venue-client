@@ -3,18 +3,12 @@
   margin-right: auto;
 }
 
-/* @font-face {
-  font-family: "Code Bold";
-  src: url("~assets/CODE_Bold.otf") format("opentype");
-}
-*/
-
 .title {
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 .card-header-title {
-  font-family: "Open Sans", Arial, sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 /* Workaround for Buefy not properly handling field add-ons with messages */
