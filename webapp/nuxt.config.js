@@ -92,13 +92,13 @@ module.exports = {
     "@nuxtjs/google-analytics",
     ["nuxt-i18n", I18N]
   ],
-  axios: {
-    // Set in the various build-${env} scripts
-    // baseURL: process.env.NUXT_ENV_BTT_URL
-    //   ? process.env.NUXT_ENV_BTT_URL + "/api"
-    //   : "http://localhost:8000/api"
-    baseURL: "https://venue-dev.volentix.io/api"
-  },
+  // axios: {
+  // Set in the various build-${env} scripts
+  // baseURL: process.env.NUXT_ENV_BTT_URL
+  //   ? process.env.NUXT_ENV_BTT_URL + "/api"
+  //   : "http://localhost:8000/api"
+  // baseURL: "https://venue-dev.volentix.io/api"
+  // },
   auth: {
     redirect: {
       home: "/dashboard"
