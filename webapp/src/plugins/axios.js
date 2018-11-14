@@ -8,6 +8,8 @@ export default ({ $axios, app }) => {
     $axios.defaults.baseURL = process.env.NUXT_ENV_BTT_URL;
   }
 
+  console.log("Axios baseURL: ", $axios.defaults.baseURL);
+
   // This should be handled by resetOnError in the config, but it's broke now
   $axios.onError(error => {
     const code = parseInt(error.response && error.response.status);
