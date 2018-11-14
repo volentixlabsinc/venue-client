@@ -107,7 +107,7 @@ module.exports = {
     redirect: {
       home: "/dashboard"
     },
-    plugins: ["~/plugins/auth", "~plugins/axios"],
+    plugins: ["~/plugins/auth", "~/plugins/axios"],
 
     // This is broken right now, so I've enabled it manually in axios.js
     // resetOnError: true,
