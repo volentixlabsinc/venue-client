@@ -25,3 +25,6 @@ kube/dev.yml
 
 # Generated files from serverless framework
 .serverless
+
+# Local environment variables
+.env

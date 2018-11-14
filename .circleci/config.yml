@@ -44,16 +44,17 @@ jobs:
           name: Building
           command: |
             if [ "${CIRCLE_BRANCH}" == "qa" ]; then
-                cd webapp && npm run build-qa
+                cd webapp && cp env/qa.env ./.env && npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd webapp && npm run build-production
+                cd webapp && cp env/production.env ./.env && npm run build-production
             else
-                cd webapp && npm run build
+                cd webapp && cp env/dev.env ./.env && npm run build
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
           key: v3-dist-{{ .Branch }}-{{ .Revision }}
           paths:
+            - webapp/.env
             - webapp/lang
             - webapp/package.json
             - webapp/package-lock.json

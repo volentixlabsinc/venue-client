@@ -2,6 +2,9 @@ const { I18N } = require("./lang");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
+require("dotenv").config();
+console.log("Axios baseURL: ", process.env.BTT_URL);
+
 // Workaround for https://github.com/buefy/nuxt-buefy/issues/32
 global.File = typeof window === "undefined" ? Object : window.File;
 
@@ -97,7 +100,7 @@ module.exports = {
     ["nuxt-i18n", I18N]
   ],
   axios: {
-    baseURL: process.env.NUXT_ENV_BTT_URL
+    baseURL: process.env.BTT_URL
   },
   auth: {
     redirect: {
