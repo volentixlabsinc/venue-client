@@ -16,13 +16,9 @@ jobs:
       - restore_cache:
           keys:
             # when lock file changes, use increasingly general patterns to restore cache
-            - npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
-            - npm-cache-v1-{{ .Branch }}-
-            - npm-cache-v1-
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "venue/package.json" }}
-      #       - v1-dependencies-
+            - v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+            - v1-npm-cache-{{ .Branch }}-
+            - v1-npm-cache-
       # Install project dependencies
       - run:
           name: Install local dependencies
@@ -31,11 +27,7 @@ jobs:
       - save_cache:
           paths:
             - ~/project/venue/node_modules # location depends on npm version
-          key: npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
-      # - save_cache:
-      #     key: v1-dependencies-{{ checksum "venue/package.json" }}
-      #     paths:
-      #       - venue/node_modules
+          key: v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
       # Lint the source code
       - run:
           name: Linting
@@ -63,6 +55,7 @@ jobs:
           paths:
             - venue/lang
             - venue/package.json
+            - venue/package-lock.json
             - venue/serverless.yml
             - venue/nuxt.config.js
             - venue/handler.js
@@ -85,12 +78,12 @@ jobs:
       - restore_cache:
           key: v1-dist-{{ .Branch }}-{{ .Revision }}
       - restore_cache:
-          key: npm-cache-v1-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
+          key: v1-npm-cache-{{ .Branch }}-{{ checksum "venue/package-lock.json" }}
       # Install Serverless
       - run:
           name: Install Serverless CLI and dependencies
           command: |
-            cd venue && sudo npm install -g serverless && npm install serverless-offline serverless-s3-sync serverless-domain-manager
+            cd venue && sudo npm install -g serverless
       # Install Nuxt
       - run:
           name: Install Nuxt
