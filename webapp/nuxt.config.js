@@ -2,6 +2,9 @@ const { I18N } = require("./lang");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 
+require("dotenv").config();
+console.log("Axios baseURL: ", process.env.BTT_URL);
+
 // Workaround for https://github.com/buefy/nuxt-buefy/issues/32
 global.File = typeof window === "undefined" ? Object : window.File;
 
@@ -96,13 +99,9 @@ module.exports = {
     "@nuxtjs/google-analytics",
     ["nuxt-i18n", I18N]
   ],
-  // axios: {
-  // Set in the various build-${env} scripts
-  // baseURL: process.env.NUXT_ENV_BTT_URL
-  //   ? process.env.NUXT_ENV_BTT_URL + "/api"
-  //   : "http://localhost:8000/api"
-  // baseURL: "https://venue-dev.volentix.io/api"
-  // },
+  axios: {
+    baseURL: process.env.BTT_URL
+  },
   auth: {
     redirect: {
       home: "/dashboard"

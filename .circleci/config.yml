@@ -44,16 +44,17 @@ jobs:
           name: Building
           command: |
             if [ "${CIRCLE_BRANCH}" == "qa" ]; then
-                cd webapp && npm run build-qa
+                cd webapp && cp env/qa.env ./.env && npm run build-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd webapp && npm run build-production
+                cd webapp && cp env/production.env ./.env && npm run build-production
             else
-                cd webapp && npm run build
+                cd webapp && cp env/dev.env ./.env && npm run build
             fi
       # Cache the .nuxt/dist folder for the deploy job
       - save_cache:
           key: v3-dist-{{ .Branch }}-{{ .Revision }}
           paths:
+            - webapp/.env
             - webapp/lang
             - webapp/package.json
             - webapp/package-lock.json
@@ -82,16 +83,6 @@ jobs:
       - restore_cache:
           name: Restore node module dependencies
           key: v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
-      # Install Serverless
-      - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            cd webapp && sudo npm install -g serverless
-      # Install Nuxt
-      - run:
-          name: Install Nuxt
-          command: |
-            cd webapp && sudo npm install -g nuxt
       # Deploy with the script corresponding to the current branch
       - run:
           name: Deploy to Lambda with Serverless
