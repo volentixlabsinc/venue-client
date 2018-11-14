@@ -2,10 +2,11 @@ export default ({ $axios, app }) => {
   $axios.setHeader("Accept", "application/json");
   $axios.setHeader("Content-Type", "application/json", ["post"]);
 
-  console.log("NUXT_ENV_BTT_URL ", process.env.NUXT_ENV_BTT_URL);
-  console.log("BTT_URL ", process.env.BTT_URL);
-  console.log("NUXT_ENV_API_URL", process.env.NUXT_ENV_API_URL);
-  console.log("API_URL", process.env.API_URL);
+  // Set the default URL for $axios to be the URL connecting to the venue-server installation,
+  // which will eventually contain only the Bitcoin Talk campaign data.
+  if (process.env.NUXT_ENV_BTT_URL) {
+    $axios.defaults.baseURL = process.env.NUXT_ENV_BTT_URL;
+  }
 
   // This should be handled by resetOnError in the config, but it's broke now
   $axios.onError(error => {

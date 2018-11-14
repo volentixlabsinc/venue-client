@@ -1,7 +1,6 @@
 <template>
   <div>
-    Venue is up.
-    <!-- <div class="columns is-gapless is-fullheight is-hidden-mobile">
+    <div class="columns is-gapless is-fullheight is-hidden-mobile">
       <aside class="navbar column is-one-fifth-desktop is-one-fifth-tablet">
         <div class="navheader">
           <MainLogo class="p-lg"/>
@@ -89,7 +88,7 @@
         </div>
       </nav>
       <nuxt />
-    </div> -->
+    </div>
   </div>
 </template>
 

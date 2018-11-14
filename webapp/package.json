@@ -5,8 +5,8 @@
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
   "private": true,
   "scripts": {
-    "dev": "NUXT_ENV_API_URL=https://venue.volentix.io nuxt",
-    "build": "NUXT_ENV_API_URL=https://venue-dev.volentix.io NUXT_ENV_BTT_URL=https://venue-dev.volentix.io nuxt build",
+    "dev": "NUXT_ENV_BTT_URL=https://venue.volentix.io nuxt",
+    "build": "NUXT_ENV_BTT_URL=https://venue-dev.volentix.io nuxt build",
     "build-qa": "NUXT_ENV_BTT_URL=https://venue-uat.volentix.io nuxt build",
     "build-production": "NUXT_ENV_BTT_URL=https://venue.volentix.io nuxt build",
     "start": "nuxt start",
@@ -45,7 +45,6 @@
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "countup.js": "^1.9.3",
-    "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "js-cookie": "^2.2.0",
     "numeral": "^2.0.6",
