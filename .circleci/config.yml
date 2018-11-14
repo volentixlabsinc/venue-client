@@ -82,16 +82,6 @@ jobs:
       - restore_cache:
           name: Restore node module dependencies
           key: v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
-      # Install Serverless
-      - run:
-          name: Install Serverless CLI and dependencies
-          command: |
-            cd webapp && sudo npm install -g serverless
-      # Install Nuxt
-      - run:
-          name: Install Nuxt
-          command: |
-            cd webapp && sudo npm install -g nuxt
       # Deploy with the script corresponding to the current branch
       - run:
           name: Deploy to Lambda with Serverless
