@@ -23,6 +23,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
 
   # you can add statements to the Lambda function's IAM Role here
   iamRoleStatements:

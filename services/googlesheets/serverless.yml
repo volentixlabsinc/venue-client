@@ -23,6 +23,8 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
+
   # ~true is added at the end to decrypt the SecureString parameter
   environment:
     # TODO Make it encrypted in transit
