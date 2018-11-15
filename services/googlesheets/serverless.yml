@@ -37,8 +37,12 @@ functions:
     handler: handler.append
     events:
       - http:
-          path: googlesheets/append
+          path: /googlesheets/append
           method: POST
+          cors: true
+      - http:
+          path: /googlesheets/append/{proxy+}
+          method: ANY
           cors: true
 
 plugins:
