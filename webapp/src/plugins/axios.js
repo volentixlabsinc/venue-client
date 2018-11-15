@@ -1,6 +1,6 @@
 export default ({ $axios, app }) => {
   $axios.setHeader("Accept", "application/json");
-  $axios.setHeader("Content-Type", "application/json", ["post"]);
+  $axios.setHeader("Content-Type", "application/json");
 
   console.log("Axios baseURL: ", $axios.defaults.baseURL);
 
