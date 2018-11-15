@@ -45,7 +45,7 @@ export default {
         });
         if (result.success === true) {
           this.$auth.setUser(
-            Object.assign(this.$auth.user, { email: this.newValue })
+            Object.assign(this.$store.state.user, { email: this.newValue })
           );
           this.$parent.close();
         }

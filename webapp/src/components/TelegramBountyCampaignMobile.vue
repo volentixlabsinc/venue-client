@@ -99,9 +99,9 @@ export default {
       const data = {
         sheetName: "Telegram",
         row: [
-          this.$auth.user.username,
+          this.$store.state.user.username,
           this.telegramUsername,
-          this.$auth.user.email,
+          this.$store.state.user.email,
           this.isVolentixNameAdded ? "Yes" : "No"
         ]
       };

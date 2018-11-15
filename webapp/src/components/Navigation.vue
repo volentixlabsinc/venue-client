@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     isAuthenticated() {
-      return this.$auth.loggedIn;
+      return this.$store.state.user.isAuthenticated;
     },
     hasCampaignData() {
       return this.$store.state.userStats.hasCampaignData;

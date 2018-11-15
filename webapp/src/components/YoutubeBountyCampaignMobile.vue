@@ -87,12 +87,12 @@ export default {
       const data = {
         sheetName: "Youtube/Article",
         row: [
-          this.$auth.user.username,
+          this.$store.state.user.username,
           this.$store.state.userStats.hasCampaignData
             ? this.$store.state.userStats.profile_level[0].forumUserId
             : "",
           this.youtubeUrl,
-          this.$auth.user.email
+          this.$store.state.user.email
         ]
       };
 

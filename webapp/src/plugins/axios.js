@@ -1,6 +1,6 @@
-export default ({ $axios, app }) => {
+export default ({ $axios }) => {
   $axios.setHeader("Accept", "application/json");
-  $axios.setHeader("Content-Type", "application/json");
+  $axios.defaults.headers.common["Content-Type"] = "application/json";
 
   console.log("Axios baseURL: ", $axios.defaults.baseURL);
 
@@ -10,7 +10,6 @@ export default ({ $axios, app }) => {
     if (code === 401) {
       // 401 Unauthorized
       $axios.setToken(false);
-      app.$auth.reset();
     }
   });
 };

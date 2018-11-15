@@ -43,7 +43,7 @@
 
 
 <script>
-import { loadUserData } from "~/assets/utils.js";
+import { loadUserData, logAxiosError } from "~/assets/utils.js";
 import { Auth, API } from "aws-amplify";
 
 export default {
@@ -102,34 +102,36 @@ export default {
             this.showMessageError.message = this.$t("auth.err_password");
           }
         }
-        // FIXME Where does this go again?
-        // } else if (error === "email_verification_required") {
-        //   this.showMessageError.message = this.$t("auth.msg_not_verified");
-        // }
-        // console.log("exc", exc);
       }
 
       try {
-        // We still need to authenticate with Django while we have the username & password
-        await this.$auth.loginWith("local", {
-          data: {
-            username: this.username,
-            password: this.password
-          }
+        const user = await this.$axios.$post("/authenticate/", {
+          username: this.username,
+          password: this.password
         });
-
+        await this.$store.commit("user/authenticated", user);
         await loadUserData(this.$store.commit, this.$axios);
 
-        this.$router.push(
-          this.$store.state.userStats.hasCampaignData
-            ? this.localizedRoute("/dashboard", this.$i18n.locale)
-            : this.localizedRoute("/", this.$i18n.locale)
-        );
+        let redirectPath;
+        if (this.$route.query.redirect) {
+          redirectPath = this.$route.query.redirect;
+        } else if (this.$store.state.userStats.hasCampaignData) {
+          redirectPath = "/dashboard";
+        } else {
+          redirectPath = "/";
+        }
+        this.$router.push(this.localizedRoute(redirectPath, this.$i18n.locale));
       } catch (error) {
-        console.log("error", error);
-        if (error.response) {
+        logAxiosError("login", error);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error_code
+        ) {
           const errorCode = error.response.data.error_code;
           this.displayErrorMessage(errorCode);
+        } else {
+          this.displayErrorMessage(error);
         }
       }
     },
@@ -139,6 +141,10 @@ export default {
         this.showMessageError.message = this.$t("auth.err_password");
       } else if (error === "email_verification_required") {
         this.showMessageError.message = this.$t("auth.msg_not_verified");
+      } else if (error.message) {
+        this.showMessageError.message = error.message;
+      } else {
+        this.showMessageError.message = error;
       }
     },
     async resetPassword() {

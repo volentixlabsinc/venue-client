@@ -45,7 +45,7 @@ export default {
         });
         if (result.success === true) {
           this.$auth.setUser(
-            Object.assign(this.$auth.user, { username: this.newValue })
+            Object.assign(this.$store.state.user, { username: this.newValue })
           );
 
           // Since this username has changed, need to refresh the leaderboard data

@@ -1,7 +1,7 @@
 <template>
   <TwoColumnLayout>
     <div slot="left">
-      <div v-if="$auth.loggedIn" class="p-b-lg">
+      <div v-if="$store.state.user.isAuthenticated" class="p-b-lg">
         <h1 class="title">{{ $t("titles.vtx_earned") }}</h1>
         <VtxEarned />
       </div>

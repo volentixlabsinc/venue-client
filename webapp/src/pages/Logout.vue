@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  middleware: "auth",
+  // middleware: "auth",
   mounted() {
     this.logout();
   },
@@ -13,7 +13,13 @@ export default {
     logout: async function() {
       // locale gets wiped on logout; save it so that it doesn't get reset to English
       const savedLocale = this.$i18n.locale;
-      await this.$auth.logout();
+      if (this.$store.state.user.isAuthenticated) {
+        try {
+          await this.$axios.$get("/logout/");
+        } catch (err) {
+          // Ignore errors
+        }
+      }
       this.$store.dispatch("clearUserState");
       this.$router.push(this.localizedRoute("/", savedLocale));
     }

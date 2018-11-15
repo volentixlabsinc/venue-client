@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       ready: false,
-      isAuthenticated: this.$auth.loggedIn
+      isAuthenticated: this.$store.state.user.isAuthenticated
     };
   }
 };
