@@ -57,16 +57,3 @@ functions:
 #     CognitoUserPoolCfvenueauthdevvenueUserPool:
 #       Type: AWS::Cognito::UserPool
 
-plugins:
-  - serverless-domain-manager
-
-custom:
-  domains:
-    production: api.volentix.io
-    qa: qa-api.volentix.io
-    dev: dev-api.volentix.io
-  customDomain:
-    domainName: ${self:custom.domains.${self:provider.stage}}
-    basePath: "constantcontact" # This will be prefixed to all routes
-    stage: ${self:provider.stage}
-    createRoute53Record: false
