@@ -43,8 +43,8 @@
 
 
 <script>
+import { Auth } from "aws-amplify";
 import { loadUserData, logAxiosError } from "~/assets/utils.js";
-import { Auth, API } from "aws-amplify";
 
 export default {
   data() {
@@ -71,69 +71,87 @@ export default {
       event.preventDefault();
       this.loginError = false;
 
-      let user;
       try {
-        // Authenticate with Cognito
-        user = await Auth.signIn(this.username, this.password);
-        console.log("user", user);
-      } catch (err) {
-        if (err.code === "UserNotFoundException") {
-          // TODO Put a dialog telling users that we are migrating
-          const resp = await API.post("MigrateUser", "", {
-            body: {
-              // If the BASE_URL isn't set, I believe it is localhost (need to validate)
-              authServerUrl:
-                process.env.BASE_URL || "https://venue-dev.volentix.io",
-              username: this.username,
-              password: this.password
-            }
-          });
-          console.log("Response from MigrateUser", resp);
-          if (resp.message === "RETRY") {
-            user = await Auth.signIn(this.username, this.password);
-          } else {
-            // user was not found
-            this.showMessageError.message = this.$t("auth.err_password");
-            return;
-          }
-        } else {
-          this.showMessageError.error = true;
-          if (err.code === "NotAuthorizedException") {
-            this.showMessageError.message = this.$t("auth.err_password");
-          }
-        }
-      }
+        const [cognitoUser, bttUser] = await Promise.all([
+          this.loadCognitoUser(),
+          this.loadBttUser()
+        ]);
 
-      try {
-        const user = await this.$axios.$post("/authenticate/", {
-          username: this.username,
-          password: this.password
-        });
+        const user = Object.assign({}, cognitoUser, { token: bttUser.token });
+
+        console.log("authenticated user", user);
+
         await this.$store.commit("user/authenticated", user);
         await loadUserData(this.$store.commit, this.$axios);
 
-        let redirectPath;
-        if (this.$route.query.redirect) {
-          redirectPath = this.$route.query.redirect;
-        } else if (this.$store.state.userStats.hasCampaignData) {
-          redirectPath = "/dashboard";
-        } else {
-          redirectPath = "/";
-        }
-        this.$router.push(this.localizedRoute(redirectPath, this.$i18n.locale));
-      } catch (error) {
-        logAxiosError("login", error);
-        if (
-          error.response &&
-          error.response.data &&
-          error.response.data.error_code
-        ) {
-          const errorCode = error.response.data.error_code;
+        this.redirect();
+      } catch (err) {
+        logAxiosError("login", err);
+        if (err.response && err.response.data && err.response.data.error_code) {
+          const errorCode = err.response.data.error_code;
           this.displayErrorMessage(errorCode);
         } else {
-          this.displayErrorMessage(error);
+          this.displayErrorMessage(err);
         }
+        // if (err.code === "UserNotFoundException") {
+        //   // TODO Put a dialog telling users that we are migrating
+        //   const resp = await API.post("MigrateUser", "", {
+        //     body: {
+        //       // If the BASE_URL isn't set, I believe it is localhost (need to validate)
+        //       authServerUrl:
+        //         process.env.BASE_URL || "https://venue-dev.volentix.io",
+        //       username: this.username,
+        //       password: this.password
+        //     }
+        //   });
+        //   console.log("Response from MigrateUser", resp);
+        //   if (resp.message === "RETRY") {
+        //     user = await Auth.signIn(this.username, this.password);
+        //   } else {
+        //     // user was not found
+        //     this.showMessageError.message = this.$t("auth.err_password");
+        //     return;
+        //   }
+        // } else {
+        //   this.showMessageError.error = true;
+        //   if (err.code === "NotAuthorizedException") {
+        //     this.showMessageError.message = this.$t("auth.err_password");
+        //   }
+        // }
       }
+    },
+    async loadCognitoUser() {
+      // Authenticate with Cognito
+      console.log("signing into Auth");
+      let awsUser = await Auth.signIn(this.username, this.password);
+      if (!awsUser.attributes) {
+        awsUser = await Auth.currentAuthenticatedUser();
+      }
+      console.log("awsUser", awsUser);
+      // Note that user.username can never be changed, which is why we use preferred_username
+      return {
+        userId: awsUser.attributes["custom:legacy_id"],
+        username: awsUser.attributes.preferred_username,
+        language: awsUser.attributes.locale,
+        referral_code: awsUser.attributes["custom: referral_code"]
+      };
+    },
+    async loadBttUser() {
+      return await this.$axios.$post("/authenticate/", {
+        username: this.username,
+        password: this.password
+      });
+    },
+    redirect() {
+      let redirectPath;
+      if (this.$route.query.redirect) {
+        redirectPath = this.$route.query.redirect;
+      } else if (this.$store.state.userStats.hasCampaignData) {
+        redirectPath = "/dashboard";
+      } else {
+        redirectPath = "/";
+      }
+      this.$router.push(this.localizedRoute(redirectPath, this.$i18n.locale));
     },
     displayErrorMessage(error) {
       this.showMessageError.error = true;

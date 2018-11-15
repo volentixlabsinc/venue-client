@@ -104,6 +104,7 @@ module.exports = {
   },
   plugins: [
     "~/plugins/axios",
+    "~/plugins/amplify",
     { src: "~/plugins/vue-clipboard", ssr: false },
     "~/plugins/buefy",
     "~/plugins/mixin",
