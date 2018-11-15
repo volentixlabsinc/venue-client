@@ -1,14 +1,33 @@
-export async function loadUserData(commit, $axios /*, forumProfileId*/) {
+export function loadUserData(commit, $axios) {
   const retrieveStats = $axios.$get("/retrieve/stats/").then(stats => {
     if (stats.success && !stats.stats.fresh) {
       commit("setUserStats", stats.stats);
     }
+    return stats;
   });
 
   // Get the user's current signature
   const retrieveMySignature = refreshMySignature($axios, commit);
 
-  await Promise.all([retrieveStats, retrieveMySignature]);
+  return Promise.all([retrieveStats, retrieveMySignature]);
+}
+
+export function refreshMySignature($axios, commit) {
+  return $axios
+    .$get("/retrieve/signatures/", {
+      params: {
+        forum_site_id: 1,
+        own_sigs: true
+      }
+    })
+    .then(sigs => {
+      let signature;
+      if (sigs.success && sigs.signatures.length > 0) {
+        signature = sigs.signature[0];
+        commit("setSignature", signature);
+      }
+      return signature;
+    });
 }
 
 export async function retrieveAvailableSignatures(
@@ -25,17 +44,22 @@ export async function retrieveAvailableSignatures(
   })).signatures;
 }
 
-export function refreshMySignature($axios, commit) {
-  return $axios
-    .$get("/retrieve/signatures/", {
-      params: {
-        forum_site_id: 1,
-        own_sigs: true
-      }
-    })
-    .then(sigs => {
-      if (sigs.success && sigs.signatures.length > 0) {
-        commit("setSignature", sigs.signatures[0]);
-      }
-    });
+export function logAxiosError(name, error) {
+  console.log("Error occurred in " + name);
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    // that falls out of the range of 2xx
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
+  } else if (error.request) {
+    // The request was made but no response was received
+    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+    // http.ClientRequest in node.js
+    console.log(error.request);
+  } else {
+    // Something happened in setting up the request that triggered an Error
+    console.log("Error", error.message);
+  }
+  console.log(error.config);
 }

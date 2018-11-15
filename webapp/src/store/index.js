@@ -1,5 +1,5 @@
 import cookie from "cookie";
-import { loadUserData } from "~/assets/utils.js";
+import { loadUserData, logAxiosError } from "~/assets/utils.js";
 
 export const state = () => ({
   copiedSignatureId: undefined,
@@ -136,41 +136,52 @@ export const state = () => ({
 
 export const actions = {
   // This is executed on the server
-  async nuxtServerInit({ commit }, { req, app }) {
+  nuxtServerInit({ commit }, { req, app }) {
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
 
-    if (!req) {
-      return;
-    }
+    const promises = [];
 
-    const strategy = app.$auth.$storage.getUniversal("strategy");
-
-    // Pull the token from the cookie in the request header, if it is set
-    const cookieHeader = req.headers.cookie;
-    const cookies = cookie.parse(cookieHeader);
-    const token = cookies["auth._token." + strategy];
-
-    if (token) {
-      app.$auth.setToken(strategy, token);
-
-      try {
-        await loadUserData(commit, app.$axios);
-      } catch (exc) {
-        console.log("Could not load data from server; removing old token");
-        app.$axios.setToken(false);
-      }
-    } else {
-      app.$axios.setToken(false);
-    }
-
-    const leaderboardData = await app.$axios.$get(
-      "/retrieve/leaderboard-data/"
+    promises.push(
+      app.$axios
+        .$get("/retrieve/leaderboard-data/")
+        .then(leaderboardData => {
+          commit("setLeaderboardData", leaderboardData);
+        })
+        .catch(err => {
+          logAxiosError("nuxtServerInit - retrieve leaderboard data", err);
+          app.$axios.setToken(false);
+        })
     );
-    if (leaderboardData) {
-      commit("setLeaderboardData", leaderboardData);
+
+    if (req) {
+      // const strategy = app.$auth.$storage.getUniversal("strategy");
+      // Pull the token from the cookie in the request header, if it is set
+      const cookieHeader = req.headers.cookie;
+      const cookies = cookie.parse(cookieHeader);
+      console.log("cookies", cookies);
+      // const token = cookies["auth._token." + strategy];
+      // console.log("got token from request: " + token);
+      let token;
+      if (token) {
+        // app.$auth.setToken(strategy, token);
+        promises.push(
+          loadUserData(commit, app.$axios)
+            .then(([stats, signature]) => {
+              // console.log("got user data", res);
+              console.log("got stats", stats);
+              console.log("got signature", signature);
+            })
+            .catch(err => {
+              logAxiosError("nuxtServerInit - loadUserData", err);
+              app.$axios.setToken(false);
+            })
+        );
+      }
     }
+
+    return Promise.all(promises);
   },
   clearUserState({ commit }) {
     commit("setUserStats", {});
