@@ -148,7 +148,7 @@ plugins:
 custom:
   domains:
     production: api.volentix.io
-    staging: staging-api.volentix.io
+    qa: qa-api.volentix.io
     dev: dev-api.volentix.io
   customDomain:
     domainName: ${self:custom.domains.${self:provider.stage}}
