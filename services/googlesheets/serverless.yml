@@ -41,7 +41,6 @@ functions:
 
 plugins:
   - serverless-domain-manager
-  - serverless-stack-output
 
 custom:
   domains:
@@ -53,5 +52,3 @@ custom:
     basePath: "googlesheets" # This will be prefixed to all routes
     stage: ${self:provider.stage}
     createRoute53Record: false
-  output:
-    file: stack-${self:provider.stage}.json # toml, yaml, yml, and json format is available
