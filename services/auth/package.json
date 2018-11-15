@@ -7,7 +7,6 @@
     "axios": "^0.18.0"
   },
   "devDependencies": {
-    "serverless-domain-manager": "^2.6.6",
     "serverless-pseudo-parameters": "^2.2.0",
     "serverless-stack-output": "^0.2.3"
   },
