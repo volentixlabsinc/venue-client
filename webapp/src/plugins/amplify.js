@@ -27,7 +27,7 @@ Amplify.configure({
     userPoolWebClientId: VenueUserPoolClientId,
 
     // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
-    mandatorySignIn: false
+    mandatorySignIn: false,
 
     // OPTIONAL - Configuration for cookie storage
     // cookieStorage: {
@@ -45,14 +45,6 @@ Amplify.configure({
     // storage: new MyStorage(),
 
     // OPTIONAL - Manually set the authentication flow type. Default is 'USER_SRP_AUTH'
-    // authenticationFlowType: "USER_PASSWORD_AUTH"
+    authenticationFlowType: "USER_PASSWORD_AUTH"
   }
-  // API: {
-  //   endpoints: [
-  //     {
-  //       name: "MigrateUser",
-  //       endpoint: ServiceEndpoint + "/users/migrate"
-  //     }
-  //   ]
-  // }
 });

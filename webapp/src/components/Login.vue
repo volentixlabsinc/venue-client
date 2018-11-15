@@ -121,8 +121,6 @@ export default {
       }
     },
     async loadCognitoUser() {
-      // Authenticate with Cognito
-      console.log("signing into Auth");
       let awsUser = await Auth.signIn(this.username, this.password);
       if (!awsUser.attributes) {
         awsUser = await Auth.currentAuthenticatedUser();

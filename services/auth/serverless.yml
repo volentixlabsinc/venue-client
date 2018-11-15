@@ -49,11 +49,10 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  migrateVenueUserToCognito:
-    handler: migrateVenueUserToCognito.handler
-    cors: true
-    events:
-      - http: POST users/migrate
+  migrateVenueUser:
+    handler: migrateVenueUser.handler
+    environment:
+      VENUE_AUTH_URL: ${self:custom.authUrls.${self:provider.stage}}
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -110,6 +109,8 @@ resources:
 
         AutoVerifiedAttributes:
           - email
+        LambdaConfig:
+          - UserMigration: venue-auth-${self:provider.stage}-migrateVenueUser
 
         Policies:
           PasswordPolicy:
@@ -150,6 +151,10 @@ custom:
     production: api.volentix.io
     qa: qa-api.volentix.io
     dev: dev-api.volentix.io
+  authUrls:
+    production: https://venue.volentix.io/api/authenticate/
+    qa: https://venue-uat.volentix.io/api/authenticate/
+    dev: https://venue-dev.volentix.io/api/authenticate/
   customDomain:
     domainName: ${self:custom.domains.${self:provider.stage}}
     basePath: "auth" # This will be prefixed to all routes
