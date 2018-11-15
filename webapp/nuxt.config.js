@@ -100,7 +100,9 @@ module.exports = {
     ["nuxt-i18n", I18N]
   ],
   axios: {
-    baseURL: process.env.BTT_URL
+    baseURL: process.env.BTT_URL,
+    // If not set, will copy headers and likely enable compression which we can't decode
+    proxyHeaders: false
   },
   auth: {
     redirect: {
