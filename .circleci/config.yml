@@ -1,7 +1,7 @@
 version: 2
 jobs:
   # The build job
-  build:
+  build_webapp:
     working_directory: ~/venue
     docker:
       - image: circleci/node:10.13
@@ -100,13 +100,13 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "qa" ]; then
                 cd services/auth && sls:deploy-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd webapp && sls:deploy-production
+                cd services/auth && sls:deploy-production
             else
-                cd webapp && sls:deploy
+                cd services/auth && sls:deploy
             fi
 
   # The deploy job
-  deploy:
+  deploy_webapp:
     working_directory: ~/venue
     docker:
       - image: circleci/node:10.13
@@ -139,7 +139,7 @@ workflows:
   # The build and deploy workflow
   build_and_deploy:
     jobs:
-      - build
+      - build_webapp
       # The deploy job will only run on the filtered branches and
       # require the build job to be successful before it starts
       - deploy_auth:
@@ -149,9 +149,9 @@ workflows:
                 - develop
                 - qa
                 - master
-      - deploy:
+      - deploy_webapp:
           requires:
-            - build
+            - build_webapp
           filters:
             branches:
               only:
