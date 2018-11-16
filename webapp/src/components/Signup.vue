@@ -27,20 +27,34 @@
       </b-field>
     </form>
     <b-modal :active.sync="isSuccessModalActive" @close="$router.push(localizedRoute('/', $i18n.locale))">
-      <div class="modal-card">
-        <div class="modal-card-body">
-          <p>
-            {{ $t('auth.msg_email_verification') }}
-          </p>
-          <br>
-          <p>
-            {{ $t('auth.msg_email_check_spam_folder') }}
-          </p>
+      <form class="card">
+        <header class="card-header">
+          <div class="card-header-title">Please check your email</div>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>
+              {{ $t('auth.msg_email_verification') }}
+            </p>
+            <br>
+            <p>
+              {{ $t('auth.msg_email_check_spam_folder') }}
+            </p>
+
+            <b-field label="6-digit Verification code">
+              <b-input v-model="verificationCode" type="number" maxlength="6" required/>
+            </b-field>
+          </div>
+          
         </div>
-        <div class="modal-card-foot">
+        <footer class="card-footer">
+          <a class="card-footer-item" @click="isSuccessModalActive = false">{{ $t('buttons.btn_cancel') }}</a>
+          <a class="card-footer-item" type="submit" @click="confirmSignUp">Confirm</a>
+        </footer>
+        <!-- <div class="modal-card-foot">
           <button class="button" type="button" @click="isSuccessModalActive = false; $router.push(localizedRoute('/', $i18n.locale))">{{ $t('buttons.btn_close') }}</button>
-        </div>
-      </div>
+        </div> -->
+      </form>
     </b-modal>
   </div>
 </template>
@@ -62,6 +76,7 @@ export default {
       newsletter: true,
       isSuccessModalActive: false,
       referral_code: "",
+      verificationCode: "",
       stmt1Agreed: false,
       stmt2Agreed: false
     };
@@ -125,7 +140,17 @@ export default {
           locale: "en"
         }
       });
+    },
+    async confirmSignUp() {
+      try {
+        await Auth.confirmSignUp(this.username, this.verificationCode);
+        this.isSuccessModalActive = false;
+        this.$router.push(this.localizedRoute("/login", this.$i18n.locale));
+      } catch (err) {
+        console.log(err);
+      }
     }
+
     // signUpLegacy() {
     //   return this.$axios.$post("create/user/", {
     //     email: this.email,

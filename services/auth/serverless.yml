@@ -118,7 +118,7 @@ resources:
         #   ReplyToEmailAddress: noreply@volentix.io
         #   SourceArn:
 
-        EmailVerificationSubject: Your Venue verification link
+        EmailVerificationSubject: Your Venue verification code
 
         Policies:
           PasswordPolicy:
