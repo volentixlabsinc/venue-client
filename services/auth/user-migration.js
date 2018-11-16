@@ -65,6 +65,22 @@ async function authenticateUser(username, password) {
     return res.data;
   } catch (err) {
     console.error("Failure authenticating", err);
+
+    // This might be occuring because there is an older version of venue-local
+    // installed which doesn't have /authenticate-local/; use the old /authenticate/
+    // URL instead
+    try {
+      res = await axios.post(process.env.VENUE_AUTH_URL.replace("-local", ""), {
+        username,
+        password
+      });
+      console.log("Verified user with existing system: " + username);
+      return res.data;
+    } catch (err) {
+      console.error("Failure authenticating with backup URL", err);
+      throw err;
+    }
+
     throw err;
   }
 }

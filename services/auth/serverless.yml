@@ -165,9 +165,9 @@ plugins:
 
 custom:
   authUrls:
-    production: https://venue.volentix.io/api/authenticate/
-    qa: https://venue-uat.volentix.io/api/authenticate/
-    dev: https://venue-dev.volentix.io/api/authenticate/
+    production: https://venue.volentix.io/api/authenticate-local/
+    qa: https://venue-uat.volentix.io/api/authenticate-local/
+    dev: https://venue-dev.volentix.io/api/authenticate-local/
   output:
     handler: scripts/output.handler # Same syntax as you already know
     file: stack.json # toml, yaml, yml, and json format is available
