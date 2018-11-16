@@ -162,7 +162,10 @@ jobs:
       # the current branch
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /services
+          at: /tmp/services
+      - run:
+          name: Copy workspace
+          command: mkdir ~/venue/services && cp -R /tmp/services ~/venue/services
       - run:
           name: Building
           command: |
