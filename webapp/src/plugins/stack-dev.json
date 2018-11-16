@@ -1,10 +1,9 @@
 {
-  "VenueUserPoolClientId": "5qoaumbk77es0vl301ecgstkd1",
-  "DomainName": "d96jag0oxb1os.cloudfront.net",
-  "HostedZoneId": "Z2FDTNDATAQYW2",
+  "VenueUserPoolClientId": "5mnjlpdkkct79rpa7ip6r5lmlk",
+  "MigrateVenueUserLambdaFunctionQualifiedArn":
+    "arn:aws:lambda:eu-central-1:854376586701:function:venue-auth-dev-migrateVenueUser:3",
   "AWSRegion": "eu-central-1",
-  "MigrateVenueUserToCognitoLambdaFunctionQualifiedArn": "arn:aws:lambda:eu-central-1:854376586701:function:venue-auth-dev-migrateVenueUserToCognito:11",
-  "ServiceEndpoint": "https://pwbwozguva.execute-api.eu-central-1.amazonaws.com/dev",
-  "VenueUserPoolId": "eu-central-1_unfK3Sk0s",
-  "ServerlessDeploymentBucketName": "venue-auth-dev-serverlessdeploymentbucket-1t9s8zxzgi7e0"
+  "VenueUserPoolId": "eu-central-1_oFHaBXHoX",
+  "ServerlessDeploymentBucketName":
+    "venue-auth-dev-serverlessdeploymentbucket-cs0s7w4cxl9p"
 }
