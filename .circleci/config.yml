@@ -98,11 +98,11 @@ jobs:
           name: Deploy to Lambda with Serverless
           command: |
             if [ "${CIRCLE_BRANCH}" == "qa" ]; then
-                cd services/auth && sls:deploy-qa
+                cd services/auth && npm run sls:deploy-qa
             elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd services/auth && sls:deploy-production
+                cd services/auth && npm run sls:deploy-production
             else
-                cd services/auth && sls:deploy
+                cd services/auth && npm run sls:deploy
             fi
 
   # The deploy job
