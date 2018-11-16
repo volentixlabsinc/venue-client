@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
+
 export default {
   props: {
     value: {
@@ -39,19 +41,21 @@ export default {
   methods: {
     async changeUsername() {
       if (this.newValue !== this.value) {
-        // TODO Check for errors
-        const result = await this.$axios.$post("/manage/change-username/", {
-          username: this.newValue
-        });
-        if (result.success === true) {
-          this.$auth.setUser(
-            Object.assign(this.$auth.user, { username: this.newValue })
-          );
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+          await Auth.updateUserAttributes(user, {
+            preferred_username: this.newValue
+          });
+          this.$store.commit("user/updateUsername", this.newValue);
 
           // Since this username has changed, need to refresh the leaderboard data
           this.$axios
             .$get("/retrieve/leaderboard-data/")
             .then(data => this.$store.commit("setLeaderboardData", data));
+
+          this.$parent.close();
+        } catch (err) {
+          console.log(err);
         }
       }
       this.$parent.close();

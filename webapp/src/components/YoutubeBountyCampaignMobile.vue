@@ -87,22 +87,18 @@ export default {
       const data = {
         sheetName: "Youtube/Article",
         row: [
-          this.$auth.user.username,
+          this.$store.state.user.username,
           this.$store.state.userStats.hasCampaignData
             ? this.$store.state.userStats.profile_level[0].forumUserId
             : "",
           this.youtubeUrl,
-          this.$auth.user.email
+          this.$store.state.user.email
         ]
       };
 
       try {
-        // TODO Show spinner
         const res = await this.$axios.post(
-          // TODO Make better
-          window.location.href.startsWith("https://venue.volentix.io")
-            ? "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append"
-            : "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          process.env.NUXT_ENV_LAMBDA_URL + "/googlesheets/append",
           data
         );
         if (res.status === 200) {

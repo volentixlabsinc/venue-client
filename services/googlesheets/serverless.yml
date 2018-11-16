@@ -23,6 +23,8 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
+
   # ~true is added at the end to decrypt the SecureString parameter
   environment:
     # TODO Make it encrypted in transit
@@ -35,13 +37,24 @@ functions:
     handler: handler.append
     events:
       - http:
-          path: googlesheets/append
+          path: /googlesheets/append
           method: POST
+          cors: true
+      - http:
+          path: /googlesheets/append/{proxy+}
+          method: ANY
           cors: true
 
 plugins:
-  - serverless-stack-output
+  - serverless-domain-manager
 
 custom:
-  output:
-    file: stack-${self:provider.stage}.json # toml, yaml, yml, and json format is available
+  domains:
+    production: api.volentix.io
+    qa: qa-api.volentix.io
+    dev: dev-api.volentix.io
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    basePath: "googlesheets" # This will be prefixed to all routes
+    stage: ${self:provider.stage}
+    createRoute53Record: false

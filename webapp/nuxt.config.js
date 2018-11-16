@@ -93,53 +93,22 @@ module.exports = {
     // Disabled compression
     compressor: { threshold: Infinity }
   },
-  modules: [
-    "@nuxtjs/axios",
-    "@nuxtjs/auth",
-    "@nuxtjs/google-analytics",
-    ["nuxt-i18n", I18N]
-  ],
+  modules: ["@nuxtjs/axios", "@nuxtjs/google-analytics", ["nuxt-i18n", I18N]],
   axios: {
-    baseURL: process.env.BTT_URL
-  },
-  auth: {
-    redirect: {
-      home: "/dashboard"
-    },
-    plugins: ["~/plugins/auth", "~/plugins/axios"],
-
-    // This is broken right now, so I've enabled it manually in axios.js
-    // resetOnError: true,
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: "/authenticate/",
-            method: "post",
-            propertyName: "token"
-          },
-          logout: { url: "/logout/", method: "get" },
-          user: {
-            url: "/retrieve/user/",
-            method: "get",
-            propertyName: false
-          }
-        },
-        // tokenRequired: true,
-        tokenType: "Token"
-      }
-      // facebook: {
-      //   client_id: "..."
-      // }
-    }
+    baseURL: process.env.BTT_URL,
+    // If not set, will copy headers and likely enable compression which we can't decode
+    proxyHeaders: false
   },
   "google-analytics": {
     id: "UA-119876313-3"
   },
   plugins: [
+    "~/plugins/axios",
+    "~/plugins/amplify",
     { src: "~/plugins/vue-clipboard", ssr: false },
     "~/plugins/buefy",
     "~/plugins/mixin",
-    "~/plugins/vue-social-sharing"
+    "~/plugins/vue-social-sharing",
+    "~/plugins/amplify"
   ]
 };

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
 export default {
   data() {
     return {
@@ -33,13 +34,12 @@ export default {
   methods: {
     async changePassword() {
       if (this.newValue !== "") {
-        // TODO Check for errors
-        const result = await this.$axios.$put("/manage/change-password/", {
-          old_password: this.currentValue,
-          new_password: this.newValue
-        });
-        if (result.success === true) {
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+          await Auth.changePassword(user, this.currentValue, this.newValue);
           this.$parent.close();
+        } catch (err) {
+          console.log(err);
         }
       }
       this.$parent.close();

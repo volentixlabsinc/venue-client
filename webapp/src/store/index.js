@@ -1,5 +1,5 @@
 import cookie from "cookie";
-import { loadUserData } from "~/assets/utils.js";
+import { loadUserData, logAxiosError } from "~/assets/utils.js";
 
 export const state = () => ({
   copiedSignatureId: undefined,
@@ -137,46 +137,51 @@ export const state = () => ({
 export const actions = {
   // This is executed on the server
   async nuxtServerInit({ commit }, { req, app }) {
+    // TODO We should be able to do these calls in parallel, but be aware that
+    // a bad token might be passed to the leaderboard which will cause it to
+    // fail
+
     // If we receive a request with our cookie, we can load the userStats for that
     // user here on the server and fill in the store, saving a call to the server
     // to get that data.
-
     if (!req) {
       return;
     }
 
-    const strategy = app.$auth.$storage.getUniversal("strategy");
-
-    // Pull the token from the cookie in the request header, if it is set
     const cookieHeader = req.headers.cookie;
-    const cookies = cookie.parse(cookieHeader);
-    const token = cookies["auth._token." + strategy];
 
-    if (token) {
-      app.$auth.setToken(strategy, token);
+    if (cookieHeader) {
+      const cookies = cookie.parse(cookieHeader);
+      console.log("cookies", cookies);
+      if (cookies.venue) {
+        app.$axios.setToken(cookies.venue.token, "Token");
+        // This call also sets the token into $axios
+        await commit("user/authenticated", {
+          token: cookies.venue
+        });
 
-      try {
-        await loadUserData(commit, app.$axios);
-      } catch (exc) {
-        console.log("Could not load data from server; removing old token");
-        app.$axios.setToken(false);
+        try {
+          await loadUserData(commit, app.$axios);
+        } catch (err) {
+          logAxiosError("nuxtServerInit - loadUserData", err);
+          if (err.response && err.response.status === 401) {
+            // HTTP 401 Unauthorized means the token is bad
+            commit("user/unauthenticated");
+          }
+        }
       }
-    } else {
-      app.$axios.setToken(false);
     }
 
-    const leaderboardData = await app.$axios.$get(
-      "/retrieve/leaderboard-data/"
+    commit(
+      "setLeaderboardData",
+      await app.$axios.$get("/retrieve/leaderboard-data/")
     );
-    if (leaderboardData) {
-      commit("setLeaderboardData", leaderboardData);
-    }
   },
   clearUserState({ commit }) {
     commit("setUserStats", {});
     commit("setSignature", {});
     commit("clearForumProfile");
-    // commit("user/unauthenticated");
+    commit("user/unauthenticated");
   }
 };
 

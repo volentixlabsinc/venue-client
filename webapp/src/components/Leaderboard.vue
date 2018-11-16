@@ -47,7 +47,10 @@ export default {
   },
   data() {
     let startingPage = 1;
-    if (this.$auth.loggedIn && this.$store.state.userStats.hasCampaignData) {
+    if (
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.hasCampaignData
+    ) {
       startingPage = Math.ceil(
         this.$store.state.userStats.user_level.overall_rank / this.perPage
       );
@@ -60,7 +63,8 @@ export default {
       startingPage,
       rankings,
       selected:
-        this.$auth.loggedIn && this.$store.state.userStats.hasCampaignData
+        this.$store.state.user.isAuthenticated &&
+        this.$store.state.userStats.hasCampaignData
           ? rankings.find(
               user =>
                 this.$store.state.userStats.user_level.overall_rank ===

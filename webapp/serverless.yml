@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
-  region: eu-central-1
+  region: ${opt:region, 'eu-central-1'}
   environment:
     NODE_ENV: production
     BUCKET_NAMESPACE: volentix-venue

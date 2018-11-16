@@ -99,9 +99,9 @@ export default {
       const data = {
         sheetName: "Telegram",
         row: [
-          this.$auth.user.username,
+          this.$store.state.user.username,
           this.telegramUsername,
-          this.$auth.user.email,
+          this.$store.state.user.email,
           this.isVolentixNameAdded ? "Yes" : "No"
         ]
       };
@@ -110,10 +110,7 @@ export default {
         this.isLoading = true;
 
         const res = await this.$axios.post(
-          // TODO Make better
-          window.location.href.startsWith("https://venue.volentix.io")
-            ? "https://h98rl1d9wl.execute-api.eu-central-1.amazonaws.com/production/googlesheets/append"
-            : "https://8m9tvoerie.execute-api.eu-central-1.amazonaws.com/dev/googlesheets/append",
+          process.env.NUXT_ENV_LAMBDA_URL + "/googlesheets/append",
           data
         );
         if (res.status === 200) {

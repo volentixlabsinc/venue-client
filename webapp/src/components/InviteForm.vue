@@ -53,10 +53,10 @@ export default {
       isSuccess: true,
       hasError: false
     };
-    const isAuthenticated = this.$auth.loggedIn;
+    const isAuthenticated = this.$store.state.user.isAuthenticated;
     if (isAuthenticated) {
       Object.assign(data, {
-        referralCode: this.$auth.user.referral_code
+        referralCode: this.$store.state.user.referral_code
       });
     }
     return data;

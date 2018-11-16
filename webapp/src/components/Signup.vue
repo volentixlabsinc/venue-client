@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
+
 export default {
   data() {
     return {
@@ -101,18 +103,39 @@ export default {
       }
     },
     async registerUser() {
-      const result = await this.$axios.$post("create/user/", {
-        email: this.email,
+      try {
+        const result = await this.signUpCognito();
+        // const result = await Promise.all([
+        //   this.signUpCognito(),
+        //   this.signUpLegacy()
+        // ]);
+        console.log("signUp result", result);
+        this.isSuccessModalActive = true;
+      } catch (err) {
+        // TODO show error to user
+        console.error(err);
+      }
+    },
+    signUpCognito() {
+      return Auth.signUp({
         username: this.username,
         password: this.password,
-        language: "en",
-        receive_emails: this.newsletter,
-        referral_code: this.$route.query.code
+        attributes: {
+          email: this.email,
+          locale: "en"
+        }
       });
-      if (result.success) {
-        this.isSuccessModalActive = true;
-      }
     }
+    // signUpLegacy() {
+    //   return this.$axios.$post("create/user/", {
+    //     email: this.email,
+    //     username: this.username,
+    //     password: this.password,
+    //     language: "en",
+    //     receive_emails: this.newsletter,
+    //     referral_code: this.$route.query.code
+    //   });
+    // }
   }
 };
 </script>

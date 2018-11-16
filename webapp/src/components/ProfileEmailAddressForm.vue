@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
+
 export default {
   props: {
     value: {
@@ -39,15 +41,16 @@ export default {
   methods: {
     async changeEmail() {
       if (this.newValue !== this.value) {
-        // TODO Check for errors
-        const result = await this.$axios.$post("/manage/change-email/", {
-          email: this.newValue
-        });
-        if (result.success === true) {
-          this.$auth.setUser(
-            Object.assign(this.$auth.user, { email: this.newValue })
-          );
+        try {
+          // TODO This should not be set until the new email address is confirmed
+          const user = await Auth.currentAuthenticatedUser();
+          await Auth.updateUserAttributes(user, {
+            email: this.newValue
+          });
+          this.$store.commit("user/updateEmail", this.newValue);
           this.$parent.close();
+        } catch (err) {
+          console.log(err);
         }
       }
       this.$parent.close();

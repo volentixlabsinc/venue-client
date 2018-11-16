@@ -57,7 +57,8 @@ export default {
       loaded: false
     };
     const hasStats =
-      this.$auth.loggedIn && this.$store.state.userStats.fresh === false;
+      this.$store.state.user.isAuthenticated &&
+      this.$store.state.userStats.fresh === false;
 
     if (hasStats) {
       Object.assign(data, {

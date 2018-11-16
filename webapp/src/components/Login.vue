@@ -26,15 +26,23 @@
         </header>
         <div class="card-content">
           <div class="content">
-            <div>{{ $t('auth.msg_reset_password') }}</div>
-            <b-field label="Email">
-              <b-input v-model="email" type="email" required/>
+            <div>{{ $t('auth.msg_reset_password_username') }}</div>
+            <b-field v-if="!submittedReset" label="Username">
+              <b-input v-model="username" type="text" required/>
+            </b-field>
+            <b-field v-if="submittedReset" label="6-digit Verification code">
+              <b-input v-model="verificationCode" type="number" maxlength="6" required/>
+            </b-field>
+            <b-field v-if="submittedReset" label="New password">
+              <b-input v-model="newPassword" type="password" required password-reveal/>
             </b-field>
           </div>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" @click="isForgotPasswordModalActive = false">{{ $t('buttons.btn_cancel') }}</a>
-          <a class="card-footer-item" type="submit" @click="resetPassword">{{ $t('auth.title_reset_password') }}</a>
+          <a class="card-footer-item" type="submit" @click="resetOrChangePassword">
+            {{ submittedReset ? $t('settings.btn_password') : $t('auth.title_reset_password') }}
+          </a>
         </footer>
       </form>
     </b-modal>
@@ -43,7 +51,8 @@
 
 
 <script>
-import { loadUserData } from "~/assets/utils.js";
+import { Auth } from "aws-amplify";
+import { loadUserData, logAxiosError } from "~/assets/utils.js";
 
 export default {
   data() {
@@ -57,6 +66,9 @@ export default {
         message: "",
         authResponse: null
       },
+      submittedReset: false,
+      verificationCode: "",
+      newPassword: "",
       isForgotPasswordModalActive: false
     };
   },
@@ -71,23 +83,72 @@ export default {
       this.loginError = false;
 
       try {
-        await this.$auth.loginWith("local", {
-          data: {
-            username: this.username,
-            password: this.password
-          }
-        });
+        const user = await this.signInCognitoUser();
+        console.log("authenticated user", user);
 
-        console.log("user", this.$auth.user);
+        await this.$store.commit("user/authenticated", user);
 
-        await loadUserData(this.$store.commit, this.$axios);
-      } catch (error) {
-        console.log("error", error);
-        if (error.response) {
-          const errorCode = error.response.data.error_code;
+        this.redirect();
+      } catch (err) {
+        logAxiosError("Cognito login", err);
+        if (err.response && err.response.data && err.response.data.error_code) {
+          const errorCode = err.response.data.error_code;
           this.displayErrorMessage(errorCode);
+        } else {
+          this.displayErrorMessage(err);
         }
       }
+
+      // Sign into the BTT server because now we have the username and password, but don't
+      // gate proper signin on its success. Note that this must be done after the
+      // signInCognitoUser function because it might migrate the user from BTT server into
+      // User Pool, and since BTT server now uses that to authenticate, it must be done
+      // before successful BTT authentication
+      this.signInBttUser()
+        .then(async user => {
+          console.log("Successful signin to BTT");
+          this.$store.commit("user/SET_BTT_TOKEN", user.token);
+
+          try {
+            await loadUserData(this.$store.commit, this.$axios);
+          } catch (err) {
+            logAxiosError("loadUserData", err);
+          }
+        })
+        .catch(err => {
+          logAxiosError("BTT login", err);
+        });
+    },
+    async signInCognitoUser() {
+      let awsUser = await Auth.signIn(this.username, this.password);
+      if (!awsUser.attributes) {
+        awsUser = await Auth.currentAuthenticatedUser();
+      }
+      // Note that user.username can never be changed, which is why we use preferred_username
+      return {
+        userId: awsUser.attributes["custom:legacy_id"],
+        username: awsUser.attributes.preferred_username || awsUser.username,
+        email: awsUser.attributes.email,
+        language: awsUser.attributes.locale,
+        referral_code: awsUser.attributes["custom: referral_code"]
+      };
+    },
+    async signInBttUser() {
+      return await this.$axios.$post("/authenticate/", {
+        username: this.username,
+        password: this.password
+      });
+    },
+    redirect() {
+      let redirectPath;
+      if (this.$route.query.redirect) {
+        redirectPath = this.$route.query.redirect;
+      } else if (this.$store.state.userStats.hasCampaignData) {
+        redirectPath = "/dashboard";
+      } else {
+        redirectPath = "/";
+      }
+      this.$router.push(this.localizedRoute(redirectPath, this.$i18n.locale));
     },
     displayErrorMessage(error) {
       this.showMessageError.error = true;
@@ -95,16 +156,52 @@ export default {
         this.showMessageError.message = this.$t("auth.err_password");
       } else if (error === "email_verification_required") {
         this.showMessageError.message = this.$t("auth.msg_not_verified");
+      } else if (error.message) {
+        this.showMessageError.message = error.message;
+      } else {
+        this.showMessageError.message = error;
+      }
+    },
+    resetOrChangePassword() {
+      if (this.submittedReset) {
+        return this.changePassword();
+      } else {
+        return this.resetPassword();
       }
     },
     async resetPassword() {
-      const authResponse = await this.$axios.$post("/manage/reset-password/", {
-        action: "request",
-        email: this.email
-      });
-      if (authResponse.success === true) {
-        this.isForgotPasswordModalActive = false;
+      try {
+        await Auth.forgotPassword(this.username);
+        this.submittedReset = true;
+      } catch (err) {
+        console.log(err);
       }
+      // const authResponse = await this.$axios.$post("/manage/reset-password/", {
+      //   action: "request",
+      //   email: this.email
+      // });
+      // if (authResponse.success === true) {
+      //   this.isForgotPasswordModalActive = false;
+      // }
+    },
+    async changePassword() {
+      try {
+        await Auth.forgotPasswordSubmit(
+          this.username,
+          this.verificationCode,
+          this.newPassword
+        );
+        this.isForgotPasswordModalActive = false;
+      } catch (err) {
+        console.log(err);
+      }
+      // const authResponse = await this.$axios.$post("/manage/reset-password/", {
+      //   action: "request",
+      //   email: this.email
+      // });
+      // if (authResponse.success === true) {
+      //   this.isForgotPasswordModalActive = false;
+      // }
     }
   }
 };

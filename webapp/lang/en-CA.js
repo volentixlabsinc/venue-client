@@ -47,7 +47,9 @@ module.exports = {
       "VTX is not being offered to China or U.S. persons (as defined below). If you are a citizen, resident of, or person located or domiciled in the United States of America, including its states, territories, or the District of Columbia or any entity, including, without limitation, any corporation or partnership created or organized in or under the laws of the United States of America, any state or territory thereof, or the District of Columbia (a “U.S. person”), or China, do not use VENUE, do not download or use VERTO, and do not purchase or attempt to purchase VTX.",
     msg_accept_1:
       "I accept the KYC and AML checks before I claim VTX into my VERTO Wallet.",
-    msg_accept_2: "I accept I'm not a resident of the United States or China."
+    msg_accept_2: "I accept I'm not a resident of the United States or China.",
+    msg_reset_password_username:
+      "Forgot your password? No problem. Enter your username and we'll send you a reset code."
   },
   bct_onboarding: {
     err_duplicate_id: "This id is already attached to a Venue profile",

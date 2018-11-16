@@ -1,0 +1,59 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service:
+  name: venue-constantcontact # NOTE: update this with your service name
+  awsKmsKeyArn: ${ssm:venue-kms-key-arn}
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "=1.32.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-central-1'}
+
+  # you can define service wide environment variables here
+  # ~true is added at the end to decrypt the SecureString parameter
+  environment:
+    CONSTANT_CONTACT_ACCESS_TOKEN: ${ssm:constantContactAccessToken~true}
+    CONSTANT_CONTACT_APP_KEY: ${ssm:constantContactAppKey~true}
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  add:
+    handler: handler.add
+    memorySize: 128
+    # events:
+    #   - cognitoUserPool:
+    #       pool: ${cf:venue-auth-${self:provider.stage}.venueUserPool}
+    #       trigger: PostConfirmation
+
+  modify:
+    handler: handler.modify
+    memorySize: 128
+# resources:
+#   Resources:
+#     CognitoUserPoolCfvenueauthdevvenueUserPool:
+#       Type: AWS::Cognito::UserPool
+
