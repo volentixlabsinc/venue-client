@@ -12,6 +12,9 @@
     "serverless-stack-output": "^0.2.3"
   },
   "scripts": {
+    "sls:deploy": "serverless deploy",
+    "sls:deploy-qa": "serverless deploy --stage qa",
+    "sls:deploy-production": "serverless deploy --stage production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shawn Lauzon <shawn@volentixlabs.com>",
