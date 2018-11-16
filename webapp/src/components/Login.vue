@@ -72,69 +72,56 @@ export default {
       this.loginError = false;
 
       try {
-        const [cognitoUser, bttUser] = await Promise.all([
-          this.loadCognitoUser(),
-          this.loadBttUser()
-        ]);
-
-        const user = Object.assign({}, cognitoUser, { token: bttUser.token });
-
+        const user = await this.signInCognitoUser();
         console.log("authenticated user", user);
 
         await this.$store.commit("user/authenticated", user);
-        await loadUserData(this.$store.commit, this.$axios);
 
         this.redirect();
       } catch (err) {
-        logAxiosError("login", err);
+        logAxiosError("Cognito login", err);
         if (err.response && err.response.data && err.response.data.error_code) {
           const errorCode = err.response.data.error_code;
           this.displayErrorMessage(errorCode);
         } else {
           this.displayErrorMessage(err);
         }
-        // if (err.code === "UserNotFoundException") {
-        //   // TODO Put a dialog telling users that we are migrating
-        //   const resp = await API.post("MigrateUser", "", {
-        //     body: {
-        //       // If the BASE_URL isn't set, I believe it is localhost (need to validate)
-        //       authServerUrl:
-        //         process.env.BASE_URL || "https://venue-dev.volentix.io",
-        //       username: this.username,
-        //       password: this.password
-        //     }
-        //   });
-        //   console.log("Response from MigrateUser", resp);
-        //   if (resp.message === "RETRY") {
-        //     user = await Auth.signIn(this.username, this.password);
-        //   } else {
-        //     // user was not found
-        //     this.showMessageError.message = this.$t("auth.err_password");
-        //     return;
-        //   }
-        // } else {
-        //   this.showMessageError.error = true;
-        //   if (err.code === "NotAuthorizedException") {
-        //     this.showMessageError.message = this.$t("auth.err_password");
-        //   }
-        // }
       }
+
+      // Sign into the BTT server because now we have the username and password, but don't
+      // gate proper signin on its success. Note that this must be done after the
+      // signInCognitoUser function because it might migrate the user from BTT server into
+      // User Pool, and since BTT server now uses that to authenticate, it must be done
+      // before successful BTT authentication
+      this.signInBttUser()
+        .then(async user => {
+          console.log("Successful signin to BTT");
+          this.$store.commit("user/SET_BTT_TOKEN", user.token);
+
+          try {
+            await loadUserData(this.$store.commit, this.$axios);
+          } catch (err) {
+            logAxiosError("loadUserData", err);
+          }
+        })
+        .catch(err => {
+          logAxiosError("BTT login", err);
+        });
     },
-    async loadCognitoUser() {
+    async signInCognitoUser() {
       let awsUser = await Auth.signIn(this.username, this.password);
       if (!awsUser.attributes) {
         awsUser = await Auth.currentAuthenticatedUser();
       }
-      console.log("awsUser", awsUser);
       // Note that user.username can never be changed, which is why we use preferred_username
       return {
         userId: awsUser.attributes["custom:legacy_id"],
-        username: awsUser.attributes.preferred_username,
+        username: awsUser.attributes.preferred_username || awsUser.username,
         language: awsUser.attributes.locale,
         referral_code: awsUser.attributes["custom: referral_code"]
       };
     },
-    async loadBttUser() {
+    async signInBttUser() {
       return await this.$axios.$post("/authenticate/", {
         username: this.username,
         password: this.password

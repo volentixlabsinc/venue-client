@@ -6,25 +6,18 @@ export const state = () => ({
   email: "",
   language: "en",
   isAuthenticated: false,
-  token: "",
+  bttToken: "",
   referral_code: ""
 });
 
 export const mutations = {
-  authenticated(
-    state,
-    { userId, username, email, language, token, referral_code }
-  ) {
+  authenticated(state, { userId, username, email, language, referral_code }) {
     state.userId = userId;
     state.username = username;
     state.email = email;
     state.language = language;
     state.isAuthenticated = true;
-    state.token = token;
     state.referral_code = referral_code;
-
-    this.$axios.setToken(token, "Token");
-    Cookies.set("venue", token);
   },
 
   unauthenticated(state) {
@@ -37,7 +30,7 @@ export const mutations = {
     state.referral_code = "";
 
     this.$axios.setToken(false);
-    Cookies.remove("venue");
+    Cookies.remove("btt-token");
   },
 
   setUserData(state, { username, email, language, referral_code }) {
@@ -45,6 +38,12 @@ export const mutations = {
     state.email = email;
     state.language = language;
     state.referral_code = referral_code;
+  },
+
+  SET_BTT_TOKEN(state, bttToken) {
+    state.bttToken = bttToken;
+    this.$axios.setToken(bttToken, "Token");
+    Cookies.set("btt-token", bttToken);
   },
 
   updateUsername(state, username) {

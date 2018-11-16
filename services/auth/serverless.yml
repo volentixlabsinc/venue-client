@@ -114,6 +114,12 @@ resources:
         # LambdaConfig:
         #   UserMigration: venue-auth-${self:provider.stage}-migrateVenueUser
 
+        # EmailConfiguration:
+        #   ReplyToEmailAddress: noreply@volentix.io
+        #   SourceArn:
+
+        EmailVerificationSubject: Your Venue verification link
+
         Policies:
           PasswordPolicy:
             # These policies are very low, but current passwords don't have any minimum, so
@@ -129,9 +135,9 @@ resources:
       Type: "AWS::Cognito::UserPoolClient"
       Properties:
         ClientName: venue-userpoolclient-${self:provider.stage}
-        # Need to support copyVenueToCognito authFlow
+        # Needed to support migrateVenueUser
         ExplicitAuthFlows:
-          - ADMIN_NO_SRP_AUTH
+          - USER_PASSWORD_AUTH
         UserPoolId:
           Ref: VenueUserPool
       DependsOn: VenueUserPool

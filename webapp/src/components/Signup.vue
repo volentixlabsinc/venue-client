@@ -104,32 +104,38 @@ export default {
     },
     async registerUser() {
       try {
-        const result = await Auth.signUp({
-          username: this.username,
-          password: this.password,
-          attributes: {
-            email: this.email
-          }
-        });
-
+        const result = await this.signUpCognito();
+        // const result = await Promise.all([
+        //   this.signUpCognito(),
+        //   this.signUpLegacy()
+        // ]);
         console.log("signUp result", result);
         this.isSuccessModalActive = true;
       } catch (err) {
         // TODO show error to user
         console.error(err);
       }
-      // const result = await this.$axios.$post("create/user/", {
-      //   email: this.email,
-      //   username: this.username,
-      //   password: this.password,
-      //   language: "en",
-      //   receive_emails: this.newsletter,
-      //   referral_code: this.$route.query.code
-      // });
-      // if (result.success) {
-      //   this.isSuccessModalActive = true;
-      // }
+    },
+    signUpCognito() {
+      return Auth.signUp({
+        username: this.username,
+        password: this.password,
+        attributes: {
+          email: this.email,
+          locale: "en"
+        }
+      });
     }
+    // signUpLegacy() {
+    //   return this.$axios.$post("create/user/", {
+    //     email: this.email,
+    //     username: this.username,
+    //     password: this.password,
+    //     language: "en",
+    //     receive_emails: this.newsletter,
+    //     referral_code: this.$route.query.code
+    //   });
+    // }
   }
 };
 </script>
