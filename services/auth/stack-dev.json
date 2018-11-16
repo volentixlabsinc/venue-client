@@ -1,6 +1,6 @@
 {
   "VenueUserPoolClientId": "5mnjlpdkkct79rpa7ip6r5lmlk",
-  "MigrateVenueUserLambdaFunctionQualifiedArn": "arn:aws:lambda:eu-central-1:854376586701:function:venue-auth-dev-migrateVenueUser:3",
+  "MigrateVenueUserLambdaFunctionQualifiedArn": "arn:aws:lambda:eu-central-1:854376586701:function:venue-auth-dev-migrateVenueUser:4",
   "AWSRegion": "eu-central-1",
   "VenueUserPoolId": "eu-central-1_oFHaBXHoX",
   "ServerlessDeploymentBucketName": "venue-auth-dev-serverlessdeploymentbucket-cs0s7w4cxl9p"
