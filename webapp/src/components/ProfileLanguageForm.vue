@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { Auth } from "aws-amplify";
+
 export default {
   data() {
     return {
@@ -44,14 +46,15 @@ export default {
   methods: {
     async changeLanguage() {
       if (this.language !== "") {
-        // TODO Check for errors
-        const result = await this.$axios.$put("/manage/change-language/", {
-          language: this.language
-        });
-        if (result.success === true) {
-          console.log("switching path to " + this.language);
-          this.$parent.close();
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+          await Auth.updateUserAttributes(user, {
+            locale: this.language
+          });
           this.$router.push(this.switchLocalePath(this.language));
+          this.$parent.close();
+        } catch (err) {
+          console.log(err);
         }
       }
       this.$parent.close();

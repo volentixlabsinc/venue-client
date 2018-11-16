@@ -26,15 +26,23 @@
         </header>
         <div class="card-content">
           <div class="content">
-            <div>{{ $t('auth.msg_reset_password') }}</div>
-            <b-field label="Email">
-              <b-input v-model="email" type="email" required/>
+            <div>{{ $t('auth.msg_reset_password_username') }}</div>
+            <b-field v-if="!submittedReset" label="Username">
+              <b-input v-model="username" type="text" required/>
+            </b-field>
+            <b-field v-if="submittedReset" label="6-digit Verification code">
+              <b-input v-model="verificationCode" type="number" maxlength="6" required/>
+            </b-field>
+            <b-field v-if="submittedReset" label="New password">
+              <b-input v-model="newPassword" type="password" required password-reveal/>
             </b-field>
           </div>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" @click="isForgotPasswordModalActive = false">{{ $t('buttons.btn_cancel') }}</a>
-          <a class="card-footer-item" type="submit" @click="resetPassword">{{ $t('auth.title_reset_password') }}</a>
+          <a class="card-footer-item" type="submit" @click="resetOrChangePassword">
+            {{ submittedReset ? $t('settings.btn_password') : $t('auth.title_reset_password') }}
+          </a>
         </footer>
       </form>
     </b-modal>
@@ -58,6 +66,9 @@ export default {
         message: "",
         authResponse: null
       },
+      submittedReset: false,
+      verificationCode: "",
+      newPassword: "",
       isForgotPasswordModalActive: false
     };
   },
@@ -117,6 +128,7 @@ export default {
       return {
         userId: awsUser.attributes["custom:legacy_id"],
         username: awsUser.attributes.preferred_username || awsUser.username,
+        email: awsUser.attributes.email,
         language: awsUser.attributes.locale,
         referral_code: awsUser.attributes["custom: referral_code"]
       };
@@ -150,14 +162,46 @@ export default {
         this.showMessageError.message = error;
       }
     },
-    async resetPassword() {
-      const authResponse = await this.$axios.$post("/manage/reset-password/", {
-        action: "request",
-        email: this.email
-      });
-      if (authResponse.success === true) {
-        this.isForgotPasswordModalActive = false;
+    resetOrChangePassword() {
+      if (this.submittedReset) {
+        return this.changePassword();
+      } else {
+        return this.resetPassword();
       }
+    },
+    async resetPassword() {
+      try {
+        await Auth.forgotPassword(this.username);
+        this.submittedReset = true;
+      } catch (err) {
+        console.log(err);
+      }
+      // const authResponse = await this.$axios.$post("/manage/reset-password/", {
+      //   action: "request",
+      //   email: this.email
+      // });
+      // if (authResponse.success === true) {
+      //   this.isForgotPasswordModalActive = false;
+      // }
+    },
+    async changePassword() {
+      try {
+        await Auth.forgotPasswordSubmit(
+          this.username,
+          this.verificationCode,
+          this.newPassword
+        );
+        this.isForgotPasswordModalActive = false;
+      } catch (err) {
+        console.log(err);
+      }
+      // const authResponse = await this.$axios.$post("/manage/reset-password/", {
+      //   action: "request",
+      //   email: this.email
+      // });
+      // if (authResponse.success === true) {
+      //   this.isForgotPasswordModalActive = false;
+      // }
     }
   }
 };
