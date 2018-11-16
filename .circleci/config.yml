@@ -165,7 +165,7 @@ jobs:
           at: /tmp/services
       - run:
           name: Copy workspace
-          command: cp -R /tmp/services ~/venue/services
+          command: cp -R /tmp/services/* ~/venue/services
       - run:
           name: Building
           command: |
