@@ -160,4 +160,4 @@ custom:
     dev: https://venue-dev.volentix.io/api/authenticate/
   output:
     handler: scripts/output.handler # Same syntax as you already know
-    file: stack-${self:provider.stage}.json # toml, yaml, yml, and json format is available
+    file: stack.json # toml, yaml, yml, and json format is available

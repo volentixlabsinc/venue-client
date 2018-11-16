@@ -1,12 +1,10 @@
 import Amplify from "aws-amplify";
 
-// TODO get this file from the generated microservice
 import {
   AWSRegion,
   VenueUserPoolId,
   VenueUserPoolClientId
-  // ServiceEndpoint
-} from "./stack-dev.json";
+} from "../../../services/auth/stack.json";
 
 Amplify.configure({
   Auth: {

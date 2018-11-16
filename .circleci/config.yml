@@ -1,71 +1,5 @@
 version: 2
 jobs:
-  # The build job
-  build_webapp:
-    working_directory: ~/venue
-    docker:
-      - image: circleci/node:10.13
-    steps:
-      # Checkout the code from the branch into the working_directory
-      - checkout
-      # Log the current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-      # Restore local dependencies from cache
-      - restore_cache:
-          name: Restore node module dependencies
-          keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
-            - v3-npm-cache-{{ .Branch }}-
-            - v3-npm-cache-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: cd webapp && npm install
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          paths:
-            - ~/venue/webapp/node_modules # location depends on npm version
-          key: v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
-      # Lint the source code
-      - run:
-          name: Linting
-          command: cd webapp && npm run lint
-      # Test the source code
-      # TODO Get tests to do anything useful
-      # - run:
-      #     name: Testing
-      #     command: cd webapp && npm run test
-      # Build project with different configuration based on
-      # the current branch
-      - run:
-          name: Building
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
-                cd webapp && cp env/qa.env ./.env && npm run build-qa
-            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
-                cd webapp && cp env/production.env ./.env && npm run build-production
-            else
-                cd webapp && cp env/dev.env ./.env && npm run build
-            fi
-      # Cache the .nuxt/dist folder for the deploy job
-      - save_cache:
-          key: v3-dist-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - webapp/.env
-            - webapp/lang
-            - webapp/package.json
-            - webapp/package-lock.json
-            - webapp/serverless.yml
-            - webapp/nuxt.config.js
-            - webapp/handler.js
-            - webapp/tsconfig.json
-            - webapp/tslint.json
-            - webapp/.nuxt/dist
-            - webapp/static
-
   deploy_auth:
     working_directory: ~/venue-auth
     docker:
@@ -104,6 +38,11 @@ jobs:
             else
                 cd services/auth && npm run sls:deploy
             fi
+      - persist_to_workspace:
+          root: services/
+          paths:
+            - auth/stack.json
+
   deploy_constantcontact:
     working_directory: ~/venue-constantcontact
     docker:
@@ -180,6 +119,76 @@ jobs:
             else
                 cd services/googlesheets && npm run sls:deploy
             fi
+
+  # The build job
+  build_webapp:
+    working_directory: ~/venue
+    docker:
+      - image: circleci/node:10.13
+    steps:
+      # Checkout the code from the branch into the working_directory
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      # Restore local dependencies from cache
+      - restore_cache:
+          name: Restore node module dependencies
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+            - v3-npm-cache-{{ .Branch }}-
+            - v3-npm-cache-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: cd webapp && npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          paths:
+            - ~/venue/webapp/node_modules # location depends on npm version
+          key: v3-npm-cache-{{ .Branch }}-{{ checksum "webapp/package-lock.json" }}
+      # Lint the source code
+      - run:
+          name: Linting
+          command: cd webapp && npm run lint
+      # Test the source code
+      # TODO Get tests to do anything useful
+      # - run:
+      #     name: Testing
+      #     command: cd webapp && npm run test
+      # Build project with different configuration based on
+      # the current branch
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /services      
+      - run:
+          name: Building
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd webapp && cp env/qa.env ./.env && npm run build-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd webapp && cp env/production.env ./.env && npm run build-production
+            else
+                cd webapp && cp env/dev.env ./.env && npm run build
+            fi
+      # Cache the .nuxt/dist folder for the deploy job
+      - save_cache:
+          key: v3-dist-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - webapp/.env
+            - webapp/lang
+            - webapp/package.json
+            - webapp/package-lock.json
+            - webapp/serverless.yml
+            - webapp/nuxt.config.js
+            - webapp/handler.js
+            - webapp/tsconfig.json
+            - webapp/tslint.json
+            - webapp/.nuxt/dist
+            - webapp/static
+
   # The deploy job
   deploy_webapp:
     working_directory: ~/venue
@@ -214,9 +223,6 @@ workflows:
   # The build and deploy workflow
   build_and_deploy:
     jobs:
-      - build_webapp
-      # The deploy job will only run on the filtered branches and
-      # require the build job to be successful before it starts
       - deploy_auth:
           filters:
             branches:
@@ -238,6 +244,12 @@ workflows:
                 - develop
                 - qa
                 - master
+      - build_webapp
+          # The deploy job will only run on the filtered branches and
+          # require the build job to be successful before it starts
+          requires:
+            - deploy_auth
+
       - deploy_webapp:
           requires:
             - build_webapp
