@@ -162,7 +162,7 @@ jobs:
       # the current branch
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: /services      
+          at: /services
       - run:
           name: Building
           command: |
@@ -244,7 +244,7 @@ workflows:
                 - develop
                 - qa
                 - master
-      - build_webapp
+      - build_webapp:
           # The deploy job will only run on the filtered branches and
           # require the build job to be successful before it starts
           requires:
