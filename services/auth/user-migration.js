@@ -76,6 +76,7 @@ function convertFromVenueToCognitoUser(user) {
     email: user.email,
     email_verified: user.email_confirmed.toString(),
     locale: user.language,
-    "custom:legacy_id": user.user_profile_id
+    "custom:legacy_id": user.user_profile_id,
+    "custom:legacy_referral_code": user.referral_code
   };
 }

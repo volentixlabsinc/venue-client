@@ -124,13 +124,18 @@ export default {
       if (!awsUser.attributes) {
         awsUser = await Auth.currentAuthenticatedUser();
       }
+
+      const userId =
+        awsUser.attributes["custom:legacy_id"] || awsUser.attributes.sub;
       // Note that user.username can never be changed, which is why we use preferred_username
       return {
-        userId: awsUser.attributes["custom:legacy_id"],
+        userId,
         username: awsUser.attributes.preferred_username || awsUser.username,
         email: awsUser.attributes.email,
         language: awsUser.attributes.locale,
-        referral_code: awsUser.attributes["custom: referral_code"]
+        referral_code:
+          awsUser.attributes["custom:legacy_referral_id"] ||
+          awsUser.attributes.sub
       };
     },
     async signInBttUser() {

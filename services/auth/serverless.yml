@@ -49,8 +49,8 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  migrateVenueUser:
-    handler: migrateVenueUser.handler
+  userMigration:
+    handler: user-migration.handler
     environment:
       VENUE_AUTH_URL: ${self:custom.authUrls.${self:provider.stage}}
 
@@ -106,6 +106,16 @@ resources:
             AttributeDataType: String
             Required: false
             Mutable: false
+            StringAttributeConstraints:
+              MinLength: 36
+              MaxLength: 36
+          - Name: legacy_referral_code
+            AttributeDataType: String
+            Required: false
+            Mutable: false
+            StringAttributeConstraints:
+              MinLength: 36
+              MaxLength: 36
 
         AutoVerifiedAttributes:
           - email
