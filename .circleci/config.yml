@@ -104,7 +104,82 @@ jobs:
             else
                 cd services/auth && npm run sls:deploy
             fi
-
+  deploy_constantcontact:
+    working_directory: ~/venue-constantcontact
+    docker:
+      - image: circleci/node:10.13
+    steps:
+      # TODO checkout just the code for this service
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          name: Restore node module dependencies
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v3-npm-cache-constantcontact-{{ .Branch }}-{{ checksum "services/constantcontact/package-lock.json" }}
+            - v3-npm-cache-constantcontact-{{ .Branch }}-
+            - v3-npm-cache-constantcontact-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: cd services/constantcontact && npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          paths:
+            - ~/venue-constantcontact/services/constantcontact/node_modules # location depends on npm version
+          key: v3-npm-cache-constantcontact-{{ .Branch }}-{{ checksum "services/constantcontact/package-lock.json" }}
+      # Deploy with the script corresponding to the current branch
+      - run:
+          name: Deploy to Lambda with Serverless
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd services/constantcontact && npm run sls:deploy-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd services/constantcontact && npm run sls:deploy-production
+            else
+                cd services/constantcontact && npm run sls:deploy
+            fi
+  deploy_googlesheets:
+    working_directory: ~/venue-googlesheets
+    docker:
+      - image: circleci/node:10.13
+    steps:
+      # TODO checkout just the code for this service
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          name: Restore node module dependencies
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v3-npm-cache-googlesheets-{{ .Branch }}-{{ checksum "services/googlesheets/package-lock.json" }}
+            - v3-npm-cache-googlesheets-{{ .Branch }}-
+            - v3-npm-cache-googlesheets-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: cd services/googlesheets && npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          paths:
+            - ~/venue-googlesheets/services/googlesheets/node_modules # location depends on npm version
+          key: v3-npm-cache-googlesheets-{{ .Branch }}-{{ checksum "services/googlesheets/package-lock.json" }}
+      # Deploy with the script corresponding to the current branch
+      - run:
+          name: Deploy to Lambda with Serverless
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd services/googlesheets && npm run sls:deploy-qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd services/googlesheets && npm run sls:deploy-production
+            else
+                cd services/googlesheets && npm run sls:deploy
+            fi
   # The deploy job
   deploy_webapp:
     working_directory: ~/venue
@@ -149,9 +224,26 @@ workflows:
                 - develop
                 - qa
                 - master
+      - deploy_constantcontact:
+          filters:
+            branches:
+              only:
+                - develop
+                - qa
+                - master
+      - deploy_googlesheets:
+          filters:
+            branches:
+              only:
+                - develop
+                - qa
+                - master
       - deploy_webapp:
           requires:
             - build_webapp
+            - deploy_auth
+            - deploy_constantcontact
+            - deploy_googlesheets
           filters:
             branches:
               only:
