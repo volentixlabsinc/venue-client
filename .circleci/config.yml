@@ -65,6 +65,46 @@ jobs:
             - webapp/tslint.json
             - webapp/.nuxt/dist
             - webapp/static
+
+  deploy_auth:
+    working_directory: ~/venue-auth
+    docker:
+      - image: circleci/node:10.13
+    steps:
+      # TODO checkout just the code for this service
+      - checkout
+      # Log the current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          name: Restore node module dependencies
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - v3-npm-cache-auth-{{ .Branch }}-{{ checksum "services/auth/package-lock.json" }}
+            - v3-npm-cache-auth-{{ .Branch }}-
+            - v3-npm-cache-auth-
+      # Install project dependencies
+      - run:
+          name: Install local dependencies
+          command: cd services/auth && npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          paths:
+            - ~/venue-auth/services/auth/node_modules # location depends on npm version
+          key: v3-npm-cache-auth-{{ .Branch }}-{{ checksum "services/auth/package-lock.json" }}
+      # Deploy with the script corresponding to the current branch
+      - run:
+          name: Deploy to Lambda with Serverless
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "qa" ]; then
+                cd services/auth && serverless deploy --stage qa
+            elif [ "${CIRCLE_BRANCH}" == "master" ]; then
+                cd webapp && serverless deploy --stage production
+            else
+                cd webapp && serverless deploy
+            fi
+
   # The deploy job
   deploy:
     working_directory: ~/venue
@@ -102,6 +142,13 @@ workflows:
       - build
       # The deploy job will only run on the filtered branches and
       # require the build job to be successful before it starts
+      - deploy_auth:
+          filters:
+            branches:
+              only:
+                - develop
+                - qa
+                - master
       - deploy:
           requires:
             - build
