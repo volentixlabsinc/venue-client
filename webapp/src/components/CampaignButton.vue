@@ -1,23 +1,45 @@
 <template>
-  <a v-if="newTab" :href="link" target="_blank">
-    <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
-      <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
-      <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
-      <div class="info is-size-7">{{ info }}</div>
-    </div>
-  </a>
-  <router-link v-else :to="localizedRoute(link, $i18n.locale)">
-    <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
-      <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
-      <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
-      <div class="info is-size-7">{{ info }}</div>
-    </div>
-  </router-link>
+  <div v-if="newTab">
+    <a v-if="status === 'completed'" :href="link" target="_blank">
+      <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box" style="background: lightgray;">
+        <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
+        <div class="is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
+        <div class="title is-size-8">Campaign Ended!</div>
+      </div>
+    </a>
+    <a v-else :href="link" target="_blank">
+      <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
+        <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
+        <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
+        <div class="info is-size-7">{{ info }}</div>
+      </div>
+    </a>
+  </div>
+  <div v-else>
+    <a v-if="status === 'completed'" style="cursor: default;">
+      <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box" style="background: lightgray;">
+        <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
+        <div class="is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
+        <div class="title is-size-8">Campaign Ended!</div>
+      </div>
+    </a>
+    <router-link v-else :to="localizedRoute(link, $i18n.locale)">
+      <div :style="{ borderBottom: '6px solid ' + highlight }" class="has-text-centered box">
+        <img v-if="image" :src="image" :width="width" :height="height" class="p-b-sm">
+        <div class="name is-size-6 has-text-weight-bold m-b-sm">{{ name }}</div>
+        <div class="info is-size-7">{{ info }}</div>
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    status: {
+      type: String,
+      default: '"active'
+    },
     name: {
       type: String,
       default: ""
