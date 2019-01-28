@@ -2,6 +2,7 @@ import cookie from "cookie";
 import { loadUserData } from "~/assets/utils.js";
 
 export const state = () => ({
+  campaignsStatus: {},
   copiedSignatureId: undefined,
   leaderboard: {
     // "rankings": [
@@ -177,6 +178,10 @@ export const actions = {
     commit("setSignature", {});
     commit("clearForumProfile");
     // commit("user/unauthenticated");
+  },
+  updateCampaignsStatus({ commit }, data) {
+    console.log(data);
+    commit("updateCampaignsStatus", data);
   }
 };
 
@@ -230,5 +235,8 @@ export const mutations = {
       forum_profile_id: "",
       position: ""
     };
+  },
+  updateCampaignsStatus(state, data) {
+    state.campaignsStatus = data;
   }
 };

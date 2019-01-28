@@ -116,6 +116,12 @@ export default {
       showPillarLinks: false
     };
   },
+  created() {
+    let vm = this;
+    this.$axios.get("/check/campaigns/").then(function(resp) {
+      vm.$store.dispatch("updateCampaignsStatus", resp.data);
+    });
+  },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
